@@ -1,0 +1,75 @@
+// -----------------------------------------------------------------------------
+// CAROUSEL スライド
+// -----------------------------------------------------------------------------
+
+.carousel {
+    align-items:     stretch;
+    display:         flex;
+    justify-content: center;
+}
+
+    .carousel__controls { position: relative; }
+
+        .carousel__btn {
+            border:        none;
+            border-radius: 50%;
+            background-color: $color-accent;
+            color:            $color-white;
+            display:  inline-block;
+            position: absolute;
+            top:      40%;
+            height:   20px;
+            width:    20px;
+            vertical-align: middle;
+
+            @include media('>=medium') {
+                height: 23px;
+                width:  23px;
+            }
+        }
+
+        .carousel__btn--left {
+            left: -10px;
+
+            span {
+                margin-right: 3px;
+            }
+        }
+
+        .carousel__btn--right {
+            right: -10px;
+
+            span {
+                margin-left: 2px;
+            }
+        }
+
+        .carousel__container { overflow: hidden; }
+
+            .carousel__slide {
+                flex: 0 0 100%;
+                margin: 1em;
+                transition: transform 0.3s ease-in-out;
+
+                &:first-of-type,
+                &:last-of-type {
+                    opacity: 0;
+                }
+
+                @include media('>=medium') {
+                    flex: 0 0 80%;
+                }
+            }
+
+                .carousel__slide-img {
+                    border: 1px solid $border-color;
+                    width:  100%;
+                }
+
+                .carousel__slide-title {
+                    background-color: $gray-4;
+                    font-size: 14px;
+                    display: block;
+                    padding: 16px;
+                    width:   100%;
+                }

@@ -1,0 +1,72 @@
+// -----------------------------------------------------------------------------
+// PROGRESS BAR プログレスバー
+// -----------------------------------------------------------------------------
+
+/**
+ * プログレスバーの基本スタイル。 `.progressbar--*` でスタイルを追加してください。
+ * class.
+ */
+
+.progressbar {
+    padding-left: 0;
+    overflow: hidden;
+    text-align: center;
+
+    li {
+        color: map-get($progressbar-colors, 'list-item');
+        float: left;
+        font-size: 14px;
+        list-style-type: none;
+        padding-left: 0;
+        position: relative;
+        width:    calc(100%/5);
+
+        &:nth-child(2):before {
+            left: -100%;
+            width: 150%; }
+
+        &:last-child:before { width: 100%; }
+
+        &:not(:first-child):before {
+            background: map-get($progressbar-colors, 'line');
+            content: "";
+            position: absolute;
+            left:    -50%;
+            top:      21px;
+            height:   10px;
+            width:    100%;
+            z-index: $z-index-before;
+        }
+
+        &.progress-item--done,
+        &.progress-item--current {
+            color: $color-accent;
+
+            &:before,
+            .progress-item__icon {
+                background-color: $color-accent;
+                color:            $color-white;
+            }
+        }
+    }
+}
+
+    .progress-item__icon {
+        background: $gray-5;
+        border-radius: 50%;
+        font-size:   20px;
+        line-height: 50px;
+        display: block;
+        margin: 0 auto 10px auto;
+        height: 50px;
+        width:  50px;
+        transition: all 0.25s ease-in .3s;
+    }
+
+    .progress-transition {
+        transition: all 0.25s ease-in .3s;
+
+        &:before {
+            transition: all 0.25s ease-in .3s;
+        }
+    }

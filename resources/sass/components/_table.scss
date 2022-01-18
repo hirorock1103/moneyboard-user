@@ -1,0 +1,175 @@
+// -----------------------------------------------------------------------------
+// TABLE 表
+// -----------------------------------------------------------------------------
+
+/**
+ * 表の基本スタイル。 `.table--*` でスタイルを追加してください。
+ * class.
+ */
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    width: 100%;
+
+    td,
+    th {
+        display: table-cell;
+        padding: 8px 8px;
+        text-align: left;
+        vertical-align: center;
+
+        font-size: 16px;
+        line-height: 1.6;
+
+        @include media('>=medium') {
+            font-size: 16px;
+        }
+    }
+
+    th { font-weight: $weight-bold; }
+}
+
+
+/**
+ * 各行の下に線がある表。`.table`の延長
+ */
+
+.table--bordered {
+
+    tr {
+        border: $border-width solid $border-color;
+    }
+
+    th, td {
+
+        &:not(:last-child) {
+            border-right: $border-width solid $border-color;
+        }
+    }
+
+    thead {
+        background-color: map-get($table-colors, 'bg');
+        padding: 10px 0;
+    }
+
+    tbody {
+        td {
+            padding: 15px;
+
+            @include media('>=medium') {
+                padding: 18px 21px;
+            }
+        }
+    }
+}
+
+
+/**
+ * スクロール表の基本スタイル。 `.table-scrollable--*` でスタイルを追加してください。
+ * class.
+ */
+
+.table-scrollable {
+    max-height:   315px;
+    overflow:     auto;
+    @include scrollbars(16px, map-get($scrollbar-colors, 'thumb'), map-get($scrollbar-colors, 'track'));
+}
+
+
+/**
+ * ドラッグ表の基本スタイル。 `.table-dragable--*` でスタイルを追加してください。
+ * class.
+ */
+
+.table-dragable {
+    overflow-x: auto;
+    /* IE, Edge and Firefoxでスクロールバーを隠す */
+    -ms-overflow-style: none;  /* IEとEdge対応 */
+    scrollbar-width: none;  /* Firefox対応 */
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+
+    tr th,
+    tr td {
+        white-space: nowrap;
+        line-height: 2.16;
+    }
+
+    tr th {
+        font-size: 12px;
+    }
+
+    tr td {
+        font-size: 14px;
+    }
+}
+
+    /**
+    * ソート順の基本スタイル。 `.sort-by--*` でスタイルを追加してください。
+    * class.
+    */
+
+    .sort-by {
+        display: block;
+        padding-right: 18px;
+        position: relative;
+        width: 100%;
+
+        &:after {
+            content: "";
+            border:           6px solid transparent;
+            border-top-color: $color-accent;
+            display: block;
+            margin-top: 1px;
+            position: absolute;
+            height: 0;
+            width:  0;
+            right:  0;
+            top:    40%;
+        }
+    }
+
+
+/**
+ * 等幅テーブルセル表の基本スタイル。 `.table-fixed--*` でスタイルを追加してください。
+ * class.
+ */
+
+.table-fixed {
+    table-layout: fixed;
+
+    tbody {
+        th, td { width: 2%; }
+    }
+
+    @include media('>=large') {
+        table-layout: auto;
+
+        tbody {
+            th, td { width: auto; }
+        }
+    }
+}
+
+
+/**
+ * 中央揃えの表。
+ */
+
+.align-center {
+
+    tr {
+
+        th, td {
+
+            &:not(:first-child) {
+                text-align: center;
+            }
+        }
+    }
+}

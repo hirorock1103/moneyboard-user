@@ -1,0 +1,79 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc((390 / 1920) * 100vw);
+    background: white;
+    border: solid var(--container-border-width) #EEEEEE;
+    margin: auto;
+    padding: calc((35 / 1920) * 100vw) calc((30 / 1920) * 100vw);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    margin: auto;
+}
+.content input {
+    align-self: center;
+    width: 100%;
+    height: calc((40 / 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    border-radius: calc((5 / 1920) * 100vw);
+    border: 1px solid #D5D5D5;
+    margin: auto auto calc((25 / 1920) * 100vw) auto;
+}
+
+.content-heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    margin: auto auto calc((9 / 1920) * 100vw) auto;
+}
+.content-heading img {
+    display: flex;
+    width: calc((16 / 1920) * 100vw);
+    object-fit: contain;
+    margin-right: calc((10 / 1920) * 100vw);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.content-heading-title {
+    display: flex;
+    align-self: center;
+    color: #4E4E4E;
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+}
+
+
+/* ログインボタン */
+input[type="submit"]{
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    outline: none;
+
+    width: calc((150 / 1920) * 100vw);
+    height: calc((52 / 1920) * 100vw);
+    color: var(--white);
+    text-align: center;
+    font-size: var(--fourteen-px);
+    font-weight: bold;
+    background: var(--blue);
+}
+
+.reset-password {
+    display: flex;
+    align-self: center;
+    text-decoration: none;
+    color: var(--blue);
+    font-size: var(--sixteen-px);
+    margin-top: calc((20 / 1920) * 100vw);
+}

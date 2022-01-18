@@ -1,0 +1,120 @@
+// -----------------------------------------------------------------------------
+// MENU メニュー
+// -----------------------------------------------------------------------------
+
+/**
+ * メニューの基本スタイル。 `.menu--*` でスタイルを追加してください。
+ * class.
+ */
+
+.menu {
+    background-color: map-get($menu-colors, 'bg');
+    height: 100%;
+}
+
+.menu__inner {
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height:  100%;
+    width:   100%;
+}
+
+
+.menu__list--top    { margin:     0;    }
+
+.menu__list--bottom { margin-top: auto; }
+
+    .menu__link {
+        border:     0;
+        border-bottom: solid 1px map-get($menu-colors, 'border');
+        color: map-get($menu-colors, 'btn');
+        font-size: 16px;
+        text-decoration: none;
+        display: block;
+        padding-left: 0;
+        max-height: 92px;
+        transition: map-get($duration, 'menu');
+
+        a, button {
+            display: flex;
+            flex-direction: row;
+            padding: 1.5em 1em;
+
+                &:hover { color: $color-white; }
+        }
+
+        button {
+            color: $color-white;
+            font-size:   16px;
+            font-weight: $weight-normal;
+            width: 100%;
+        }
+
+        &:hover {
+            background-color: map-get($menu-colors, 'active-bg');
+
+            .menu__icon { color: map-get($menu-colors, 'active-icon'); }
+        }
+    }
+
+        .menu__icon {
+            color: map-get($menu-colors, 'icon');
+            padding-right: 20px;
+        }
+
+        .menu__link--active {
+            background-color: map-get($menu-colors, 'active-bg');
+
+                .menu__icon { color: map-get($menu-colors, 'active-icon'); }
+        }
+
+
+.menu__hidden {
+    overflow-x: hidden;
+    transition: map-get($duration, 'menu');
+    position:  fixed;
+    top:       68px;
+    right:     0;
+    height:    calc(100% - 65px);
+    width:     0;
+    z-index:   $zindex-modal;
+}
+
+/**
+* メニューボタンの基本スタイル。 `.menu-button--*` でスタイルを追加してください。
+* class.
+*/
+
+.menu-button {
+    border:   0;
+    cursor:   pointer;
+    display:  inline-block;
+    padding:  1em;
+    position: fixed;
+    right:    0.125em;
+    top:      0.2em;
+    transition: right map-get($duration, 'menu') ease;
+    z-index:  $zindex-modal;
+}
+
+.menu-button__bar {
+    background-color: map-get($menu-colors, 'hamburger');
+    margin: 6px auto;
+    height: 2px;
+    width:  29px;
+    transition: map-get($duration, 'menu');
+}
+
+.menu-visible {
+
+    .bar1 { transform: rotate(-45deg) translate(-6px, 6px); }
+
+    .bar2 { opacity: 0; }
+
+    .bar3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+    /// メニューが表示された後のスタイル
+    &.menu { width: 100%; }
+}

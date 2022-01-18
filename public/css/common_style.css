@@ -1,0 +1,262 @@
+/* 
+* 各種定数
+*/
+:root {
+    /* 色 */
+    --darkgray: #4E4E4E;
+    --gray: #545454;
+    --lightgray: #D5D5D5;
+    --ultralightgray: #F5F5F5;
+    --whitegray: #ECEEEF;
+    --white: #ffffff;
+    --orange: #FFA200;
+    --blue: #2FBCED;
+    --red: #FF0000;
+    --lightred: #FFEFEF;
+
+    /* 文字サイズ */
+    /* 12px */
+    --twelve-px: calc((12 / 1920) * 100vw);
+    /* 14px */
+    --fourteen-px: calc((14 / 1920) * 100vw);
+    /* 16px */
+    --sixteen-px: calc((16 / 1920) * 100vw);
+    /* 17px */
+    --eighteen-px: calc((17 / 1920) * 100vw);
+    /* 18px */
+    --eighteen-px: calc((18 / 1920) * 100vw);
+    /* 19px */
+    --nineteen-px: calc((19 / 1920) * 100vw);
+    /* 20px */
+    --twenty-px: calc((20 / 1920) * 100vw);
+    /* 23px */
+    --twentythree-px: calc((23 / 1920) * 100vw);
+    /* 25px */
+    --twentyfive-px: calc((25 / 1920) * 100vw);
+    /* 26px */
+    --twentysix-px: calc((26 / 1920) * 100vw);
+    /* 28px */
+    --twentyeight-px: calc((28 / 1920) * 100vw);
+    /* 30px */
+    --thirty-px: calc((30 / 1920) * 100vw);
+    /* 32px */
+    --thirtytwo-px: calc((32 / 1920) * 100vw);
+    /* 36px */
+    --thirtysix-px: calc((36 / 1920) * 100vw);
+    /* 42px */
+    --fortytwo-px: calc((42 / 1920) * 100vw);
+
+    /* 基本的な余白 */
+    --base-mergin: calc((8 / 1920) * 100vw);
+
+    /* 基本的な文字幅 */
+    --base-letterspace: calc((2 / 1920) * 100vw);
+
+    /* 項目の枠幅 */
+    --container-border-width: calc((20 / 1920) * 100vw);
+}
+
+
+/*
+* 必要フォント設定
+*/
+/* Noto Sans JP */
+@font-face {
+    font-family: Noto Sans JP;
+    src: url('../fonts/NotoSansJP-Light.otf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: Noto Sans JP;
+    src: url('../fonts/NotoSansJP-Regular.otf');
+    font-weight: normal;
+}
+@font-face {
+    font-family: Noto Sans JP;
+    src: url('../fonts/NotoSansJP-Bold.otf');
+    font-weight: bold;
+}
+/* AvantGarde-Demi */
+@font-face {
+    font-family: AvantGarde-Demi;
+    src: url('../fonts/unicode.avantgd.ttf');
+}
+/* ITC Avant Garde Gothic Book */
+@font-face {
+    font-family: ITC Avant Garde Gothic Book;
+    src: url('../fonts/ITC Avant Garde Gothic Book Regular.otf');
+}
+
+
+/*
+* 基本フォント設定
+*/
+/* 基本フォント */
+body {
+    margin: 0;
+    font-family: Noto Sans JP;
+    font-weight: normal;
+    color: var(--gray);
+}
+
+/* ロゴタイトルフォント */
+.app-title-font {
+    font-family: AvantGarde-Demi;
+    letter-spacing: var(--base-letterspace)
+}
+.app-sub-title-font {
+    font-family: ITC Avant Garde Gothic Book;
+    letter-spacing: var(--base-letterspace)
+}
+
+/* ポイントフォント */
+.point-heading-font {
+    font-family: Gautreaux;
+}
+
+/* 
+* 共通イメージ設定
+*/
+/** Appイメージロゴ */
+.app-logo-image{
+    display: block;
+    align-self: center;
+    height: 0;
+    width: calc((57 / 1920) * 100vw);
+    padding-bottom: calc((36 / 1920) * 100vw);
+    background-image: url('../images/header_logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.for-top-image {
+    width: calc((98.82 / 1920) * 100vw);
+    padding-bottom: calc((68.07 / 1920) * 100vw);
+}
+
+
+/*
+* bodyコンテナ共通
+*/
+.contents {
+    text-align: center;
+    /* ヘッダー分余白を設けるため */
+    padding-top: calc((84 / 1920) * 100vw);
+}
+
+
+/**
+* 共通大枠
+*/
+.page {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100vw;
+    background: var(--ultralightgray);
+}
+
+.base-container {
+    display: flex;
+    align-self: center;
+    width: 100%;
+    padding-top: calc((58 / 1920) * 100vw);
+    padding-bottom: calc((114 / 1920) * 100vw);
+    background: var(--white);
+    box-sizing: border-box;
+}
+.for-top {
+    padding-top: calc((137 / 1920) * 100vw);
+    padding-bottom: calc((137 / 1920) * 100vw);
+}
+.ver-gray {
+    background: var(--ultralightgray);
+}
+
+.draw-contents {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc((1100 / 1920) * 100vw);
+    box-sizing: border-box;
+    margin: auto;
+}
+
+
+/*
+* 見出し共通
+*/
+/* 見出し アイコン */
+/* 見出し */
+.heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: calc((53 / 1920) * 100vw);
+}
+.heading-for-top {
+    margin-bottom: calc((20 / 1920) * 100vw);
+}
+
+.heading-image {
+    display: flex;
+    align-self: center;
+    height: 0;
+    width: calc((22 / 1920) * 100vw);
+    padding-bottom: calc((25 / 1920) * 100vw);
+    background-image: url('../images/base_title_icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
+}
+.inversion {
+    transform: scale(-1, 1);
+}
+
+/* 見出し テキストスタイル */
+.heading-text {
+    display: flex;
+    align-self: center;
+    font-size: var(--twentysix-px);
+    color: var(--darkgray);
+    margin-left: calc((23 / 1920) * 100vw);
+    margin-right: calc((23 / 1920) * 100vw);
+}
+
+/* エラー時のメッセージ表示コンテナ */
+.error-container {
+    color: var(--red);
+    font-size: var(--sixteen-px);
+    text-align: center;
+    margin: auto auto calc((23 / 1920) * 100vw) auto;
+}
+
+/* 
+* フォントサイズ
+*/
+.fs-14px {
+    /* font-size: 14px; */
+    font-size: var(--fourteen-px);
+}
+
+.fs-16px {
+    /* font-size: 16px; */
+    font-size: var(--sixteen-px);
+}
+
+.fs-28px {
+    /* font-size: 28px; */
+    font-size: var(--twentyeight-px);
+}
+
+.fs-30px {
+    /* font-size: 30px; */
+    font-size: var(--thirty-px);
+}
+
+.fs-42px {
+    /* font-size: 42px; */
+    font-size: var(--fortytwo-px);
+}

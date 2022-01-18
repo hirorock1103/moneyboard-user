@@ -1,0 +1,164 @@
+/* 灰色のメイン枠 */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(((1100 - 20)/ 1920) * 100vw);
+    background: var(--white);
+    border: solid calc((20 / 1920) * 100vw) #EEEEEE;
+    margin: auto;
+}
+
+/* 規約スクロールコンテナ */
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    height: calc((406 / 1920) * 100vw);
+    overflow: scroll;
+    box-sizing: border-box;
+    padding: calc((35 / 1920) * 100vw) calc((30 / 1920) * 100vw);
+}
+
+/* 利用規約タイトル */
+.terms-title {
+    display: flex;
+    align-self: flex-start;
+    font-size: var(--seventeen);
+    font-weight: bold;
+}
+
+/* 利用規約内容 */
+.terms-contents {
+    display: flex;
+    align-self: center;
+    text-align: left;
+    font-size: var(--sixteen-px);
+    margin-top: calc((13 / 1920) * 100vw);
+}
+
+/* ライン */
+.line {
+    display: block;
+    height: 1px;
+    background-color: var(--lightgray);
+    border: 0;
+    box-sizing: border-box;
+    margin: calc((26 / 1920) * 100vw) calc((30 / 1920) * 100vw);
+}
+
+
+/* 同意チェックコンテナ */
+.agree-check-container {
+    display: flex;
+    flex-direction: row;
+    margin: auto auto calc((37 / 1920) * 100vw) auto;
+    justify-content: center;
+}
+
+/* 同意チェックボックス */
+.agree-checkbox {
+    align-self: center;
+    text-align: center;
+    border: 1px solid var(--lightgray);
+    width: calc((18 / 1920) * 100vw);
+    height: calc((18 / 1920) * 100vw);
+
+    margin-right: calc((9 / 1920) * 100vw);
+}
+
+input[type=checkbox] {
+    /* いったん初期化しないとCSSが効かない */
+    appearance: none;
+    border-radius: 0;
+
+    align-self: center;
+    text-align: center;
+
+    margin: auto;
+    padding: auto;
+
+    width: 100%;
+    height: 100%;
+
+    /* border: 1px solid var(--lightgray); */
+}
+input[type=checkbox]:checked {
+    width: 100%;
+    height: 100%;
+
+    background-image: url('../images/sign_up/checked.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    box-sizing: border-box;
+} 
+
+/* 同意テキスト */
+.agree-text {
+    font-size: var(--sixteen-px);
+}
+
+/* 入力欄コンテナ */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc((330 / 1920) * 100vw);
+    margin: auto;
+}
+
+/* 入力欄 */
+.input-heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    margin: auto auto calc((9 / 1920) * 100vw) auto;
+}
+.input-heading img {
+    display: flex;
+    width: calc((16 / 1920) * 100vw);
+    object-fit: contain;
+    margin-right: calc((10 / 1920) * 100vw);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.input-heading-title {
+    display: flex;
+    align-self: center;
+    color: #4E4E4E;
+    font-size: var(--fourteen-px);
+    font-weight: bold;
+}
+
+
+/* メール入力欄 */
+input[type="email"] {
+    align-self: center;
+    width: 100%;
+    height: calc((40 / 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    border-radius: calc((5 / 1920) * 100vw);
+    border: 1px solid #D5D5D5;
+    margin: auto auto calc((25 / 1920) * 100vw) auto;
+}
+
+/* 登録ボタン */
+input[type="submit"] {
+    appearance: none;
+    margin: calc((89 / 1920) * 100vw) auto auto auto;
+    border: none;
+    border-radius: 0;
+    outline: none;
+
+    width: calc((154 / 1920) * 100vw);
+    height: calc((64 / 1920) * 100vw);
+    color: var(--white);
+    text-align: center;
+    font-size: var(--fourteen-px);
+    font-weight: bold;
+    background: var(--blue);
+}

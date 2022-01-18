@@ -1,0 +1,157 @@
+// -----------------------------------------------------------------------------
+// MIXINS ミックスイン
+// -----------------------------------------------------------------------------
+
+/// Clearfix
+/// @author Nicolas Gallagher
+/// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
+@mixin clearfix {
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+
+
+
+
+/// @contentを指定されたブレークポイントに適用する。
+/// @author Bootstrap
+/// @param {String} $name
+/// @param {List} $break-points
+@mixin media-breakpoint-up($name, $break-points: $breakpoints) {
+    $min: breakpoint-min($name, $break-points);
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+
+
+
+
+/// 最小のブレークポイントの場合は空白の文字列を返し、それ以外の場合は前にダッシュを付けて名前を返す。
+///    >> breakpoint-infix(xsmall, (xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px))
+///    ""  (NULL)
+///    >> breakpoint-infix(small, (xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px))
+///    "-sm"
+/// @author Bootstrap
+/// @param {String} $name - 要素
+/// @param {List} $break-points - メディアクエリ
+@function breakpoint-infix($name, $break-points: $breakpoints) {
+    @return if(breakpoint-min($name, $break-points) == null, "", "-#{$name}");
+}
+
+
+/// 最小ブレークポイント幅。最小の（最初の）ブレークポイントの場合はNullを返す。
+/// @author Bootstrap
+/// @param {String} $name - 要素
+/// @param {List} $break-points - メディアクエリ
+@function breakpoint-min($name, $break-points: $breakpoints) {
+    $min: map-get($break-points, $name);
+    @return if($min != 0, $min, null);
+}
+
+
+
+
+
+/// Makes an element's :before pseudoelement a FontAwesome icon.
+/// @param {string} $content Optional content value to use.
+/// @param {string} $category Optional category to use.
+/// @param {string} $where Optional pseudoelement to target (before or after).
+@mixin icon($content: false, $category: regular, $where: before) {
+
+	text-decoration: none;
+
+	&:#{$where} {
+
+		@if $content {
+			content: $content;
+		}
+
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		display: inline-block;
+		font-style: normal;
+		font-variant: normal;
+		text-rendering: auto;
+		line-height: 1;
+		text-transform: none !important;
+
+		@if ($category == brands) {
+			font-family: 'Font Awesome 5 Brands';
+		}
+		@elseif ($category == solid) {
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+		}
+		@else {
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 400;
+		}
+
+	}
+
+}
+
+
+
+
+
+/// スクロールバーをカスタマイズ。
+/// @param {string} $size スクロールバーのサイズ。
+/// @param {string} $foreground-color スクロールバーの動く部分の色。
+/// @param {string} $background-color スクロールバーの軌道の色。
+@mixin scrollbars($size, $foreground-color, $background-color) {
+    // For Google Chrome
+    &::-webkit-scrollbar {
+        width:  $size;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $foreground-color;
+        border-radius: $size;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $background-color;
+    }
+
+    &::-webkit-scrollbar-button {
+        background-color: $background-color;
+        height: $size;
+        width:  $size;
+    }
+
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+        display: block;
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement,
+    &::-webkit-scrollbar-button:vertical:increment {
+        background-position: center center;
+        background-repeat:   no-repeat;
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement {
+        background-image: url('/images/common/arrow-up.svg');
+    }
+
+    &::-webkit-scrollbar-button:vertical:increment {
+        background-image: url('/images/common/arrow-down.svg');
+    }
+
+    // For Internet Explorer
+    & {
+        scrollbar-face-color: $foreground-color;
+        scrollbar-track-color: $background-color;
+    }
+}

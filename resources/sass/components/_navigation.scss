@@ -1,0 +1,62 @@
+// -----------------------------------------------------------------------------
+// NAVIGATION ナビゲーション
+// -----------------------------------------------------------------------------
+
+/**
+ * ナビゲーションの基本スタイル。 `.nav--*` でスタイルを追加してください。
+ * class.
+ */
+
+.nav {
+
+    ul { padding-left: 0; }
+
+    li {
+        display: block;
+    }
+}
+
+    .nav__link {
+        color: $color-accent;
+
+        &:hover { color: transparentize($color-accent, 0.2) }
+    }
+
+
+/**
+* 水平ナビゲーション。`.nav`の延長
+*/
+
+.nav--inline {
+
+    li {
+        display: inline-block;
+        line-height:   3.1;
+        margin:        0 12px;
+        padding-left:  0;
+        vertical-align: top;
+    }
+}
+
+
+/**
+* 基本ナビゲーション。`.nav`の延長
+*/
+
+.nav--primary {
+    font-size:      0.800em;
+    font-weight:    $weight-bold;
+    letter-spacing: $kerning-btn;
+
+    @include media('>=medium') {
+        font-size: 0.778em;
+    }
+}
+
+/**
+* サイドバーナビゲーション。`.nav`の延長
+*/
+
+.nav--secondary {
+    align-self:     center;
+}

@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------------
+// BORDER ボーダー
+// -----------------------------------------------------------------------------
+
+/**
+ * Border
+ *
+ */
+
+/// 各ブレークポイントのborderを返す。
+/// @param {List} $break-points - メディアクエリ：xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px
+/// @example css - CSS出力
+///   .border-0 {
+///     border: 0;
+///   }
+///
+///   .border-0-medium {
+///     border: 0;
+///   }
+
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+        @each $value in $borders {
+            @if $value == 'none' {
+                .border-#{$value}-0#{$infix} { border: 0 !important; }
+                .border-#{$value}#{$infix} { border: $border-width solid $border-color !important; }
+            } @else {
+                .border-#{$value}-0#{$infix} { border-#{$value}: 0 !important; }
+                .border-#{$value}#{$infix} { border-#{$value}: $border-width solid $border-color !important; }
+            }
+        }
+    }
+}

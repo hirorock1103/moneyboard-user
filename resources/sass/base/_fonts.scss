@@ -1,0 +1,60 @@
+// -----------------------------------------------------------------------------
+// FONTS フォント
+// -----------------------------------------------------------------------------
+
+/*------------------------------------*\
+    Noto Sans JP
+\*------------------------------------*/
+/// @author Google
+/// @type font-face
+@font-face {
+    font-family: Noto Sans JP;
+    src: url('/fonts/NotoSansJP-Light.otf');
+    font-weight: 300;
+}
+
+
+/*------------------------------------*\
+    Noto Sans JP
+\*------------------------------------*/
+/// @author Google
+/// @type font-face
+@font-face {
+    font-family: Noto Sans JP;
+    src: url('/fonts/NotoSansJP-Regular.otf');
+    font-weight: normal;
+}
+
+
+/*------------------------------------*\
+    Noto Sans JP
+\*------------------------------------*/
+/// @author Google
+/// @type font-face
+@font-face {
+    font-family: Noto Sans JP;
+    src: url('/fonts/NotoSansJP-Bold.otf');
+    font-weight: 700;
+}
+
+
+/*------------------------------------*\
+    AvantGarde-Demi
+\*------------------------------------*/
+/// @author Google
+/// @type font-face
+@font-face {
+    font-family: AvantGarde-Demi;
+    src: url('/fonts/unicode.avantgd.ttf');
+}
+
+
+/*------------------------------------*\
+    ITC Avant Garde Gothic Book
+\*------------------------------------*/
+/// @author Google
+/// @type font-face
+@font-face {
+    font-family: ITC Avant Garde Gothic Book;
+    src: url('/fonts/ITC Avant Garde Gothic Book Regular.otf');
+}

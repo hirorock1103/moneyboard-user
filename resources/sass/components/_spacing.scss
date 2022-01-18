@@ -1,0 +1,54 @@
+// -----------------------------------------------------------------------------
+// SPACING 空白（マージンとパディング）
+// -----------------------------------------------------------------------------
+
+/**
+ * マージンとパディング
+ *
+ */
+
+/// 各ブレークポイントのマージンとパディングを返す。
+/// @param {String} $name - 要素（マージンかパディング）
+/// @param {List} $break-points - メディアクエリ：xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px
+/// @example css - CSS出力
+///   .margin--0 {
+///     margin: 0;
+///   }
+///
+///   .margin-top--4 {
+///     margin-top: 4px;
+///   }
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+        @each $prop in (margin, padding) {
+            @each $length in $white-space {
+                .#{$prop}#{$infix}--#{$length} {      #{$prop}:         $length + px !important; }
+
+                .#{$prop}-top#{$infix}--#{$length} {  #{$prop}-top:     $length + px !important; }
+
+                .#{$prop}-right#{$infix}--#{$length} { #{$prop}-right:  $length + px !important; }
+
+                .#{$prop}-bottom#{$infix}--#{$length} { #{$prop}-bottom: $length + px !important; }
+
+                .#{$prop}-left#{$infix}--#{$length} {   #{$prop}-left:   $length + px !important; }
+            }
+        }
+
+        /**
+        　* autoマージン・autoパディング
+        　*/
+        @each $prop in (margin, padding) {
+            .#{$prop}#{$infix}--auto {        #{$prop}:        auto !important; }
+
+            .#{$prop}-bottom#{$infix}--auto { #{$prop}-bottom: auto !important; }
+
+            .#{$prop}-left#{$infix}--auto {   #{$prop}-left:   auto !important; }
+
+            .#{$prop}-right#{$infix}--auto {  #{$prop}-right:  auto !important; }
+
+            .#{$prop}-top#{$infix}--auto {    #{$prop}-top:    auto !important; }
+        }
+    }
+}

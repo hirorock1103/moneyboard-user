@@ -1,0 +1,138 @@
+// -----------------------------------------------------------------------------
+// BUTTON ボタン
+// -----------------------------------------------------------------------------
+
+/**
+ * ボタンの基本スタイル。 `.btn--*` でスタイルを追加してください。
+ * class.
+ */
+
+.btn {
+    background-color: transparent;
+    border:        0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 11px 22px;
+    font-size:       1em;
+    font-weight:     $weight-bold;
+    letter-spacing:  $kerning-btn;
+    line-height:     1.5em;
+    text-align:      center;
+    text-decoration: none;
+    white-space:     nowrap;
+    -webkit-touch-callout: none;
+            user-select: none;
+    transition: all map-get($duration, 'link') ease;
+
+    @include media('>=medium') {
+        font-size: 0.778em;
+        padding:  16px 45px;
+    }
+}
+
+
+/**
+ * フルー幅のボタン。`.btn`の延長
+ */
+
+.btn--fit { width: 100%; }
+
+
+/**
+ * 大きなのボタン。`.btn`の延長
+ */
+
+.btn--small { padding: 10px 25px;}
+
+
+/**
+ * 大きなのボタン。`.btn`の延長
+ */
+
+.btn--large {
+    font-size: 1em;
+    padding: 15px 45px;
+
+    @include media('>=medium') {
+        font-size: 0.889em;
+        padding: 20px 60px;
+    }
+}
+
+
+/**
+ * アウトラインのボタン。`.btn`の延長
+ */
+
+.btn--outline {
+    box-shadow:   inset 0 0 0 2px map-get($button-colors, 'primary');
+    color:        map-get($button-colors, 'primary');
+
+    &:hover { background:   transparentize(map-get($button-colors, 'primary'), 0.8); }
+}
+
+
+/**
+ * ボタン。`.btn`の延長
+ */
+
+.btn--accent {
+    background-color: map-get($button-colors, 'primary');
+    color:            map-get($button-colors, 'white');
+
+    &:hover {
+        background-color: transparentize(map-get($button-colors, 'primary'), 0.2);
+        color:            map-get($button-colors, 'white');
+    }
+}
+
+
+/**
+ * ボタン。`.btn`の延長
+ */
+
+.btn--gray {
+    background-color: map-get($button-colors, 'gray');
+    color:            map-get($button-colors, 'white');
+
+    &:hover {
+        background-color: transparentize(map-get($button-colors, 'gray'), 0.2);
+        color:            map-get($button-colors, 'white');
+    }
+}
+
+
+/**
+ * リンクのボタン。`.btn`の延長
+ */
+
+.btn--link {
+    color:            map-get($button-colors, 'primary');
+    font-size:   1em;
+    font-weight: $weight-bold;
+    line-height: 1.6;
+    padding: 0;
+
+    @include media('>=medium') {
+        font-size: 0.889em;
+    }
+
+    &:hover {
+        border-bottom: 1px solid map-get($button-colors, 'primary');
+    }
+}
+
+
+/**
+ * 無効のボタン。`.btn`の延長
+ */
+
+.btn--disabled,
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+
+    * {
+        pointer-events: none;
+    }
+}

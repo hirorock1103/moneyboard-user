@@ -1,0 +1,405 @@
+// -----------------------------------------------------------------------------
+// VARIABLES 変数
+// -----------------------------------------------------------------------------
+
+
+
+
+
+/*------------------------------------*\
+    フォント
+\*------------------------------------*/
+/// メイン（日本語）フォント
+/// @type List
+$text-font-stack: 'Noto Sans JP', Meiryo, sans-serif !default;
+
+
+/// フォントの太さ
+/// @type String
+$weight-normal: 400 !default;
+$weight-bold:   700 !default;
+$weight-bolder: 900 !default;
+
+
+
+/// フォントのカーニング
+/// @type String
+$kerning-negative: -0.035em !default;
+$kerning-logo:      0.05em !default;
+$kerning-btn:       0.1em !default;
+
+
+
+
+
+/*------------------------------------*\
+    空白
+\*------------------------------------*/
+/// マージンとパディング値のリスト
+/// @type List
+$white-space: (0, 4, 8, 12, 16, 24, 48, 80, 88, 100, 140, 164,);
+
+
+
+
+
+
+/*------------------------------------*\
+    色
+\*------------------------------------*/
+
+/// グレー色
+$white:     #FFFFFF !default;
+$gray-1:    #F9F9F9 !default;
+$gray-2:    #F5F5F5 !default;
+$gray-3:    #EEEEEE !default;
+$gray-4:    #ECEEEF !default;
+$gray-5:    #E6E6E6 !default;
+$gray-6:    #D5D5D5 !default;
+$gray-7:    #D1D1D1 !default;
+$gray-8:    #AFAFAF !default;
+$gray-9:    #A2A2A2 !default;
+$gray-10:   #9B9B9B !default;
+$gray-11:   #8F8F8F !default;
+$gray-12:   #707070 !default;
+$gray-13:   #545454 !default;
+$black:     #4E4E4E !default;
+
+
+
+/// カラー色
+
+$picton-blue:      #2FBCED !default;
+$red:              #FF0000 !default;
+$chablis:          #FFEFEF !default;
+$milan:            #FFF9A4 !default;
+
+
+/// 文章の基本色
+/// @type Color
+$color-text:       $black    !default;
+
+/// アクセントの色
+/// @type Color
+$color-accent:     $picton-blue !default;
+
+/// 白色
+/// @type Color
+$color-white:      $white    !default;
+
+/// 危険色
+/// @type Color
+$color-danger:     $red !default;
+
+
+
+/*------------------------------------*\
+    フォーム
+\*------------------------------------*/
+/// フォームの色リスト
+/// @type List
+$form-colors: (
+    default: (
+        'background':     $color-white,
+        'border':	      $gray-6,
+    ),
+    active: (
+        'background':     $color-white,
+        'border':	      $color-accent,
+        'text':           $color-text,
+    ),
+    invalid: (
+        'background':     $chablis,
+        'border':	      $color-danger,
+        'text':           $color-danger,
+    ),
+    autofill: (
+        'background':     $color-accent,
+        'text':           $color-accent,
+    ),
+    radio: (
+        'background':     $color-white,
+        'border':         $gray-12,
+        'checked':        $color-accent,
+    ),
+    checkbox: (
+        'background':     $color-white,
+        'border':         $gray-6,
+        'checked':        $color-accent,
+    ),
+    select: (
+        'arrow':         $color-text,
+    ),
+);
+
+
+/// フォームのコラム値のリスト
+/// @type List
+$form-column: (100, 120, 200);
+
+
+
+
+
+/*------------------------------------*\
+    アニメーション
+\*------------------------------------*/
+/// アニメーションの長さ値のリスト
+/// @type List
+$duration: (
+    'menu':				0.45s,
+    'link':             0.15s,
+    'form':             0.2s,
+);
+
+
+
+
+
+/*------------------------------------*\
+    グリッド
+\*------------------------------------*/
+/// コンテナのmax-width
+/// @type Length
+$container-max-width: 1100px !default;
+
+
+/// グリッドのコラム数
+/// @type Number
+$columns: 12 !default;
+
+
+/// メディアクエリポイント
+/// @prop {String} keys
+/// @prop {Map} values
+$breakpoints: (
+    'xsmall': 0,
+    'small':  576px,
+    'medium': 768px,
+    'large':  992px,
+    'xlarge': 1200px,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Backgrounds
+\*------------------------------------*/
+/// 背景の色
+/// @prop {String} keys
+/// @prop {Map} values
+$background-colors: (
+    'white':			$color-white,
+    'gray':             $gray-2,
+) !default;
+
+
+
+
+/*------------------------------------*\
+    Body
+\*------------------------------------*/
+/// ボディーの背景色
+/// @type Color
+$body-bg:                   $white !default;
+
+
+
+
+
+/*------------------------------------*\
+    Footer
+\*------------------------------------*/
+/// フッターの色
+/// @prop {String} keys
+/// @prop {Map} values
+$footer-colors: (
+    'bg':				$black,
+    'color':            $color-white,
+    'border':           $gray-12,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Menu
+\*------------------------------------*/
+/// メニューの色
+/// @prop {String} keys
+/// @prop {Map} values
+$menu-colors: (
+    'bg':				$gray-12,
+    'btn':              $gray-4,
+    'icon':             $gray-8,
+    'border':           $gray-10,
+    'hamburger':        $color-accent,
+    'active-bg':        $gray-11,
+    'active-icon':      $color-accent,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Table
+\*------------------------------------*/
+/// 表の色
+/// @prop {String} keys
+/// @prop {Map} values
+$table-colors: (
+    'bg':				$gray-3,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Scrollbar
+\*------------------------------------*/
+/// 表の色
+/// @prop {String} keys
+/// @prop {Map} values
+$scrollbar-colors: (
+    'thumb':				$gray-7,
+    'track':                $gray-1,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Progress bar
+\*------------------------------------*/
+/// プログレスバーの色
+/// @prop {String} keys
+/// @prop {Map} values
+$progressbar-colors: (
+    'list-item':		    $gray-12,
+    'line':                 $gray-5,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    ボタン
+\*------------------------------------*/
+/// ボタンの色
+/// @prop {String} keys
+/// @prop {Map} values
+$button-colors: (
+    'primary':				$color-accent,
+    'white':                $color-white,
+    'gray':                 $gray-9,
+) !default;
+
+
+
+
+
+
+/*------------------------------------*\
+    ボーダー
+\*------------------------------------*/
+/// ボーダーの幅
+/// @type Number
+$border-width: 1px !default;
+
+
+/// ボーダーのカラー
+/// @type Color
+$border-color: $gray-6 !default;
+
+
+/// ボーダーのリスト
+/// @type List
+$borders: (
+    none,
+    top,
+    bottom,
+    left,
+    right,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Display
+\*------------------------------------*/
+// Displayのリスト
+/// @type List
+$displays: (
+    none,
+    inline,
+    inline-block,
+    block,
+    table,
+    table-row,
+    table-cell,
+    flex,
+    inline-flex,
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Position
+\*------------------------------------*/
+// Positionのリスト
+/// @type List
+$positions: (
+    'static',
+    'relative',
+    'absolute',
+    'fixed',
+    'sticky',
+) !default;
+
+
+
+
+
+/*------------------------------------*\
+    Z-index
+\*------------------------------------*/
+// Z-indexの値
+/// @type Number
+$z-index-after:                    -2 !default;
+$z-index-before:                   -1 !default;
+$zindex-dropdown:                   2 !default;
+$zindex-sticky:                     3 !default;
+$zindex-fixed:                      4 !default;
+$zindex-modal-backdrop:             5 !default;
+$zindex-modal:                      6 !default;
+$zindex-popover:                    7 !default;
+$zindex-tooltip:                    8 !default;
+
+
+
+
+
+/*------------------------------------*\
+    Home Page
+\*------------------------------------*/
+/// ホームページーの色
+/// @prop {String} keys
+/// @prop {Map} values
+$home-colors: (
+    'text-bg-grey':     $gray-5,
+    'text-bg-yellow':   $milan,
+    'ordinal-number':   $color-accent,
+    'table-border':     $color-accent,
+    'table-bg':         $color-accent,
+) !default;

@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+// FLOAT フロート
+// -----------------------------------------------------------------------------
+
+/**
+ * フロート
+ *
+ */
+
+/// 各ブレークポイントのフロートを返す。
+/// @param {List} $break-points - メディアクエリ：xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px
+/// @example css - CSS出力
+///   .float-left {
+///     float: left;
+///   }
+///
+///   .float-left-medium {
+///     float: left;
+///   }
+
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+        .float-left#{$infix}  { float: left  !important; }
+        .float-right#{$infix} { float: right !important; }
+        .float-none#{$infix}  { float: none  !important; }
+    }
+}

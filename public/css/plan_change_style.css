@@ -1,0 +1,355 @@
+/* 画面見出し */
+.heading-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: left;
+    width: 100%;
+    border-bottom: solid 1px #707070;
+    margin: auto auto calc((29 / 1920) * 100vw) auto;
+    padding-bottom: calc((21 / 1920) * 100vw);
+}
+
+.heading-company-info-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.heading-company-name {
+    font-size: var(--twentysix-px);
+}
+
+.heading-remained {
+    display: flex;
+    flex-direction: row;
+}
+
+.heading-remained-count {
+    display: block;
+    flex-direction: row;
+    align-self: flex-end;
+    font-size: var(--fourteen-px);
+    
+}
+
+/* 項目コンテナ */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    border: solid var(--container-border-width) #EEEEEE;
+    margin: calc((109 / 1920) * 100vw) auto auto auto;
+    padding: calc((34 / 1920) * 100vw) calc((31 / 1920) * 100vw) 0 calc((31 / 1920) * 100vw);
+    box-sizing: border-box;
+}
+.main-container-top {
+    margin: auto;
+    padding: calc((34 / 1920) * 100vw) calc((31 / 1920) * 100vw) calc((30 / 1920) * 100vw) calc((31 / 1920) * 100vw);
+}
+
+.item-heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    border-bottom: solid 1px #707070;
+    padding-bottom: calc((18 / 1920) * 100vw);
+    /* margin-bottom: calc((30 / 1920) * 100vw); */
+}
+
+.item-heading-icon {
+    display: flex;
+    align-self: center;
+    width: calc((19 / 1920) * 100vw);
+    height: calc((19 / 1920) * 100vw);
+    margin-right: calc((10 / 1920) * 100vw);
+}
+
+.item-heading-title {
+    display: block;
+    flex-direction: row;
+    align-self: flex-end;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+}
+
+.item-heading-title span {
+    font-size: var(--twentythree-px);
+    color: var(--blue);
+    margin-left: calc((8 / 1920) * 100vw);
+    margin-right: calc((8 / 1920) * 100vw);
+}
+
+
+/* 現在ご利用中のプラン */
+.current-plans {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    margin-bottom: calc((62 / 1920) * 100vw);
+}
+
+.current-plan {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    padding-top: calc((25 / 1920) * 100vw);
+}
+
+.current-plan-heading {
+    display: flex;
+    align-self: center;
+    width: 25%;
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+}
+
+.current-plan-content {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.companies-count {
+    display: flex;
+    align-self: center;
+    width: calc((100 / 1920) * 100vw);
+}
+.companies-count-text {
+    display: block;
+    align-self: center;
+    font-size: var(--sixteen-px);
+    margin-left: calc((10 / 1920) * 100vw);
+}
+
+
+/* 月額料金 */
+.charge-items {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: calc((25/ 1920) * 100vw);
+}
+.charge-item {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 100%;
+}
+.charge-item-title {
+    display: flex;
+    align-self: center;
+    width: calc((63/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+}
+.charge-item-content {
+    display: flex;
+    align-self: center;
+    width: calc((120/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+}
+.charge-item-amount {
+    text-align: right;
+    width: calc((65/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+}
+
+
+/* 表 */
+.table-container {
+    display: flex;
+    align-self: center;
+    width: 100%;
+    margin-top: calc((90/ 1920) * 100vw);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--lightgray);
+    font-size: var(--sixteen-px);
+}
+thead {
+    border: 1px solid var(--lightgray);
+    background-color:  #EEEEEE;
+    height: calc((46/ 1920) * 100vw);
+    font-weight: bold;
+}
+th {
+    height: calc((46/ 1920) * 100vw);
+}
+td {
+    border: 1px solid var(--lightgray);
+    height: calc((64/ 1920) * 100vw);
+}
+
+/* ラジオボタン */
+.radio-list-items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    margin-top: calc((10 / 1920) * 100vw);
+}
+.radio-list {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.radio-and-text {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: calc((20 / 1920) * 100vw);
+}
+
+.radio-container {
+    display: flex;
+    align-self: center;
+    width: 15%;
+    white-space: nowrap;
+}
+.radio-block-top {
+    display: block;
+    align-self: flex-start;
+}
+
+.radio-text-container {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 85%;
+}
+.radio-text {
+    display: block;
+    align-self: center;
+    font-size: var(--sixteen-px);
+    margin-right: calc((16 / 1920) * 100vw);
+    white-space: nowrap;
+}
+
+/* ラジオボタン */
+input[type=radio] {
+    display: none;
+}
+.radio {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 30px;
+    position: relative;
+    width: auto;
+    font-size: var(--sixteen-px);
+}
+.radio::before {
+    background: var(--white);
+    border: 1px solid #707070;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 16px;
+    left: 5px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+    width: 16px;
+}
+.radio::after {
+    background: var(--blue);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 10px;
+    left: 9px;
+    margin-top: -4px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    width: 10px;
+}
+input[type=radio]:checked + .radio::after {
+    opacity: 1;
+}
+
+
+
+/* テキスト入力欄 */
+input[type="number"] {
+    align-self: center;
+    width: 100%;
+    height: calc((40 / 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    border-radius: calc((5 / 1920) * 100vw);
+    border: 1px solid #D5D5D5;
+    outline: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* ボタンコンテナ エラー表示文も合わせて */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: calc((85 / 1920) * 100vw) auto auto auto;
+}
+
+/* ボタンコンテナ */
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+}
+
+/* 内容修正ボタン */
+.edit {
+    align-self: center;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    background: #A2A2A2;
+    width: calc((154 / 1920) * 100vw);
+    height: calc((64 / 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+    color: var(--white);
+    box-sizing: border-box;
+    border: none;  /* 枠線を消す */
+    outline: none;
+
+    margin-right: calc((30 / 1920) * 100vw);
+}
+
+/* 確認画面ボタン */
+input[type="submit"] {
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+
+    width: calc((188 / 1920) * 100vw);
+    height: calc((64 / 1920) * 100vw);
+    color: var(--white);
+    text-align: center;
+    font-size: var(--fourteen-px);
+    font-weight: bold;
+    background: var(--blue);
+}

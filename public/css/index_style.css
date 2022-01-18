@@ -1,0 +1,1047 @@
+/* 項目 項番　テキストスタイル */
+.base-items-index-text {
+    display: flex;
+    align-self: baseline;
+    text-align: center;
+    font-family: Calibri;
+    font-size: var(--twentythree-px);
+    color: var(--blue);
+    /* padding-top: 0.4vw; */
+}
+
+/* 項目 タイトル*/
+.base-items-title-text {
+    display: flex;
+    align-self: center;
+    text-align: left;
+    font-size: var(--eighteen-px);
+    font-weight: bolder;
+    color: var(--darkgray);
+    white-space: nowrap;
+}
+.title-text-margin-top-bottom {
+    display: block;
+    align-self: flex-start;
+    margin-bottom: 1%;
+}
+.title-text-margin-left {
+    margin-left: 5%;
+}
+.base-items-title-text-center {
+    text-align: center;
+    margin: auto;
+}
+
+
+/* 通常テキストスタイル */
+.base-text {
+    display: flex;
+    align-self: center;
+    font-size: var(--eighteen-px);
+    color: var(--darkgray);
+}
+.bold{
+    font-weight: bold;
+}
+.align-left {
+    text-align: left;
+}
+
+/* 大枠 */
+.contents-container {
+    align-self: center;
+    margin: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1%;
+}
+
+/* 大枠バックアイコン */
+.contents-container-icon-start {
+    display: flex;
+    height: 0;
+    width: calc((86 / 1920) * 100vw);
+    padding-bottom: calc((87 / 1920) * 100vw);
+    background-image: url('../images/index/bg_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: relative;
+    left: calc((-43 / 1920) * 100vw);
+    z-index: 0;
+}
+.contents-container-icon-end {
+    display: flex;
+    height: 0;
+    width: calc((86 / 1920) * 100vw);
+    padding-bottom: calc((87 / 1920) * 100vw);
+    background-image: url('../images/index/bg_image.png');
+    transform: rotate(180deg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: relative;
+    right: calc(-100% + (43 / 1920) * 100vw);
+    z-index: 0;
+}
+
+.contens {
+    align-self: center;
+    margin: auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: calc((-43.5 / 1920) * 100vw);
+    margin-bottom: calc((-43.5 / 1920) * 100vw);
+    position: relative;
+    z-index: 1;
+}
+
+/* 直線 */
+.width-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--lightgray);
+    border: 0;
+    margin-top: calc((12 / 1920) * 100vw);
+    margin-bottom: calc((12 / 1920) * 100vw);
+}
+.non-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* 下線 */
+.text-underline-n {
+    background: linear-gradient(transparent 50%, #E6E6E6 50%);
+}
+.text-underline-p {
+    background: linear-gradient(transparent 50%, #FFF9A4 50%);
+}
+
+
+
+/**
+* TOP概要
+*/
+
+/* 大枠 */
+.top-container {
+    display: flex;
+    width: 100vw;
+    height: calc(805 / 1920 * 100vw);
+    box-sizing: border-box;
+    background-image: url('../images/index/top_bg_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* 項目用枠 */
+.top-items {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin: auto;
+    width: 100%;
+    height: 90%;
+    padding-left: calc(140 / 1920 * 100vw);
+    padding-right: calc(20 / 1920 * 100vw);
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+/* 説明欄 */
+.top-instruction {
+    display: flex;
+    align-self: center;
+    text-align: center;
+    width: calc(628 / 1920 * 100vw);
+    height: calc(532 / 1920 * 100vw);
+    background-image: url('../images/index/instruction_bg_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-sizing: border-box;
+}
+
+/* 説明欄内容 */
+.top-instruction-contents {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    box-sizing: border-box;
+    padding-top: calc(69 / 1920 * 100vw);
+    padding-bottom: calc(69 / 1920 * 100vw);
+    width: 100%;
+}
+
+/* 営業サポート型 */
+.top-instruction-method-title-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin: auto;
+}
+
+/* 営業サポート型 吹き出しイメージ */
+.top-instruction-method-title-image {
+    display: flex;
+    align-self: center;
+    width: calc(11 / 1920 * 100vw);
+    height: calc(11 / 1920 * 100vw);
+    background-image: url('../images/index/inst_method_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-sizing: border-box;
+}
+.reverce-image {
+    transform: scale(-1, 1);
+}
+
+/** タイトルロゴ・テキスト枠 */
+.top-instruction-title-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin: calc(11.76 / 1920 * 100vw) auto 0 auto;
+}
+
+/* タイトル */
+.top-instruction-title {
+    display: flex;
+    align-self: center;
+    height: calc(68.07 / 1920 * 100vw);
+    align-items: flex-end;
+    margin-left: calc(7.36 / 1920 * 100vw);
+    font-size: var(--fortytwo-px);
+    color: var(--gray);
+}
+
+/* ツール説明 */
+.top-instruction-tool {
+    display: flex;
+    align-self: center;
+    font-size: var(--twentyeight-px);
+    color: var(--blue);
+    letter-spacing: calc(var(--base-letterspace) * 3);
+    margin-top: var(--base-mergin);
+}
+
+/* 直線 */
+.instruction-line {
+    display: block;
+    width: calc(504 / 1920 * 100vw);
+    height: 1px;
+    background-color: var(--lightgray);
+    border: 0;
+    margin-top: calc(var(--base-mergin) * 5);
+}
+
+/* ポイント枠 */
+.point-container {
+    display: inline-block;
+    align-self: center;
+    text-align: left;
+    margin-top: calc(var(--base-mergin) * 2);
+    width: 90%;
+}
+
+/* ポイントコンテンツ枠 */
+.point-container-contents {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    position: relative;
+    top: calc(-5 / 1920 * 100vw);
+    z-index: 0;
+}
+
+/* ポイント内容のテキスト配置 */
+.point-contents-text {
+    text-align: left;
+    align-self: flex-start;
+    width: 100%;
+    white-space: nowrap;
+}
+
+/* ポイント見出し枠 */
+.point-heading-container {
+    display: flex;
+    flex-direction: row;
+    align-self: left;
+}
+
+/* ポイントロゴ */
+.point-heading-image {
+    display: flex;
+    height: 0;
+    width: calc(36.41 / 1920 * 100vw);
+    padding-bottom: calc(24.28 / 1920 * 100vw);
+    background-image: url('../images/index/hand_in_hand_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.point-heading-image-second {
+    background-image: url('../images/index/hand_heart_image.png');
+}
+
+/* 解説各テキストレイアウト */
+.top-instruction-normal {
+    display: flex;
+    align-self: center;
+    font-size: var(--eighteen-px);
+    color: var(--darkgray);
+}
+
+/* ポイント見出し */
+.top-instruction-heading {
+    display: flex;
+    align-self: center;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+    color: var(--darkgray);
+    margin-left: var(--base-mergin);
+}
+
+/* ポイント */
+.top-instruction-point {
+    display: inline-block;
+    text-align: center;
+    align-self: flex-start;
+    font-family: gautreaux;
+    font-size: var(--thirty-px);
+    color: var(--orange);
+    transform: rotate(-15deg);
+}
+
+/* アプリイメージ欄 */
+.app-image {
+    display: flex;
+    align-self: center;
+    width: calc(995 / 1920 * 100vw);
+    height: calc(665 / 1920 * 100vw);
+    background-image: url('../images/index/app_image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 8px;
+}
+
+
+
+/**
+* お悩み一覧
+*/
+.problem-list-item {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 見出しコンテナ */
+.problem-heading-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* 悩み見出しテキストスタイル */
+.problem-heading-text {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    font-size: var(--twentysix-px);
+    color: var(--darkgray);
+}
+span {
+    color: var(--blue);
+}
+
+/* 悩み見出しアイコン */
+.problem-heading-image {
+    display: flex;
+    align-self: center;
+    height: 0;
+    width: calc(26.97 / 1920 * 100vw);
+    padding-bottom: calc(25.09 / 1920 * 100vw);
+    background-image: url('../images/index/problem_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin-left: calc(6 / 1920 * 100vw);
+}
+.problem-heading-image-second {
+    background-image: url('../images/index/hint_image.png');
+}
+
+/* 悩み一覧 */
+.problem-items-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: calc(50 / 1920 * 100vw);
+}
+
+/* 悩み項目 */
+.problem-item-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(350 / 1920 * 100vw);
+    height: calc(160 / 1920 * 100vw);
+    padding-top: calc(41 / 1920 * 100vw);
+    padding-bottom: calc(41 / 1920 * 100vw);
+    background: var(--white);
+    box-sizing: border-box;
+}
+
+/* 悩み項目アイコン */
+.problem-item-image {
+    display: flex;
+    align-self: center;
+    height: 0;
+    width: calc(35 / 1920 * 100vw);
+    padding-bottom: calc(35 / 1920 * 100vw);
+    background-image: url('../images/index/sad_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top;
+    margin-top: calc(23 / 1920 * 100vw);
+}
+.problem-item-image-second {
+    background-image: url('../images/index/smile_image.png');
+}
+
+/* 悩み項目テキストスタイル */
+.problem-item-text {
+    align-self: center;
+    font-size: var(--eighteen-px);
+    color: var(--darkgray);
+    background: linear-gradient(transparent 50%, #E6E6E6 50%);
+}
+.problem-solve {
+    background: linear-gradient(transparent 50%, #FFF9A4 50%);
+}
+
+
+/* 悩み項目変化矢印 */
+.problem-solution-arrow {
+    align-self: center;
+    margin: calc(51 / 1920 * 100vw);
+}
+
+
+/**
+* MoneyBoardについて
+*/
+/* MoneyBoardについて 内容 */
+.about-moneyboard-container {
+    display: flex;
+    align-self: center;
+    text-align: center;
+    /* アイコン分追加 */
+    width: calc(100% + (80 / 1920 * 100vw));
+    margin-top: calc(96 / 1920 * 100vw);
+}
+
+.about-moneyboard-contents {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: calc(100% - 80 / 1920 * 100vw);
+
+    position: relative;
+    left: calc(-40 / 1920 * 100vw);
+}
+
+.about-moneyboard-contents-bgimage {
+    display: flex;
+    position: relative;
+    width: calc(80 / 1920 * 100vw);
+    height: calc(81 / 1920 * 100vw);
+    top: calc(38 / 1920 * 100vw);
+}
+
+/* MoneyBoardについて 内容 画像 */
+.about-moneyboard-contents-image {
+    display: flex;
+    position: relative;
+    left: calc(-40 / 1920 * 100vw);
+    align-self: center;
+    width: calc((592 - 20) / 1920 * 100vw);
+    height: calc((416 - 20) / 1920 * 100vw);
+    z-index: 1;
+    object-fit: cover;
+    
+}
+
+/* MoneyBoardについて 内容 説明 */
+.about-moneyboard-contents-description {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-self: flex-start;
+}
+
+/* MoneyBoardについて 内容 説明 項目 */
+.about-moneyboard-contents-description-items {
+    display: flex;
+    align-self: center;
+    text-align: left;
+    flex-direction: row;
+    width: 100%;
+    border-bottom: solid 1px var(--lightgray);
+    padding-bottom: calc(38 / 1920 * 100vw);
+    margin-bottom: calc(38 / 1920 * 100vw);
+}
+
+/* MoneyBoardについて 内容 説明 項目 テキスト郡 */
+.about-moneyboard-contents-description-items-description {
+    display: block;
+    align-self: flex-start;
+    text-align: left;
+    flex-direction: column;
+    margin-left: 1%;
+}
+
+
+/**
+* 機能の特徴
+*/
+/* 大枠 */
+.feature-contents-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 横並び */
+.feature-contents-container-row {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    z-index: 1;
+}
+.feature-second {
+    margin-top: 10%;
+}
+
+/* 各項目コンテナ */
+.feature-items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(500 / 1920 * 100vw);
+    height: calc(383 / 1920 * 100vw);
+    box-sizing: border-box;
+    padding: calc(45 / 1920 * 100vw) calc(32.5 / 1920 * 100vw) calc(29 / 1920 * 100vw) calc(32.5 / 1920 * 100vw);
+    background: var(--white);
+}
+
+/* 画像 */
+.feature-items-image {
+    display: flex;
+    align-self: center;
+    height: calc(164.13 / 1920 * 100vw);
+}
+
+/* ヘッダー */
+.feature-items-heading {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    margin-top: calc(39.22 / 1920 * 100vw);
+    white-space: nowrap;
+}
+
+
+/**
+* ガイド/サンプル
+*/
+/* 項目コンテナ */
+.g-s-item {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 100%;
+}
+.g-s-item-top-margin {
+    margin-top: calc((85 / 1920) * 100vw);
+}
+
+/* 見出し */
+.g-s-heading {
+    display: flex;
+    align-self: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+
+    margin-bottom: calc((46 / 1920) * 100vw);
+}
+
+/* 見出しタイトル */
+.g-s-heading-title {
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+    color: var(--darkgray);
+    margin-bottom: calc((18 / 1920) * 100vw);
+}
+
+/* 使用ガイド動画 */
+.g-s-guide-movie-container {
+    align-self: center;
+    width: calc((749.86 / 1920) * 100vw);
+}
+
+.g-s-guide-movie {
+  position: relative;
+  width: 100%;
+  padding-top: calc((544.47 / 1920) * 100vw);
+}
+.g-s-guide-movie iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* サンプル画面 */
+.g-s-samples {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.g-s-samples img {
+    display: flex;
+    align-self: center;
+    /* 枠線分引く */
+    width: calc(((350 / 1920) * 100vw) - 2px);
+    border: solid 1px var(--lightgray);
+}
+
+/* サンプル説明 */
+.g-s-sample-desctiptions {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0px;
+}
+
+.g-s-sample-desctiption-container {
+    display: inline-flex;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+    width: calc((350 / 1920) * 100vw);
+    background-color: var(--whitegray);
+    padding: calc((9 / 1920) * 100vw) calc((48 / 1920) * 100vw);
+}
+.double {
+    width: calc((350 * 2 / 1920) * 100vw + (26 / 1920) * 100vw);
+}
+
+.g-s-sample-desctiption-text {
+    text-align: left;
+    font-size: 14px;
+    color: var(--darkgray);
+}
+
+
+/*
+* 営業担当者も顧客もプラスに
+*/
+
+/* 項目コンテナ */
+.merit-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    background: var(--white);
+}
+.merit-container-top {
+    margin-bottom: calc((87 / 1920) * 100vw);
+}
+
+.merit-image {
+    align-self: center;
+    width: calc((417 / 1920) * 100vw);
+    /* height: calc((383 / 1920) * 100vw); */
+}
+
+.merit-contents {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: center;
+    width: calc((683 / 1920) * 100vw);
+    height: 100%;
+    box-sizing: border-box;
+    padding: calc((14.13 / 1920) * 100vw) calc((51.5 / 1920) * 100vw);
+}
+
+
+/* 項目ポイント見出し */
+/* TODO: 概要欄のポイントと共通化して */
+.point-header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    left: calc(-26.92 / 1920 * 100vw);
+}
+/* ポイント */
+.point-text {
+    display: inline-block;
+    text-align: left;
+    align-self: flex-start;
+    font-family: gautreaux;
+    font-size: var(--thirty-px);
+    color: var(--orange);
+    transform: rotate(-15deg);
+}
+
+.point-title-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    top: calc(-5 / 1920 * 100vw);
+    left: calc(26.92 / 1920 * 100vw);
+    z-index: 0;
+}
+
+.point-image {
+    display: flex;
+    align-self: center;
+    height: 0;
+    width: calc(30 / 1920 * 100vw);
+    padding-bottom: calc(20 / 1920 * 100vw);
+    background-image: url('../images/index/hand_in_hand_image.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    box-sizing: border-box;
+}
+.point-image-second {
+    display: flex;
+    align-self: center;
+    height: 0;
+    width: calc(30 / 1920 * 100vw);
+    padding-bottom: calc(20 / 1920 * 100vw);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    
+    background-image: url('../images/index/hand_heart_image.png');
+}
+
+/* ポイント見出し */
+.point-title-text {
+    display: flex;
+    align-self: center;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+    color: var(--darkgray);
+    white-space: nowrap;
+    margin-left: calc(4 / 1920 * 100vw);
+}
+
+/* 項目コンテナ */
+.merit-items {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+}
+
+/* 項目 */
+.merit-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: calc(23.5 / 1920 * 100vw) 0;
+    border-bottom: solid 1px  var(--lightgray);
+    box-sizing: border-box;
+}
+
+/* 項番テキスト */
+.merit-item-index-text {
+    display: flex;
+    align-self: baseline;
+    text-align: center;
+    font-size: var(--thirty-px);
+    font-family: Calibri;
+    color: var(--blue);
+    /* 横のテキストと高さ揃えるため */
+    padding-top: calc(5.75 / 1920 * 100vw);
+    margin-right: calc(13.03 / 1920 * 100vw);
+    box-sizing: border-box;
+}
+
+/* 項番テキスト */
+.merit-item-remarks-text {
+    display: flex;
+    text-align: left;
+    align-self: center;
+    font-size: var(--fourteen-px);
+    font-family: Noto Sans JP;
+    color: var(--darkgray);
+    margin-left: calc(13.97 / 1920 * 100vw);
+}
+
+/* サンプルコンテナ */
+.examples {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: calc(31.83 / 1920 * 100vw) calc(53 / 1920 * 100vw) calc(53 / 1920 * 100vw) calc(53 / 1920 * 100vw);
+    box-sizing: border-box;
+    margin-top: calc(44 / 1920 * 100vw);
+    background-color: var(--white);
+}
+
+.example-title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-bottom: calc(14.67 / 1920 * 100vw);
+}
+.example-title-icon {
+    display: flex;
+    width: calc(17 / 1920 * 100vw);
+    height: calc(30 / 1920 * 100vw);
+}
+.example-title-text {
+    display: block;
+    align-self: flex-end;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+
+    margin-left: calc(13.85 / 1920 * 100vw);
+}
+
+.example-contents {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: calc(32.5 / 1920 * 100vw);
+} 
+.example-contents-image {
+    display: flex;
+    width: calc(444 / 1920 * 100vw);
+    height: calc(303 / 1920 * 100vw);
+}
+.example-contents-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(303 / 1920 * 100vw);
+    box-sizing: border-box;
+    padding: 0;
+    justify-content: space-between;
+
+    margin-left: calc(53 / 1920 * 100vw);
+}
+.example-contents-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    border-bottom: solid 1px var(--lightgray);
+
+    padding-top: calc(22.29 / 1920 * 100vw);
+    padding-bottom: calc(22.29 / 1920 * 100vw);
+}
+.example-contents-item-top {
+    padding-top: 0;
+}
+
+.example-contents-item-icon {
+    display: flex;
+    align-self: center;
+    width: calc(55 / 1920 * 100vw);
+    height: calc(34 / 1920 * 100vw);
+
+    margin-right: calc(10 / 1920 * 100vw);
+}
+
+
+
+/*
+* 利用料金
+*/
+/* プラン */
+.plan-instruction-text {
+    display: flex;
+    flex-direction: column;
+}
+.textsize-twenty {
+    font-size: var(--twenty-px);
+}
+
+.plans {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    margin-top: calc(49 / 1920 * 100vw);
+    justify-content: space-between;
+}
+
+.plan {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(514 / 1920 * 100vw);
+    border: solid 2px var(--blue);
+}
+
+.plan-heading {
+    display: flex;
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    height: calc(46 / 1920 * 100vw);
+    background: var(--blue);
+}
+.plan-heading-text {
+    align-self: center;
+    text-align: center;
+    width: 100%;
+    color: var(--white);
+    font-size: var(--sixteen-px);
+}
+
+.plan-items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    padding: 0 calc(57.5 / 1920 * 100vw);
+    box-sizing: border-box;
+}
+
+.plan-price-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    padding-top: calc(28 / 1920 * 100vw);
+    padding-bottom: calc(28 / 1920 * 100vw);
+    box-sizing: border-box;
+}
+
+.plan-prices {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin: auto;
+}
+
+.plan-price-text {
+    color: var(--darkgray);
+    font-size: var(--thirtysix-px);
+    font-weight: bold;
+}
+
+.plan-price-text2-container {
+    display: block;
+    align-self: flex-end;
+    margin-left: calc(9 / 1920 * 100vw);
+    color: var(--darkgray);
+    font-size: var(--nineteen-px);
+    font-weight: bold;
+    white-space: nowrap;
+    margin-bottom: calc(6 / 1920 * 100vw);
+}
+
+.plan-item {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    padding: calc(25.5 / 1920 * 100vw) 0;
+    box-sizing: border-box;
+    border-top: solid 1px var(--lightgray);
+}
+
+.plan-item-title {
+    text-align: left;
+    width: 70%;
+}
+.plan-item-content {
+    text-align: center;
+    width: 30%;
+    color: var(--darkgray);
+    font-size: var(--twentyfive-px);
+    font-weight: bold;
+}
+
+
+/*
+* 決済方法
+*/
+/* カード種類 */
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(445 / 1920 * 100vw);
+}
+.cards-row {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    padding: 0px;
+    justify-content: space-between;
+
+    margin-top: calc(45 / 1920 * 100vw);
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(70 / 1920 * 100vw);
+}
+.card-image {
+    align-self: center;
+    width: auto;
+    height: calc(50 / 1920 * 100vw);
+    margin-bottom: calc(12 / 1920 * 100vw);
+}
+.card-name {
+    align-self: center;
+    color: var(--darkgray);
+    font-size: var(--sixteen-px);
+    white-space: nowrap;
+}

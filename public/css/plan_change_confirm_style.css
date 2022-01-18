@@ -1,0 +1,201 @@
+/* 画面見出し */
+.heading-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: left;
+    width: 100%;
+    border-bottom: solid 1px #707070;
+    margin: auto auto calc((29 / 1920) * 100vw) auto;
+    padding-bottom: calc((21 / 1920) * 100vw);
+}
+
+.heading-company-info-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.heading-company-name {
+    font-size: var(--twentysix-px);
+}
+
+.heading-remained {
+    display: flex;
+    flex-direction: row;
+}
+
+.heading-remained-count {
+    display: block;
+    flex-direction: row;
+    align-self: flex-end;
+    font-size: var(--fourteen-px);
+    
+}
+
+/* 項目コンテナ */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    border: solid var(--container-border-width) #EEEEEE;
+    margin: calc((109 / 1920) * 100vw) auto auto auto;
+    padding: calc((34 / 1920) * 100vw) calc((31 / 1920) * 100vw) 0 calc((31 / 1920) * 100vw);
+    box-sizing: border-box;
+}
+.main-container-top {
+    margin: auto;
+    padding: calc((34 / 1920) * 100vw) calc((31 / 1920) * 100vw) calc((30 / 1920) * 100vw) calc((31 / 1920) * 100vw);
+}
+
+.item-heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    border-bottom: solid 1px #707070;
+    padding-bottom: calc((18 / 1920) * 100vw);
+    /* margin-bottom: calc((30 / 1920) * 100vw); */
+}
+
+.item-heading-icon {
+    display: flex;
+    align-self: center;
+    width: calc((19 / 1920) * 100vw);
+    height: calc((19 / 1920) * 100vw);
+    margin-right: calc((10 / 1920) * 100vw);
+}
+
+.item-heading-title {
+    display: block;
+    flex-direction: row;
+    align-self: flex-end;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+}
+
+.item-heading-title span {
+    font-size: var(--twentythree-px);
+    color: var(--blue);
+    margin-left: calc((8 / 1920) * 100vw);
+    margin-right: calc((8 / 1920) * 100vw);
+}
+
+
+/* 現在ご利用中のプラン */
+.current-plans {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    margin-bottom: calc((62 / 1920) * 100vw);
+}
+
+.current-plan {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    padding-top: calc((25 / 1920) * 100vw);
+}
+
+.current-plan-heading {
+    display: flex;
+    align-self: center;
+    width: 25%;
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+}
+
+.current-plan-content {
+    display: flex;
+    align-self: center;
+    text-align: left;
+    font-size: var(--sixteen-px);
+}
+
+
+/* 月額料金 */
+.charge-items {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: calc((25/ 1920) * 100vw);
+}
+.charge-item {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 100%;
+}
+.charge-item-title {
+    display: flex;
+    align-self: center;
+    width: calc((63/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+    /* white-space: nowrap; */
+}
+.charge-item-content {
+    display: flex;
+    align-self: center;
+    width: calc((120/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+}
+.charge-item-amount {
+    text-align: right;
+    width: calc((65/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+}
+
+
+/* 変更ボタン */
+.change-button {
+    align-self: center;
+    text-align: center;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    background: var(--blue);
+    width: calc((154 / 1920) * 100vw);
+    height: calc((64 / 1920) * 100vw);
+    font-size: var(--fourteen-px);
+    font-weight: bold;
+    box-sizing: border-box;
+    margin: calc((90 / 1920) * 100vw) auto auto auto;
+}
+.change-button-text {
+    position: absolute;
+    align-self: center;
+    top: 50%; /*親要素を起点に上から50%*/
+    left: 50%;  /*親要素を起点に左から50%*/
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    color: var(--white);
+}
+.change-button a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* フォーム設定 */
+input[type="number"]:read-only {
+    align-self: center;
+    width: 100%;
+    font-size: var(--sixteen-px);
+    color: var(--darkgray);
+    border: 0;
+    outline: none;
+    padding: 0;
+}

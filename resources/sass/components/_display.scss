@@ -1,0 +1,29 @@
+// -----------------------------------------------------------------------------
+// DISPLAY
+// -----------------------------------------------------------------------------
+
+/**
+ * Display
+ *
+ */
+
+/// 各ブレークポイントのdisplayを返す。
+/// @param {List} $break-points - メディアクエリ：xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px
+/// @example css - CSS出力
+///   .display-absolute {
+///     display: absolute;
+///   }
+///
+///   .display-absolute-medium {
+///     display: absolute;
+///   }
+
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+        @each $value in $displays {
+            .display-#{$value}#{$infix} { display: $value !important; }
+        }
+    }
+}

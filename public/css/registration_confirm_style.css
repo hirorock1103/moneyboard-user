@@ -1,0 +1,298 @@
+.discription {
+    font-size: var(--sixteen-px);
+}
+
+.common-font {
+    text-align: left;
+    font-size: var(--sixteen-px);
+}
+
+/* 直線 */
+.width-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #707070;
+    border: 0;
+}
+
+.items-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc((800/ 1920) * 100vw);
+    background: var(--white);
+    border: solid calc((20 / 1920) * 100vw) #EEEEEE;
+    margin: calc((127 / 1920) * 100vw) auto 0 auto;
+    box-sizing: border-box;
+    padding: calc((35 / 1920) * 100vw) calc((30.5 / 1920) * 100vw);
+}
+.first-item {
+    margin: calc((56 / 1920) * 100vw) auto 0 auto;
+}
+
+.item-heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.item-heading img {
+    display: flex;
+    width: calc((20 / 1920) * 100vw);
+    margin-right: calc((10 / 1920) * 100vw);
+    object-fit: contain;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.item-heading-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0 calc((16 / 1920) * 100vw) 0;
+}
+
+.item-heading-title {
+    display: flex;
+    align-self: center;
+    color: var(--darkgray);
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+}
+
+.item-heading-remark {
+    display: block;
+    align-self: flex-end;
+    font-size: var(--twelve-px);
+    white-space: nowrap;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: calc((10 / 1920) * 100vw);
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: calc((10 / 1920) * 100vw) 0;
+}
+.item-title {
+    display: flex;
+    width: 20%;
+    margin-right: calc((10 / 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+    margin: auto;
+}
+.title-long {
+    width: 25%;
+}
+
+.item-content {
+    display: flex;
+    width: 80%;
+    align-self: center;
+}
+.content-password {
+    width: 75%;
+}
+
+.item-content-text {
+    font-size: var(--sixteen-px);
+}
+
+/* 料金について */
+.about-charges-items {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    margin-top: calc((10 / 1920) * 100vw);
+}
+
+.about-charges-items-content{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 75%;
+}
+
+.companies-count {
+    display: flex;
+    align-self: center;
+    width: calc((100 / 1920) * 100vw);
+    margin-left: calc((10 / 1920) * 100vw);
+}
+.companies-count-text {
+    display: block;
+    align-self: center;
+    font-size: var(--sixteen-px);
+    margin-left: calc((10 / 1920) * 100vw);
+}
+
+.sum-charge-container {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 100%;
+    margin: calc((59 / 1920) * 100vw) 0 calc((15 / 1920) * 100vw) 0;
+    white-space: nowrap;
+}
+.sum-charge-text {
+    display: block;
+    align-self: flex-end;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+    white-space: nowrap;
+    padding-bottom: calc((4 / 1920) * 100vw);
+}
+.charge-text {
+    font-size: var(--twentysix-px);
+    font-weight: bold;
+    color: var(--blue);
+    white-space: nowrap;
+    margin: 0 calc((5/ 1920) * 100vw);
+    padding-bottom: 0;
+}
+
+.charge-items {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+.charge-item {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 100%;
+}
+.charge-item-title {
+    display: flex;
+    align-self: center;
+    width: calc((63/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+    /* white-space: nowrap; */
+}
+.charge-item-content {
+    display: flex;
+    align-self: center;
+    width: calc((120/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+}
+.charge-item-amount {
+    text-align: right;
+    width: calc((65/ 1920) * 100vw);
+    font-size: var(--sixteen-px);
+}
+.charge-item-remark {
+    display: flex;
+    align-self: center;
+    font-size: var(--sixteen-px);
+}
+
+/* アンケート */
+.radio-list-items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    margin-top: calc((10 / 1920) * 100vw);
+}
+.radio-list {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.radio-and-text {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: calc((20 / 1920) * 100vw);
+}
+
+.radio-container {
+    display: flex;
+    align-self: center;
+    width: 15%;
+    white-space: nowrap;
+}
+.radio-block-top {
+    display: block;
+    align-self: flex-start;
+}
+
+.radio-text-container {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    width: 85%;
+}
+.radio-text {
+    display: block;
+    align-self: center;
+    font-size: var(--sixteen-px);
+    margin-right: calc((16 / 1920) * 100vw);
+    white-space: nowrap;
+}
+
+/* ボタンコンテナ */
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+
+    margin: calc((89 / 1920) * 100vw) auto auto auto;
+
+    justify-content: center;
+}
+
+/* 内容修正ボタン */
+.edit {
+    align-self: center;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    background: #A2A2A2;
+    width: calc((188 / 1920) * 100vw);
+    height: calc((64 / 1920) * 100vw);
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+    color: var(--white);
+    box-sizing: border-box;
+    border: none;  /* 枠線を消す */
+    outline: none;
+
+    margin-right: calc((30 / 1920) * 100vw);
+}
+
+/* 登録ボタン */
+input[type="submit"] {
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+
+    width: calc((154 / 1920) * 100vw);
+    height: calc((64 / 1920) * 100vw);
+    color: var(--white);
+    text-align: center;
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+    background: var(--blue);
+}
+

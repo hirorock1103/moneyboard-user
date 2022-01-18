@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+// GRID グリッド
+// -----------------------------------------------------------------------------
+
+/**
+ * コンテナーの基本スタイル。 `.container--*` でスタイルを追加してください。
+ * class.
+ */
+
+.container {
+    max-width: $container-max-width;
+    margin-right: auto;
+    margin-left:  auto;
+    width: 100%;
+}
+
+    .row { @include clearfix; }
+
+    [class*="col-"] {
+        float: left;
+        margin-top:    24px;
+        padding-left:  10px;
+        padding-right: 10px;
+        width: percentage(1 / $columns);
+    }
+
+          /* スマートフォン用 */
+            [class*="col-"] {
+                width: 100%;
+            }
+
+
+/// 各ブレークポイントのコラムを返す。
+/// @param {List} $columns - コラム: 12
+/// @param {List} $break-points - メディアクエリ：xsmall: 0, small: 576px, medium: 768px, large: 992px, xlarge: 1200px
+/// @example css - CSS出力
+///   .col-1 {
+///     width: 8.3333333333%;
+///   }
+///
+///   .col-medium-6 {
+///      width: 50%;
+///   }
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+        @for $width from 1 through $columns {
+            .col#{$infix}-#{$width} { width: $width / $columns * 100%; }
+        }
+    }
+}

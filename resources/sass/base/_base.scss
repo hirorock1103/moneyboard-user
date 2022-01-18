@@ -1,0 +1,94 @@
+// -----------------------------------------------------------------------------
+// BASIC 基本スタイル
+// -----------------------------------------------------------------------------
+
+/**
+ * MSIE: IEMobileに必要
+ */
+
+@-ms-viewport {
+    width: device-width;
+}
+
+
+/**
+ * MSIE: スクロールバーがコンテンツと重複するのを防ぐ
+ */
+
+body {
+    -ms-overflow-style: scrollbar;
+}
+
+
+/**
+ * ページの幅を >=320px　に設定する
+ */
+
+@include media('<=small') {
+    html, body {
+        min-width: 320px;
+    }
+}
+
+
+/**
+ * border-box は、要素に指定した width および height の中で境界線およびパディングを取るように
+ * ブラウザーに指示します。要素の width を100ピクセルに設定した場合、100ピクセルの中に追加した境界線や
+ * パディングが含まれ、コンテンツ領域はそれらの幅を吸収するために縮小します。これで普通は、要素に対する
+ * サイズ設定をもっと簡単になります。
+ */
+
+html {
+    box-sizing: border-box;
+}
+
+
+/**
+ * DOMのすべての要素を親と同じ box-sizing を設定します。
+ * 詳細については: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+/**
+ * bodyの基本スタイル
+ */
+
+body {
+    background-color: $body-bg;
+    display:        flex;
+    flex-direction: column;
+    margin-top: 68px;
+    min-height: calc(100vh - 68px);
+
+    @include media('>=medium') {
+        margin-top: 76px;
+        min-height: calc(100vh - 76px);
+    }
+}
+
+
+/**
+ * ブロック部分の基本スタイル
+ */
+
+article,
+section,
+table {
+    display: block;
+}
+
+
+/**
+ * 画像の基本スタイル
+ */
+
+img　{
+    vertical-align: middle;
+    width: 100%;
+}

@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+// HEADING 見出し
+// -----------------------------------------------------------------------------
+
+/**
+ * 見出しの基本スタイル。 `.heading--*` でスタイルを追加してください。
+ * class.
+ */
+
+.heading-primary {
+    align-items:     center;
+    display:         flex;
+    justify-content: center;
+
+    &:before,
+    &:after {
+        background-size:   contain;
+        background-repeat: no-repeat;
+        content: "";
+        display: inline-block;
+        height:  20px;
+        width:   2rem;
+    }
+
+    &:before {
+        background-image: url('/images/common/header_column_icon_left.svg');
+    }
+
+    &:after {
+        background-image: url('/images/common/header_column_icon_right.svg');
+        margin-left: 8px;
+    }
+
+    @include media('>=large') {
+
+        &:before,
+        &:after {
+            margin-bottom: -4px;
+        }
+    }
+}

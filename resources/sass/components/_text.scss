@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+// TEXT テキスト
+// -----------------------------------------------------------------------------
+
+/**
+ * 文字の色
+ */
+
+.text-white   { color: $color-white  !important; }
+.text-accent  { color: $color-accent !important; }
+.text-danger  { color: $color-danger !important; }
+
+
+/**
+ * 整列
+ */
+
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+        .text-left#{$infix}    { text-align: left  !important; }
+        .text-right#{$infix}   { text-align: right !important; }
+        .text-center#{$infix}  { text-align: center  !important; }
+    }
+}
+
+.vertical-top    { vertical-align: top    !important; }
+.vertical-middle { vertical-align: middle !important; }
+
+
+/**
+  * テキスト効果
+  */
+
+.text-kerning-normal { letter-spacing: .1em; }
+.text-kerning-small  { letter-spacing: .05em; }
+
+
+/**
+  * テキストの太さ
+  */
+
+.font-weight-normal  { font-weight: $weight-normal !important; }
+.font-weight-bold    { font-weight: $weight-bold   !important; }
+.font-weight-bolder  { font-weight: $weight-bolder !important; }

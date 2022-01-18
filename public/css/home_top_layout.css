@@ -1,0 +1,151 @@
+/* 画面見出し */
+.heading-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: left;
+    width: 100%;
+    border-bottom: solid 1px #707070;
+    margin: auto auto calc((29 / 1920) * 100vw) auto;
+    padding-bottom: calc((21 / 1920) * 100vw);
+}
+.heading-id {
+    font-size: var(--fourteen-px);
+    margin-bottom: calc((8 / 1920) * 100vw);
+}
+
+.heading-company-info-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.heading-company-name {
+    font-size: var(--twentysix-px);
+}
+
+.heading-remained {
+    display: flex;
+    flex-direction: row;
+}
+
+.heading-remained-count {
+    display: block;
+    flex-direction: row;
+    align-self: flex-end;
+    font-size: var(--fourteen-px);
+    
+}
+.heading-remained-count span {
+    font-size: var(--twenty-px);
+    margin-left: calc((8 / 1920) * 100vw);
+    margin-right: calc((8 / 1920) * 100vw);
+}
+
+/* 項目コンテナ */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    border: solid var(--container-border-width) #EEEEEE;
+    margin: calc((109 / 1920) * 100vw) auto auto auto;
+    padding: calc((34 / 1920) * 100vw) calc((31 / 1920) * 100vw) 0 calc((31 / 1920) * 100vw);
+    box-sizing: border-box;
+}
+.main-container-top {
+    margin: auto;
+    padding: calc((34 / 1920) * 100vw) calc((31 / 1920) * 100vw) calc((30 / 1920) * 100vw) calc((31 / 1920) * 100vw);
+}
+
+.item-heading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    border-bottom: solid 1px #707070;
+    padding-bottom: calc((18 / 1920) * 100vw);
+    margin-bottom: calc((30 / 1920) * 100vw);
+}
+.news-header {
+    margin-bottom: 0;
+}
+
+.item-heading-icon {
+    display: flex;
+    align-self: center;
+    width: calc((19 / 1920) * 100vw);
+    height: calc((19 / 1920) * 100vw);
+    margin-right: calc((10 / 1920) * 100vw);
+}
+
+.item-heading-title {
+    display: flex;
+    align-self: center;
+    font-size: var(--eighteen-px);
+    font-weight: bold;
+}
+
+
+/* アプリダウンロードについて */
+.about-app {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+}
+
+.about-app-qrcode {
+    display: flex;
+    align-self: center;
+    width: calc((150 / 1920) * 100vw);
+    height: calc((150 / 1920) * 100vw);
+    margin-right: calc((30 / 1920) * 100vw);
+}
+
+.about-app-discription {
+    display: block;
+    align-self: flex-start;
+    text-align: left;
+    font-size: var(--sixteen-px);
+}
+
+
+/* お知らせ */
+.news-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    height: calc((210 / 1920) * 100vw);
+    padding: calc((30 / 1920) * 100vw) 0 calc((30 / 1920) * 100vw) 0;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 100%;
+    padding: calc((14 / 1920) * 100vw) 0 calc((14 / 1920) * 100vw) 0;
+}
+
+.date {
+    display: flex;
+    align-self: center;
+    width: 20%;
+    text-align: left;
+    font-size: var(--sixteen-px);
+    font-weight: bold;
+}
+
+.news-title {
+    display: flex;
+    align-self: center;
+    width: 80%;
+    text-align: left;
+    font-size: var(--sixteen-px);
+}

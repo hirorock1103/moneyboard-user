@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// BACKGROUND 背景
+// -----------------------------------------------------------------------------
+
+/**
+ * 背景の基本スタイル。 `.bg-*` でスタイルを追加してください。
+ * class.
+ */
+/* 白い背景 */
+.bg-white       { background-color: map-get($background-colors, 'white') !important; }
+
+
+/* グレー背景 */
+.bg-gray        { background-color: map-get($background-colors, 'gray')    !important; }

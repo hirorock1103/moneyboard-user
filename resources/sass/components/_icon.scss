@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------------
+// ICON アイコン
+// -----------------------------------------------------------------------------
+
+/**
+ * アイコンの基本スタイル。 `.icon--*` でスタイルを追加してください。
+ * class.
+ */
+
+.icon {
+    @include icon;
+    border-bottom: none;
+    position: relative;
+
+    &:before { line-height: inherit; }
+
+    &.solid {
+        &:before { font-weight: $weight-bolder; }
+    }
+
+    &.brands {
+        &:before { font-family: 'Font Awesome 5 Brands'; }
+    }
+}
+
+    /**
+    * アイコンのラベル。
+    * class
+    */
+
+    /// ページリーダーを使用している人向け。
+    /// アイコンのラベルを非表示する。
+    .icon__label { display: none; }

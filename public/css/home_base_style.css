@@ -1,0 +1,242 @@
+/*
+* ヘッダー
+*
+*/
+/** ヘッダーコンテナ */
+.header {
+    background: white;
+    display: flex;
+    padding: 0 calc((22 / 1920) * 100vw);
+    position: fixed;
+    justify-content: space-between;
+    width: 100%;
+    height: calc((84 / 1920) * 100vw);
+    box-sizing: border-box;
+    border-bottom: solid 1px var(--lightgray);
+    /* これがないとコンテンツ内の一部が重なって表示されてしまう */
+    /* 優先度一番高めで */
+    z-index: 10;
+}
+
+/** ヘッダータイトル */
+.header-title-container {
+    display: flex;
+    flex-direction: row;
+}
+.header-title-container a {
+    display: flex;
+    flex-direction: row;
+    color: var(--gray);
+    text-decoration: none;
+}
+
+/** タイトル */
+.header-title {
+    display: flex;
+    /* 画像の高さ(bottom揃えにするため必要) */
+    height: calc((36 / 1920) * 100vw);
+    font-size: var(--twentyeight-px);
+    margin-left: calc((15 / 1920) * 100vw);
+    align-self: center;
+    align-items: flex-end;
+}
+
+/** サブタイトル */
+.header-subtitle {
+    display: flex;
+    font-size: var(--fourteen-px);
+    margin-left: calc((35 / 1920) * 100vw);
+    align-self: center;
+    color: var(--gray);
+}
+
+
+
+/**
+* コンテンツ部分
+*
+*/
+/* 大枠 */
+.home-contents {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+/* サイドメニュー */
+.menu {
+    flex-direction: column;
+    width: calc((325 / 1920) * 100vw);
+    background: #707070;
+
+    position: sticky
+}
+.menu a {
+    display: flex;
+    flex-direction: row;
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 100%;
+}
+.menu-items-f {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    width: 100%;
+    
+    position: absolute;
+    bottom: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-self: center;
+    text-align: center;
+    border-bottom: solid 1px #9B9B9B;
+    width: 100%;
+    height: calc((83 / 1920) * 100vw);
+    padding-left: calc((20 / 1920) * 100vw);
+    box-sizing: border-box;
+}
+.menu-item-f {
+    display: flex;
+    align-self: center;
+    text-align: center;
+    border-top: solid 1px #9B9B9B;
+    width: 100%;
+    height: calc((50 / 1920) * 100vw);
+    padding-left: calc((20 / 1920) * 100vw);
+    box-sizing: border-box;
+}
+
+.menu-item-container {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+}
+
+.menu-item-image {
+    display: flex;
+    align-self: center;
+    width: calc((17 / 1920) * 100vw);
+}
+
+.menu-item-titles {
+    display: flex;
+    align-self: flex-start;
+    text-align: left;
+    flex-direction: column;
+    margin-left: calc((20 / 1920) * 100vw);
+}
+
+.menu-item-title {
+    display: flex;
+    text-align: left;
+    color: #EEEEEE;
+    font-size: var(--sixteen-px);
+}
+.menu-item-subtitle {
+    display: flex;
+    text-align: left;
+    color: #EEEEEE;
+    font-size: var(--twelve-px);
+}
+
+/* コンテンツ */
+.main {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: calc(100vw - ((325 / 1920) * 100vw));
+    padding: calc((56 / 1920) * 100vw) calc((318 / 1920) * 100vw) calc((56 / 1920) * 100vw) calc((317 / 1920) * 100vw);
+    box-sizing: border-box;
+}
+
+
+
+/**
+* フッター
+*
+*/
+/** フッター */
+.footer {
+    display: block;
+    padding: calc((73 / 1920) * 100vw) calc((410 / 1920) * 100vw);
+    background: var(--darkgray);
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+/** ツールについて */
+.about-tool {
+    display: flex;
+    width: 100%;
+    padding-bottom: calc((73 / 1920) * 100vw);
+    justify-content: space-between;
+}
+
+/** フッタータイトル */
+.footer-title-contaner {
+    display: flex;
+    align-self: center;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+/** タイトル */
+.footer-title {
+    display: flex;
+    font-family: ITC Avant Garde Gothic Book;
+    font-size: var(--thirtytwo-px);
+    color: var(--white);
+    margin-left: var(--base-mergin);
+}
+
+/** サブタイトル */
+.footer-subtitle {
+    display: flex;
+    font-family: ITC Avant Garde Gothic Book;
+    font-size: var(--fourteen-px);
+    color: var(--white);
+    margin-top: var(--base-mergin);
+    letter-spacing: var(--base-letterspace);
+}
+
+
+/** フッターメニュー */
+.footer-menu-contaner {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+}
+
+/** リンクテキスト */
+.footer-link-text {
+    display: flex;
+    font-size: var(--fourteen-px);
+    color: var(--white);
+    margin-left: calc(var(--base-mergin) * 3);
+    text-decoration: none;
+}
+
+
+
+/** 運営詳細 */
+.about-operating-company {
+    text-align: left;
+    border-top: solid 1px #707070;
+    padding-top: var(--fourteen-px);
+    color: var(--white);
+}
+.about-operating-company .company-name {
+    font-weight: bold;
+}
+

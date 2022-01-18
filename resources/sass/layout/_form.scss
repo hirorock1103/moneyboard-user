@@ -1,0 +1,286 @@
+// -----------------------------------------------------------------------------
+// FORMS フォーム
+// -----------------------------------------------------------------------------
+
+/**
+ * 2行フォーム
+ */
+
+.form-two-lined {
+    width: 100%;
+
+    @include media('>=large') {
+        width: 330px;
+        margin: 0 auto;
+    }
+}
+
+/**
+ * フォーム行の基本スタイル。 `.form-row--*` でスタイルを追加してください。
+ * class.
+ */
+
+.form-row {
+    display: table;
+    padding-bottom: 20px;
+    height:  auto;
+    width:   100%;
+}
+
+    /**
+    * フォームコラムの基本スタイル。 `.form-column--*` でスタイルを追加してください。
+    * class.
+    */
+
+    .form-column {
+        display: block;
+
+        @include media('>=medium') {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+
+
+        /**
+        * PC画面用のコラム。 `.form-column` の延長
+        */
+        @each $length in $form-column {
+            .form-column--#{$length} {
+
+                @include media('>=medium') {
+                    width: $length * 1px;
+                }
+            }
+        }
+
+
+    /**
+    * フォームラベルの基本スタイル。 `.form-label--*` でスタイルを追加してください。
+    * class.
+    */
+
+    .form-label {
+        font-weight: $weight-bold;
+        font-size:   14px;
+        line-height: 1.85;
+        margin-bottom: 8px;
+    }
+
+
+        /**
+        * PC画面用のインラインラベル。 `.form-label` の延長
+        */
+        .form-label--inline-medium {
+            font-size:     16px;
+            padding-right: 10px;
+            position: relative;
+        }
+
+
+/**
+ * 入力欄の基本スタイル。 `.form-input--*` でスタイルを追加してください。
+ * class.
+ */
+
+.form-input,
+.form-textarea,
+.form-select select {
+    border: 1px solid map-get(map-get($form-colors, default), 'border');
+    border-radius: 5px;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    transition: all map-get($duration, 'form') ease-in-out;
+    width: 100%;
+
+    &:not(textarea) {
+        line-height: 1;
+        height: 2.5rem;
+    }
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+        background-color: map-get(map-get($form-colors, active), 'background');
+        border-color:     map-get(map-get($form-colors, active), 'border');
+        border-width:     2px;
+        color:            map-get(map-get($form-colors, active), 'text');
+        outline: none;
+        padding: 8px 10px;
+    }
+
+    &:invalid,
+    &:invalid:focus,
+    input:-webkit-autofill:invalid {
+        background-color: map-get(map-get($form-colors, invalid), 'background');
+        border-color:     map-get(map-get($form-colors, invalid), 'border');
+        color:            map-get(map-get($form-colors, invalid), 'text');
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active  {
+        background-color: transparentize(map-get(map-get($form-colors, autofill), 'background'), 0.2);
+    }
+}
+
+.form-input[readonly] {
+    border: none;
+    cursor: not-allowed;
+    user-select: none;
+}
+
+.form-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+    .form-input--short {
+        display: inline-block;
+        margin-right: 10px;
+        width:        100px;
+    }
+
+    .form-input--short-read {
+        margin-right:  0;
+        padding-right: 0;
+        width:         45px;
+    }
+
+
+/**
+  * selectの基本スタイル。 `.form-select--*` でスタイルを追加してください。
+  * class.
+  */
+.form-select {
+    cursor: pointer;
+    align-items: center;
+    display:     grid;
+    grid-template-areas: "select";
+
+    &:after {
+        background-color: map-get(map-get($form-colors, select), 'arrow');
+        clip-path: polygon(50% 79%,100% 0%,100% 21%,50% 100%,0% 21%,0% 0%);
+        content: "";
+        margin-right: 10px;
+        height:       0.5em;
+        width:        0.8em;
+        justify-self: end;
+    }
+}
+
+select,
+.form-select:after { grid-area: select; }
+
+
+/**
+  * ラジオボタンの基本スタイル。 `.form-radio--*` でスタイルを追加してください。
+  * class.
+  */
+
+.form-radio,
+.form-checkbox {
+    position: absolute;
+    left: -9999px;
+
+    &:not(:checked) + .form-radio-label:after,
+    &:not(:checked) + .form-checkbox-label:after {
+        opacity: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    .form-radio-label:after,
+    .form-checkbox-label:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+    .form-radio-label,
+    .form-checkbox-label {
+        cursor: pointer;
+        font-size:   16px;
+        line-height: 1.6;
+        display: inline-block;
+        padding-left: 24px;
+        position: relative;
+
+        &:after,
+        &:before {
+            content: '';
+            position: absolute;
+        }
+
+        &:before {
+            left:   0;
+            top:    4px;
+            height: 18px;
+            width:  18px;
+        }
+    }
+
+    .form-radio-label {
+
+        &:after,
+        &:before {
+            border-radius: 100%;
+        }
+
+        &:before {
+            background: map-get(map-get($form-colors, radio), 'background');
+            border: 1px solid map-get(map-get($form-colors, radio), 'border');
+        }
+
+        &:after {
+            background: map-get(map-get($form-colors, radio), 'checked');
+            left:   5px;
+            top:    9px;
+            height: 8px;
+            width:  8px;
+            transition: all map-get($duration, 'form') ease;
+        }
+    }
+
+    .form-checkbox-label {
+
+        &:before {
+            background: map-get(map-get($form-colors, checkbox), 'background');
+            border: 1px solid map-get(map-get($form-colors, checkbox), 'border');
+        }
+
+        &:after {
+            border: solid map-get(map-get($form-colors, checkbox), 'checked');
+            border-width: 0 3px 3px 0;
+            content: "";
+            position: absolute;
+            left:     6px;
+            top:      6px;
+            height:   12px;
+            width:    6px;
+            transform: rotate(45deg);
+        }
+    }
+
+
+/**
+ * メッセージの基本スタイル。 `.form-text--*` でスタイルを追加してください。
+ * class.
+ */
+
+.form-text { font-size: 12px; }
+
+
+/**
+ * フォームのエラースタイル。
+ * class.
+ */
+
+.form-error {
+    background-color: map-get(map-get($form-colors, invalid), 'background');
+    border-color:     map-get(map-get($form-colors, invalid), 'border');
+    color:            map-get(map-get($form-colors, invalid), 'text');
+}
