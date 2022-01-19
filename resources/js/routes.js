@@ -15,6 +15,11 @@ import Company from "./views/mypage/Company.vue";
 import Reps from "./views/mypage/Reps.vue";
 import Client from "./views/mypage/Client.vue";
 import Plan from "./views/mypage/Plan.vue";
+import Premium from "./views/mypage/Premium.vue";
+import Email from "./views/mypage/Email.vue";
+import Password from "./views/mypage/Password.vue";
+import Opinion from "./views/mypage/Opinion.vue";
+import Inquiry from "./views/mypage/Inquiry.vue";
 //
 import SystemError from "./views/errors/System.vue";
 import NotFound from "./views/errors/NotFound.vue";
@@ -163,35 +168,35 @@ const routes = [
   // プレミアムプラン
   {
     path: "/mypage/company/premium/client-list",
-    component: MypageHome,
+    component: Premium,
     name: "mypage-premium",
     // beforeEnter: auth,
   },
   // メールアドレスの変更
   {
     path: "/mypage/company/email",
-    component: MypageHome,
+    component: Email,
     name: "mypage-email",
     // beforeEnter: auth,
   },
   // パスワードの変更
   {
     path: "/mypage/company/password",
-    component: MypageHome,
+    component: Password,
     name: "mypage-password",
     // beforeEnter: auth,
   },
   // ご意見・ご要望
   {
     path: "/mypage/opinion",
-    component: MypageHome,
+    component: Opinion,
     name: "mypage-opinion",
     // beforeEnter: auth,
   },
   // お問い合わせ
   {
     path: "/mypage/inquiry",
-    component: MypageHome,
+    component: Inquiry,
     name: "mypage-inquiry",
     // beforeEnter: auth,
   },
