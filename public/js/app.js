@@ -26390,6 +26390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -26503,7 +26504,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/api/" + 'user/signup', data);
+              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/signup', data);
 
             case 4:
               response = _context.sent;
@@ -26547,7 +26548,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context2.next = 4;
-              return axios.get("http://money-board-api.amb-dev.com/api/" + 'user/verify/' + hash);
+              return axios.get(process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash);
 
             case 4:
               response = _context2.sent;
@@ -26599,7 +26600,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context3.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/api/" + 'user/login', data);
+              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/login', data);
 
             case 4:
               response = _context3.sent;
@@ -26644,7 +26645,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return axios.post("http://money-board-api.amb-dev.com/api/" + 'user/logout');
+              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/logout');
 
             case 3:
               response = _context4.sent;
@@ -26683,7 +26684,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context5.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/api/" + 'user/password/reset/send-email', data);
+              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email', data);
 
             case 4:
               response = _context5.sent;
@@ -26727,7 +26728,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context6.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/api/" + 'user/password/reset', data);
+              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset', data);
 
             case 4:
               response = _context6.sent;
@@ -26769,7 +26770,7 @@ var actions = {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return axios.get("http://money-board-api.amb-dev.com/api/" + 'user/company', data);
+              return axios.get(process.env.MIX_VUE_APP_API_URL + 'user/company', data);
 
             case 2:
               response = _context7.sent;
@@ -26798,7 +26799,7 @@ var actions = {
           switch (_context8.prev = _context8.next) {
             case 0:
               _context8.next = 2;
-              return axios.get("http://money-board-api.amb-dev.com/api/" + 'company/clients-list', data);
+              return axios.get(process.env.MIX_VUE_APP_API_URL + 'company/clients-list', data);
 
             case 2:
               response = _context8.sent;
