@@ -27,18 +27,18 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="">
                                                 現在の料金プラン
                                             </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                            <td class="padding-bottom--16">
                                                 スタンダードブラン
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="">
                                                 追加された現在のデータ
                                             </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                            <td class="padding-bottom--16">
                                                 60社
                                             </td>
                                         </tr>
@@ -46,27 +46,35 @@
                                 </table>
                             </div>
                             <h4>
-                                <span class="padding-right--12  text-accent"></span>
                                 現在の月額料金
-                                55,000円
+                                <span class="padding-left--8  text-accent">
+                                55,000
+                                </span>
+                                円
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="">
                                                 内訳
                                             </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                基本料金　　　　55,000円
+                                            <td class="padding-bottom--16">
+                                                基本料金
+                                            </td>
+                                            <td class="padding-bottom--16">
+                                                55,000円
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="">
                                             </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]">
-                                                追加利用料金　　　5,000円
+                                            <td class="">
+                                                追加利用料金
+                                            </td>
+                                            <td class="">
+                                                5,000円
                                             </td>
                                         </tr>
                                     </tbody>

@@ -80,22 +80,26 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table">
+                                <table class="table margin-bottom--8">
                                     <tbody>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                問い合わせ窓口TEL
+                                                問い合わせ窓口TEL　06-6314-6685
                                             </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                **********12　　　　　　　　　　　　　　　　　
+                                            <td class="[ display-table-row  display-table-cell-large ]"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="[ display-table-row  display-table-cell-large ]">
+                                                運営元　　株式会社PPFパートナーズ
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                カード名義
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                AB**************
+                                            <td class="[ display-table-row  display-table-cell-large ]">
+                                                住　所　　大阪府大阪市北区天神橋1丁目7番17号　イケガミノースハウス4階
                                             </td>
                                         </tr>
                                     </tbody>
