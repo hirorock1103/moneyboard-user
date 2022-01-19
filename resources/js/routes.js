@@ -1,141 +1,242 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from './views/Home.vue';
-import Signup from './views/Signup.vue';
-import Completion from './views/Completion.vue';
-import Verify from './views/Verify.vue';
-import RegisterUser from './views/register/User.vue';
-import RegisterUserConfirm from './views/register/UserConfirm.vue';
-import RegisterCard from './views/register/Card.vue';
-import RegisterCardConfirm from './views/register/CardConfirm.vue';
-import Login from './views/Login.vue';
-import PasswordEmail from './views/password/Email.vue';
-import PasswordReset from './views/password/Reset.vue';
-import MypageHome from './views/mypage/Home.vue';
-import SystemError from './views/errors/System.vue';
-import NotFound from './views/errors/NotFound.vue';
-
-//Vue.config.devtools = true;
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "./views/Home.vue";
+import Signup from "./views/Signup.vue";
+import Completion from "./views/Completion.vue";
+import Verify from "./views/Verify.vue";
+import RegisterUser from "./views/register/User.vue";
+import RegisterUserConfirm from "./views/register/UserConfirm.vue";
+import RegisterCard from "./views/register/Card.vue";
+import RegisterCardConfirm from "./views/register/CardConfirm.vue";
+import Login from "./views/Login.vue";
+import PasswordEmail from "./views/password/Email.vue";
+import PasswordReset from "./views/password/Reset.vue";
+import MypageHome from "./views/mypage/Home.vue";
+import Company from "./views/mypage/Company.vue";
+import Reps from "./views/mypage/Reps.vue";
+import Client from "./views/mypage/Client.vue";
+import Plan from "./views/mypage/Plan.vue";
+//
+import SystemError from "./views/errors/System.vue";
+import NotFound from "./views/errors/NotFound.vue";
+import Terms from "./views/terms/Home.vue";
+import Privacy from "./views/privacy/Home.vue";
 
 const guest = (to, from, next) => {
-    if (!localStorage.getItem('authToken')) {
-        return next();
-    } else {
-        return next('/');
-    }
+  if (!localStorage.getItem("authToken")) {
+    return next();
+  } else {
+    return next("/");
+  }
 };
 
 const auth = (to, from, next) => {
-    if (localStorage.getItem('authToken')) {
-        return next();
-    } else {
-        return next('/login');
-    }
+  if (localStorage.getItem("authToken")) {
+    return next();
+  } else {
+    return next("/login");
+  }
 };
 
 const routes = [
-    {
-        path: '/',
-        component: Home,
-        name:'home',
-    },
-    {
-        path: '/signup',
-        component: Signup,
-        name:'signup',
-    },
-    {
-        path: '/signup/completion',
-        component: Completion,
-        name:'signup-completion',
-        props: true,
-    },
-    {
-        path: '/verify/:hash',
-        component: Verify,
-        name:'verify',
-        props: true,
-    },
-    {
-        path: '/register/user',
-        component: RegisterUser,
-        name:'register-user',
-        beforeEnter: auth,
-    },
-    {
-        path: '/register/user-confirm',
-        component: RegisterUserConfirm,
-        name:'register-user-confirm',
-        beforeEnter: auth,
-    },
-    {
-        path: '/register/card',
-        component: RegisterCard,
-        name:'register-card',
-        beforeEnter: auth,
-    },
-    {
-        path: '/register/card-confirm',
-        component: RegisterCardConfirm,
-        name:'register-card-confirm',
-        beforeEnter: auth,
-    },
-    {
-        path: '/register/completion',
-        component: Completion,
-        name:'register-completion',
-        beforeEnter: auth,
-        props: true,
-    },
-    {
-        path: '/login',
-        component: Login,
-        name:'login',
-    },
-    {
-        path: '/password/email',
-        component: PasswordEmail,
-        name:'password-email',
-        beforeEnter: guest,
-    },
-    {
-        path: '/password/request/completion',
-        component: Completion,
-        name:'request-completion',
-        beforeEnter: guest,
-        props: true,
-    },
-    {
-        path: '/password/reset',
-        component: PasswordReset,
-        name:'password-reset',
-        beforeEnter: auth,
-    },
-    {
-        path: '/mypage',
-        component: MypageHome,
-        name:'mypage-home',
-        beforeEnter: auth,
-    },
-    {
-        path: '/500',
-        component: SystemError
-    },
-    {
-        path: '/:catchAll(.*)',
-        component: NotFound
-    }
+  // トップページ
+  {
+    path: "/",
+    component: Home,
+    name: "home",
+  },
+  // 新規登録ページ
+  {
+    path: "/signup",
+    component: Signup,
+    name: "signup",
+  },
+  {
+    path: "/signup/completion",
+    component: Completion,
+    name: "signup-completion",
+    props: true,
+  },
+  {
+    path: "/verify/:hash",
+    component: Verify,
+    name: "verify",
+    props: true,
+  },
+  // 新規登録画面
+  {
+    path: "/register/user",
+    component: RegisterUser,
+    name: "register-user",
+    // beforeEnter: auth,
+  },
+  // 新規登録内容確認画面
+  {
+    path: "/register/user-confirm",
+    component: RegisterUserConfirm,
+    name: "register-user-confirm",
+    // beforeEnter: auth,
+  },
+  // クレジットカード登録画面
+  {
+    path: "/register/card",
+    component: RegisterCard,
+    name: "register-card",
+    // beforeEnter: auth,
+  },
+  // カード登録内容確認画面
+  {
+    path: "/register/card-confirm",
+    component: RegisterCardConfirm,
+    name: "register-card-confirm",
+    // beforeEnter: auth,
+  },
+  {
+    path: "/register/completion",
+    component: Completion,
+    name: "register-completion",
+    // beforeEnter: auth,
+    props: true,
+  },
+  // ログイン画面
+  {
+    path: "/login",
+    component: Login,
+    name: "login",
+    // beforeEnter: guest,
+  },
+  // パスワードの再発行
+  {
+    path: "/password/email",
+    component: PasswordEmail,
+    name: "password-email",
+    // beforeEnter: guest,
+  },
+  {
+    path: "/password/request/completion",
+    component: Completion,
+    name: "request-completion",
+    // beforeEnter: guest,
+    props: true,
+  },
+  // パスワード設定画面
+  {
+    path: "/password/reset",
+    component: PasswordReset,
+    name: "password-reset",
+    // beforeEnter: auth,
+  },
+  // マイページTOP
+  {
+    path: "/mypage",
+    component: MypageHome,
+    name: "mypage-home",
+    // beforeEnter: auth,
+  },
+  // 登録情報の確認・変更
+  {
+    path: "/mypage/company",
+    component: Company,
+    name: "mypage-company",
+    // beforeEnter: auth,
+  },
+  // 担当者情報の登録・変更・削除
+  {
+    path: "/mypage/company/reps-list",
+    component: Reps,
+    name: "mypage-reps",
+    // beforeEnter: auth,
+  },
+  // 登録企業の担当者変更・削除
+  {
+    path: "/mypage/company/client/rep",
+    component: Client,
+    name: "mypage-client",
+    // beforeEnter: auth,
+  },
+  // プラン変更 / 使用会社数の増減
+  {
+    path: "/mypage/company/plan",
+    component: Plan,
+    name: "mypage-plan",
+    // beforeEnter: auth,
+  },
+  // プレミアムプラン
+  {
+    path: "/mypage/company/premium/client-list",
+    component: MypageHome,
+    name: "mypage-premium",
+    // beforeEnter: auth,
+  },
+  // メールアドレスの変更
+  {
+    path: "/mypage/company/email",
+    component: MypageHome,
+    name: "mypage-email",
+    // beforeEnter: auth,
+  },
+  // パスワードの変更
+  {
+    path: "/mypage/company/password",
+    component: MypageHome,
+    name: "mypage-password",
+    // beforeEnter: auth,
+  },
+  // ご意見・ご要望
+  {
+    path: "/mypage/opinion",
+    component: MypageHome,
+    name: "mypage-opinion",
+    // beforeEnter: auth,
+  },
+  // お問い合わせ
+  {
+    path: "/mypage/inquiry",
+    component: MypageHome,
+    name: "mypage-inquiry",
+    // beforeEnter: auth,
+  },
+  // ログアウト
+  {
+    path: "/logout",
+    component: MypageHome,
+    name: "logout",
+    // beforeEnter: auth,
+  },
+  // プライバシーポリシー
+  {
+    path: "/privacy",
+    component: Privacy,
+    name: "privacy",
+    // beforeEnter: auth,
+  },
+  // 利用規約
+  {
+    path: "/terms",
+    component: Terms,
+    name: "terms",
+    // beforeEnter: auth,
+  },
+  // システムエラーページ
+  {
+    path: "/500",
+    component: SystemError,
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFound,
+  },
 ];
 
 const router = createRouter({
-    routes,
-    history: createWebHistory(),
-    scrollBehavior (to, from, savedPosition) {
-        if (savedPosition) {
-            return savedPosition
-        } else {
-            return { top: 0 }
-        }
+  routes,
+  history: createWebHistory(),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
     }
-})
+  },
+});
 
 export default router;

@@ -135,7 +135,7 @@ export default {
                     },
                     {
                         id: 11,
-                        url: '',
+                        url: '/logout',
                         icon: 'fa-sign-out-alt',
                         title: 'ログアウト',
                         subtitle: '',
