@@ -3,11 +3,10 @@
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-                <div class="container">
 
                     <div class="
-                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
-                        <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
+                    [ display-flex  justify-content-between-large  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
+                        <h2>
                             プレミアムプラン（顧客情報管理）
                         </h2>
                         <h5 class="margin-bottom--16">
@@ -17,15 +16,14 @@
                         </h5>
                     </div>
 
-                    <h4>
+                    <h4 class="padding-left--48 margin-bottom--24">
                         <span class="[ icon  solid ] fa-building  padding-right--12  text-accent"></span>
                         データ登録している企業情報一覧
                     </h4>
 
                     <article class="">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <!-- <table class="table table--bordered table-scrollable"> -->
-                            <table class="table--bordered table-scrollable">
+                        <div class="[ margin-left-medium--48  margin-left-large--48 ] [ margin-right-medium--48  margin-right-large--48 ] bg-white">
+                            <table class="table--bordered table-scrollable" style="white-space: nowrap;overflow-y: hidden;max-height: none;">
                                 <thead>
                                     <tr>
                                         <th colspan="2"></th>
@@ -275,7 +273,6 @@
                         </div>
                     </article>
 
-                </div>
             </section>
         </main>
     </div>
