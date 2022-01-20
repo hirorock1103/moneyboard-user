@@ -7,16 +7,26 @@
  * class.
  */
 .mypage__aside {
-    width: 330px;
+  width: 330px;
 }
-
 
 /**
  * マイページのメインdivのスタイル。 `.mypage__main--*` でスタイルを追加してください。
  * class.
  */
 .mypage__main {
-    @include media('>=large') {
-        width: calc(100% - 330px);
-    }
+  @include media(">=large") {
+    width: calc(100% - 330px);
+  }
+}
+
+/**
+ * テーブルのTextareaの調整
+ * 
+ */
+.vertical-middle {
+  vertical-align: middle;
+}
+.vertical-top {
+  vertical-align: top;
 }

@@ -19,11 +19,11 @@
                                 ご意見・ご要望
                             </h4>
                             <hr>
-                            <div class="table-scrollable  padding-right--8">
+                            <div class="padding-right--8">
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 企業名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
@@ -31,7 +31,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 名前
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -39,7 +39,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 メールアドレス
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -47,7 +47,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 件名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -55,11 +55,11 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
                                                 ご意見・ご要望内容
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                <input type="email" class="form-input  margin-top--8">
+                                                <input type="email" class="form-textarea  margin-top--8">
                                             </td>
                                         </tr>
                                     </tbody>

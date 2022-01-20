@@ -14,16 +14,22 @@
 
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                お問い合わせ
-                            </h4>
+                            <div class="display-flex justify-content-between-large">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                    お問い合わせ
+                                </h4>
+                                <h5 class="margin-bottom--16">
+                                    全ての項目をご記入ください
+                                </h5>
+                            </div>
                             <hr>
-                            <div class="table-scrollable  padding-right--8">
+                            <!-- <div class="table-scrollable  padding-right--8"> -->
+                            <div class="padding-right--8">
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 企業名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
@@ -31,7 +37,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 名前
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -39,7 +45,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 メールアドレス
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -47,7 +53,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 件名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -55,11 +61,11 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
                                                 お問合せ
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                <input type="email" class="form-input  margin-top--8">
+                                                <input type="email" class="form-textarea  margin-top--8">
                                             </td>
                                         </tr>
                                     </tbody>

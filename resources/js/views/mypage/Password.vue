@@ -27,7 +27,7 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 パスワード
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
@@ -35,7 +35,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 パスワード（確認用）
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
@@ -48,7 +48,7 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                            <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                 現在のパスワード　　
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
