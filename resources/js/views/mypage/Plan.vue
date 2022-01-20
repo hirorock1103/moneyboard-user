@@ -23,7 +23,7 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8 padding-bottom--24">
-                                <table class="table">
+                                <table class="table" style="width:40%;">
                                     <tbody>
                                         <tr>
                                             <th class="">
@@ -53,7 +53,7 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table">
+                                <table class="table" style="width:30%;">
                                     <tbody>
                                         <tr>
                                             <th class="">
@@ -62,7 +62,7 @@
                                             <td class="padding-bottom--16">
                                                 基本料金
                                             </td>
-                                            <td class="padding-bottom--16">
+                                            <td class="padding-bottom--16 text-right">
                                                 55,000円
                                             </td>
                                         </tr>
@@ -72,7 +72,7 @@
                                             <td class="">
                                                 追加利用料金
                                             </td>
-                                            <td class="">
+                                            <td class="text-right">
                                                 5,000円
                                             </td>
                                         </tr>
