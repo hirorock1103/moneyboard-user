@@ -15,11 +15,11 @@
 
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
                         <div class="[ padding--16 ]  bg-white  display-flex">
-                            <h4>
+                            <h4 class="[ padding-top--8 padding-top-large--8 ]" style="width:10%;">
                                 <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
                                 検索
                             </h4>
-                            <input class="form-input  margin-left-medium--48  margin-left-large--24" placeholder="会社名や担当者名を入力して検索">
+                            <input class="form-input" placeholder="会社名や担当者名を入力して検索">
                         </div>
                     </article>
 

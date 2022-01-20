@@ -21707,7 +21707,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
- // import { mapGetters, mapActions } from 'vuex';
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -24049,7 +24048,7 @@ var _hoisted_4 = {
   "class": "container"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom\" data-v-6429e450><h2 class=\"[ margin-bottom--4  margin-bottom-large--16 ]\" data-v-6429e450> 登録企業の担当者変更・削除 </h2></div><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]\" data-v-6429e450><div class=\"[ padding--16 ]  bg-white  display-flex\" data-v-6429e450><h4 data-v-6429e450><span class=\"[ icon  solid ] fa-search  padding-right--12  text-accent\" data-v-6429e450></span> 検索 </h4><input class=\"form-input  margin-left-medium--48  margin-left-large--24\" placeholder=\"会社名や担当者名を入力して検索\" data-v-6429e450></div></article>", 2);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom\" data-v-6429e450><h2 class=\"[ margin-bottom--4  margin-bottom-large--16 ]\" data-v-6429e450> 登録企業の担当者変更・削除 </h2></div><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]\" data-v-6429e450><div class=\"[ padding--16 ]  bg-white  display-flex\" data-v-6429e450><h4 class=\"[ padding-top--8 padding-top-large--8 ]\" style=\"width:10%;\" data-v-6429e450><span class=\"[ icon  solid ] fa-search  padding-right--12  text-accent\" data-v-6429e450></span> 検索 </h4><input class=\"form-input\" placeholder=\"会社名や担当者名を入力して検索\" data-v-6429e450></div></article>", 2);
 
 var _hoisted_7 = {
   "class": ""

@@ -105,7 +105,6 @@
 
 <script>
 import SideMenu from '../../components/SideMenuComponent.vue';
-// import { mapGetters, mapActions } from 'vuex';
 
 export default {
     components: {

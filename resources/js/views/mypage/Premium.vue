@@ -1,5 +1,4 @@
 <template>
-
     <div class="display-flex">
         <SideMenu />
         <main class="mypage__main">
