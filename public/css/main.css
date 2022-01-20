@@ -5747,7 +5747,8 @@ select,
 .table--bordered tr {
   border: 1px solid #D5D5D5;
 }
-.table--bordered th:not(:last-child), .table--bordered td:not(:last-child) {
+.table--bordered th:not(:last-child),
+.table--bordered td:not(:last-child) {
   border-right: 1px solid #D5D5D5;
 }
 .table--bordered thead {
@@ -5832,9 +5833,9 @@ select,
 }
 
 /**
-* ソート順の基本スタイル。 `.sort-by--*` でスタイルを追加してください。
-* class.
-*/
+    * ソート順の基本スタイル。 `.sort-by--*` でスタイルを追加してください。
+    * class.
+    */
 .sort-by {
   display: block;
   padding-right: 18px;
@@ -5861,14 +5862,16 @@ select,
 .table-fixed {
   table-layout: fixed;
 }
-.table-fixed tbody th, .table-fixed tbody td {
+.table-fixed tbody th,
+.table-fixed tbody td {
   width: 2%;
 }
 @media (min-width: 992px) {
   .table-fixed {
     table-layout: auto;
   }
-  .table-fixed tbody th, .table-fixed tbody td {
+  .table-fixed tbody th,
+.table-fixed tbody td {
     width: auto;
   }
 }
@@ -5876,7 +5879,8 @@ select,
 /**
  * 中央揃えの表。
  */
-.align-center tr th:not(:first-child), .align-center tr td:not(:first-child) {
+.align-center tr th:not(:first-child),
+.align-center tr td:not(:first-child) {
   text-align: center;
 }
 

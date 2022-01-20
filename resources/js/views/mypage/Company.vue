@@ -76,14 +76,14 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table">
+                                <table class="table width-50">
                                     <tbody>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
                                                 カード番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                **********12　　　　　　　　　　　　　　　　　
+                                                **********12
                                             </td>
                                         </tr>
                                         <tr>

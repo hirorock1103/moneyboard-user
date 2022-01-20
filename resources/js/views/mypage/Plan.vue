@@ -23,7 +23,7 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8 padding-bottom--24">
-                                <table class="table" style="width:40%;">
+                                <table class="table width-40">
                                     <tbody>
                                         <tr>
                                             <th class="">
@@ -53,7 +53,7 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table" style="width:30%;">
+                                <table class="table width-30">
                                     <tbody>
                                         <tr>
                                             <th class="">

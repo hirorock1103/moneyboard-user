@@ -55,7 +55,7 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table">
+                                <table class="table-scrollable">
                                     <tbody>
                                         <!-- <tr
                                             v-for="notification in notifications.slice().reverse()"
@@ -78,6 +78,22 @@
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
                                                 2000/1/11
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                2020/3/11
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                2020/3/11
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
