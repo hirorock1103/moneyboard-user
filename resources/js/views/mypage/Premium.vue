@@ -24,68 +24,256 @@
 
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <table class="table table--bordered">
+                            <!-- <table class="table table--bordered table-scrollable"> -->
+                            <table class="table--bordered table-scrollable">
                                 <thead>
                                     <tr>
+                                        <th colspan="2"></th>
+                                        <th colspan="3"></th>
+                                        <th colspan="2">会社規模</th>
                                         <th></th>
-                                        <th>スタンダードプラン</th>
-                                        <th>プレミアムプラン</th>
+                                        <th colspan="2">企業情報</th>
+                                        <th colspan="5">会社の評価（5段階評価：平均値3）</th>
+                                        <th colspan="3">成約の可能性（「A：可能性大」~「E：厳しい」）</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th>会社名</th>
+                                        <th>更新日時</th>
+                                        <th>法人番号</th>
+                                        <th>担当者</th>
+                                        <th>業種</th>
+                                        <th>年商（単位：万円）</th>
+                                        <th>資本金（単位：万円）</th>
+                                        <th>面談場所</th>
+                                        <th>代表者年齢</th>
+                                        <th>従業員平均年齢</th>
+                                        <th>重要指標</th>
+                                        <th>安全性指標</th>
+                                        <th>収益性指標</th>
+                                        <th>資金効率性指標</th>
+                                        <th>余剰金目安（単位：万円）</th>
+                                        <th>今回</th>
+                                        <th>前回</th>
+                                        <th>前々回</th>
+                                        <th>コメント</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>システム利用料金</td>
-                                        <td>55,000円/月</td>
-                                        <td>132,000円/月</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>自社データ5期の比較</td>
-                                        <td>〇</td>
-                                        <td>〇</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>他社データ比較</td>
-                                        <td>〇</td>
-                                        <td>〇</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>財務指標評価</td>
-                                        <td>〇</td>
-                                        <td>〇</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>顧客管理ツール</td>
-                                        <td>―</td>
-                                        <td>〇</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>使用できる企業数</td>
-                                        <td>60社</td>
-                                        <td>120社</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>企業数の追加(1社あたり)</td>
-                                        <td>1,100円/月</td>
-                                        <td>1,100円/月</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>アプリ登録台数</td>
-                                        <td>無制限</td>
-                                        <td>無制限</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                     <tr>
-                                        <td>担当者登録数</td>
-                                        <td>無制限</td>
-                                        <td>無制限</td>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>0000/00/00　00:00</td>
+                                        <td>12345678910</td>
+                                        <td>田中太郎</td>
+                                        <td>飲食業</td>
+                                        <td>3,500</td>
+                                        <td>3,500</td>
+                                        <td>大阪府大阪市北区天神橋1-1-1</td>
+                                        <td>60</td>
+                                        <td>60</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>5</td>
+                                        <td>500</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td>A</td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </article>
-
-                    <div class="text-center">
-                        <router-link to="/"  class="[ btn  btn--accent ]">変更</router-link>
-                    </div>
 
                 </div>
             </section>
