@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="text-center">
-                        <router-link to="/"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
+                        <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
                     </div>
 
                     <article class="">
@@ -37,7 +37,7 @@
                                         <td class="text-center">11社 / 60社</td>
                                         <td class="text-center">2021/01/02</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
@@ -48,7 +48,7 @@
                                         <td class="text-center">11社 / 60社</td>
                                         <td class="text-center">2021/01/02</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
@@ -59,7 +59,7 @@
                                         <td class="text-center">11社 / 60社</td>
                                         <td class="text-center">2021/01/02</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
@@ -70,7 +70,7 @@
                                         <td class="text-center">11社 / 60社</td>
                                         <td class="text-center">2021/01/02</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>

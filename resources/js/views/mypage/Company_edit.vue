@@ -8,7 +8,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            登録情報の確認・変更
+                            登録情報の編集
                         </h2>
                     </div>
 
@@ -19,7 +19,7 @@
                                 基本情報
                             </h4>
                             <hr>
-                            <div class="table-scrollable  padding-right--8">
+                            <div class="table  padding-right--8">
                                 <table class="table">
                                     <tbody>
                                         <tr>
@@ -27,7 +27,11 @@
                                                 名前
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                テスト太郎
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="テスト太郎">
                                             </td>
                                         </tr>
                                         <tr>
@@ -35,7 +39,11 @@
                                                 住所
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒000-0000　テスト県テスト市あああ1-1-1
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="〒000-0000　テスト県テスト市あああ1-1-1">
                                             </td>
                                         </tr>
                                         <tr>
@@ -43,7 +51,11 @@
                                                 電話番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                00-0000-0000
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="00-0000-0000">
                                             </td>
                                         </tr>
                                         <tr>
@@ -51,7 +63,11 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                テスト太郎
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="テスト太郎">
                                             </td>
                                         </tr>
                                         <tr>
@@ -59,7 +75,11 @@
                                                 携帯番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                00-0000-0000
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="00-0000-0000">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -83,7 +103,11 @@
                                                 カード番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                **********12
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="**********12">
                                             </td>
                                         </tr>
                                         <tr>
@@ -91,7 +115,11 @@
                                                 カード名義
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                AB**************
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input  margin-top--8"
+                                                    placeholder="AB**************">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -101,7 +129,8 @@
                     </article>
 
                     <div class="text-center">
-                        <router-link to="/mypage/company_edit"  class="[ btn  btn--accent ]">変更</router-link>
+                        <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                        <router-link to="/mypage/company"  class="[ btn  btn--accent ]">確認</router-link>
                     </div>
                 </div>
             </section>

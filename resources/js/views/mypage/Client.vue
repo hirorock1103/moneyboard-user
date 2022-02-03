@@ -38,7 +38,7 @@
                                         <td>株式会社サンプルカンパニー</td>
                                         <td>あああ　あああ</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
@@ -46,7 +46,7 @@
                                         <td>株式会社サンプルカンパニー</td>
                                         <td>あああ　あああ</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
@@ -54,7 +54,7 @@
                                         <td>株式会社サンプルカンパニー</td>
                                         <td>あああ　あああ</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
@@ -62,7 +62,7 @@
                                         <td>株式会社サンプルカンパニー</td>
                                         <td>あああ　あああ</td>
                                         <th class="text-center">
-                                            <router-link to="/"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>

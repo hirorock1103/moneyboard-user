@@ -144,7 +144,7 @@
                     </article>
 
                     <div class="text-center">
-                        <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>
+                        <router-link to="/"  class="[ btn  btn--accent ]">変更</router-link>
                     </div>
 
                 </div>

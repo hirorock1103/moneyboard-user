@@ -12,9 +12,14 @@ import PasswordEmail from "./views/password/Email.vue";
 import PasswordReset from "./views/password/Reset.vue";
 import MypageHome from "./views/mypage/Home.vue";
 import Company from "./views/mypage/Company.vue";
+import Company_edit from "./views/mypage/Company_edit.vue";
 import Reps from "./views/mypage/Reps.vue";
+import Reps_create from "./views/mypage/Reps_create.vue";
+import Reps_edit from "./views/mypage/Reps_edit.vue";
 import Client from "./views/mypage/Client.vue";
+import Client_edit from "./views/mypage/Client_edit.vue";
 import Plan from "./views/mypage/Plan.vue";
+import Plan_edit from "./views/mypage/Plan_edit.vue";
 import Premium from "./views/mypage/Premium.vue";
 import Email from "./views/mypage/Email.vue";
 import Password from "./views/mypage/Password.vue";
@@ -144,11 +149,32 @@ const routes = [
     name: "mypage-company",
     // beforeEnter: auth,
   },
+  // 登録情報の編集
+  {
+    path: "/mypage/company_edit",
+    component: Company_edit,
+    name: "mypage-company_edit",
+    // beforeEnter: auth,
+  },
   // 担当者情報の登録・変更・削除
   {
     path: "/mypage/company/reps-list",
     component: Reps,
     name: "mypage-reps",
+    // beforeEnter: auth,
+  },
+  // 担当者情報の作成
+  {
+    path: "/mypage/company/reps-list_create",
+    component: Reps_create,
+    name: "mypage-reps_create",
+    // beforeEnter: auth,
+  },
+  // 担当者情報の編集
+  {
+    path: "/mypage/company/reps-list_edit",
+    component: Reps_edit,
+    name: "mypage-reps_edit",
     // beforeEnter: auth,
   },
   // 登録企業の担当者変更・削除
@@ -158,11 +184,25 @@ const routes = [
     name: "mypage-client",
     // beforeEnter: auth,
   },
+  // 登録企業の担当者 編集
+  {
+    path: "/mypage/company/client/rep_edit",
+    component: Client_edit,
+    name: "mypage-client_edit",
+    // beforeEnter: auth,
+  },
   // プラン変更 / 使用会社数の増減
   {
     path: "/mypage/company/plan",
     component: Plan,
     name: "mypage-plan",
+    // beforeEnter: auth,
+  },
+  // プラン変更 / 使用会社数の増減 編集
+  {
+    path: "/mypage/company/plan_edit",
+    component: Plan_edit,
+    name: "mypage-plan_edit",
     // beforeEnter: auth,
   },
   // プレミアムプラン

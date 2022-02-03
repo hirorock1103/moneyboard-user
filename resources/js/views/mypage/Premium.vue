@@ -36,25 +36,63 @@
                                         <th></th>
                                     </tr>
                                     <tr>
-                                        <th>会社名</th>
-                                        <th>更新日時</th>
-                                        <th>法人番号</th>
-                                        <th>担当者</th>
-                                        <th>業種</th>
-                                        <th>年商（単位：万円）</th>
-                                        <th>資本金（単位：万円）</th>
-                                        <th>面談場所</th>
-                                        <th>代表者年齢</th>
-                                        <th>従業員平均年齢</th>
-                                        <th>重要指標</th>
-                                        <th>安全性指標</th>
-                                        <th>収益性指標</th>
-                                        <th>資金効率性指標</th>
-                                        <th>余剰金目安（単位：万円）</th>
-                                        <th>今回</th>
-                                        <th>前回</th>
-                                        <th>前々回</th>
-                                        <th>コメント</th>
+                                        <th class="text-left padding-left--12">会社名
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">更新日時
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">法人番号
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">担当者
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">業種
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">年商（単位：万円）
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">資本金（単位：万円）
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">面談場所
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">代表者年齢
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">従業員平均年齢
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">重要指標
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">安全性指標
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">収益性指標
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">資金効率性指標
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">余剰金目安（単位：万円）
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">今回
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">前回
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">前々回
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
+                                        <th class="text-left padding-left--12">コメント
+                                            <span class="[ icon  solid ] fa-sort-down  padding-right--12  text-accent"></span>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
