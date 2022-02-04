@@ -2,6 +2,8 @@
 // GRID グリッド
 // -----------------------------------------------------------------------------
 
+@use "sass:math";
+
 /**
  * コンテナーの基本スタイル。 `.container--*` でスタイルを追加してください。
  * class.
@@ -21,7 +23,7 @@
         margin-top:    24px;
         padding-left:  10px;
         padding-right: 10px;
-        width: percentage(1 / $columns);
+        width: percentage(math.div(1, $columns));
     }
 
           /* スマートフォン用 */
@@ -46,7 +48,7 @@
         $infix: breakpoint-infix($breakpoint, $breakpoints);
 
         @for $width from 1 through $columns {
-            .col#{$infix}-#{$width} { width: $width / $columns * 100%; }
+            .col#{$infix}-#{$width} { width: math.div($width, $columns) * 100%; }
         }
     }
 }
