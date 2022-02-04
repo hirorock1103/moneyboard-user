@@ -29,17 +29,34 @@
                                             <th class="">
                                                 現在の料金プラン
                                             </th>
-                                            <td class="padding-bottom--16">
-                                                スタンダードブラン
+                                            <td class="padding-bottom--16 nowrap">
+                                                <input
+                                                    type="radio"
+                                                    id="confirm-radio-s"
+                                                    class="form-radio">
+                                                <label class="form-radio-label  margin-bottom--8" for="confirm-radio-s">スタンダードブラン</label>
+                                            </td>
+                                            <td class="padding-bottom--16 nowrap">
+                                                <input
+                                                    type="radio"
+                                                    id="confirm-radio-p"
+                                                    class="form-radio">
+                                                <label class="form-radio-label  margin-bottom--8" for="confirm-radio-p">プレミアムプラン</label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="">
+                                            <th class="nowrap">
                                                 追加された現在のデータ
                                             </th>
-                                            <td class="padding-bottom--16">
-                                                60社
+                                            <td class="padding-bottom--16" style="display: flex;">
+                                                <input
+                                                    type="text"
+                                                    id=""
+                                                    class="form-input"
+                                                    placeholder="60">
+                                                    <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
                                             </td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -53,7 +70,7 @@
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table width-30">
+                                <table class="table width-30 nowrap">
                                     <tbody>
                                         <tr>
                                             <th class="">
@@ -65,6 +82,9 @@
                                             <td class="padding-bottom--16 text-right">
                                                 55,000円
                                             </td>
+                                            <td class="padding-bottom--16 text-right">
+                                                （システム使用料と登録データ60社分or120社分）
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="">
@@ -75,6 +95,7 @@
                                             <td class="text-right">
                                                 5,000円
                                             </td>
+                                            <td class="text-left"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -144,7 +165,8 @@
                     </article>
 
                     <div class="text-center">
-                        <router-link to="/"  class="[ btn  btn--accent ]">変更</router-link>
+                        <router-link to="/mypage/company/plan"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                        <router-link to="/mypage/company/plan"  class="[ btn  btn--accent ]">確認</router-link>
                     </div>
 
                 </div>
