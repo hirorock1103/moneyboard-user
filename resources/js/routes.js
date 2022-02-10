@@ -6,6 +6,7 @@ import Verify from "./views/Verify.vue";
 import RegisterUser from "./views/register/User.vue";
 import RegisterUserConfirm from "./views/register/UserConfirm.vue";
 import RegisterCard from "./views/register/Card.vue";
+import RegisterCard2 from "./views/register/Card2.vue";
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
 import Login from "./views/Login.vue";
 import PasswordEmail from "./views/password/Email.vue";
@@ -86,6 +87,13 @@ const routes = [
     path: "/register/card",
     component: RegisterCard,
     name: "register-card",
+    // beforeEnter: auth,
+  },
+  // クレジットカード登録画面
+  {
+    path: "/register/card2",
+    component: RegisterCard2,
+    name: "register-card2",
     // beforeEnter: auth,
   },
   // カード登録内容確認画面

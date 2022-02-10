@@ -91,7 +91,7 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + 'user/signup',
+            process.env.MIX_VUE_APP_API_URL + 'com/signup',
             data
         );
 

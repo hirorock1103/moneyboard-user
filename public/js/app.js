@@ -22158,6 +22158,196 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card2.vue?vue&type=script&lang=js":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card2.vue?vue&type=script&lang=js ***!
+  \***************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
+/* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
+/* harmony import */ var _customValidators_containsAlphaSpace__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../customValidators/containsAlphaSpace */ "./resources/js/customValidators/containsAlphaSpace.js");
+/* harmony import */ var _components_ProgressBarComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/ProgressBarComponent.vue */ "./resources/js/components/ProgressBarComponent.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'register-card',
+  components: {
+    ProgressBar: _components_ProgressBarComponent_vue__WEBPACK_IMPORTED_MODULE_3__.default
+  },
+  setup: function setup() {
+    return {
+      v$: (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_1__.default)()
+    };
+  },
+  data: function data() {
+    return {
+      currentStep: 2,
+      stripe: null,
+      card: null,
+      token: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var elements;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.stripe = window.Stripe("pk_test_51KENLHHJkC9uqpQdR5vYsNuKODZ2Rbjl0S1Mgho7GFLoYocDk2xS0OoSHvuuf8trqV8fkEw8viCEv1eW22Nsw6w300ZekE4Pog");
+              elements = _this.stripe.elements();
+              _context.next = 4;
+              return elements.create('card', {
+                hidePostalCode: true,
+                style: {
+                  base: {
+                    iconColor: '#666EE8',
+                    color: '#31325F',
+                    lineHeight: '40px',
+                    fontWeight: 300,
+                    fontFamily: 'Helvetica Neue',
+                    fontSize: '15px',
+                    '::placeholder': {
+                      color: '#CFD7E0'
+                    }
+                  }
+                }
+              });
+
+            case 4:
+              _this.card = _context.sent;
+
+              _this.card.mount('#card-element');
+
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  validations: function validations() {
+    return {
+      getCard: {
+        number: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('番号を入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.required),
+          minLength: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('14~16桁を入力してください', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.minLength)(14)),
+          maxLength: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('14~16桁を入力してください', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.maxLength)(16)),
+          numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('数字のみを入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.numeric)
+        },
+        valid_month: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('有効期限を入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.required),
+          numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('数字のみを入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.numeric),
+          maxValue: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('12以下の数値を指定してください', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.maxValue)(12))
+        },
+        valid_year: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('有効期限を入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.required),
+          numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('数字のみを入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.numeric),
+          maxValue: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('99以下の数値を指定してください', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.maxValue)(99))
+        },
+        security_code: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('セキュリティコードを入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.required),
+          numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('数字のみを入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.numeric),
+          maxLength: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('3桁を入力してください', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.maxLength)(3))
+        },
+        name: {
+          required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('名義を入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.required),
+          containsAlphaSpace: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_4__.helpers.withMessage('大文字半角アルファベット 姓名の間にスペースを入力してください', _customValidators_containsAlphaSpace__WEBPACK_IMPORTED_MODULE_2__.default)
+        }
+      }
+    };
+  },
+  computed: {
+    getCard: function getCard() {
+      return this.$store.getters['auth/card'];
+    }
+  },
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)('auth', ['updateCard'])), {}, {
+    register: function register() {
+      this.v$.$touch();
+      if (this.v$.$error) return;
+      this.updateCard(this.getCard);
+      this.$router.push({
+        name: 'register-card-confirm'
+      });
+    },
+    goBack: function goBack() {
+      this.$router.push({
+        name: 'register-user-confirm'
+      });
+    },
+    createToken: function createToken() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var _yield$_this2$$stripe, token, error;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this2.$stripe.createToken(_this2.cardNumber);
+
+              case 2:
+                _yield$_this2$$stripe = _context2.sent;
+                token = _yield$_this2$$stripe.token;
+                error = _yield$_this2$$stripe.error;
+
+                if (!error) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                // handle error here
+                document.getElementById('card-error').innerHTML = error.message;
+                return _context2.abrupt("return");
+
+              case 8:
+                alert(token);
+                console.log(token); // handle the token
+                // send it to your server
+
+              case 10:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/CardConfirm.vue?vue&type=script&lang=js":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/CardConfirm.vue?vue&type=script&lang=js ***!
@@ -22467,6 +22657,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  id: "exscript"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header");
 
@@ -22474,7 +22671,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_Footer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Footer");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RouterView), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer)], 64
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_RouterView), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Footer), _hoisted_1], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -25539,6 +25736,284 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card2.vue?vue&type=template&id=1bc09f56":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card2.vue?vue&type=template&id=1bc09f56 ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
+};
+var _hoisted_2 = {
+  "class": "container"
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
+  "class": "text-center  heading-primary"
+}, "クレジットカードの登録", -1
+/* HOISTED */
+);
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+  "class": "text-center  margin-bottom--48"
+}, "下記項目をすべてご記入ください", -1
+/* HOISTED */
+);
+
+var _hoisted_5 = {
+  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]"
+};
+var _hoisted_6 = {
+  "class": "padding--24  bg-white"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "[ icon  regular ] fa-credit-card  padding-right--12  text-accent"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" クレジットカード情報 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "group"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "card-element"
+}, " クレジットカード情報 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  id: "card-element"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
+  "class": "form-row"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "number",
+  "class": "[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]"
+}, " 番号 ", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
+  "class": "form-column"
+};
+var _hoisted_14 = {
+  key: 0,
+  "class": "form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+};
+var _hoisted_15 = {
+  "class": "form-row"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "valid-year",
+  "class": "[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]"
+}, " 有効期限 ", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = {
+  "class": "form-column"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "margin-right--8"
+}, "/", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  key: 1,
+  "class": "form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+};
+var _hoisted_20 = {
+  key: 2,
+  "class": "form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+};
+var _hoisted_21 = {
+  "class": "form-row"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "security-code",
+  "class": "[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]"
+}, " セキュリティコード ", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = {
+  "class": "form-column"
+};
+var _hoisted_24 = {
+  key: 3,
+  "class": "form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+};
+var _hoisted_25 = {
+  "class": "form-row"
+};
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "name",
+  "class": "[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]"
+}, " 名義 ", -1
+/* HOISTED */
+);
+
+var _hoisted_27 = {
+  "class": "form-column"
+};
+var _hoisted_28 = {
+  key: 4,
+  "class": "form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+};
+var _hoisted_29 = {
+  "class": "text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]"
+};
+var _hoisted_30 = {
+  "class": "text-danger"
+};
+
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "submit",
+  "class": "[ btn  btn--accent ]"
+}, "確認", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_ProgressBar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ProgressBar");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+    onSubmit: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.register && $options.register.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ProgressBar, {
+    "current-step": $data.currentStep
+  }, null, 8
+  /* PROPS */
+  , ["current-step"]), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [_hoisted_7, _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    id: "custom-button",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.createToken && $options.createToken.apply($options, arguments);
+    })
+  }, "Generate Token"), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "number",
+    id: "number",
+    "class": ["form-input", [$setup.v$.getCard.number.$error ? 'form-error' : null]],
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $options.getCard.number = $event;
+    }),
+    onInput: _cache[3] || (_cache[3] = function () {
+      var _$setup$v$$getCard$nu;
+
+      return $setup.v$.getCard.number.$touch && (_$setup$v$$getCard$nu = $setup.v$.getCard.number).$touch.apply(_$setup$v$$getCard$nu, arguments);
+    })
+  }, null, 34
+  /* CLASS, HYDRATE_EVENTS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getCard.number]])])]), $setup.v$.getCard.number.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.getCard.number.$errors[0].$message), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "number",
+    min: "0",
+    max: "12",
+    oninput: "validity.valid||(value='');",
+    id: "valid-month",
+    "class": ["[ form-input  form-input--short ]", [$setup.v$.getCard.valid_month.$error ? 'form-error' : null]],
+    placeholder: "月",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $options.getCard.valid_month = $event;
+    }),
+    onInput: _cache[5] || (_cache[5] = function () {
+      var _$setup$v$$getCard$va;
+
+      return $setup.v$.getCard.valid_month.$touch && (_$setup$v$$getCard$va = $setup.v$.getCard.valid_month).$touch.apply(_$setup$v$$getCard$va, arguments);
+    })
+  }, null, 34
+  /* CLASS, HYDRATE_EVENTS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getCard.valid_month]]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "number",
+    min: "0",
+    max: "99",
+    oninput: "validity.valid||(value='');",
+    id: "valid-year",
+    "class": ["[ form-input  form-input--short ]", [$setup.v$.getCard.valid_year.$error ? 'form-error' : null]],
+    placeholder: "年",
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $options.getCard.valid_year = $event;
+    }),
+    onInput: _cache[7] || (_cache[7] = function () {
+      var _$setup$v$$getCard$va2;
+
+      return $setup.v$.getCard.valid_year.$touch && (_$setup$v$$getCard$va2 = $setup.v$.getCard.valid_year).$touch.apply(_$setup$v$$getCard$va2, arguments);
+    })
+  }, null, 34
+  /* CLASS, HYDRATE_EVENTS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getCard.valid_year]])])]), $setup.v$.getCard.valid_month.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.getCard.valid_month.$errors[0].$message), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.v$.getCard.valid_year.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.getCard.valid_year.$errors[0].$message), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "password",
+    id: "security-code",
+    "class": ["form-input", [$setup.v$.getCard.security_code.$error ? 'form-error' : null]],
+    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      return $options.getCard.security_code = $event;
+    }),
+    onInput: _cache[9] || (_cache[9] = function () {
+      var _$setup$v$$getCard$se;
+
+      return $setup.v$.getCard.security_code.$touch && (_$setup$v$$getCard$se = $setup.v$.getCard.security_code).$touch.apply(_$setup$v$$getCard$se, arguments);
+    })
+  }, null, 34
+  /* CLASS, HYDRATE_EVENTS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getCard.security_code]])])]), $setup.v$.getCard.security_code.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.getCard.security_code.$errors[0].$message), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "name",
+    "class": ["form-input", [$setup.v$.getCard.name.$error ? 'form-error' : null]],
+    "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
+      return $options.getCard.name = $event;
+    }),
+    onInput: _cache[11] || (_cache[11] = function () {
+      var _$setup$v$$getCard$na;
+
+      return $setup.v$.getCard.name.$touch && (_$setup$v$$getCard$na = $setup.v$.getCard.name).$touch.apply(_$setup$v$$getCard$na, arguments);
+    })
+  }, null, 34
+  /* CLASS, HYDRATE_EVENTS */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getCard.name]])])]), $setup.v$.getCard.name.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.getCard.name.$errors[0].$message), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_30, "入力に誤りがあります", 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.v$.$error]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[12] || (_cache[12] = function ($event) {
+      return $options.goBack();
+    }),
+    "class": "[ btn  btn--gray ]  margin-right--24"
+  }, "戻る"), _hoisted_31])], 32
+  /* HYDRATE_EVENTS */
+  )])])]);
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/CardConfirm.vue?vue&type=template&id=45c5f383":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/CardConfirm.vue?vue&type=template&id=45c5f383 ***!
@@ -27302,7 +27777,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/Home.vue */ "./resources/js/views/Home.vue");
 /* harmony import */ var _views_Signup_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/Signup.vue */ "./resources/js/views/Signup.vue");
 /* harmony import */ var _views_Completion_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/Completion.vue */ "./resources/js/views/Completion.vue");
@@ -27310,24 +27785,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_register_User_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/register/User.vue */ "./resources/js/views/register/User.vue");
 /* harmony import */ var _views_register_UserConfirm_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/register/UserConfirm.vue */ "./resources/js/views/register/UserConfirm.vue");
 /* harmony import */ var _views_register_Card_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/register/Card.vue */ "./resources/js/views/register/Card.vue");
-/* harmony import */ var _views_register_CardConfirm_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/register/CardConfirm.vue */ "./resources/js/views/register/CardConfirm.vue");
-/* harmony import */ var _views_Login_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/Login.vue */ "./resources/js/views/Login.vue");
-/* harmony import */ var _views_password_Email_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/password/Email.vue */ "./resources/js/views/password/Email.vue");
-/* harmony import */ var _views_password_Reset_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/password/Reset.vue */ "./resources/js/views/password/Reset.vue");
-/* harmony import */ var _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/mypage/Home.vue */ "./resources/js/views/mypage/Home.vue");
-/* harmony import */ var _views_mypage_Company_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/mypage/Company.vue */ "./resources/js/views/mypage/Company.vue");
-/* harmony import */ var _views_mypage_Reps_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/mypage/Reps.vue */ "./resources/js/views/mypage/Reps.vue");
-/* harmony import */ var _views_mypage_Client_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/mypage/Client.vue */ "./resources/js/views/mypage/Client.vue");
-/* harmony import */ var _views_mypage_Plan_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/mypage/Plan.vue */ "./resources/js/views/mypage/Plan.vue");
-/* harmony import */ var _views_mypage_Premium_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/mypage/Premium.vue */ "./resources/js/views/mypage/Premium.vue");
-/* harmony import */ var _views_mypage_Email_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./views/mypage/Email.vue */ "./resources/js/views/mypage/Email.vue");
-/* harmony import */ var _views_mypage_Password_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./views/mypage/Password.vue */ "./resources/js/views/mypage/Password.vue");
-/* harmony import */ var _views_mypage_Opinion_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./views/mypage/Opinion.vue */ "./resources/js/views/mypage/Opinion.vue");
-/* harmony import */ var _views_mypage_Inquiry_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./views/mypage/Inquiry.vue */ "./resources/js/views/mypage/Inquiry.vue");
-/* harmony import */ var _views_errors_System_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./views/errors/System.vue */ "./resources/js/views/errors/System.vue");
-/* harmony import */ var _views_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./views/errors/NotFound.vue */ "./resources/js/views/errors/NotFound.vue");
-/* harmony import */ var _views_terms_Home_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./views/terms/Home.vue */ "./resources/js/views/terms/Home.vue");
-/* harmony import */ var _views_privacy_Home_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./views/privacy/Home.vue */ "./resources/js/views/privacy/Home.vue");
+/* harmony import */ var _views_register_Card2_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/register/Card2.vue */ "./resources/js/views/register/Card2.vue");
+/* harmony import */ var _views_register_CardConfirm_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/register/CardConfirm.vue */ "./resources/js/views/register/CardConfirm.vue");
+/* harmony import */ var _views_Login_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/Login.vue */ "./resources/js/views/Login.vue");
+/* harmony import */ var _views_password_Email_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/password/Email.vue */ "./resources/js/views/password/Email.vue");
+/* harmony import */ var _views_password_Reset_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/password/Reset.vue */ "./resources/js/views/password/Reset.vue");
+/* harmony import */ var _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/mypage/Home.vue */ "./resources/js/views/mypage/Home.vue");
+/* harmony import */ var _views_mypage_Company_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/mypage/Company.vue */ "./resources/js/views/mypage/Company.vue");
+/* harmony import */ var _views_mypage_Reps_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./views/mypage/Reps.vue */ "./resources/js/views/mypage/Reps.vue");
+/* harmony import */ var _views_mypage_Client_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./views/mypage/Client.vue */ "./resources/js/views/mypage/Client.vue");
+/* harmony import */ var _views_mypage_Plan_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./views/mypage/Plan.vue */ "./resources/js/views/mypage/Plan.vue");
+/* harmony import */ var _views_mypage_Premium_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./views/mypage/Premium.vue */ "./resources/js/views/mypage/Premium.vue");
+/* harmony import */ var _views_mypage_Email_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./views/mypage/Email.vue */ "./resources/js/views/mypage/Email.vue");
+/* harmony import */ var _views_mypage_Password_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./views/mypage/Password.vue */ "./resources/js/views/mypage/Password.vue");
+/* harmony import */ var _views_mypage_Opinion_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./views/mypage/Opinion.vue */ "./resources/js/views/mypage/Opinion.vue");
+/* harmony import */ var _views_mypage_Inquiry_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./views/mypage/Inquiry.vue */ "./resources/js/views/mypage/Inquiry.vue");
+/* harmony import */ var _views_errors_System_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./views/errors/System.vue */ "./resources/js/views/errors/System.vue");
+/* harmony import */ var _views_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./views/errors/NotFound.vue */ "./resources/js/views/errors/NotFound.vue");
+/* harmony import */ var _views_terms_Home_vue__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./views/terms/Home.vue */ "./resources/js/views/terms/Home.vue");
+/* harmony import */ var _views_privacy_Home_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./views/privacy/Home.vue */ "./resources/js/views/privacy/Home.vue");
+
 
 
 
@@ -27410,10 +27887,16 @@ var routes = [// トップページ
   component: _views_register_Card_vue__WEBPACK_IMPORTED_MODULE_6__.default,
   name: "register-card" // beforeEnter: auth,
 
+}, // クレジットカード登録画面
+{
+  path: "/register/card2",
+  component: _views_register_Card2_vue__WEBPACK_IMPORTED_MODULE_7__.default,
+  name: "register-card2" // beforeEnter: auth,
+
 }, // カード登録内容確認画面
 {
   path: "/register/card-confirm",
-  component: _views_register_CardConfirm_vue__WEBPACK_IMPORTED_MODULE_7__.default,
+  component: _views_register_CardConfirm_vue__WEBPACK_IMPORTED_MODULE_8__.default,
   name: "register-card-confirm" // beforeEnter: auth,
 
 }, {
@@ -27425,13 +27908,13 @@ var routes = [// トップページ
 }, // ログイン画面
 {
   path: "/login",
-  component: _views_Login_vue__WEBPACK_IMPORTED_MODULE_8__.default,
+  component: _views_Login_vue__WEBPACK_IMPORTED_MODULE_9__.default,
   name: "login" // beforeEnter: guest,
 
 }, // パスワードの再発行
 {
   path: "/password/email",
-  component: _views_password_Email_vue__WEBPACK_IMPORTED_MODULE_9__.default,
+  component: _views_password_Email_vue__WEBPACK_IMPORTED_MODULE_10__.default,
   name: "password-email" // beforeEnter: guest,
 
 }, {
@@ -27443,98 +27926,98 @@ var routes = [// トップページ
 }, // パスワード設定画面
 {
   path: "/password/reset",
-  component: _views_password_Reset_vue__WEBPACK_IMPORTED_MODULE_10__.default,
+  component: _views_password_Reset_vue__WEBPACK_IMPORTED_MODULE_11__.default,
   name: "password-reset" // beforeEnter: auth,
 
 }, // マイページTOP
 {
   path: "/mypage",
-  component: _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_11__.default,
+  component: _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_12__.default,
   name: "mypage-home" // beforeEnter: auth,
 
 }, // 登録情報の確認・変更
 {
   path: "/mypage/company",
-  component: _views_mypage_Company_vue__WEBPACK_IMPORTED_MODULE_12__.default,
+  component: _views_mypage_Company_vue__WEBPACK_IMPORTED_MODULE_13__.default,
   name: "mypage-company" // beforeEnter: auth,
 
 }, // 担当者情報の登録・変更・削除
 {
   path: "/mypage/company/reps-list",
-  component: _views_mypage_Reps_vue__WEBPACK_IMPORTED_MODULE_13__.default,
+  component: _views_mypage_Reps_vue__WEBPACK_IMPORTED_MODULE_14__.default,
   name: "mypage-reps" // beforeEnter: auth,
 
 }, // 登録企業の担当者変更・削除
 {
   path: "/mypage/company/client/rep",
-  component: _views_mypage_Client_vue__WEBPACK_IMPORTED_MODULE_14__.default,
+  component: _views_mypage_Client_vue__WEBPACK_IMPORTED_MODULE_15__.default,
   name: "mypage-client" // beforeEnter: auth,
 
 }, // プラン変更 / 使用会社数の増減
 {
   path: "/mypage/company/plan",
-  component: _views_mypage_Plan_vue__WEBPACK_IMPORTED_MODULE_15__.default,
+  component: _views_mypage_Plan_vue__WEBPACK_IMPORTED_MODULE_16__.default,
   name: "mypage-plan" // beforeEnter: auth,
 
 }, // プレミアムプラン
 {
   path: "/mypage/company/premium/client-list",
-  component: _views_mypage_Premium_vue__WEBPACK_IMPORTED_MODULE_16__.default,
+  component: _views_mypage_Premium_vue__WEBPACK_IMPORTED_MODULE_17__.default,
   name: "mypage-premium" // beforeEnter: auth,
 
 }, // メールアドレスの変更
 {
   path: "/mypage/company/email",
-  component: _views_mypage_Email_vue__WEBPACK_IMPORTED_MODULE_17__.default,
+  component: _views_mypage_Email_vue__WEBPACK_IMPORTED_MODULE_18__.default,
   name: "mypage-email" // beforeEnter: auth,
 
 }, // パスワードの変更
 {
   path: "/mypage/company/password",
-  component: _views_mypage_Password_vue__WEBPACK_IMPORTED_MODULE_18__.default,
+  component: _views_mypage_Password_vue__WEBPACK_IMPORTED_MODULE_19__.default,
   name: "mypage-password" // beforeEnter: auth,
 
 }, // ご意見・ご要望
 {
   path: "/mypage/opinion",
-  component: _views_mypage_Opinion_vue__WEBPACK_IMPORTED_MODULE_19__.default,
+  component: _views_mypage_Opinion_vue__WEBPACK_IMPORTED_MODULE_20__.default,
   name: "mypage-opinion" // beforeEnter: auth,
 
 }, // お問い合わせ
 {
   path: "/mypage/inquiry",
-  component: _views_mypage_Inquiry_vue__WEBPACK_IMPORTED_MODULE_20__.default,
+  component: _views_mypage_Inquiry_vue__WEBPACK_IMPORTED_MODULE_21__.default,
   name: "mypage-inquiry" // beforeEnter: auth,
 
 }, // ログアウト
 {
   path: "/logout",
-  component: _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_11__.default,
+  component: _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_12__.default,
   name: "logout" // beforeEnter: auth,
 
 }, // プライバシーポリシー
 {
   path: "/privacy",
-  component: _views_privacy_Home_vue__WEBPACK_IMPORTED_MODULE_24__.default,
+  component: _views_privacy_Home_vue__WEBPACK_IMPORTED_MODULE_25__.default,
   name: "privacy" // beforeEnter: auth,
 
 }, // 利用規約
 {
   path: "/terms",
-  component: _views_terms_Home_vue__WEBPACK_IMPORTED_MODULE_23__.default,
+  component: _views_terms_Home_vue__WEBPACK_IMPORTED_MODULE_24__.default,
   name: "terms" // beforeEnter: auth,
 
 }, // システムエラーページ
 {
   path: "/500",
-  component: _views_errors_System_vue__WEBPACK_IMPORTED_MODULE_21__.default
+  component: _views_errors_System_vue__WEBPACK_IMPORTED_MODULE_22__.default
 }, {
   path: "/:catchAll(.*)",
-  component: _views_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_22__.default
+  component: _views_errors_NotFound_vue__WEBPACK_IMPORTED_MODULE_23__.default
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_25__.createRouter)({
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_26__.createRouter)({
   routes: routes,
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_25__.createWebHistory)(),
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_26__.createWebHistory)(),
   scrollBehavior: function scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
@@ -27590,7 +28073,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -27704,7 +28186,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/signup', data);
+              return axios.post("http://money-board-api.amb-dev.com/" + 'com/signup', data);
 
             case 4:
               response = _context.sent;
@@ -27748,7 +28230,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context2.next = 4;
-              return axios.get(process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash);
+              return axios.get("http://money-board-api.amb-dev.com/" + 'user/verify/' + hash);
 
             case 4:
               response = _context2.sent;
@@ -27800,7 +28282,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context3.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/login', data);
+              return axios.post("http://money-board-api.amb-dev.com/" + 'user/login', data);
 
             case 4:
               response = _context3.sent;
@@ -27845,7 +28327,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/logout');
+              return axios.post("http://money-board-api.amb-dev.com/" + 'user/logout');
 
             case 3:
               response = _context4.sent;
@@ -27884,7 +28366,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context5.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email', data);
+              return axios.post("http://money-board-api.amb-dev.com/" + 'user/password/reset/send-email', data);
 
             case 4:
               response = _context5.sent;
@@ -27928,7 +28410,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context6.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset', data);
+              return axios.post("http://money-board-api.amb-dev.com/" + 'user/password/reset', data);
 
             case 4:
               response = _context6.sent;
@@ -27970,7 +28452,7 @@ var actions = {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return axios.get(process.env.MIX_VUE_APP_API_URL + 'user/company', data);
+              return axios.get("http://money-board-api.amb-dev.com/" + 'user/company', data);
 
             case 2:
               response = _context7.sent;
@@ -27999,7 +28481,7 @@ var actions = {
           switch (_context8.prev = _context8.next) {
             case 0:
               _context8.next = 2;
-              return axios.get(process.env.MIX_VUE_APP_API_URL + 'company/clients-list', data);
+              return axios.get("http://money-board-api.amb-dev.com/" + 'company/clients-list', data);
 
             case 2:
               response = _context8.sent;
@@ -48337,6 +48819,32 @@ _Card_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = 
 
 /***/ }),
 
+/***/ "./resources/js/views/register/Card2.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/views/register/Card2.vue ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Card2_vue_vue_type_template_id_1bc09f56__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card2.vue?vue&type=template&id=1bc09f56 */ "./resources/js/views/register/Card2.vue?vue&type=template&id=1bc09f56");
+/* harmony import */ var _Card2_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Card2.vue?vue&type=script&lang=js */ "./resources/js/views/register/Card2.vue?vue&type=script&lang=js");
+
+
+
+_Card2_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Card2_vue_vue_type_template_id_1bc09f56__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_Card2_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/views/register/Card2.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Card2_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/views/register/CardConfirm.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/views/register/CardConfirm.vue ***!
@@ -48877,6 +49385,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/register/Card2.vue?vue&type=script&lang=js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/register/Card2.vue?vue&type=script&lang=js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Card2_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Card2_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Card2.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card2.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/views/register/CardConfirm.vue?vue&type=script&lang=js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/views/register/CardConfirm.vue?vue&type=script&lang=js ***!
@@ -49401,6 +49925,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Card_vue_vue_type_template_id_d79c62a6__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Card_vue_vue_type_template_id_d79c62a6__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Card.vue?vue&type=template&id=d79c62a6 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card.vue?vue&type=template&id=d79c62a6");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/register/Card2.vue?vue&type=template&id=1bc09f56":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/views/register/Card2.vue?vue&type=template&id=1bc09f56 ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Card2_vue_vue_type_template_id_1bc09f56__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Card2_vue_vue_type_template_id_1bc09f56__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Card2.vue?vue&type=template&id=1bc09f56 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/register/Card2.vue?vue&type=template&id=1bc09f56");
 
 
 /***/ }),
