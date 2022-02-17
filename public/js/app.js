@@ -22220,6 +22220,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              //console.log(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY);
               _this.stripe = window.Stripe("pk_test_51KENLHHJkC9uqpQdR5vYsNuKODZ2Rbjl0S1Mgho7GFLoYocDk2xS0OoSHvuuf8trqV8fkEw8viCEv1eW22Nsw6w300ZekE4Pog");
               elements = _this.stripe.elements();
               _context.next = 4;
@@ -28174,7 +28175,9 @@ var mutations = {
   setNotifications: function setNotifications(state, notifications) {
     state.notifications = notifications;
   }
-};
+}; //http://money-board-api.amb-dev.com/com/user/test/index
+//com/signup
+
 var actions = {
   sendEmailRegisterRequest: function sendEmailRegisterRequest(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -28190,9 +28193,10 @@ var actions = {
 
             case 4:
               response = _context.sent;
+              console.log(response.status);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context.next = 9;
+                _context.next = 10;
                 break;
               }
 
@@ -28200,7 +28204,7 @@ var actions = {
               context.commit('setLoadingStatus', false);
               return _context.abrupt("return", false);
 
-            case 9:
+            case 10:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -28212,7 +28216,7 @@ var actions = {
                 });
               }
 
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }

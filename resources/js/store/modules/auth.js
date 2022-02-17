@@ -86,6 +86,8 @@ const mutations = {
     }
 }
 
+//http://money-board-api.amb-dev.com/com/user/test/index
+//com/signup
 const actions = {
     async sendEmailRegisterRequest(context, data) {
         context.commit('setApiStatus', null);
@@ -94,6 +96,8 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + 'com/signup',
             data
         );
+
+console.log(response.status);
 
         if (response.status === OK) {
             context.commit('setApiStatus', true);
