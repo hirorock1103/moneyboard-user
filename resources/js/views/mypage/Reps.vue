@@ -85,7 +85,7 @@ export default {
         fetchItems() {
             let url = "http://money-board-api.loc.com/com/user/test/index";
             axios.get(url).then(response => {
-                // console.log(response);
+                console.log(response);
                 // Todo:reponseのして方法はこれであってる？→返し方が違うor受け取り方が違う？
                 this.items = response.data.data.data_list.data;
             });

@@ -21918,8 +21918,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = "http://money-board-api.loc.com/com/user/test/index";
       axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (response) {
-        // console.log(response);
-        // Todo:reponseのして方法はこれであってる？→返し方が違うor受け取り方が違う？
+        console.log(response); // Todo:reponseのして方法はこれであってる？→返し方が違うor受け取り方が違う？
+
         _this.items = response.data.data.data_list.data;
       });
     },
