@@ -91,7 +91,7 @@
 
 <script>
 import axios from 'axios'
-import SideMenu from '../../components/SideMenuComponent.vue';
+import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {

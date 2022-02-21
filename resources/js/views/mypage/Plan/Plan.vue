@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import SideMenu from '../../components/SideMenuComponent.vue';
+import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
