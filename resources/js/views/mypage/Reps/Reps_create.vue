@@ -105,18 +105,19 @@ export default {
         };
     },
     methods: {
-        Store(){
+        async Store(){
             let url = "http://money-board-api.loc.com/com/user/test/register";
-            axios.post(url, this.item)
-                .then(function (response) {
-                    console.log(response);
-                    // Todo:画面遷移
-                    // Todo:遷移先にメッセージを渡す
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    // Todo:メッセージ表示
-                });
+            try {
+                const response = await axios.post(url, this.item);
+                console.log(response);
+                // Todo:画面遷移
+                // Todo:遷移先にメッセージを渡す
+                // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
+                // const response = await axios.post(demodemo, response);
+            } catch (e){
+                console.log(e);
+                // Todo:メッセージ表示
+            }
         }
     }
 }

@@ -82,31 +82,28 @@ export default {
         this.fetchItems();
     },
     methods: {
-        fetchItems() {
+        async fetchItems() {
             let url = "http://money-board-api.loc.com/com/user/test/index";
-            axios.get(url).then(response => {
-                console.log(response);
-                // Todo:reponseのして方法はこれであってる？→返し方が違うor受け取り方が違う？
+            try {
+                const response = await axios.get(url);
+                // console.log(response);
                 this.items = response.data.data.data_list.data;
-            });
+            } catch (e){
+                console.log(e);
+                // Todo:メッセージ表示
+            }
         },
-        deleteItem(company_code, user_code) {
+        async deleteItem(company_code, user_code) {
             let url = "http://money-board-api.loc.com/com/user/test/delete";
-            // Todo:deleteは使えない？
-            // axios.delete(url, {data: {company_code: company_code, user_code: user_code}}).then(res => {
-            //     console.log(res.data);
-            //     this.fetchItems();
-            // });
-            axios.post(url, {company_code: company_code, user_code: user_code})
-                .then(function (response) {
-                    console.log(response);
-                    // Todo:画面遷移
-                    // Todo:遷移先にメッセージを渡す
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    // Todo:メッセージ表示
-                });
+            try {
+                const response = await axios.post(url, {company_code: company_code, user_code: user_code});
+                console.log(response);
+                // Todo:画面遷移
+                // Todo:遷移先にメッセージを渡す
+            } catch (e){
+                console.log(e);
+                // Todo:メッセージ表示
+            }
         }
     }
 }
