@@ -16,6 +16,8 @@
                         <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
                     </div>
 
+                    <!-- Todo:propsメッセージの受け取りと表示 -->
+
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <table class="table table--bordered">
@@ -42,14 +44,12 @@
                                         </th>
                                     </tr>
                                     <tr v-for="item in items" :key="item._id">
-                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.user_code }}</td>
                                         <td>{{ item.user_name }}</td>
                                         <td class="text-center"></td>
                                         <td class="text-center"></td>
-                                        <td class="text-center">{{ item.updated_at }}</td>
+                                        <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
-                                            <!-- Todo:編集ページのパスの指定方法 -->
-                                            <!-- <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link> -->
                                             <router-link :to="{path: '/mypage/company/reps-list_edit/:id', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.company_code, item.user_code)">削除</button>
                                         </th>
@@ -67,6 +67,7 @@
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -82,6 +83,7 @@ export default {
         this.fetchItems();
     },
     methods: {
+        formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
             let url = "http://money-board-api.loc.com/com/user/test/index";
             try {
@@ -90,19 +92,20 @@ export default {
                 this.items = response.data.data.data_list.data;
             } catch (e){
                 console.log(e);
-                // Todo:メッセージ表示
+                // Todo:エラーメッセージ表示
             }
         },
         async deleteItem(company_code, user_code) {
             let url = "http://money-board-api.loc.com/com/user/test/delete";
             try {
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});
-                console.log(response);
-                // Todo:画面遷移
-                // Todo:遷移先にメッセージを渡す
+                // console.log(response);
+                // ! Todo:画面の再描画の方法解答待ち
+                this.$router.go({path: this.$router.currentRoute.path, force: true})
+                // Todo:削除成功メッセージ表示
             } catch (e){
                 console.log(e);
-                // Todo:メッセージ表示
+                // Todo:削除失敗メッセージ表示
             }
         }
     }

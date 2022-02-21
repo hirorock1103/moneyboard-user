@@ -109,17 +109,18 @@ export default {
             let url = "http://money-board-api.loc.com/com/user/test/register";
             try {
                 const response = await axios.post(url, this.item);
-                console.log(response);
-                // Todo:画面遷移
-                // Todo:遷移先にメッセージを渡す
                 // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
                 // const response = await axios.post(demodemo, response);
+                console.log(response);
+                // Todo:簡単なバリデーション
+                // Todo:確認画面作成
+                this.$router.push({name: 'mypage-reps', params: {message: "担当者を作成しました。"}})
             } catch (e){
                 console.log(e);
-                // Todo:メッセージ表示
+                // Todo:エラーメッセージ表示
             }
         }
-    }
+    },
 }
 </script>
 
