@@ -41,37 +41,17 @@
                                             <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
                                         </th>
                                     </tr>
-                                    <tr>
-                                        <td>02</td>
-                                        <td>あああ　あああ</td>
-                                        <td class="text-center">1234567890</td>
-                                        <td class="text-center">11社 / 60社</td>
-                                        <td class="text-center">2021/01/02</td>
+                                    <tr v-for="item in items" :key="item._id">
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.user_name }}</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center">{{ item.updated_at }}</td>
                                         <th class="text-center">
-                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>03</td>
-                                        <td>あああ　あああ</td>
-                                        <td class="text-center">1234567890</td>
-                                        <td class="text-center">11社 / 60社</td>
-                                        <td class="text-center">2021/01/02</td>
-                                        <th class="text-center">
-                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>04</td>
-                                        <td>あああ　あああ</td>
-                                        <td class="text-center">1234567890</td>
-                                        <td class="text-center">11社 / 60社</td>
-                                        <td class="text-center">2021/01/02</td>
-                                        <th class="text-center">
-                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
+                                            <!-- Todo:編集ページのパスの指定方法 -->
+                                            <!-- <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link> -->
+                                            <router-link :to="{path: '/mypage/company/reps-list_edit/:id', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.company_code, item.user_code)">削除</button>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -86,11 +66,48 @@
 </template>
 
 <script>
+import axios from 'axios'
 import SideMenu from '../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            items: []
+        };
+    },
+    created: function() {
+        this.fetchItems();
+    },
+    methods: {
+        fetchItems() {
+            let url = "http://money-board-api.loc.com/com/user/test/index";
+            axios.get(url).then(response => {
+                // console.log(response);
+                // Todo:reponseのして方法はこれであってる？→返し方が違うor受け取り方が違う？
+                this.items = response.data.data.data_list.data;
+            });
+        },
+        deleteItem(company_code, user_code) {
+            let url = "http://money-board-api.loc.com/com/user/test/delete";
+            // Todo:deleteは使えない？
+            // axios.delete(url, {data: {company_code: company_code, user_code: user_code}}).then(res => {
+            //     console.log(res.data);
+            //     this.fetchItems();
+            // });
+            axios.post(url, {company_code: company_code, user_code: user_code})
+                .then(function (response) {
+                    console.log(response);
+                    // Todo:画面遷移
+                    // Todo:遷移先にメッセージを渡す
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    // Todo:メッセージ表示
+                });
+        }
     }
 }
 </script>

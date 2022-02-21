@@ -12,59 +12,77 @@
                         </h2>
                     </div>
 
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                担当者情報
-                            </h4>
-                            <hr>
-                            <div class="table  padding-right--8">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                パスワード
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </article>
+                    <div v-show="message" class="alert alert-danger">{{message}}</div>
 
-                    <div class="text-center">
-                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--accent ]">確認</router-link>
-                    </div>
+                    <form v-on:submit.prevent="Store">
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                    担当者情報
+                                </h4>
+                                <hr>
+                                <div class="table  padding-right--8">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    企業コード
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8  form-control"
+                                                        v-model="item.company_code"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    担当者番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8  form-control"
+                                                        v-model="item.user_number"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    担当者名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8  form-control"
+                                                        v-model="item.user_name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    パスワード
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8  form-control"
+                                                        v-model="item.password"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="text-center">
+                            <router-link to="/mypage/company/reps-list"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <input type="submit" class="[ btn  btn--accent ]" value="確認"/>
+                        </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -72,11 +90,34 @@
 </template>
 
 <script>
+import axios from 'axios'
 import SideMenu from '../../components/SideMenuComponent.vue';
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
+        name: "Store"
+    },
+    data() {
+        return {
+            item: {},
+            message: ""
+        };
+    },
+    methods: {
+        Store(){
+            let url = "http://money-board-api.loc.com/com/user/test/register";
+            axios.post(url, this.item)
+                .then(function (response) {
+                    console.log(response);
+                    // Todo:画面遷移
+                    // Todo:遷移先にメッセージを渡す
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    // Todo:メッセージ表示
+                });
+        }
     }
 }
 </script>

@@ -21895,11 +21895,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      items: []
+    };
+  },
+  created: function created() {
+    this.fetchItems();
+  },
+  methods: {
+    fetchItems: function fetchItems() {
+      var _this = this;
+
+      var url = "http://money-board-api.loc.com/com/user/test/index";
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (response) {
+        // console.log(response);
+        // Todo:reponseのして方法はこれであってる？→返し方が違うor受け取り方が違う？
+        _this.items = response.data.data.data_list.data;
+      });
+    },
+    deleteItem: function deleteItem(company_code, user_code) {
+      var url = "http://money-board-api.loc.com/com/user/test/delete"; // Todo:deleteは使えない？
+      // axios.delete(url, {data: {company_code: company_code, user_code: user_code}}).then(res => {
+      //     console.log(res.data);
+      //     this.fetchItems();
+      // });
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, {
+        company_code: company_code,
+        user_code: user_code
+      }).then(function (response) {
+        console.log(response); // Todo:画面遷移
+        // Todo:遷移先にメッセージを渡す
+      })["catch"](function (error) {
+        console.log(error); // Todo:メッセージ表示
+      });
+    }
   }
 });
 
@@ -21916,11 +21956,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default,
+    name: "Store"
+  },
+  data: function data() {
+    return {
+      item: {},
+      message: ""
+    };
+  },
+  methods: {
+    Store: function Store() {
+      var url = "http://money-board-api.loc.com/com/user/test/register";
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, this.item).then(function (response) {
+        console.log(response); // Todo:画面遷移
+        // Todo:遷移先にメッセージを渡す
+      })["catch"](function (error) {
+        console.log(error); // Todo:メッセージ表示
+      });
+    }
   }
 });
 
@@ -21937,11 +21998,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_1__.default
+  },
+  data: function data() {
+    return {
+      item: {},
+      message: ""
+    };
+  },
+  created: function created() {
+    this.getItem();
+  },
+  methods: {
+    getItem: function getItem() {
+      var _this = this;
+
+      var uri = "/items/" + this.$route.params.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get(uri).then(function (response) {
+        _this.item = response.data;
+      });
+    },
+    updateItem: function updateItem() {
+      var _this2 = this;
+
+      var uri = "/items/" + this.$route.params.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put(uri, this.item).then(function () {
+        _this2.$swal({
+          icon: "success",
+          text: "Updated Success!"
+        });
+
+        _this2.$router.push({
+          name: "Index"
+        });
+      });
+    }
   }
 });
 
@@ -25073,107 +25171,26 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("削除");
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "02", -1
-/* HOISTED */
-);
-
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "あああ　あああ", -1
-/* HOISTED */
-);
-
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
   "class": "text-center"
-}, "1234567890", -1
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
   "class": "text-center"
-}, "11社 / 60社", -1
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_22 = {
   "class": "text-center"
-}, "2021/01/02", -1
-/* HOISTED */
-);
-
-var _hoisted_25 = {
+};
+var _hoisted_23 = {
   "class": "text-center"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
-
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("削除");
-
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "03", -1
-/* HOISTED */
-);
-
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "あああ　あああ", -1
-/* HOISTED */
-);
-
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "1234567890", -1
-/* HOISTED */
-);
-
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "11社 / 60社", -1
-/* HOISTED */
-);
-
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "2021/01/02", -1
-/* HOISTED */
-);
-
-var _hoisted_33 = {
-  "class": "text-center"
-};
-
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("削除");
-
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "04", -1
-/* HOISTED */
-);
-
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "あああ　あああ", -1
-/* HOISTED */
-);
-
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "1234567890", -1
-/* HOISTED */
-);
-
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "11社 / 60社", -1
-/* HOISTED */
-);
-
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "2021/01/02", -1
-/* HOISTED */
-);
-
-var _hoisted_41 = {
-  "class": "text-center"
-};
-
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
-
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("削除");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -25212,67 +25229,43 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     _: 1
     /* STABLE */
 
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_20, _hoisted_21, _hoisted_22, _hoisted_23, _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list_edit",
-    "class": "[ btn  btn--small  btn--accent ] margin-right--16"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_26];
-    }),
-    _: 1
-    /* STABLE */
+  })])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.items, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+      key: item._id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.id), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.user_name), 1
+    /* TEXT */
+    ), _hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.updated_at), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Todo:編集ページのパスの指定方法 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <router-link to=\"/mypage/company/reps-list_edit\"  class=\"[ btn  btn--small  btn--accent ] margin-right--16\">変更</router-link> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        path: '/mypage/company/reps-list_edit/:id',
+        params: {
+          id: item.id
+        }
+      },
+      "class": "[ btn  btn--small  btn--accent ] margin-right--16"
+    }, {
+      "default": _withId(function () {
+        return [_hoisted_24];
+      }),
+      _: 2
+      /* DYNAMIC */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/",
-    "class": "[ btn  btn--small  btn--outline ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_27];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_28, _hoisted_29, _hoisted_30, _hoisted_31, _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list_edit",
-    "class": "[ btn  btn--small  btn--accent ] margin-right--16"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_34];
-    }),
-    _: 1
-    /* STABLE */
-
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/",
-    "class": "[ btn  btn--small  btn--outline ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_35];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_36, _hoisted_37, _hoisted_38, _hoisted_39, _hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list_edit",
-    "class": "[ btn  btn--small  btn--accent ] margin-right--16"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_42];
-    }),
-    _: 1
-    /* STABLE */
-
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/",
-    "class": "[ btn  btn--small  btn--outline ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_43];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])])])])])])])]);
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+      "class": "[ btn  btn--small  btn--outline ]",
+      onClick: function onClick($event) {
+        return $options.deleteItem(item.company_code, item.user_code);
+      }
+    }, "削除", 8
+    /* PROPS */
+    , ["onClick"])])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])])])])])]);
 });
 
 /***/ }),
@@ -25308,15 +25301,90 @@ var _hoisted_4 = {
   "class": "container"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom\" data-v-13986aa0><h2 class=\"[ margin-bottom--4  margin-bottom-large--16 ]\" data-v-13986aa0> 担当者情報の登録 </h2></div><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-13986aa0><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-13986aa0><h4 data-v-13986aa0><span class=\"[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent\" data-v-13986aa0></span> 担当者情報 </h4><hr data-v-13986aa0><div class=\"table  padding-right--8\" data-v-13986aa0><table class=\"table\" data-v-13986aa0><tbody data-v-13986aa0><tr data-v-13986aa0><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-13986aa0> 担当者番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-13986aa0><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" data-v-13986aa0></td></tr><tr data-v-13986aa0><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-13986aa0> 担当者名 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-13986aa0><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" data-v-13986aa0></td></tr><tr data-v-13986aa0><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-13986aa0> パスワード </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-13986aa0><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" data-v-13986aa0></td></tr></tbody></table></div></div></article>", 2);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
+  "class": "[ margin-bottom--4  margin-bottom-large--16 ]"
+}, " 担当者情報の登録 ")], -1
+/* HOISTED */
+);
 
+var _hoisted_6 = {
+  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]"
+};
 var _hoisted_7 = {
+  "class": "[ padding--24  padding-large--48 ]  bg-white"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 担当者情報 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "table  padding-right--8"
+};
+var _hoisted_11 = {
+  "class": "table"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 企業コード ", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 担当者番号 ", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 担当者名 ", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " パスワード ", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+var _hoisted_20 = {
   "class": "text-center"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("確認");
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  type: "submit",
+  "class": "[ btn  btn--accent ]",
+  value: "確認"
+}, null, -1
+/* HOISTED */
+);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -25325,27 +25393,63 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    "class": "alert alert-danger"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 513
+  /* TEXT, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.message]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+    onSubmit: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.Store && $options.Store.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8  form-control",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.item.company_code = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.company_code]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8  form-control",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.item.user_number = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.user_number]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8  form-control",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.item.user_name = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.user_name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8  form-control",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.item.password = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.password]])])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/mypage/company/reps-list",
     "class": "[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_8];
+      return [_hoisted_21];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list",
-    "class": "[ btn  btn--accent ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_9];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])])]);
+  }), _hoisted_22])], 32
+  /* HYDRATE_EVENTS */
+  )])])])]);
 });
 
 /***/ }),
@@ -25381,15 +25485,95 @@ var _hoisted_4 = {
   "class": "container"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom\" data-v-b5c21084><h2 class=\"[ margin-bottom--4  margin-bottom-large--16 ]\" data-v-b5c21084> 担当者情報の編集 </h2></div><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-b5c21084><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-b5c21084><h4 data-v-b5c21084><span class=\"[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent\" data-v-b5c21084></span> 担当者情報 </h4><hr data-v-b5c21084><div class=\"table  padding-right--8\" data-v-b5c21084><table class=\"table\" data-v-b5c21084><tbody data-v-b5c21084><tr data-v-b5c21084><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-b5c21084> 使用者番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-b5c21084> 01 </td></tr><tr data-v-b5c21084><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-b5c21084> 担当者名 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-b5c21084><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"テスト　太郎\" data-v-b5c21084></td></tr><tr data-v-b5c21084><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-b5c21084> パスワード </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-b5c21084><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"1234567\" data-v-b5c21084></td></tr><tr data-v-b5c21084><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-b5c21084> データ使用数 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-b5c21084> 11/60社 </td></tr><tr data-v-b5c21084><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-b5c21084> 更新日時 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-b5c21084> 2001/01/01 </td></tr></tbody></table></div></div></article>", 2);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
+  "class": "[ margin-bottom--4  margin-bottom-large--16 ]"
+}, " 担当者情報の編集 ")], -1
+/* HOISTED */
+);
 
+var _hoisted_6 = {
+  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]"
+};
 var _hoisted_7 = {
+  "class": "[ padding--24  padding-large--48 ]  bg-white"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 担当者情報 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "table  padding-right--8"
+};
+var _hoisted_11 = {
+  "class": "table"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 使用者番号 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+}, " 01 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 担当者名 ", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " パスワード ", -1
+/* HOISTED */
+);
+
+var _hoisted_16 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " データ使用数 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+}, " 11/60社 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 更新日時 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+}, " 2001/01/01 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
   "class": "text-center"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("確認");
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  type: "submit",
+  "class": "[ btn  btn--accent ]",
+  value: "確認"
+}, null, -1
+/* HOISTED */
+);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -25398,27 +25582,45 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    "class": "alert alert-danger"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 513
+  /* TEXT, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.message]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+    onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.updateItem && $options.updateItem.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8  form-control",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.item.name = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8  form-control",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.item.password = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.password]])])]), _hoisted_17, _hoisted_18])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/mypage/company/reps-list",
     "class": "[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_8];
+      return [_hoisted_20];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list",
-    "class": "[ btn  btn--accent ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_9];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])])]);
+  }), _hoisted_21])], 32
+  /* HYDRATE_EVENTS */
+  )])])])]);
 });
 
 /***/ }),
