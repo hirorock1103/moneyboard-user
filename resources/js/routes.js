@@ -27,7 +27,7 @@ import Premium from "./views/mypage/Premium.vue";
 import Email from "./views/mypage/Email.vue";
 import Password from "./views/mypage/Password.vue";
 // ご意見・ご要望
-import Opinion from "./views/mypage/Opinion.vue";
+import Opinion from "./views/mypage/Opinion/Opinion.vue";
 // お問合せ
 import Inquiry from "./views/mypage/Inquiry/Inquiry.vue";
 //
