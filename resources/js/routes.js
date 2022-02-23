@@ -14,9 +14,11 @@ import PasswordReset from "./views/password/Reset.vue";
 import MypageHome from "./views/mypage/Home.vue";
 import Company from "./views/mypage/Company/Company.vue";
 import Company_edit from "./views/mypage/Company/Company_edit.vue";
+// 担当者
 import Reps from "./views/mypage/Reps/Reps.vue";
 import Reps_create from "./views/mypage/Reps/Reps_create.vue";
 import Reps_edit from "./views/mypage/Reps/Reps_edit.vue";
+// 
 import Client from "./views/mypage/Client/Client.vue";
 import Client_edit from "./views/mypage/Client/Client_edit.vue";
 import Plan from "./views/mypage/Plan/Plan.vue";
@@ -24,8 +26,10 @@ import Plan_edit from "./views/mypage/Plan/Plan_edit.vue";
 import Premium from "./views/mypage/Premium.vue";
 import Email from "./views/mypage/Email.vue";
 import Password from "./views/mypage/Password.vue";
+// ご意見・ご要望
 import Opinion from "./views/mypage/Opinion.vue";
-import Inquiry from "./views/mypage/Inquiry.vue";
+// お問合せ
+import Inquiry from "./views/mypage/Inquiry/Inquiry.vue";
 //
 import SystemError from "./views/errors/System.vue";
 import NotFound from "./views/errors/NotFound.vue";
