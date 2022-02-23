@@ -165,7 +165,7 @@ export default {
                 console.log(response);
                 // Todo:簡単なバリデーション
                 // Todo:確認画面作成
-                this.$router.push({name: 'mypage-reps', params: {message: "お問合せ内容を受け付けました。内容につきましては、事務局から返信いたします。"}})
+                this.$router.push({name: 'mypage-inquiry_done'})
             } catch (e){
                 console.log(e);
                 // Todo:エラーメッセージ表示

@@ -28,8 +28,10 @@ import Email from "./views/mypage/Email.vue";
 import Password from "./views/mypage/Password.vue";
 // ご意見・ご要望
 import Opinion from "./views/mypage/Opinion/Opinion.vue";
+import Opinion_done from "./views/mypage/Opinion/Opinion_done.vue";
 // お問合せ
 import Inquiry from "./views/mypage/Inquiry/Inquiry.vue";
+import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
 //
 import SystemError from "./views/errors/System.vue";
 import NotFound from "./views/errors/NotFound.vue";
@@ -245,11 +247,23 @@ const routes = [
     name: "mypage-opinion",
     // beforeEnter: auth,
   },
+  {
+    path: "/mypage/opinion_done",
+    component: Opinion_done,
+    name: "mypage-opinion_done",
+    // beforeEnter: auth,
+  },
   // お問い合わせ
   {
     path: "/mypage/inquiry",
     component: Inquiry,
     name: "mypage-inquiry",
+    // beforeEnter: auth,
+  },
+  {
+    path: "/mypage/inquiry_done",
+    component: Inquiry_done,
+    name: "mypage-inquiry_done",
     // beforeEnter: auth,
   },
   // ログアウト

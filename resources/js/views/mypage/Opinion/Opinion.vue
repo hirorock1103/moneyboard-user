@@ -122,7 +122,7 @@ export default {
                 console.log(response);
                 // Todo:簡単なバリデーション
                 // Todo:確認画面作成
-                this.$router.push({name: 'mypage-reps', params: {message: "ご意見・ご要望ありがとうございます。今後のシステム改訂に検討させていただきます。"}})
+                this.$router.push({name: 'mypage-opinion_done'})
             } catch (e){
                 console.log(e);
                 // Todo:エラーメッセージ表示
