@@ -3,8 +3,8 @@
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-                <div class="container">
 
+                <div class="container">
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
@@ -27,7 +27,7 @@
                                                 名前
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                テスト太郎
+                                                {{ item.company_name }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -35,7 +35,7 @@
                                                 住所
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒000-0000　テスト県テスト市あああ1-1-1
+                                                〒000-0000　{{ item.address }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -43,7 +43,7 @@
                                                 電話番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                00-0000-0000
+                                                000-0000-0000{{ item.phone_number }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -59,7 +59,7 @@
                                                 携帯番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                00-0000-0000
+                                                000-0000-0000{{ item.mobile_number }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -110,11 +110,33 @@
 </template>
 
 <script>
+import axios from 'axios'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            item: []
+        };
+    },
+    created: function() {
+        this.fetchItems();
+    },
+    methods: {
+        async fetchItems() {
+            let url = "http://money-board-api.loc.com/com/company/test/get?company_code=123";
+            try {
+                const response = await axios.get(url);
+                console.log(response.data[0]);
+                this.item = response.data[0];
+            } catch (e){
+                console.log(e);
+                // Todo:エラーメッセージ表示
+            }
+        },
     }
 }
 </script>
