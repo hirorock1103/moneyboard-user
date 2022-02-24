@@ -150,12 +150,8 @@
                                         v-model="getUser.email_address"
                                         readonly>
                                 </span>
-
-
-                                        <p>{{ $filters.addComma(getMailAddress) }}円</p>
-
+                                        <p>{{ getMailAddress }}</p>
                             </div>
-
 
                         </div>
 
@@ -838,7 +834,8 @@ export default {
             }
         },
         getMailAddress(){
-            getUser.email_address = this.$route.query.mail_address
+            this.getUser.email_address = this.$route.query.mail_address
+//            this.getUser.email_address = "aaa@aa.bb.cc"
         }
     },
 

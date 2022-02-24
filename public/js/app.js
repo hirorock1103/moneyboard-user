@@ -22522,7 +22522,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     getMailAddress: function getMailAddress() {
-      getUser.email_address = this.$route.query.mail_address;
+      this.getUser.email_address = this.$route.query.mail_address; //            this.getUser.email_address = "aaa@aa.bb.cc"
     }
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)('auth', ['updateUser'])), {}, {
@@ -26863,7 +26863,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     readonly: ""
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getUser.email_address]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.addComma($options.getMailAddress)) + "円", 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $options.getUser.email_address]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getMailAddress), 1
   /* TEXT */
   )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "password",
@@ -27874,37 +27874,37 @@ var routes = [// トップページ
 {
   path: "/register/user",
   component: _views_register_User_vue__WEBPACK_IMPORTED_MODULE_4__.default,
-  name: "register-user" // beforeEnter: auth,
-
+  name: "register-user",
+  beforeEnter: auth
 }, // 新規登録内容確認画面
 {
   path: "/register/user-confirm",
   component: _views_register_UserConfirm_vue__WEBPACK_IMPORTED_MODULE_5__.default,
-  name: "register-user-confirm" // beforeEnter: auth,
-
+  name: "register-user-confirm",
+  beforeEnter: auth
 }, // クレジットカード登録画面
 {
   path: "/register/card",
   component: _views_register_Card_vue__WEBPACK_IMPORTED_MODULE_6__.default,
-  name: "register-card" // beforeEnter: auth,
-
+  name: "register-card",
+  beforeEnter: auth
 }, // クレジットカード登録画面
 {
   path: "/register/card2",
   component: _views_register_Card2_vue__WEBPACK_IMPORTED_MODULE_7__.default,
-  name: "register-card2" // beforeEnter: auth,
-
+  name: "register-card2",
+  beforeEnter: auth
 }, // カード登録内容確認画面
 {
   path: "/register/card-confirm",
   component: _views_register_CardConfirm_vue__WEBPACK_IMPORTED_MODULE_8__.default,
-  name: "register-card-confirm" // beforeEnter: auth,
-
+  name: "register-card-confirm",
+  beforeEnter: auth
 }, {
   path: "/register/completion",
   component: _views_Completion_vue__WEBPACK_IMPORTED_MODULE_2__.default,
   name: "register-completion",
-  // beforeEnter: auth,
+  beforeEnter: auth,
   props: true
 }, // ログイン画面
 {
@@ -28175,9 +28175,7 @@ var mutations = {
   setNotifications: function setNotifications(state, notifications) {
     state.notifications = notifications;
   }
-}; //http://money-board-api.amb-dev.com/com/user/test/index
-//com/signup
-
+};
 var actions = {
   sendEmailRegisterRequest: function sendEmailRegisterRequest(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -28189,14 +28187,13 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/" + 'com/signup', data);
+              return axios.post("http://moneyboard_api.loc.com:8888/" + 'com/signup', data);
 
             case 4:
               response = _context.sent;
-              console.log(response.status);
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context.next = 10;
+                _context.next = 9;
                 break;
               }
 
@@ -28204,7 +28201,7 @@ var actions = {
               context.commit('setLoadingStatus', false);
               return _context.abrupt("return", false);
 
-            case 10:
+            case 9:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -28216,7 +28213,7 @@ var actions = {
                 });
               }
 
-            case 13:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -28234,7 +28231,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context2.next = 4;
-              return axios.get("http://money-board-api.amb-dev.com/" + 'user/verify/' + hash);
+              return axios.get("http://moneyboard_api.loc.com:8888/" + 'user/verify/' + hash);
 
             case 4:
               response = _context2.sent;
@@ -28286,7 +28283,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context3.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/" + 'user/login', data);
+              return axios.post("http://moneyboard_api.loc.com:8888/" + 'user/login', data);
 
             case 4:
               response = _context3.sent;
@@ -28331,7 +28328,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return axios.post("http://money-board-api.amb-dev.com/" + 'user/logout');
+              return axios.post("http://moneyboard_api.loc.com:8888/" + 'user/logout');
 
             case 3:
               response = _context4.sent;
@@ -28370,7 +28367,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context5.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/" + 'user/password/reset/send-email', data);
+              return axios.post("http://moneyboard_api.loc.com:8888/" + 'user/password/reset/send-email', data);
 
             case 4:
               response = _context5.sent;
@@ -28414,7 +28411,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context6.next = 4;
-              return axios.post("http://money-board-api.amb-dev.com/" + 'user/password/reset', data);
+              return axios.post("http://moneyboard_api.loc.com:8888/" + 'user/password/reset', data);
 
             case 4:
               response = _context6.sent;
@@ -28456,7 +28453,7 @@ var actions = {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return axios.get("http://money-board-api.amb-dev.com/" + 'user/company', data);
+              return axios.get("http://moneyboard_api.loc.com:8888/" + 'user/company', data);
 
             case 2:
               response = _context7.sent;
@@ -28485,7 +28482,7 @@ var actions = {
           switch (_context8.prev = _context8.next) {
             case 0:
               _context8.next = 2;
-              return axios.get("http://money-board-api.amb-dev.com/" + 'company/clients-list', data);
+              return axios.get("http://moneyboard_api.loc.com:8888/" + 'company/clients-list', data);
 
             case 2:
               response = _context8.sent;
