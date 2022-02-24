@@ -27,7 +27,7 @@
                                         <tbody>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
-                                                    企業コード
+                                                    企業コード（削除予定）
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
@@ -112,12 +112,12 @@ export default {
                 // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
                 // const response = await axios.post(demodemo, response);
                 console.log(response);
-                // Todo:簡単なバリデーション
                 // Todo:確認画面作成
-                this.$router.push({name: 'mypage-reps', params: {message: "担当者を作成しました。"}})
+                // this.$router.push({name: 'mypage-reps', params: {message: "担当者を作成しました。"}})
             } catch (e){
                 console.log(e);
-                // Todo:エラーメッセージ表示
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
             }
         }
     },

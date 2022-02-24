@@ -12,12 +12,14 @@ import Login from "./views/Login.vue";
 import PasswordEmail from "./views/password/Email.vue";
 import PasswordReset from "./views/password/Reset.vue";
 import MypageHome from "./views/mypage/Home.vue";
+// 登録情報の確認・変更
 import Company from "./views/mypage/Company/Company.vue";
 import Company_edit from "./views/mypage/Company/Company_edit.vue";
 // 担当者
 import Reps from "./views/mypage/Reps/Reps.vue";
 import Reps_create from "./views/mypage/Reps/Reps_create.vue";
 import Reps_edit from "./views/mypage/Reps/Reps_edit.vue";
+import Reps_confirm from "./views/mypage/Reps/Reps_confirm.vue";
 // 
 import Client from "./views/mypage/Client/Client.vue";
 import Client_edit from "./views/mypage/Client/Client_edit.vue";
@@ -189,6 +191,13 @@ const routes = [
     path: "/mypage/company/reps-list_edit",
     component: Reps_edit,
     name: "mypage-reps_edit",
+    // beforeEnter: auth,
+  },
+  // 担当者情報の確認画面
+  {
+    path: "/mypage/company/reps-list_confirm",
+    component: Reps_confirm,
+    name: "mypage-reps_confirm",
     // beforeEnter: auth,
   },
   // 登録企業の担当者変更・削除
