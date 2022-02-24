@@ -17,6 +17,7 @@
                     </div>
 
                     <div class="message text-center margin-top--48" v-if="message">
+                        <!-- ToDo:メッセージ表示のデザイン -->
                         <p class="alert alert-danger">{{ message }}</p>
                     </div>
 
@@ -88,6 +89,7 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
+        // ToDo:削除前にモーダル確認？
         async deleteItem(company_code, user_code) {
             let url = "http://money-board-api.loc.com/com/user/test/delete";
             try {
