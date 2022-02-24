@@ -16,7 +16,9 @@
                         <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
                     </div>
 
-                    <!-- Todo:propsメッセージの受け取りと表示 -->
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
+                    </div>
 
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -32,22 +34,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>あああ　あああ</td>
+                                    <tr v-for="item in items" :key="item._id">
+                                        <td>{{ item.user_number }}</td>
+                                        <td>{{ item.user_name }}</td>
                                         <td class="text-center">1234567890</td>
                                         <td class="text-center">11社 / 60社</td>
-                                        <td class="text-center">2021/01/02</td>
-                                        <th class="text-center">
-                                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
-                                        </th>
-                                    </tr>
-                                    <tr v-for="item in items" :key="item._id">
-                                        <td>{{ item.user_code }}</td>
-                                        <td>{{ item.user_name }}</td>
-                                        <td class="text-center"></td>
-                                        <td class="text-center"></td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
                                             <router-link :to="{path: '/mypage/company/reps-list_edit/:id', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
@@ -76,7 +67,8 @@ export default {
     },
     data() {
         return {
-            items: []
+            items: [],
+            message: null
         };
     },
     created: function() {
@@ -92,7 +84,8 @@ export default {
                 this.items = response.data.data.data_list.data;
             } catch (e){
                 console.log(e);
-                // Todo:エラーメッセージ表示
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
             }
         },
         async deleteItem(company_code, user_code) {
@@ -100,12 +93,13 @@ export default {
             try {
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});
                 // console.log(response);
-                // ! Todo:画面の再描画の方法解答待ち
-                this.$router.go({path: this.$router.currentRoute.path, force: true})
-                // Todo:削除成功メッセージ表示
+                this.message = response.data.message
+                setTimeout(() => {this.message = false;}, 2000);
+                this.fetchItems();
             } catch (e){
                 console.log(e);
-                // Todo:削除失敗メッセージ表示
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
             }
         }
     }
