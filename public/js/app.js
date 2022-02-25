@@ -22203,6 +22203,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context2.sent;
+                // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
+                // const response = await axios.post(demodemo, response);
                 // console.log(response);
                 _this2.message = response.data.message;
                 setTimeout(function () {
@@ -22310,8 +22312,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context.sent;
-                // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
-                // const response = await axios.post(demodemo, response);
                 console.log(response);
 
                 _this.$router.push({

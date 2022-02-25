@@ -99,6 +99,8 @@ export default {
             let url = "http://money-board-api.loc.com/com/user/test/delete";
             try {
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});
+                // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
+                // const response = await axios.post(demodemo, response);
                 // console.log(response);
                 this.message = response.data.message
                 setTimeout(() => {this.message = false;}, 2000); // メッセージがあれば表示
