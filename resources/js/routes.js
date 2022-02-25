@@ -188,7 +188,7 @@ const routes = [
   },
   // 担当者情報の編集
   {
-    path: "/mypage/company/reps-list_edit",
+    path: "/mypage/company/reps-list_edit/:id",
     component: Reps_edit,
     name: "mypage-reps_edit",
     // beforeEnter: auth,

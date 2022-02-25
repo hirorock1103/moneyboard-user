@@ -1,5 +1,6 @@
 <template>
     <div class="display-flex">
+        <!-- サイドメニューの呼び出し -->
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -13,6 +14,7 @@
                     </div>
 
                     <div class="text-center">
+                        <!-- 画面遷移の仕方（routesのpathで指定する） -->
                         <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
                     </div>
 
@@ -35,14 +37,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- Vueで受け取った情報をforする -->
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.user_number }}</td>
                                         <td>{{ item.user_name }}</td>
-                                        <td class="text-center">1234567890</td>
-                                        <td class="text-center">11社 / 60社</td>
+                                        <td class="text-center">1234567890</td><!-- ToDo:APIで持ってない -->
+                                        <td class="text-center">11社 / 60社</td><!-- ToDo:APIで持ってない -->
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
+                                            <!-- idを指定して該当の編集画面へ遷移 -->
                                             <router-link :to="{path: '/mypage/company/reps-list_edit/:id', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <!-- onClickで削除 -->
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.company_code, item.user_code)">削除</button>
                                         </th>
                                     </tr>
@@ -96,8 +101,8 @@ export default {
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});
                 // console.log(response);
                 this.message = response.data.message
-                setTimeout(() => {this.message = false;}, 2000);
-                this.fetchItems();
+                setTimeout(() => {this.message = false;}, 2000); // メッセージがあれば表示
+                this.fetchItems(); // 画面の再描画→SPAなので画面のリロードではない
             } catch (e){
                 console.log(e);
                 this.message = e
