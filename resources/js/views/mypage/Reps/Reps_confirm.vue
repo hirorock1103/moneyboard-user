@@ -56,7 +56,7 @@
                         </div>
                     </article>
                     <div class="text-center">
-                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                        <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                         <router-link to="/mypage/company/reps-list"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確定</router-link>
                     </div>
                 </div>
