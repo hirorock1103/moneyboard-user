@@ -12,7 +12,9 @@
                         </h2>
                     </div>
 
-                    <div v-show="message" class="alert alert-danger">{{message}}</div>
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
+                    </div>
 
                     <form v-on:submit.prevent="updateItem">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
@@ -30,7 +32,7 @@
                                                     使用者番号
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    01
+                                                    {{ item.user_number }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -42,7 +44,7 @@
                                                         type="text"
                                                         id=""
                                                         class="form-input  margin-top--8  form-control"
-                                                        v-model="item.name"/>
+                                                        v-model="item.user_name"/>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -70,7 +72,7 @@
                                                     更新日時
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    2001/01/01
+                                                    {{ formatDate(item.updated_at) }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -92,6 +94,7 @@
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -108,21 +111,36 @@ export default {
         this.getItem();
     },
     methods: {
-        getItem() {
-            let uri = "/items/" + this.$route.params.id;
-            axios.get(uri).then(response => {
-                this.item = response.data;
-            });
+        formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
+        async getItem() {
+            let url = "http://money-board-api.loc.com/com/user/test/show";
+            // const response = await axios.post(url, {company_code: 123, user_code: this.$route.params.id});
+            const response = await axios.post(url, {company_code: 123, user_code: 6481260241});
+            // console.log(response.data.data.user);
+            if (response.data.status=="NG") {
+                console.log(response.data);
+                this.message = response.data.errors.undefined_user
+                setTimeout(() => {this.message = false;}, 2000);
+            } else {
+                this.item = response.data.data.user;
+            }
         },
-        updateItem() {
-            let uri = "/items/" + this.$route.params.id;
-            axios.put(uri, this.item).then(() => {
-                this.$swal({
-                    icon: "success",
-                    text: "Updated Success!"
-                });
-                this.$router.push({ name: "Index" });
-            });
+        async updateItem() {
+            let url = "http://money-board-api.loc.com/com/user/test/update";
+            try {
+                const response = await axios.post(url, this.item);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.$router.push({name: 'mypage-reps_confirm'})
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
         }
     }
 }
