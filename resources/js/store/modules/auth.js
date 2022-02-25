@@ -14,7 +14,8 @@ const state = {
         app_password_confirm: '',
         plan_id: '',
         additional_licences: '',
-        motivated_by: ''
+        motivated_by: '',
+        token: ''
     },
     card: {
         number: '',
@@ -51,6 +52,9 @@ const mutations = {
     setUserEmail (state, email_address) {
         state.user.email_address = email_address
     },
+    // setUserToken (state, token) {
+    //         state.user.token = token
+    //     },
     setCard (state, card) {
         state.card = card
     },

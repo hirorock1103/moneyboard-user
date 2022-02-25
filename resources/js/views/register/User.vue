@@ -141,6 +141,8 @@
                                 <label for="email-address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     メールアドレス
                                 </label>
+                                {{getMailAddress }}
+                                <!-- <p>{{getUser.email_address}}</p> -->
 
                                 <span class="form-column">
                                     <input
@@ -150,8 +152,27 @@
                                         v-model="getUser.email_address"
                                         readonly>
                                 </span>
-                                        <p>{{ getMailAddress }}</p>
+
                             </div>
+
+
+                            <div class="form-row">
+                                <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    トークン（開発用の表示）
+                                </label>
+                                {{getToken }}
+
+                                <span class="form-column">
+                                    <input
+                                        type="text"
+                                        id="token"
+                                        class="form-input"
+                                        v-model="getUser.token"
+                                        readonly>
+                                </span>
+
+                            </div>
+
 
                         </div>
 
@@ -836,6 +857,9 @@ export default {
         getMailAddress(){
             this.getUser.email_address = this.$route.query.mail_address
 //            this.getUser.email_address = "aaa@aa.bb.cc"
+        },
+        getToken(){
+            this.getUser.token = this.$route.query.token
         }
     },
 
