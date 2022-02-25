@@ -28,18 +28,10 @@
                                     <tbody>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                企業コード（削除予定）
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                あああ
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
                                                 担当者番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                いいい
+                                                01
                                             </td>
                                         </tr>
                                         <tr>
@@ -47,7 +39,7 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                テスト太郎
+                                                あああ　あああ
                                             </td>
                                         </tr>
                                         <tr>
@@ -55,7 +47,7 @@
                                                 パスワード
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                テスト太郎
+                                                1234567890
                                             </td>
                                         </tr>
                                     </tbody>
@@ -65,7 +57,7 @@
                     </article>
                     <div class="text-center">
                         <router-link to="/mypage/company/reps-list"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確認</router-link>
+                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確定</router-link>
                     </div>
                 </div>
             </section>
