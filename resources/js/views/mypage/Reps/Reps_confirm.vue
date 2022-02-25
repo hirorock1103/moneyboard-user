@@ -6,50 +6,67 @@
                 <div class="container">
 
                     <div class="
-                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--48 ]  border-bottom">
+                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            担当者情報の登録・変更・削除
+                            担当者情報の確認
                         </h2>
                     </div>
 
-                    <div class="text-center">
-                        <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
+                    <div class="[ padding--24  padding-large--48 ]  bg-white">
+                        以下の内容で登録します
                     </div>
 
-                    <div class="message text-center margin-top--48" v-if="message">
-                        <p class="alert alert-danger">{{ message }}</p>
-                    </div>
-
-                    <article class="">
+                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <table class="table table--bordered">
-                                <thead>
-                                    <tr>
-                                        <th>使用者番号</th>
-                                        <th>担当者名</th>
-                                        <th>パスワード</th>
-                                        <th>データ使用数</th>
-                                        <th>更新日時</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="item in items" :key="item._id">
-                                        <td>{{ item.user_number }}</td>
-                                        <td>{{ item.user_name }}</td>
-                                        <td class="text-center">1234567890</td>
-                                        <td class="text-center">11社 / 60社</td>
-                                        <td class="text-center">{{ formatDate(item.updated_at) }}</td>
-                                        <th class="text-center">
-                                            <router-link :to="{path: '/mypage/company/reps-list_edit/:id', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.company_code, item.user_code)">削除</button>
-                                        </th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <h4>
+                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                担当者情報
+                            </h4>
+                            <hr>
+                            <div class="table  padding-right--8">
+                                <table class="table width-50">
+                                    <tbody>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                企業コード（削除予定）
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                                あああ
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                担当者番号
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                                いいい
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                担当者名
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                                テスト太郎
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                パスワード
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                                テスト太郎
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </article>
-
+                    <div class="text-center">
+                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                        <router-link to="/mypage/company/reps-list"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確認</router-link>
+                    </div>
                 </div>
             </section>
         </main>
@@ -57,52 +74,12 @@
 </template>
 
 <script>
-import axios from 'axios'
-import dayjs from 'dayjs'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
     },
-    data() {
-        return {
-            items: [],
-            message: null
-        };
-    },
-    created: function() {
-        this.fetchItems();
-    },
-    methods: {
-        formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
-        async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/user/test/index";
-            try {
-                const response = await axios.get(url);
-                // console.log(response);
-                this.items = response.data.data.data_list.data;
-            } catch (e){
-                console.log(e);
-                this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
-            }
-        },
-        async deleteItem(company_code, user_code) {
-            let url = "http://money-board-api.loc.com/com/user/test/delete";
-            try {
-                const response = await axios.post(url, {company_code: company_code, user_code: user_code});
-                // console.log(response);
-                this.message = response.data.message
-                setTimeout(() => {this.message = false;}, 2000);
-                this.fetchItems();
-            } catch (e){
-                console.log(e);
-                this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
-            }
-        }
-    }
 }
 </script>
 

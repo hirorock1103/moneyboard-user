@@ -22247,124 +22247,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
+/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_3__.default
-  },
-  data: function data() {
-    return {
-      items: [],
-      message: null
-    };
-  },
-  created: function created() {
-    this.fetchItems();
-  },
-  methods: {
-    formatDate: function formatDate(dateStr) {
-      return dayjs__WEBPACK_IMPORTED_MODULE_2___default()(dateStr).format('YYYY/MM/DD');
-    },
-    fetchItems: function fetchItems() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                url = "http://money-board-api.loc.com/com/user/test/index";
-                _context.prev = 1;
-                _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url);
-
-              case 4:
-                response = _context.sent;
-                // console.log(response);
-                _this.items = response.data.data.data_list.data;
-                _context.next = 13;
-                break;
-
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
-                console.log(_context.t0);
-                _this.message = _context.t0;
-                setTimeout(function () {
-                  _this.message = false;
-                }, 2000);
-
-              case 13:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, null, [[1, 8]]);
-      }))();
-    },
-    deleteItem: function deleteItem(company_code, user_code) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var url, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                url = "http://money-board-api.loc.com/com/user/test/delete";
-                _context2.prev = 1;
-                _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, {
-                  company_code: company_code,
-                  user_code: user_code
-                });
-
-              case 4:
-                response = _context2.sent;
-                // console.log(response);
-                _this2.message = response.data.message;
-                setTimeout(function () {
-                  _this2.message = false;
-                }, 2000);
-
-                _this2.fetchItems();
-
-                _context2.next = 15;
-                break;
-
-              case 10:
-                _context2.prev = 10;
-                _context2.t0 = _context2["catch"](1);
-                console.log(_context2.t0);
-                _this2.message = _context2.t0;
-                setTimeout(function () {
-                  _this2.message = false;
-                }, 2000);
-
-              case 15:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, null, [[1, 10]]);
-      }))();
-    }
+    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
   }
 });
 
@@ -22424,14 +22311,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
                 // const response = await axios.post(demodemo, response);
-                console.log(response); // Todo:確認画面作成
-                // this.$router.push({name: 'mypage-reps', params: {message: "担当者を作成しました。"}})
+                console.log(response);
 
-                _context.next = 13;
+                _this.$router.push({
+                  name: 'mypage-reps_confirm'
+                });
+
+                _context.next = 14;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22439,12 +22329,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.message = false;
                 }, 2000);
 
-              case 13:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[1, 9]]);
       }))();
     }
   }
@@ -26328,61 +26218,15 @@ var _hoisted_4 = {
   "class": "container"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--48 ]  border-bottom"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
-  "class": "[ margin-bottom--4  margin-bottom-large--16 ]"
-}, " 担当者情報の登録・変更・削除 ")], -1
-/* HOISTED */
-);
-
-var _hoisted_6 = {
-  "class": "text-center"
-};
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("担当者新規登録");
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom\" data-v-3b3a261b><h2 class=\"[ margin-bottom--4  margin-bottom-large--16 ]\" data-v-3b3a261b> 担当者情報の確認 </h2></div><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-3b3a261b> 以下の内容で登録します </div><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-3b3a261b><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-3b3a261b><h4 data-v-3b3a261b><span class=\"[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent\" data-v-3b3a261b></span> 担当者情報 </h4><hr data-v-3b3a261b><div class=\"table  padding-right--8\" data-v-3b3a261b><table class=\"table width-50\" data-v-3b3a261b><tbody data-v-3b3a261b><tr data-v-3b3a261b><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-3b3a261b> 企業コード（削除予定） </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-3b3a261b> あああ </td></tr><tr data-v-3b3a261b><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-3b3a261b> 担当者番号 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-3b3a261b> いいい </td></tr><tr data-v-3b3a261b><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-3b3a261b> 担当者名 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-3b3a261b> テスト太郎 </td></tr><tr data-v-3b3a261b><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-3b3a261b> パスワード </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-3b3a261b> テスト太郎 </td></tr></tbody></table></div></div></article>", 3);
 
 var _hoisted_8 = {
-  key: 0,
-  "class": "message text-center margin-top--48"
-};
-var _hoisted_9 = {
-  "class": "alert alert-danger"
-};
-var _hoisted_10 = {
-  "class": ""
-};
-var _hoisted_11 = {
-  "class": "[ padding--24  padding-large--48 ]  bg-white"
-};
-var _hoisted_12 = {
-  "class": "table table--bordered"
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "使用者番号"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "担当者名"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "パスワード"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "データ使用数"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "更新日時"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th")])], -1
-/* HOISTED */
-);
-
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "1234567890", -1
-/* HOISTED */
-);
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "text-center"
-}, "11社 / 60社", -1
-/* HOISTED */
-);
-
-var _hoisted_16 = {
-  "class": "text-center"
-};
-var _hoisted_17 = {
   "class": "text-center"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("確認");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -26391,55 +26235,27 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list_create",
-    "class": "[ btn  btn--accent ]"
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/mypage/company/reps-list",
+    "class": "[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_7];
+      return [_hoisted_9];
     }),
     _: 1
     /* STABLE */
 
-  })]), $data.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
-  /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.items, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-      key: item._id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.user_number), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.user_name), 1
-    /* TEXT */
-    ), _hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatDate(item.updated_at)), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-      to: {
-        path: '/mypage/company/reps-list_edit/:id',
-        params: {
-          id: item.id
-        }
-      },
-      "class": "[ btn  btn--small  btn--accent ] margin-right--16"
-    }, {
-      "default": _withId(function () {
-        return [_hoisted_18];
-      }),
-      _: 2
-      /* DYNAMIC */
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/mypage/company/reps-list",
+    "class": "[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]"
+  }, {
+    "default": _withId(function () {
+      return [_hoisted_10];
+    }),
+    _: 1
+    /* STABLE */
 
-    }, 1032
-    /* PROPS, DYNAMIC_SLOTS */
-    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      "class": "[ btn  btn--small  btn--outline ]",
-      onClick: function onClick($event) {
-        return $options.deleteItem(item.company_code, item.user_code);
-      }
-    }, "削除", 8
-    /* PROPS */
-    , ["onClick"])])]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])])])])])])])]);
+  })])])])])]);
 });
 
 /***/ }),

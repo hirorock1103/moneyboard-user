@@ -112,8 +112,7 @@ export default {
                 // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
                 // const response = await axios.post(demodemo, response);
                 console.log(response);
-                // Todo:確認画面作成
-                // this.$router.push({name: 'mypage-reps', params: {message: "担当者を作成しました。"}})
+                this.$router.push({name: 'mypage-reps_confirm'})
             } catch (e){
                 console.log(e);
                 this.message = e
