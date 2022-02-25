@@ -18,6 +18,7 @@
                         <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
                     </div>
 
+                    <!-- メッセージがあれば表示 -->
                     <div class="message text-center margin-top--48" v-if="message">
                         <!-- ToDo:メッセージ表示のデザイン -->
                         <p class="alert alert-danger">{{ message }}</p>
