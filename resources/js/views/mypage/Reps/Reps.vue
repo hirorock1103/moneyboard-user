@@ -97,8 +97,10 @@ export default {
         },
         // ToDo:削除前にモーダル確認？
         async deleteItem(company_code, user_code) {
+            // URLのセット
             let url = "http://money-board-api.loc.com/com/user/test/delete";
             try {
+                // POSTで渡す
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});
                 // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
                 // const response = await axios.post(demodemo, response);
