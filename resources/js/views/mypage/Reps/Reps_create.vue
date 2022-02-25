@@ -12,8 +12,11 @@
                         </h2>
                     </div>
 
-                    <div v-show="message" class="alert alert-danger">{{message}}</div>
-
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
+                    </div>
+                    
+                    <!-- form -->
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -26,6 +29,7 @@
                                     <table class="table">
                                         <tbody>
                                             <tr>
+                                                <!-- ToDo:Vuexで値を保持して自動させる -->
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     企業コード（削除予定）
                                                 </th>
@@ -41,6 +45,7 @@
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者番号
                                                 </th>
+                                                <!-- v-modelで値の指定 -->
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
                                                         type="text"
@@ -67,7 +72,7 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
-                                                        type="text"
+                                                        type="password"
                                                         id=""
                                                         class="form-input  margin-top--8  form-control"
                                                         v-model="item.password"/>
@@ -106,13 +111,20 @@ export default {
     },
     methods: {
         async Store(){
+            // URL指定
             let url = "http://money-board-api.loc.com/com/user/test/register";
             try {
+                // POSTでURLとデータを引数
                 const response = await axios.post(url, this.item);
-                // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
-                // const response = await axios.post(demodemo, response);
-                console.log(response);
-                this.$router.push({name: 'mypage-reps_confirm'})
+                // 返却値によって動作切り分け
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    // 問題なければ画面遷移
+                    this.$router.push({name: 'mypage-reps_confirm'})
+                }
             } catch (e){
                 console.log(e);
                 this.message = e
