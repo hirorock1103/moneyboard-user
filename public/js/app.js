@@ -21704,7 +21704,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      item: []
+      item: [],
+      message: ""
     };
   },
   created: function created() {
@@ -21729,15 +21730,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 console.log(response.data[0]);
                 _this.item = response.data[0];
-                _context.next = 12;
+                _context.next = 14;
                 break;
 
               case 9:
                 _context.prev = 9;
                 _context.t0 = _context["catch"](1);
-                console.log(_context.t0); // Todo:エラーメッセージ表示
+                console.log(_context.t0);
+                _this.message = _context.t0;
+                setTimeout(function () {
+                  _this.message = false;
+                }, 2000);
 
-              case 12:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -21761,11 +21766,124 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__.default
+  },
+  data: function data() {
+    return {
+      item: {},
+      message: ""
+    };
+  },
+  created: function created() {
+    this.getItem();
+  },
+  methods: {
+    getItem: function getItem() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var url, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                url = "http://money-board-api.loc.com/com/company/test/get";
+                _context.prev = 1;
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url, {
+                  params: {
+                    company_code: _this.$route.params.company_code
+                  }
+                });
+
+              case 4:
+                response = _context.sent;
+                console.log(response.data[0]);
+                _this.item = response.data[0];
+                _context.next = 14;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+                console.log(_context.t0);
+                _this.message = _context.t0;
+                setTimeout(function () {
+                  _this.message = false;
+                }, 2000);
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 9]]);
+      }))();
+    },
+    updateItem: function updateItem() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var url, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                url = "http://money-board-api.loc.com/com/user/test/update";
+                _context2.prev = 1;
+                _context2.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this2.item);
+
+              case 4:
+                response = _context2.sent;
+
+                if (response.data.status == "NG") {
+                  console.log(response);
+                  _this2.message = response.data.message;
+                  setTimeout(function () {
+                    _this2.message = false;
+                  }, 2000);
+                } else {
+                  _this2.$router.push({
+                    name: 'mypage-reps_confirm'
+                  });
+                }
+
+                _context2.next = 13;
+                break;
+
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
+                console.log(_context2.t0);
+                _this2.message = _context2.t0;
+                setTimeout(function () {
+                  _this2.message = false;
+                }, 2000);
+
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[1, 8]]);
+      }))();
+    }
   }
 });
 
@@ -25199,42 +25317,39 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_6 = {
-  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]"
+  key: 0,
+  "class": "message text-center margin-top--48"
 };
 var _hoisted_7 = {
+  "class": "alert alert-danger"
+};
+var _hoisted_8 = {
+  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]"
+};
+var _hoisted_9 = {
   "class": "[ padding--24  padding-large--48 ]  bg-white"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 基本情報 ")], -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_12 = {
   "class": "table-scrollable  padding-right--8"
 };
-var _hoisted_11 = {
-  "class": "table"
-};
-
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
-  "class": "[ display-table-row  display-table-cell-large ]"
-}, " 名前 ", -1
-/* HOISTED */
-);
-
 var _hoisted_13 = {
-  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+  "class": "table"
 };
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "[ display-table-row  display-table-cell-large ]"
-}, " 住所 ", -1
+}, " 名前 ", -1
 /* HOISTED */
 );
 
@@ -25244,7 +25359,7 @@ var _hoisted_15 = {
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "[ display-table-row  display-table-cell-large ]"
-}, " 電話番号 ", -1
+}, " 住所 ", -1
 /* HOISTED */
 );
 
@@ -25252,31 +25367,43 @@ var _hoisted_17 = {
   "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "[ display-table-row  display-table-cell-large ]"
-}, " 担当者名 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
-}, " テスト太郎 ")], -1
+}, " 電話番号 ", -1
 /* HOISTED */
 );
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_19 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 担当者名 ", -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "[ display-table-row  display-table-cell-large ]"
 }, " 携帯番号 ", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = {
+var _hoisted_23 = {
   "class": "[ display-table-row  display-table-cell-large ] "
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-14c375d4><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-14c375d4><h4 data-v-14c375d4><span class=\"[ icon  solid ] fa-credit-card  padding-right--12  text-accent\" data-v-14c375d4></span> クレジットカード情報 </h4><hr data-v-14c375d4><div class=\"table-scrollable  padding-right--8\" data-v-14c375d4><table class=\"table width-50\" data-v-14c375d4><tbody data-v-14c375d4><tr data-v-14c375d4><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-14c375d4> カード番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-14c375d4> **********12 </td></tr><tr data-v-14c375d4><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-14c375d4> カード名義 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-14c375d4> AB************** </td></tr></tbody></table></div></div></article>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-14c375d4><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-14c375d4><h4 data-v-14c375d4><span class=\"[ icon  solid ] fa-credit-card  padding-right--12  text-accent\" data-v-14c375d4></span> クレジットカード情報 </h4><hr data-v-14c375d4><div class=\"table-scrollable  padding-right--8\" data-v-14c375d4><table class=\"table width-50\" data-v-14c375d4><tbody data-v-14c375d4><tr data-v-14c375d4><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-14c375d4> カード番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-14c375d4> **********12 </td></tr><tr data-v-14c375d4><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-14c375d4> カード名義 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-14c375d4> AB************** </td></tr></tbody></table></div></div></article>", 1);
 
-var _hoisted_22 = {
+var _hoisted_25 = {
   "class": "text-center"
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -25285,25 +25412,36 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.company_name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, $data.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_15, " 〒000-0000　" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.address), 1
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.company_name), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, " 000-0000-0000" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.phone_number), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, " 〒000-0000　" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.address), 1
   /* TEXT */
-  )]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_20, " 000-0000-0000" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.mobile_number), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.phone_number), 1
   /* TEXT */
-  )])])])])])]), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company_edit",
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.company_rep), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.item.mobile_number), 1
+  /* TEXT */
+  )])])])])])]), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'mypage-company_edit',
+      params: {
+        company_code: $data.item.company_code
+      }
+    },
     "class": "[ btn  btn--accent ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_23];
+      return [_hoisted_26];
     }),
     _: 1
     /* STABLE */
 
-  })])])])])]);
+  }, 8
+  /* PROPS */
+  , ["to"])])])])])]);
 });
 
 /***/ }),
@@ -25339,15 +25477,110 @@ var _hoisted_4 = {
   "class": "container"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom\" data-v-7390ed7a><h2 class=\"[ margin-bottom--4  margin-bottom-large--16 ]\" data-v-7390ed7a> 登録情報の編集 </h2></div><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-7390ed7a><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-7390ed7a><h4 data-v-7390ed7a><span class=\"[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent\" data-v-7390ed7a></span> 基本情報 </h4><hr data-v-7390ed7a><div class=\"table  padding-right--8\" data-v-7390ed7a><table class=\"table\" data-v-7390ed7a><tbody data-v-7390ed7a><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> 名前 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"テスト太郎\" data-v-7390ed7a></td></tr><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> 住所 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"〒000-0000　テスト県テスト市あああ1-1-1\" data-v-7390ed7a></td></tr><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> 電話番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"00-0000-0000\" data-v-7390ed7a></td></tr><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> 担当者名 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"テスト太郎\" data-v-7390ed7a></td></tr><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> 携帯番号 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"00-0000-0000\" data-v-7390ed7a></td></tr></tbody></table></div></div></article><article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-7390ed7a><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-7390ed7a><h4 data-v-7390ed7a><span class=\"[ icon  solid ] fa-credit-card  padding-right--12  text-accent\" data-v-7390ed7a></span> クレジットカード情報 </h4><hr data-v-7390ed7a><div class=\"table-scrollable  padding-right--8\" data-v-7390ed7a><table class=\"table width-50\" data-v-7390ed7a><tbody data-v-7390ed7a><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> カード番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"**********12\" data-v-7390ed7a></td></tr><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> カード名義 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" placeholder=\"AB**************\" data-v-7390ed7a></td></tr></tbody></table></div></div></article>", 3);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "\n                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", {
+  "class": "[ margin-bottom--4  margin-bottom-large--16 ]"
+}, " 登録情報の編集 ")], -1
+/* HOISTED */
+);
 
+var _hoisted_6 = {
+  key: 0,
+  "class": "message text-center margin-top--48"
+};
+var _hoisted_7 = {
+  "class": "alert alert-danger"
+};
 var _hoisted_8 = {
+  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]"
+};
+var _hoisted_9 = {
+  "class": "[ padding--24  padding-large--48 ]  bg-white"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 基本情報 ")], -1
+/* HOISTED */
+);
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_12 = {
+  "class": "table  padding-right--8"
+};
+var _hoisted_13 = {
+  "class": "table"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 名前 ", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 住所 ", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 電話番号 ", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 担当者名 ", -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
+  "class": "[ display-table-row  display-table-cell-large ]  padding-bottom--16"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": "[ display-table-row  display-table-cell-large ]"
+}, " 携帯番号 ", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = {
+  "class": "[ display-table-row  display-table-cell-large ] "
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]\" data-v-7390ed7a><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-7390ed7a><h4 data-v-7390ed7a><span class=\"[ icon  solid ] fa-credit-card  padding-right--12  text-accent\" data-v-7390ed7a></span> クレジットカード情報 </h4><hr data-v-7390ed7a><div class=\"table-scrollable  padding-right--8\" data-v-7390ed7a><table class=\"table width-50\" data-v-7390ed7a><tbody data-v-7390ed7a><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> カード番号 </th><td class=\"[ display-table-row  display-table-cell-large ]  padding-bottom--16\" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" data-v-7390ed7a></td></tr><tr data-v-7390ed7a><th class=\"[ display-table-row  display-table-cell-large ]\" data-v-7390ed7a> カード名義 </th><td class=\"[ display-table-row  display-table-cell-large ] \" data-v-7390ed7a><input type=\"text\" id=\"\" class=\"form-input  margin-top--8\" data-v-7390ed7a></td></tr></tbody></table></div></div></article>", 1);
+
+var _hoisted_25 = {
   "class": "text-center"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("確認");
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  type: "submit",
+  "class": "[ btn  btn--accent ]",
+  value: "確認"
+}, null, -1
+/* HOISTED */
+);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -25356,27 +25589,70 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, $data.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.message), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+    onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.updateItem && $options.updateItem.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.item.company_name = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.company_name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.item.address = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.address]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.item.phone_number = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.phone_number]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.item.company_rep = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.company_rep]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input  margin-top--8",
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $data.item.mobile_number = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.mobile_number]])])])])])])])]), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/mypage/company",
     "class": "[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_9];
+      return [_hoisted_26];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company",
-    "class": "[ btn  btn--accent ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_10];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])])]);
+  }), _hoisted_27])], 32
+  /* HYDRATE_EVENTS */
+  )])])])]);
 });
 
 /***/ }),
@@ -26278,7 +26554,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" idを指定して該当の編集画面へ遷移 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
-        path: '/mypage/company/reps-list_edit/:id',
+        name: 'mypage-reps_edit',
         params: {
           id: item.id
         }
@@ -29567,9 +29843,10 @@ var routes = [// トップページ
 
 }, // 登録情報の編集
 {
-  path: "/mypage/company_edit",
+  path: "/mypage/company_edit/:company_code",
   component: _views_mypage_Company_Company_edit_vue__WEBPACK_IMPORTED_MODULE_14__.default,
-  name: "mypage-company_edit" // beforeEnter: auth,
+  name: "mypage-company_edit",
+  props: true // beforeEnter: auth,
 
 }, // 担当者情報の登録・変更・削除
 {
@@ -29587,7 +29864,8 @@ var routes = [// トップページ
 {
   path: "/mypage/company/reps-list_edit/:id",
   component: _views_mypage_Reps_Reps_edit_vue__WEBPACK_IMPORTED_MODULE_17__.default,
-  name: "mypage-reps_edit" // beforeEnter: auth,
+  name: "mypage-reps_edit",
+  props: true // beforeEnter: auth,
 
 }, // 担当者情報の確認画面
 {

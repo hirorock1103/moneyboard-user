@@ -167,9 +167,10 @@ const routes = [
   },
   // 登録情報の編集
   {
-    path: "/mypage/company_edit",
+    path: "/mypage/company_edit/:company_code",
     component: Company_edit,
     name: "mypage-company_edit",
+    props: true,
     // beforeEnter: auth,
   },
   // 担当者情報の登録・変更・削除
@@ -191,6 +192,7 @@ const routes = [
     path: "/mypage/company/reps-list_edit/:id",
     component: Reps_edit,
     name: "mypage-reps_edit",
+    props: true,
     // beforeEnter: auth,
   },
   // 担当者情報の確認画面

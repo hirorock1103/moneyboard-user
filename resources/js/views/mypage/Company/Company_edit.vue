@@ -12,126 +12,128 @@
                         </h2>
                     </div>
 
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                基本情報
-                            </h4>
-                            <hr>
-                            <div class="table  padding-right--8">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                名前
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="テスト太郎">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                住所
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="〒000-0000　テスト県テスト市あああ1-1-1">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                電話番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="00-0000-0000">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="テスト太郎">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                携帯番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="00-0000-0000">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-credit-card  padding-right--12  text-accent"></span>
-                                クレジットカード情報
-                            </h4>
-                            <hr>
-                            <div class="table-scrollable  padding-right--8">
-                                <table class="table width-50">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                カード番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="**********12">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                カード名義
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8"
-                                                    placeholder="AB**************">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </article>
-
-                    <div class="text-center">
-                        <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company"  class="[ btn  btn--accent ]">確認</router-link>
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
                     </div>
+
+                    <form v-on:submit.prevent="updateItem">
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                    基本情報
+                                </h4>
+                                <hr>
+                                <div class="table  padding-right--8">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    名前
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8"
+                                                        v-model="item.company_name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    住所
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8"
+                                                        v-model="item.address"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    電話番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8"
+                                                        v-model="item.phone_number"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    担当者名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8"
+                                                        v-model="item.company_rep"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    携帯番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8"
+                                                        v-model="item.mobile_number"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-credit-card  padding-right--12  text-accent"></span>
+                                    クレジットカード情報
+                                </h4>
+                                <hr>
+                                <div class="table-scrollable  padding-right--8">
+                                    <table class="table width-50">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    カード番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    カード名義
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                        <div class="text-center">
+                            <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <input type="submit" class="[ btn  btn--accent ]" value="確認" />
+                        </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -139,11 +141,52 @@
 </template>
 
 <script>
+import axios from 'axios'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            item: {},
+            message: ""
+        };
+    },
+    created: function() {
+        this.getItem();
+    },
+    methods: {
+        async getItem() {
+            let url = "http://money-board-api.loc.com/com/company/test/get";
+            try {
+                const response = await axios.get(url, {params:{company_code: this.$route.params.company_code}});
+                console.log(response.data[0]);
+                this.item = response.data[0];
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
+        async updateItem() {
+            let url = "http://money-board-api.loc.com/com/user/test/update";
+            try {
+                const response = await axios.post(url, this.item);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.$router.push({name: 'mypage-reps_confirm'})
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        }
     }
 }
 </script>

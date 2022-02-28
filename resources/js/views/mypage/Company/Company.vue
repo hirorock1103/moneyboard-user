@@ -12,6 +12,10 @@
                         </h2>
                     </div>
 
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
+                    </div>
+
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -43,7 +47,7 @@
                                                 電話番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                000-0000-0000{{ item.phone_number }}
+                                                {{ item.phone_number }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -51,7 +55,7 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                テスト太郎
+                                                {{ item.company_rep }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -59,7 +63,7 @@
                                                 携帯番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                000-0000-0000{{ item.mobile_number }}
+                                                {{ item.mobile_number }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -101,7 +105,7 @@
                     </article>
 
                     <div class="text-center">
-                        <router-link to="/mypage/company_edit"  class="[ btn  btn--accent ]">変更</router-link>
+                        <router-link :to="{name: 'mypage-company_edit', params: { company_code: item.company_code }}" class="[ btn  btn--accent ]">変更</router-link>
                     </div>
                 </div>
             </section>
@@ -119,7 +123,8 @@ export default {
     },
     data() {
         return {
-            item: []
+            item: [],
+            message: ""
         };
     },
     created: function() {
@@ -134,7 +139,8 @@ export default {
                 this.item = response.data[0];
             } catch (e){
                 console.log(e);
-                // Todo:エラーメッセージ表示
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
             }
         },
     }
