@@ -15,6 +15,7 @@ import MypageHome from "./views/mypage/Home.vue";
 // 登録情報の確認・変更
 import Company from "./views/mypage/Company/Company.vue";
 import Company_edit from "./views/mypage/Company/Company_edit.vue";
+import Company_confirm from "./views/mypage/Company/Company_confirm.vue";
 // 担当者
 import Reps from "./views/mypage/Reps/Reps.vue";
 import Reps_create from "./views/mypage/Reps/Reps_create.vue";
@@ -170,6 +171,14 @@ const routes = [
     path: "/mypage/company_edit/:company_code",
     component: Company_edit,
     name: "mypage-company_edit",
+    props: true,
+    // beforeEnter: auth,
+  },
+  // 登録情報の確認
+  {
+    path: "/mypage/company_confirm",
+    component: Company_confirm,
+    name: "mypage-company_confirm",
     props: true,
     // beforeEnter: auth,
   },

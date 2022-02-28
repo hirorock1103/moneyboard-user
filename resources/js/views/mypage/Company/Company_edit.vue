@@ -179,7 +179,7 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps_confirm'})
+                    this.$router.push({name: 'mypage-company_confirm'})
                 }
             } catch (e){
                 console.log(e);
