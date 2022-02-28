@@ -1,5 +1,4 @@
 <template>
-
     <div class="display-flex">
         <SideMenu />
         <main class="mypage__main">
@@ -13,15 +12,21 @@
                         </h2>
                     </div>
 
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
-                        <div class="[ padding--16 ]  bg-white  display-flex">
-                            <h4 class="[ padding-top--8 padding-top-large--8 ]" style="width:10%;">
-                                <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
-                                検索
-                            </h4>
-                            <input class="form-input" placeholder="会社名や担当者名を入力して検索">
-                        </div>
-                    </article>
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
+                    </div>
+
+                    <form>
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
+                            <div class="[ padding--16 ]  bg-white  display-flex">
+                                <h4 class="[ padding-top--8 padding-top-large--8 ]" style="width:10%;">
+                                    <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
+                                    検索
+                                </h4>
+                                <input class="form-input" placeholder="会社名や担当者名を入力して検索">
+                            </div>
+                        </article>
+                    </form>
 
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -34,36 +39,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>株式会社サンプルカンパニー</td>
-                                        <td>あああ　あああ</td>
+                                    <tr v-for="item in items" :key="item._id">
+                                        <td>{{ item.client_name }}</td>
+                                        <td>あああ　あああ{{ item.user_id }}</td>
                                         <th class="text-center">
-                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>株式会社サンプルカンパニー</td>
-                                        <td>あああ　あああ</td>
-                                        <th class="text-center">
-                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>株式会社サンプルカンパニー</td>
-                                        <td>あああ　あああ</td>
-                                        <th class="text-center">
-                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>株式会社サンプルカンパニー</td>
-                                        <td>あああ　あああ</td>
-                                        <th class="text-center">
-                                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <router-link to="/"  class="[ btn  btn--small  btn--outline ]">削除</router-link>
+                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.id)">削除</button>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -78,11 +59,49 @@
 </template>
 
 <script>
+import axios from 'axios'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            items: [],
+            message: null
+        };
+    },
+    created: function() {
+        this.fetchItems();
+    },
+    methods: {
+        async fetchItems() {
+            let url = "http://money-board-api.loc.com/com/client/test/index";
+            try {
+                const response = await axios.post(url, {company_id: 123});
+                // console.log(response);
+                this.items = response.data.data.get_list.data;
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
+        async deleteItem(id) {
+            let url = "http://money-board-api.loc.com/com/client/test/delete";
+            try {
+                const response = await axios.post(url, {id: id});
+                console.log(response);
+                this.message = response.data.message
+                setTimeout(() => {this.message = false;}, 2000);
+                this.fetchItems();
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        }
     }
 }
 </script>

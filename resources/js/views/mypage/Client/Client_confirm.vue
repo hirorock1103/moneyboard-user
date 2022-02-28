@@ -8,15 +8,19 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            登録企業の担当者変更
+                            担当者情報の確認
                         </h2>
+                    </div>
+
+                    <div class="[ padding--24  padding-large--48 ]  bg-white">
+                        以下の内容で登録します
                     </div>
 
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
                                 <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                登録企業担当者情報
+                                登録企業の担当者情報
                             </h4>
                             <hr>
                             <div class="table  padding-right--8">
@@ -35,10 +39,7 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8">
+                                                あああ　あああ
                                             </td>
                                         </tr>
                                     </tbody>
@@ -46,10 +47,9 @@
                             </div>
                         </div>
                     </article>
-
                     <div class="text-center">
                         <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company/client/rep_confirm"  class="[ btn  btn--accent ]">確認</router-link>
+                        <router-link to="/mypage/company/client/rep"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確定</router-link>
                     </div>
                 </div>
             </section>
@@ -62,7 +62,7 @@ import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
     }
 }
 </script>

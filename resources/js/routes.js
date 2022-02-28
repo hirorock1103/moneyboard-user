@@ -21,9 +21,11 @@ import Reps from "./views/mypage/Reps/Reps.vue";
 import Reps_create from "./views/mypage/Reps/Reps_create.vue";
 import Reps_edit from "./views/mypage/Reps/Reps_edit.vue";
 import Reps_confirm from "./views/mypage/Reps/Reps_confirm.vue";
-// 
+// 登録企業
 import Client from "./views/mypage/Client/Client.vue";
 import Client_edit from "./views/mypage/Client/Client_edit.vue";
+import Client_confirm from "./views/mypage/Client/Client_confirm.vue";
+// 
 import Plan from "./views/mypage/Plan/Plan.vue";
 import Plan_edit from "./views/mypage/Plan/Plan_edit.vue";
 import Premium from "./views/mypage/Premium.vue";
@@ -220,9 +222,18 @@ const routes = [
   },
   // 登録企業の担当者 編集
   {
-    path: "/mypage/company/client/rep_edit",
+    path: "/mypage/company/client/rep_edit/:id",
     component: Client_edit,
     name: "mypage-client_edit",
+    props: true,
+    // beforeEnter: auth,
+  },
+  // 登録企業の担当者 確認画面
+  {
+    path: "/mypage/company/client/rep_confirm",
+    component: Client_confirm,
+    name: "mypage-client_confirm",
+    props: true,
     // beforeEnter: auth,
   },
   // プラン変更 / 使用会社数の増減
