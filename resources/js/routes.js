@@ -29,8 +29,12 @@ import Client_confirm from "./views/mypage/Client/Client_confirm.vue";
 import Plan from "./views/mypage/Plan/Plan.vue";
 import Plan_edit from "./views/mypage/Plan/Plan_edit.vue";
 import Premium from "./views/mypage/Premium.vue";
-import Email from "./views/mypage/Email.vue";
-import Password from "./views/mypage/Password.vue";
+// メールアドレスの変更
+import Email from "./views/mypage/Email/Email.vue";
+import Email_confirm from "./views/mypage/Email/Email_confirm.vue";
+// パスワードの変更
+import Password from "./views/mypage/Password/Password.vue";
+import Password_confirm from "./views/mypage/Password/Password_confirm.vue";
 // ご意見・ご要望
 import Opinion from "./views/mypage/Opinion/Opinion.vue";
 import Opinion_done from "./views/mypage/Opinion/Opinion_done.vue";
@@ -264,11 +268,25 @@ const routes = [
     name: "mypage-email",
     // beforeEnter: auth,
   },
+  // メールアドレスの変更　確認
+  {
+    path: "/mypage/company/email_confirm",
+    component: Email_confirm,
+    name: "mypage-email_confirm",
+    // beforeEnter: auth,
+  },
   // パスワードの変更
   {
     path: "/mypage/company/password",
     component: Password,
     name: "mypage-password",
+    // beforeEnter: auth,
+  },
+  // パスワードの変更 確認
+  {
+    path: "/mypage/company/password_confirm",
+    component: Password_confirm,
+    name: "mypage-password_confirm",
     // beforeEnter: auth,
   },
   // ご意見・ご要望
