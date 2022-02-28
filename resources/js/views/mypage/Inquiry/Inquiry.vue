@@ -12,7 +12,9 @@
                         </h2>
                     </div>
 
-                    <div v-show="message" class="alert alert-danger">{{message}}</div>
+                    <div class="message text-center margin-top--48" v-if="message">
+                        <p class="alert alert-danger">{{ message }}</p>
+                    </div>
 
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
@@ -27,7 +29,6 @@
                                     </h5>
                                 </div>
                                 <hr>
-                                <!-- <div class="table-scrollable  padding-right--8"> -->
                                 <div class="padding-right--8">
                                     <table class="table">
                                         <tbody>
@@ -162,13 +163,17 @@ export default {
             this.item.inquiry_type = 1;
             try {
                 const response = await axios.post(url, this.item);
-                console.log(response);
-                // Todo:簡単なバリデーション
-                // Todo:確認画面作成
-                this.$router.push({name: 'mypage-inquiry_done'})
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.$router.push({name: 'mypage-inquiry_done'})
+                }
             } catch (e){
                 console.log(e);
-                // Todo:エラーメッセージ表示
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
             }
         }
     },
