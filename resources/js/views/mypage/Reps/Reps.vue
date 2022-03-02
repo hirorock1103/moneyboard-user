@@ -31,7 +31,6 @@
                                     <tr>
                                         <th>使用者番号</th>
                                         <th>担当者名</th>
-                                        <th>パスワード</th>
                                         <th>データ使用数</th>
                                         <th>更新日時</th>
                                         <th></th>
@@ -42,8 +41,7 @@
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.user_number }}</td>
                                         <td>{{ item.user_name }}</td>
-                                        <td class="text-center">1234567890</td><!-- ToDo:APIで持ってない -->
-                                        <td class="text-center">11社 / 60社</td><!-- ToDo:APIで持ってない -->
+                                        <td class="text-center">11社 / 60社</td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
                                             <!-- idを指定して該当の編集画面へ遷移 -->
