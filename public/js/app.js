@@ -30505,6 +30505,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // マイページTop
 
  // 登録情報の確認・変更
 
@@ -31118,7 +31119,7 @@ var actions = {
               response = _context3.sent;
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context3.next = 16;
+                _context3.next = 15;
                 break;
               }
 
@@ -31135,11 +31136,11 @@ var actions = {
               context.commit('setCompany', _data.data.auth.company); // localStorage.setItem('authToken', response.data.token);
               // console.log(3,context);
               // console.log(4,localStorage);
+              // console.log(5,state);
 
-              console.log(5, state);
               return _context3.abrupt("return", false);
 
-            case 16:
+            case 15:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -31151,7 +31152,7 @@ var actions = {
                 });
               }
 
-            case 19:
+            case 18:
             case "end":
               return _context3.stop();
           }

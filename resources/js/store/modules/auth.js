@@ -177,7 +177,7 @@ const actions = {
             // localStorage.setItem('authToken', response.data.token);
             // console.log(3,context);
             // console.log(4,localStorage);
-            console.log(5,state);
+            // console.log(5,state);
             return false;
         }
 

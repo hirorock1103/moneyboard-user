@@ -15,6 +15,7 @@ import RegisterCardConfirm from "./views/register/CardConfirm.vue";
 import Login from "./views/Login.vue";
 import PasswordEmail from "./views/password/Email.vue";
 import PasswordReset from "./views/password/Reset.vue";
+// マイページTop
 import MypageHome from "./views/mypage/Home.vue";
 // 登録情報の確認・変更
 import Company from "./views/mypage/Company/Company.vue";
