@@ -21403,7 +21403,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       loginForm: {
-        username: '',
+        email_address: '',
         password: ''
       }
     };
@@ -21411,7 +21411,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   validations: function validations() {
     return {
       loginForm: {
-        username: {
+        email_address: {
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage('メールアドレスを入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
           email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage('正しい形を入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email)
         },
@@ -21604,7 +21604,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this = this;
 
     this.sendVerifyRequest(this.hash).then(function () {
-      if (_this.apiStatus) {
+      // ToDo:ひとまず
+      // if (this.apiStatus) {
+      if (true) {
         _this.$router.push('/register/user');
       }
     });
@@ -24948,20 +24950,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "email",
     id: "email_address",
-    "class": ["form-input  margin-top--8", [$setup.v$.loginForm.username.$error ? 'form-error  margin-bottom--12' : 'margin-bottom--24']],
+    "class": ["form-input  margin-top--8", [$setup.v$.loginForm.email_address.$error ? 'form-error  margin-bottom--12' : 'margin-bottom--24']],
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.loginForm.username = $event;
+      return $data.loginForm.email_address = $event;
     }),
     onInput: _cache[3] || (_cache[3] = function () {
       var _$setup$v$$loginForm$;
 
-      return $setup.v$.loginForm.username.$touch && (_$setup$v$$loginForm$ = $setup.v$.loginForm.username).$touch.apply(_$setup$v$$loginForm$, arguments);
+      return $setup.v$.loginForm.email_address.$touch && (_$setup$v$$loginForm$ = $setup.v$.loginForm.email_address).$touch.apply(_$setup$v$$loginForm$, arguments);
     })
   }, null, 34
   /* CLASS, HYDRATE_EVENTS */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.loginForm.username]]), $setup.v$.loginForm.username.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.loginForm.username.$errors[0].$message), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.loginForm.email_address]]), $setup.v$.loginForm.email_address.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.v$.loginForm.email_address.$errors[0].$message), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.loginErrors && _ctx.loginErrors.username ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.loginErrors.username, function (msg) {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.loginErrors && _ctx.loginErrors.email_address ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.loginErrors.email_address, function (msg) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
       key: msg
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(msg), 1
@@ -30488,14 +30490,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_terms_Home_vue__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./views/terms/Home.vue */ "./resources/js/views/terms/Home.vue");
 /* harmony import */ var _views_privacy_Home_vue__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./views/privacy/Home.vue */ "./resources/js/views/privacy/Home.vue");
 
+ // 新規登録ページ
+
+ // 新規登録ページ（メール送信完了）
+
+ // 仮登録（メール認証）
 
 
 
 
 
 
-
-
+ // ログイン画面
 
 
 
@@ -30562,12 +30568,14 @@ var routes = [// トップページ
   path: "/signup",
   component: _views_Signup_vue__WEBPACK_IMPORTED_MODULE_1__.default,
   name: "signup"
-}, {
+}, // 新規登録ページ（メール送信完了）
+{
   path: "/signup/completion",
   component: _views_Completion_vue__WEBPACK_IMPORTED_MODULE_2__.default,
   name: "signup-completion",
   props: true
-}, {
+}, // 仮登録
+{
   path: "/verify/:hash",
   component: _views_Verify_vue__WEBPACK_IMPORTED_MODULE_3__.default,
   name: "verify",
@@ -30810,6 +30818,31 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_38__.createRouter)({
 
 /***/ }),
 
+/***/ "./resources/js/src/plugins/axios.js":
+/*!*******************************************!*\
+  !*** ./resources/js/src/plugins/axios.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var axios_instance = axios__WEBPACK_IMPORTED_MODULE_0___default().create();
+axios_instance.interceptors.request.use(function (config) {
+  config.headers = {
+    'Authorization': 'Bearer ' + localStorage.getItem('authToken')
+  };
+  return config;
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios_instance);
+
+/***/ }),
+
 /***/ "./resources/js/store/index.js":
 /*!*************************************!*\
   !*** ./resources/js/store/index.js ***!
@@ -30851,6 +30884,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 
 
@@ -30859,21 +30893,29 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+
 var state = {
   user: {
-    company_name: '',
+    additional_licenses: '',
     address: '',
-    phone_number: '',
+    admin_password: '',
+    available_licenses_total: '',
+    company_code: '',
+    company_name: '',
     company_rep: '',
-    mobile_number: '',
+    created_at: '',
     email_address: '',
-    password: '',
-    password_confirm: '',
-    app_password: '',
-    app_password_confirm: '',
+    id: '',
+    mobile_number: '',
+    motivated_by: '',
+    phone_number: '',
     plan_id: '',
-    additional_licences: '',
-    motivated_by: ''
+    updated_at: '',
+    user_type: '' // password: '',
+    // password_confirm: '',
+    // app_password: '',
+    // additional_licences: '',
+
   },
   card: {
     number: '',
@@ -30955,6 +30997,7 @@ var mutations = {
   }
 };
 var actions = {
+  // 新規登録
   sendEmailRegisterRequest: function sendEmailRegisterRequest(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       var response;
@@ -30965,7 +31008,9 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'com/signup', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post( // ToDo:env管理
+              // process.env.MIX_VUE_APP_API_URL + 'com/signup',
+              "http://money-board-api.loc.com/com/signup", data);
 
             case 4:
               response = _context.sent;
@@ -30999,6 +31044,7 @@ var actions = {
       }, _callee);
     }))();
   },
+  // 仮登録
   sendVerifyRequest: function sendVerifyRequest(context, hash) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       var response;
@@ -31009,20 +31055,23 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context2.next = 4;
-              return axios.get(process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get( // process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash
+              "http://money-board-api.loc.com/com/verify/" + hash);
 
             case 4:
               response = _context2.sent;
 
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
+              if (!(response.data.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
                 _context2.next = 11;
                 break;
               }
 
               context.commit('setApiStatus', true);
-              context.commit('setLoadingStatus', false);
-              context.commit('setUserEmail', response.data.email_address);
-              localStorage.setItem('authToken', response.data.token);
+              context.commit('setLoadingStatus', false); // ToDo:ひとまず
+              // context.commit('setUserEmail', response.data.email_address);
+
+              context.commit('setUserEmail', 'test@gamil.com');
+              localStorage.setItem('authToken', response.data.data.register_token);
               return _context2.abrupt("return", false);
 
             case 11:
@@ -31053,7 +31102,8 @@ var actions = {
   },
   sendLoginRequest: function sendLoginRequest(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var response;
+      var response, _data;
+
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -31061,23 +31111,35 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context3.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/login', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post( // process.env.MIX_VUE_APP_API_URL + 'user/login',
+              "http://money-board-api.loc.com/com/login", data);
 
             case 4:
               response = _context3.sent;
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context3.next = 11;
+                _context3.next = 16;
                 break;
               }
 
+              localStorage.setItem('authToken', response.data.data.access_token);
+              _context3.next = 9;
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board-api.loc.com/com/me");
+
+            case 9:
+              _data = _context3.sent;
+              // console.log(2,data);
               context.commit('setApiStatus', true);
               context.commit('setLoadingStatus', false);
-              context.commit('setUser', response.data.user);
-              localStorage.setItem('authToken', response.data.token);
+              context.commit('setUser', _data.data.data.me);
+              context.commit('setCompany', _data.data.auth.company); // localStorage.setItem('authToken', response.data.token);
+              // console.log(3,context);
+              // console.log(4,localStorage);
+
+              console.log(5, state);
               return _context3.abrupt("return", false);
 
-            case 11:
+            case 16:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -31089,7 +31151,7 @@ var actions = {
                 });
               }
 
-            case 14:
+            case 19:
             case "end":
               return _context3.stop();
           }
@@ -31106,7 +31168,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/logout');
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post(process.env.MIX_VUE_APP_API_URL + 'user/logout');
 
             case 3:
               response = _context4.sent;
@@ -31145,7 +31207,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context5.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email', data);
 
             case 4:
               response = _context5.sent;
@@ -31189,7 +31251,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context6.next = 4;
-              return axios.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset', data);
 
             case 4:
               response = _context6.sent;
@@ -31231,7 +31293,7 @@ var actions = {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return axios.get(process.env.MIX_VUE_APP_API_URL + 'user/company', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get(process.env.MIX_VUE_APP_API_URL + 'user/company', data);
 
             case 2:
               response = _context7.sent;
@@ -31260,7 +31322,7 @@ var actions = {
           switch (_context8.prev = _context8.next) {
             case 0:
               _context8.next = 2;
-              return axios.get(process.env.MIX_VUE_APP_API_URL + 'company/clients-list', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get(process.env.MIX_VUE_APP_API_URL + 'company/clients-list', data);
 
             case 2:
               response = _context8.sent;

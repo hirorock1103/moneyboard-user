@@ -48,7 +48,9 @@ export default {
 
     mounted() {
         this.sendVerifyRequest(this.hash).then(() => {
-            if (this.apiStatus) {
+            // ToDo:ひとまず
+            // if (this.apiStatus) {
+            if (true) {
                 this.$router.push('/register/user');
             }
         });

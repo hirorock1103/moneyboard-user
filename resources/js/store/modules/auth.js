@@ -1,20 +1,28 @@
 import { OK, CREATED, UNPROCESSABLE_ENTITY } from '../../util';
+import axios from '../../src/plugins/axios.js'
 
 const state = {
     user: {
-        company_name: '',
+        additional_licenses: '',
         address: '',
-        phone_number: '',
+        admin_password: '',
+        available_licenses_total: '',
+        company_code: '',
+        company_name: '',
         company_rep: '',
-        mobile_number: '',
+        created_at: '',
         email_address: '',
-        password: '',
-        password_confirm: '',
-        app_password: '',
-        app_password_confirm: '',
+        id: '',
+        mobile_number: '',
+        motivated_by: '',
+        phone_number: '',
         plan_id: '',
-        additional_licences: '',
-        motivated_by: ''
+        updated_at: '',
+        user_type: '',
+        // password: '',
+        // password_confirm: '',
+        // app_password: '',
+        // additional_licences: '',
     },
     card: {
         number: '',
@@ -87,11 +95,14 @@ const mutations = {
 }
 
 const actions = {
+    // 新規登録
     async sendEmailRegisterRequest(context, data) {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + 'com/signup',
+            // ToDo:env管理
+            // process.env.MIX_VUE_APP_API_URL + 'com/signup',
+            "http://money-board-api.loc.com/com/signup",
             data
         );
 
@@ -109,18 +120,22 @@ const actions = {
             context.commit('error/setCode', response.status, { root: true })
         }
     },
+    // 仮登録
     async sendVerifyRequest(context, hash) {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.get(
-            process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash
+            // process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash
+            "http://money-board-api.loc.com/com/verify/" + hash,
         );
 
-        if (response.status === OK) {
+        if (response.data.status === OK) {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
-            context.commit('setUserEmail', response.data.email_address);
-            localStorage.setItem('authToken', response.data.token);
+            // ToDo:ひとまず
+            // context.commit('setUserEmail', response.data.email_address);
+            context.commit('setUserEmail', 'test@gamil.com');
+            localStorage.setItem('authToken', response.data.data.register_token);
             return false;
         }
 
@@ -142,15 +157,27 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + 'user/login',
+            // process.env.MIX_VUE_APP_API_URL + 'user/login',
+            "http://money-board-api.loc.com/com/login",
             data
         );
 
+        // console.log(1,response);
+
         if (response.status === OK) {
+            localStorage.setItem('authToken', response.data.data.access_token);
+            const data = await axios.post(
+                "http://money-board-api.loc.com/com/me"
+            );
+            // console.log(2,data);
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
-            context.commit('setUser', response.data.user);
-            localStorage.setItem('authToken', response.data.token);
+            context.commit('setUser', data.data.data.me);
+            context.commit('setCompany', data.data.auth.company);
+            // localStorage.setItem('authToken', response.data.token);
+            // console.log(3,context);
+            // console.log(4,localStorage);
+            console.log(5,state);
             return false;
         }
 

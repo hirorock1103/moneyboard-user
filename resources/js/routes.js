@@ -1,13 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
+// 新規登録ページ
 import Signup from "./views/Signup.vue";
+// 新規登録ページ（メール送信完了）
 import Completion from "./views/Completion.vue";
+// 仮登録（メール認証）
 import Verify from "./views/Verify.vue";
 import RegisterUser from "./views/register/User.vue";
 import RegisterUserConfirm from "./views/register/UserConfirm.vue";
 import RegisterCard from "./views/register/Card.vue";
 import RegisterCard2 from "./views/register/Card2.vue";
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
+// ログイン画面
 import Login from "./views/Login.vue";
 import PasswordEmail from "./views/password/Email.vue";
 import PasswordReset from "./views/password/Reset.vue";
@@ -76,12 +80,14 @@ const routes = [
     component: Signup,
     name: "signup",
   },
+  // 新規登録ページ（メール送信完了）
   {
     path: "/signup/completion",
     component: Completion,
     name: "signup-completion",
     props: true,
   },
+  // 仮登録
   {
     path: "/verify/:hash",
     component: Verify,

@@ -33,19 +33,19 @@
                                     type="email"
                                     id="email_address"
                                     class="form-input  margin-top--8"
-                                    v-model="loginForm.username"
-                                    @input="v$.loginForm.username.$touch"
-                                    v-bind:class="[ v$.loginForm.username.$error ? 'form-error  margin-bottom--12' : 'margin-bottom--24']">
+                                    v-model="loginForm.email_address"
+                                    @input="v$.loginForm.email_address.$touch"
+                                    v-bind:class="[ v$.loginForm.email_address.$error ? 'form-error  margin-bottom--12' : 'margin-bottom--24']">
                                 <div
                                     class="form-text  text-danger  margin-bottom--24"
-                                    v-if="v$.loginForm.username.$error">
-                                    {{ v$.loginForm.username.$errors[0].$message }}
+                                    v-if="v$.loginForm.email_address.$error">
+                                    {{ v$.loginForm.email_address.$errors[0].$message }}
                                 </div>
 
                                 <div
                                     class="form-text  text-danger  margin-bottom--24"
-                                    v-if="loginErrors && loginErrors.username">
-                                    <span v-for="msg in loginErrors.username" :key="msg">{{ msg }}</span>
+                                    v-if="loginErrors && loginErrors.email_address">
+                                    <span v-for="msg in loginErrors.email_address" :key="msg">{{ msg }}</span>
                                 </div>
 
 
@@ -115,7 +115,7 @@ export default {
     data () {
         return {
             loginForm: {
-                username: '',
+                email_address: '',
                 password: ''
             },
         }
@@ -124,7 +124,7 @@ export default {
     validations() {
         return {
             loginForm: {
-                username: {
+                email_address: {
                     required:helpers.withMessage(
                         'メールアドレスを入力してください',
                         required
