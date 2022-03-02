@@ -170,14 +170,14 @@ const routes = [
     path: "/mypage",
     component: MypageHome,
     name: "mypage-home",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 登録情報の確認・変更
   {
     path: "/mypage/company",
     component: Company,
     name: "mypage-company",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 登録情報の編集
   {
@@ -185,7 +185,7 @@ const routes = [
     component: Company_edit,
     name: "mypage-company_edit",
     props: true,
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 登録情報の確認
   {
@@ -193,21 +193,21 @@ const routes = [
     component: Company_confirm,
     name: "mypage-company_confirm",
     props: true,
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 担当者情報の登録・変更・削除
   {
     path: "/mypage/company/reps-list",
     component: Reps,
     name: "mypage-reps",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 担当者情報の作成
   {
     path: "/mypage/company/reps-list_create",
     component: Reps_create,
     name: "mypage-reps_create",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 担当者情報の編集
   {
@@ -215,21 +215,21 @@ const routes = [
     component: Reps_edit,
     name: "mypage-reps_edit",
     props: true,
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 担当者情報の確認画面
   {
     path: "/mypage/company/reps-list_confirm",
     component: Reps_confirm,
     name: "mypage-reps_confirm",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 登録企業の担当者変更・削除
   {
     path: "/mypage/company/client/rep",
     component: Client,
     name: "mypage-client",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 登録企業の担当者 編集
   {
@@ -237,7 +237,7 @@ const routes = [
     component: Client_edit,
     name: "mypage-client_edit",
     props: true,
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 登録企業の担当者 確認画面
   {
@@ -245,103 +245,103 @@ const routes = [
     component: Client_confirm,
     name: "mypage-client_confirm",
     props: true,
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // プラン変更 / 使用会社数の増減
   {
     path: "/mypage/company/plan",
     component: Plan,
     name: "mypage-plan",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // プラン変更 / 使用会社数の増減 編集
   {
     path: "/mypage/company/plan_edit",
     component: Plan_edit,
     name: "mypage-plan_edit",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // プレミアムプラン
   {
     path: "/mypage/company/premium/client-list",
     component: Premium,
     name: "mypage-premium",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // メールアドレスの変更
   {
     path: "/mypage/company/email",
     component: Email,
     name: "mypage-email",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // メールアドレスの変更　確認
   {
     path: "/mypage/company/email_confirm",
     component: Email_confirm,
     name: "mypage-email_confirm",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // パスワードの変更
   {
     path: "/mypage/company/password",
     component: Password,
     name: "mypage-password",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // パスワードの変更 確認
   {
     path: "/mypage/company/password_confirm",
     component: Password_confirm,
     name: "mypage-password_confirm",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // ご意見・ご要望
   {
     path: "/mypage/opinion",
     component: Opinion,
     name: "mypage-opinion",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   {
     path: "/mypage/opinion_done",
     component: Opinion_done,
     name: "mypage-opinion_done",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // お問い合わせ
   {
     path: "/mypage/inquiry",
     component: Inquiry,
     name: "mypage-inquiry",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   {
     path: "/mypage/inquiry_done",
     component: Inquiry_done,
     name: "mypage-inquiry_done",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // ログアウト
   {
     path: "/logout",
     component: MypageHome,
     name: "logout",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // プライバシーポリシー
   {
     path: "/privacy",
     component: Privacy,
     name: "privacy",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 利用規約
   {
     path: "/terms",
     component: Terms,
     name: "terms",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // システムエラーページ
   {

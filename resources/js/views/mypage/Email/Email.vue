@@ -35,7 +35,7 @@
                                                     <input 
                                                     type="text" 
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.company_id"/>
+                                                    v-model="item.email_address"/>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -81,8 +81,9 @@ export default {
     },
     methods: {
         async Store(){
-            let url = "http://money-board-api.loc.com/com/change/test/mail";
+            let url = "http://money-board-api.loc.com/com/change/mail";
             try {
+                this.item = {...this.item, company_id: 123}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
@@ -94,7 +95,7 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
+                setTimeout(() => {this.message = false;}, 20000);
             }
         }
     },

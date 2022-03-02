@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -77,7 +77,7 @@ export default {
     },
     methods: {
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/client/test/index";
+            let url = "http://money-board-api.loc.com/com/client/index";
             try {
                 const response = await axios.post(url, {company_id: 123});
                 // console.log(response);
@@ -89,7 +89,7 @@ export default {
             }
         },
         async deleteItem(id) {
-            let url = "http://money-board-api.loc.com/com/client/test/delete";
+            let url = "http://money-board-api.loc.com/com/client/delete";
             try {
                 const response = await axios.post(url, {id: id});
                 console.log(response);

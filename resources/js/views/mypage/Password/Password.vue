@@ -39,7 +39,7 @@
                                                     <input 
                                                     type="text" 
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.user_code"/>
+                                                    v-model="item.password"/>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -100,10 +100,11 @@ export default {
     },
     methods: {
         async Store(){
-            let url = "http://money-board-api.loc.com/com/change/test/pass";
+            let url = "http://money-board-api.loc.com/com/change/pass";
             try {
+                this.item = {...this.item, user_code: '0614765068'}
                 const response = await axios.post(url, this.item);
-                    console.log(response);
+                console.log(response);
                 if(response.data.status=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);

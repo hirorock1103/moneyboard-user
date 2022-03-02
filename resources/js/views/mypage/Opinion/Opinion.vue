@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -117,7 +117,7 @@ export default {
     },
     methods: {
         async Store(){
-            let url = "http://money-board-api.loc.com/com/inquiry/test/store";
+            let url = "http://money-board-api.loc.com/com/inquiry/store";
             this.item.inquiry_type = 2;
             try {
                 const response = await axios.post(url, this.item);

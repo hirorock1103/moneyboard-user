@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import dayjs from 'dayjs'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
@@ -84,10 +84,10 @@ export default {
     methods: {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/user/test/index";
+            let url = "http://money-board-api.loc.com/com/user/index";
             try {
                 const response = await axios.get(url);
-                // console.log(response);
+                console.log(response);
                 this.items = response.data.data.data_list.data;
             } catch (e){
                 console.log(e);
@@ -98,7 +98,7 @@ export default {
         // ToDo:削除前にモーダル確認？
         async deleteItem(company_code, user_code) {
             // URLのセット
-            let url = "http://money-board-api.loc.com/com/user/test/delete";
+            let url = "http://money-board-api.loc.com/com/user/delete";
             try {
                 // POSTで渡す
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});

@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -132,7 +132,7 @@ export default {
     },
     methods: {
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/company/test/get?company_code=123";
+            let url = "http://money-board-api.loc.com/com/company/get?company_code=123";
             try {
                 const response = await axios.get(url);
                 console.log(response.data[0]);

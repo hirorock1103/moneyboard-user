@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import dayjs from 'dayjs'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
@@ -113,7 +113,7 @@ export default {
     methods: {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async getItem() {
-            let url = "http://money-board-api.loc.com/com/user/test/show";
+            let url = "http://money-board-api.loc.com/com/user/show";
             // const response = await axios.post(url, {company_code: 123, user_code: this.$route.params.id});
             const response = await axios.post(url, {company_code: 123, user_code: 6481260241});
             // console.log(response.data.data.user);
@@ -126,7 +126,7 @@ export default {
             }
         },
         async updateItem() {
-            let url = "http://money-board-api.loc.com/com/user/test/update";
+            let url = "http://money-board-api.loc.com/com/user/update";
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){

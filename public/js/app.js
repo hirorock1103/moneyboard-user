@@ -21647,8 +21647,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 
@@ -21681,10 +21680,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/client/test/index";
+                url = "http://money-board-api.loc.com/com/client/index";
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, {
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
                   company_id: 123
                 });
 
@@ -21721,10 +21720,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/client/test/delete";
+                url = "http://money-board-api.loc.com/com/client/delete";
                 _context2.prev = 1;
                 _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, {
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
                   id: id
                 });
 
@@ -21818,8 +21817,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 
@@ -21852,10 +21850,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/company/test/get?company_code=123";
+                url = "http://money-board-api.loc.com/com/company/get?company_code=123";
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.get(url);
 
               case 4:
                 response = _context.sent;
@@ -21899,8 +21897,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 
@@ -21933,10 +21930,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/company/test/get?company_code=123";
+                url = "http://money-board-api.loc.com/com/company/get?company_code=123";
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.get(url);
 
               case 4:
                 response = _context.sent;
@@ -21980,9 +21977,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -22014,10 +22016,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/company/test/get";
+                url = "http://money-board-api.loc.com/com/company/get";
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url, {
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.get(url, {
                   params: {
                     company_code: _this.$route.params.company_code
                   }
@@ -22025,13 +22027,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context.sent;
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 _this.item = response.data[0];
-                _context.next = 14;
+                _context.next = 13;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 8:
+                _context.prev = 8;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22039,12 +22041,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.message = false;
                 }, 2000);
 
-              case 14:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee, null, [[1, 8]]);
       }))();
     },
     updateItem: function updateItem() {
@@ -22056,12 +22058,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/test/update";
-                _context2.prev = 1;
-                _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this2.item);
+                url = "http://money-board-api.loc.com/com/user/update";
+                _this2.item = _objectSpread(_objectSpread({}, _this2.item), {}, {
+                  user_code: 123,
+                  user_name: 'テストテス男'
+                });
+                _context2.prev = 2;
+                _context2.next = 5;
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this2.item);
 
-              case 4:
+              case 5:
                 response = _context2.sent;
 
                 if (response.data.status == "NG") {
@@ -22076,24 +22082,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context2.next = 13;
+                _context2.next = 14;
                 break;
 
-              case 8:
-                _context2.prev = 8;
-                _context2.t0 = _context2["catch"](1);
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](2);
                 console.log(_context2.t0);
                 _this2.message = _context2.t0;
                 setTimeout(function () {
                   _this2.message = false;
                 }, 2000);
 
-              case 13:
+              case 14:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[1, 8]]);
+        }, _callee2, null, [[2, 9]]);
       }))();
     }
   }
@@ -22114,10 +22120,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -22146,12 +22157,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/change/test/mail";
+                url = "http://money-board-api.loc.com/com/change/mail";
                 _context.prev = 1;
-                _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this.item);
+                _this.item = _objectSpread(_objectSpread({}, _this.item), {}, {
+                  company_id: 123
+                });
+                _context.next = 5;
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
-              case 4:
+              case 5:
                 response = _context.sent;
 
                 if (response.data.status == "NG") {
@@ -22166,24 +22180,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context.next = 13;
+                _context.next = 14;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
                 setTimeout(function () {
                   _this.message = false;
-                }, 2000);
+                }, 20000);
 
-              case 13:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[1, 9]]);
       }))();
     }
   }
@@ -22246,8 +22260,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 
@@ -22278,11 +22291,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/inquiry/test/store";
+                url = "http://money-board-api.loc.com/com/inquiry/store";
                 _this.item.inquiry_type = 1;
                 _context.prev = 2;
                 _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this.item);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
               case 5:
                 response = _context.sent;
@@ -22358,8 +22371,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 
@@ -22390,11 +22402,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/inquiry/test/store";
+                url = "http://money-board-api.loc.com/com/inquiry/store";
                 _this.item.inquiry_type = 2;
                 _context.prev = 2;
                 _context.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this.item);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
               case 5:
                 response = _context.sent;
@@ -22470,10 +22482,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -22502,12 +22519,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/change/test/pass";
+                url = "http://money-board-api.loc.com/com/change/pass";
                 _context.prev = 1;
-                _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this.item);
+                _this.item = _objectSpread(_objectSpread({}, _this.item), {}, {
+                  user_code: '0614765068'
+                });
+                _context.next = 5;
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
-              case 4:
+              case 5:
                 response = _context.sent;
                 console.log(response);
 
@@ -22522,11 +22542,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context.next = 14;
+                _context.next = 15;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22534,12 +22554,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.message = false;
                 }, 2000);
 
-              case 14:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee, null, [[1, 10]]);
       }))();
     }
   }
@@ -22644,8 +22664,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
@@ -22684,20 +22703,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/test/index";
+                url = "http://money-board-api.loc.com/com/user/index";
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(url);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.get(url);
 
               case 4:
                 response = _context.sent;
-                // console.log(response);
+                console.log(response);
                 _this.items = response.data.data.data_list.data;
-                _context.next = 13;
+                _context.next = 14;
                 break;
 
-              case 8:
-                _context.prev = 8;
+              case 9:
+                _context.prev = 9;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22705,12 +22724,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.message = false;
                 }, 2000);
 
-              case 13:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[1, 9]]);
       }))();
     },
     // ToDo:削除前にモーダル確認？
@@ -22724,10 +22743,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 // URLのセット
-                url = "http://money-board-api.loc.com/com/user/test/delete";
+                url = "http://money-board-api.loc.com/com/user/delete";
                 _context2.prev = 1;
                 _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, {
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
                   company_code: company_code,
                   user_code: user_code
                 });
@@ -22804,8 +22823,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
 
 
@@ -22837,10 +22855,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 // URL指定
-                url = "http://money-board-api.loc.com/com/user/test/register";
+                url = "http://money-board-api.loc.com/com/user/register";
                 _context.prev = 1;
                 _context.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this.item);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
               case 4:
                 response = _context.sent;
@@ -22897,8 +22915,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
@@ -22937,10 +22954,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/test/show"; // const response = await axios.post(url, {company_code: 123, user_code: this.$route.params.id});
+                url = "http://money-board-api.loc.com/com/user/show"; // const response = await axios.post(url, {company_code: 123, user_code: this.$route.params.id});
 
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, {
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
                   company_code: 123,
                   user_code: 6481260241
                 });
@@ -22976,10 +22993,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/test/update";
+                url = "http://money-board-api.loc.com/com/user/update";
                 _context2.prev = 1;
                 _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(url, _this2.item);
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this2.item);
 
               case 4:
                 response = _context2.sent;
@@ -26329,11 +26346,11 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     type: "text",
     "class": "form-input  margin-top--8",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.item.company_id = $event;
+      return $data.item.email_address = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.company_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.email_address]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "email",
     "class": "form-input  margin-top--8",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -27010,11 +27027,11 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     type: "text",
     "class": "form-input  margin-top--8",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.item.user_code = $event;
+      return $data.item.password = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.user_code]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.item.password]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "password",
     "class": "form-input  margin-top--8",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -30645,155 +30662,155 @@ var routes = [// トップページ
 {
   path: "/mypage",
   component: _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_12__.default,
-  name: "mypage-home" // beforeEnter: auth,
-
+  name: "mypage-home",
+  beforeEnter: auth
 }, // 登録情報の確認・変更
 {
   path: "/mypage/company",
   component: _views_mypage_Company_Company_vue__WEBPACK_IMPORTED_MODULE_13__.default,
-  name: "mypage-company" // beforeEnter: auth,
-
+  name: "mypage-company",
+  beforeEnter: auth
 }, // 登録情報の編集
 {
   path: "/mypage/company_edit/:company_code",
   component: _views_mypage_Company_Company_edit_vue__WEBPACK_IMPORTED_MODULE_14__.default,
   name: "mypage-company_edit",
-  props: true // beforeEnter: auth,
-
+  props: true,
+  beforeEnter: auth
 }, // 登録情報の確認
 {
   path: "/mypage/company_confirm",
   component: _views_mypage_Company_Company_confirm_vue__WEBPACK_IMPORTED_MODULE_15__.default,
   name: "mypage-company_confirm",
-  props: true // beforeEnter: auth,
-
+  props: true,
+  beforeEnter: auth
 }, // 担当者情報の登録・変更・削除
 {
   path: "/mypage/company/reps-list",
   component: _views_mypage_Reps_Reps_vue__WEBPACK_IMPORTED_MODULE_16__.default,
-  name: "mypage-reps" // beforeEnter: auth,
-
+  name: "mypage-reps",
+  beforeEnter: auth
 }, // 担当者情報の作成
 {
   path: "/mypage/company/reps-list_create",
   component: _views_mypage_Reps_Reps_create_vue__WEBPACK_IMPORTED_MODULE_17__.default,
-  name: "mypage-reps_create" // beforeEnter: auth,
-
+  name: "mypage-reps_create",
+  beforeEnter: auth
 }, // 担当者情報の編集
 {
   path: "/mypage/company/reps-list_edit/:id",
   component: _views_mypage_Reps_Reps_edit_vue__WEBPACK_IMPORTED_MODULE_18__.default,
   name: "mypage-reps_edit",
-  props: true // beforeEnter: auth,
-
+  props: true,
+  beforeEnter: auth
 }, // 担当者情報の確認画面
 {
   path: "/mypage/company/reps-list_confirm",
   component: _views_mypage_Reps_Reps_confirm_vue__WEBPACK_IMPORTED_MODULE_19__.default,
-  name: "mypage-reps_confirm" // beforeEnter: auth,
-
+  name: "mypage-reps_confirm",
+  beforeEnter: auth
 }, // 登録企業の担当者変更・削除
 {
   path: "/mypage/company/client/rep",
   component: _views_mypage_Client_Client_vue__WEBPACK_IMPORTED_MODULE_20__.default,
-  name: "mypage-client" // beforeEnter: auth,
-
+  name: "mypage-client",
+  beforeEnter: auth
 }, // 登録企業の担当者 編集
 {
   path: "/mypage/company/client/rep_edit/:id",
   component: _views_mypage_Client_Client_edit_vue__WEBPACK_IMPORTED_MODULE_21__.default,
   name: "mypage-client_edit",
-  props: true // beforeEnter: auth,
-
+  props: true,
+  beforeEnter: auth
 }, // 登録企業の担当者 確認画面
 {
   path: "/mypage/company/client/rep_confirm",
   component: _views_mypage_Client_Client_confirm_vue__WEBPACK_IMPORTED_MODULE_22__.default,
   name: "mypage-client_confirm",
-  props: true // beforeEnter: auth,
-
+  props: true,
+  beforeEnter: auth
 }, // プラン変更 / 使用会社数の増減
 {
   path: "/mypage/company/plan",
   component: _views_mypage_Plan_Plan_vue__WEBPACK_IMPORTED_MODULE_23__.default,
-  name: "mypage-plan" // beforeEnter: auth,
-
+  name: "mypage-plan",
+  beforeEnter: auth
 }, // プラン変更 / 使用会社数の増減 編集
 {
   path: "/mypage/company/plan_edit",
   component: _views_mypage_Plan_Plan_edit_vue__WEBPACK_IMPORTED_MODULE_24__.default,
-  name: "mypage-plan_edit" // beforeEnter: auth,
-
+  name: "mypage-plan_edit",
+  beforeEnter: auth
 }, // プレミアムプラン
 {
   path: "/mypage/company/premium/client-list",
   component: _views_mypage_Premium_vue__WEBPACK_IMPORTED_MODULE_25__.default,
-  name: "mypage-premium" // beforeEnter: auth,
-
+  name: "mypage-premium",
+  beforeEnter: auth
 }, // メールアドレスの変更
 {
   path: "/mypage/company/email",
   component: _views_mypage_Email_Email_vue__WEBPACK_IMPORTED_MODULE_26__.default,
-  name: "mypage-email" // beforeEnter: auth,
-
+  name: "mypage-email",
+  beforeEnter: auth
 }, // メールアドレスの変更　確認
 {
   path: "/mypage/company/email_confirm",
   component: _views_mypage_Email_Email_confirm_vue__WEBPACK_IMPORTED_MODULE_27__.default,
-  name: "mypage-email_confirm" // beforeEnter: auth,
-
+  name: "mypage-email_confirm",
+  beforeEnter: auth
 }, // パスワードの変更
 {
   path: "/mypage/company/password",
   component: _views_mypage_Password_Password_vue__WEBPACK_IMPORTED_MODULE_28__.default,
-  name: "mypage-password" // beforeEnter: auth,
-
+  name: "mypage-password",
+  beforeEnter: auth
 }, // パスワードの変更 確認
 {
   path: "/mypage/company/password_confirm",
   component: _views_mypage_Password_Password_confirm_vue__WEBPACK_IMPORTED_MODULE_29__.default,
-  name: "mypage-password_confirm" // beforeEnter: auth,
-
+  name: "mypage-password_confirm",
+  beforeEnter: auth
 }, // ご意見・ご要望
 {
   path: "/mypage/opinion",
   component: _views_mypage_Opinion_Opinion_vue__WEBPACK_IMPORTED_MODULE_30__.default,
-  name: "mypage-opinion" // beforeEnter: auth,
-
+  name: "mypage-opinion",
+  beforeEnter: auth
 }, {
   path: "/mypage/opinion_done",
   component: _views_mypage_Opinion_Opinion_done_vue__WEBPACK_IMPORTED_MODULE_31__.default,
-  name: "mypage-opinion_done" // beforeEnter: auth,
-
+  name: "mypage-opinion_done",
+  beforeEnter: auth
 }, // お問い合わせ
 {
   path: "/mypage/inquiry",
   component: _views_mypage_Inquiry_Inquiry_vue__WEBPACK_IMPORTED_MODULE_32__.default,
-  name: "mypage-inquiry" // beforeEnter: auth,
-
+  name: "mypage-inquiry",
+  beforeEnter: auth
 }, {
   path: "/mypage/inquiry_done",
   component: _views_mypage_Inquiry_Inquiry_done_vue__WEBPACK_IMPORTED_MODULE_33__.default,
-  name: "mypage-inquiry_done" // beforeEnter: auth,
-
+  name: "mypage-inquiry_done",
+  beforeEnter: auth
 }, // ログアウト
 {
   path: "/logout",
   component: _views_mypage_Home_vue__WEBPACK_IMPORTED_MODULE_12__.default,
-  name: "logout" // beforeEnter: auth,
-
+  name: "logout",
+  beforeEnter: auth
 }, // プライバシーポリシー
 {
   path: "/privacy",
   component: _views_privacy_Home_vue__WEBPACK_IMPORTED_MODULE_37__.default,
-  name: "privacy" // beforeEnter: auth,
-
+  name: "privacy",
+  beforeEnter: auth
 }, // 利用規約
 {
   path: "/terms",
   component: _views_terms_Home_vue__WEBPACK_IMPORTED_MODULE_36__.default,
-  name: "terms" // beforeEnter: auth,
-
+  name: "terms",
+  beforeEnter: auth
 }, // システムエラーページ
 {
   path: "/500",

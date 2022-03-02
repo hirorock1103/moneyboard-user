@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -159,10 +159,15 @@ export default {
     },
     methods: {
         async getItem() {
-            let url = "http://money-board-api.loc.com/com/company/test/get";
+            let url = "http://money-board-api.loc.com/com/company/get";
             try {
-                const response = await axios.get(url, {params:{company_code: this.$route.params.company_code}});
-                console.log(response.data[0]);
+                const response = await axios.get(url, {
+                    params:{
+                        company_code: this.$route.params.company_code
+                        }
+                    }
+                );
+                // console.log(response.data[0]);
                 this.item = response.data[0];
             } catch (e){
                 console.log(e);
@@ -171,7 +176,8 @@ export default {
             }
         },
         async updateItem() {
-            let url = "http://money-board-api.loc.com/com/user/test/update";
+            let url = "http://money-board-api.loc.com/com/user/update";
+            this.item = {...this.item, user_code: 123, user_name: 'テストテス男'}
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
