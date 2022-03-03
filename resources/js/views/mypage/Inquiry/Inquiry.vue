@@ -164,7 +164,7 @@ export default {
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
-                    console.log(response);
+                    // console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {

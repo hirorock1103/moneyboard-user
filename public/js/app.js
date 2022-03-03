@@ -22314,7 +22314,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
 
                 if (response.data.status == "NG") {
-                  console.log(response);
+                  // console.log(response);
                   _this.message = response.data.message;
                   setTimeout(function () {
                     _this.message = false;
@@ -31188,17 +31188,19 @@ var actions = {
 
             case 4:
               response = _context3.sent;
+              // console.log(1,response);
+              response.data.data.access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb25leS1ib2FyZC1hcGkubG9jLmNvbVwvY29tXC9sb2dpbiIsImlhdCI6MTY0NjI5NDExNiwiZXhwIjoxNjQ2Mjk3NzE2LCJuYmYiOjE2NDYyOTQxMTYsImp0aSI6IjFPMnJqbE4wdmFmNHA3S3EiLCJzdWIiOjcsInBydiI6ImNmZTdlYzk5YTIzZjQzODhlN2YxZDVmYjg3MDgzNzVjODU0ZWRhNjQifQ.rqp8fSZ5QkpsKQVbFATBG47x2ZoTWMkFy0CFnDK9SWE"; // if (response.data.status === OK) {
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context3.next = 15;
+                _context3.next = 16;
                 break;
               }
 
               localStorage.setItem('authToken', response.data.data.access_token);
-              _context3.next = 9;
+              _context3.next = 10;
               return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board-api.loc.com/com/me");
 
-            case 9:
+            case 10:
               _data = _context3.sent;
               // console.log(2,data);
               context.commit('setApiStatus', true);
@@ -31211,7 +31213,7 @@ var actions = {
 
               return _context3.abrupt("return", false);
 
-            case 15:
+            case 16:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -31223,7 +31225,7 @@ var actions = {
                 });
               }
 
-            case 18:
+            case 19:
             case "end":
               return _context3.stop();
           }
