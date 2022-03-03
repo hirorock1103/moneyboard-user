@@ -83,7 +83,8 @@ export default {
         async Store(){
             let url = "http://money-board-api.loc.com/com/change/mail";
             try {
-                this.item = {...this.item, company_id: 123}
+                var company_code = 123;
+                this.item = {...this.item, company_id: company_code}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);

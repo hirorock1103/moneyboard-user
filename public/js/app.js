@@ -22152,20 +22152,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, response;
+        var url, company_code, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 url = "http://money-board-api.loc.com/com/change/mail";
                 _context.prev = 1;
+                company_code = 123;
                 _this.item = _objectSpread(_objectSpread({}, _this.item), {}, {
-                  company_id: 123
+                  company_id: company_code
                 });
-                _context.next = 5;
+                _context.next = 6;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
-              case 5:
+              case 6:
                 response = _context.sent;
 
                 if (response.data.status == "NG") {
@@ -22180,11 +22181,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context.next = 14;
+                _context.next = 15;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22192,12 +22193,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.message = false;
                 }, 20000);
 
-              case 14:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee, null, [[1, 10]]);
       }))();
     }
   }
