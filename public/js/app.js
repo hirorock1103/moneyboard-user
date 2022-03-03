@@ -31188,19 +31188,17 @@ var actions = {
 
             case 4:
               response = _context3.sent;
-              // console.log(1,response);
-              response.data.data.access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb25leS1ib2FyZC1hcGkubG9jLmNvbVwvY29tXC9sb2dpbiIsImlhdCI6MTY0NjI4ODc1MCwiZXhwIjoxNjQ2MjkyMzUwLCJuYmYiOjE2NDYyODg3NTAsImp0aSI6IkJreklsYU5VSjE0aG01dkwiLCJzdWIiOjcsInBydiI6ImNmZTdlYzk5YTIzZjQzODhlN2YxZDVmYjg3MDgzNzVjODU0ZWRhNjQifQ.Bjkisoo_xyTupfiwEnHXQrlyrRd34YvyRt7MrsYqAAo";
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context3.next = 16;
+                _context3.next = 15;
                 break;
               }
 
               localStorage.setItem('authToken', response.data.data.access_token);
-              _context3.next = 10;
+              _context3.next = 9;
               return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board-api.loc.com/com/me");
 
-            case 10:
+            case 9:
               _data = _context3.sent;
               // console.log(2,data);
               context.commit('setApiStatus', true);
@@ -31213,7 +31211,7 @@ var actions = {
 
               return _context3.abrupt("return", false);
 
-            case 16:
+            case 15:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -31225,7 +31223,7 @@ var actions = {
                 });
               }
 
-            case 19:
+            case 18:
             case "end":
               return _context3.stop();
           }
@@ -31233,6 +31231,7 @@ var actions = {
       }, _callee3);
     }))();
   },
+  // ログアウト
   sendLogoutRequest: function sendLogoutRequest(context) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
       var response;
@@ -31242,28 +31241,30 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board.loc.com/" + 'user/logout');
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post( // process.env.MIX_VUE_APP_API_URL + 'user/logout'
+              "http://money-board-api.loc.com/com/logout");
 
             case 3:
               response = _context4.sent;
 
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context4.next = 9;
+              if (!(response.data.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
+                _context4.next = 10;
                 break;
               }
 
               context.commit('setApiStatus', true);
               context.commit('setUser', null);
+              context.commit('setCompany', null);
               localStorage.removeItem('authToken');
               return _context4.abrupt("return", false);
 
-            case 9:
+            case 10:
               context.commit('setApiStatus', false);
-              context.commit('error/setCode', response.status, {
+              context.commit('error/setCode', response.data.status, {
                 root: true
               });
 
-            case 11:
+            case 12:
             case "end":
               return _context4.stop();
           }

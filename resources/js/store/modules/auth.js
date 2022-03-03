@@ -164,6 +164,7 @@ const actions = {
 
         // console.log(1,response);
 
+        // if (response.data.status === OK) {
         if (response.status === OK) {
             localStorage.setItem('authToken', response.data.data.access_token);
             const data = await axios.post(
@@ -189,21 +190,24 @@ const actions = {
             context.commit('error/setCode', response.status, { root: true })
         }
     },
+    // ログアウト
     async sendLogoutRequest (context) {
         context.commit('setApiStatus', null)
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + 'user/logout'
+            // process.env.MIX_VUE_APP_API_URL + 'user/logout'
+            "http://money-board-api.loc.com/com/logout"
         );
 
-        if (response.status === OK) {
+        if (response.data.status === OK) {
             context.commit('setApiStatus', true)
             context.commit('setUser', null)
+            context.commit('setCompany', null)
             localStorage.removeItem('authToken');
             return false
         }
 
         context.commit('setApiStatus', false)
-        context.commit('error/setCode', response.status, { root: true })
+        context.commit('error/setCode', response.data.status, { root: true })
     },
     async sendResetLinkRequest(context, data) {
         context.commit('setApiStatus', null);
