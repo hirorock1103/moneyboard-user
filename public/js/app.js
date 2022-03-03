@@ -30897,7 +30897,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util */ "./resources/js/util.js");
 /* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -31128,17 +31127,19 @@ var actions = {
 
             case 4:
               response = _context3.sent;
+              // console.log(1,response);
+              response.data.data.access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb25leS1ib2FyZC1hcGkubG9jLmNvbVwvY29tXC9sb2dpbiIsImlhdCI6MTY0NjI4ODc1MCwiZXhwIjoxNjQ2MjkyMzUwLCJuYmYiOjE2NDYyODg3NTAsImp0aSI6IkJreklsYU5VSjE0aG01dkwiLCJzdWIiOjcsInBydiI6ImNmZTdlYzk5YTIzZjQzODhlN2YxZDVmYjg3MDgzNzVjODU0ZWRhNjQifQ.Bjkisoo_xyTupfiwEnHXQrlyrRd34YvyRt7MrsYqAAo";
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context3.next = 15;
+                _context3.next = 16;
                 break;
               }
 
               localStorage.setItem('authToken', response.data.data.access_token);
-              _context3.next = 9;
+              _context3.next = 10;
               return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board-api.loc.com/com/me");
 
-            case 9:
+            case 10:
               _data = _context3.sent;
               // console.log(2,data);
               context.commit('setApiStatus', true);
@@ -31151,7 +31152,7 @@ var actions = {
 
               return _context3.abrupt("return", false);
 
-            case 15:
+            case 16:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -31163,7 +31164,7 @@ var actions = {
                 });
               }
 
-            case 18:
+            case 19:
             case "end":
               return _context3.stop();
           }
@@ -31180,7 +31181,7 @@ var actions = {
             case 0:
               context.commit('setApiStatus', null);
               _context4.next = 3;
-              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post(process.env.MIX_VUE_APP_API_URL + 'user/logout');
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board.loc.com/" + 'user/logout');
 
             case 3:
               response = _context4.sent;
@@ -31219,7 +31220,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context5.next = 4;
-              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board.loc.com/" + 'user/password/reset/send-email', data);
 
             case 4:
               response = _context5.sent;
@@ -31263,7 +31264,7 @@ var actions = {
               context.commit('setApiStatus', null);
               context.commit('setLoadingStatus', true);
               _context6.next = 4;
-              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post(process.env.MIX_VUE_APP_API_URL + 'user/password/reset', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board.loc.com/" + 'user/password/reset', data);
 
             case 4:
               response = _context6.sent;
@@ -31305,7 +31306,7 @@ var actions = {
           switch (_context7.prev = _context7.next) {
             case 0:
               _context7.next = 2;
-              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get(process.env.MIX_VUE_APP_API_URL + 'user/company', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get("http://money-board.loc.com/" + 'user/company', data);
 
             case 2:
               response = _context7.sent;
@@ -31334,7 +31335,7 @@ var actions = {
           switch (_context8.prev = _context8.next) {
             case 0:
               _context8.next = 2;
-              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get(process.env.MIX_VUE_APP_API_URL + 'company/clients-list', data);
+              return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.get("http://money-board.loc.com/" + 'company/clients-list', data);
 
             case 2:
               response = _context8.sent;
