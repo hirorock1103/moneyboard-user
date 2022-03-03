@@ -74,7 +74,7 @@
                             </div>
                         </article>
                         <div class="text-center">
-                                <input type="submit" class="[ btn  btn--accent ]" value="変更"/>
+                            <input type="submit" class="[ btn  btn--accent ]" value="変更"/>
                         </div>
                     </form>
                 </div>
@@ -100,9 +100,10 @@ export default {
     },
     methods: {
         async Store(){
+            var user_code = '0614765068';
             let url = "http://money-board-api.loc.com/com/change/pass";
             try {
-                this.item = {...this.item, user_code: '0614765068'}
+                this.item = {...this.item, user_code: user_code}
                 const response = await axios.post(url, this.item);
                 console.log(response);
                 if(response.data.status=="NG"){

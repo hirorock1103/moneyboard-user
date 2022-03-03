@@ -22527,20 +22527,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, response;
+        var user_code, url, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                user_code = '0614765068';
                 url = "http://money-board-api.loc.com/com/change/pass";
-                _context.prev = 1;
+                _context.prev = 2;
                 _this.item = _objectSpread(_objectSpread({}, _this.item), {}, {
-                  user_code: '0614765068'
+                  user_code: user_code
                 });
-                _context.next = 5;
+                _context.next = 6;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
 
-              case 5:
+              case 6:
                 response = _context.sent;
                 console.log(response);
 
@@ -22555,24 +22556,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context.next = 15;
+                _context.next = 16;
                 break;
 
-              case 10:
-                _context.prev = 10;
-                _context.t0 = _context["catch"](1);
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](2);
                 console.log(_context.t0);
                 _this.message = _context.t0;
                 setTimeout(function () {
                   _this.message = false;
                 }, 2000);
 
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 10]]);
+        }, _callee, null, [[2, 11]]);
       }))();
     }
   }
@@ -31189,7 +31190,7 @@ var actions = {
             case 4:
               response = _context3.sent;
               // console.log(1,response);
-              response.data.data.access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb25leS1ib2FyZC1hcGkubG9jLmNvbVwvY29tXC9sb2dpbiIsImlhdCI6MTY0NjI5NDExNiwiZXhwIjoxNjQ2Mjk3NzE2LCJuYmYiOjE2NDYyOTQxMTYsImp0aSI6IjFPMnJqbE4wdmFmNHA3S3EiLCJzdWIiOjcsInBydiI6ImNmZTdlYzk5YTIzZjQzODhlN2YxZDVmYjg3MDgzNzVjODU0ZWRhNjQifQ.rqp8fSZ5QkpsKQVbFATBG47x2ZoTWMkFy0CFnDK9SWE"; // if (response.data.status === OK) {
+              response.data.data.access_token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9tb25leS1ib2FyZC1hcGkubG9jLmNvbVwvY29tXC9sb2dpbiIsImlhdCI6MTY0NjMwMTk5MywiZXhwIjoxNjQ2MzA1NTkzLCJuYmYiOjE2NDYzMDE5OTMsImp0aSI6IjJVOFpiejVCTkdEWkZKekQiLCJzdWIiOjcsInBydiI6ImNmZTdlYzk5YTIzZjQzODhlN2YxZDVmYjg3MDgzNzVjODU0ZWRhNjQifQ.Ul0EG8yMqaNRMDjKtbf8KUtuN9P1BykQDPhBbo77ikQ"; // if (response.data.status === OK) {
 
               if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
                 _context3.next = 16;
