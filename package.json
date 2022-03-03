@@ -29,6 +29,7 @@
         "dayjs": "^1.10.8",
         "vue-loading-overlay": "4.0",
         "vue-router": "^4.0.10",
-        "vuex": "^4.0.2"
+        "vuex": "^4.0.2",
+        "vuex-persistedstate": "^4.1.0"
     }
 }
