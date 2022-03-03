@@ -7,24 +7,20 @@
                 <div class="container">
 
                     <small class="[ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
-                        <!-- ID {{ company.company_id }} -->
-                        ID 12345
+                        ID {{ company.company_code }}
                     </small>
 
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            <!-- {{ company.company_name }} -->
-                            株式会社ABC
+                            {{ company.company_name }}
                         </h2>
                         <h5 class="margin-bottom--16">
                             登録可能データ残り
                             <span class="font-weight-bold  display-none-large  padding-left--4">12</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
-                                <!-- {{ clientsNumber }}</span> -->
-                                10</span>
-                            <!-- 件/{{ company.available_licenses_total }}件 -->
-                            件/20件
+                                {{ company.available_licenses_total }}</span>
+                            件/{{ company.available_licenses_total }}件
                         </h5>
                     </div>
 
@@ -120,11 +116,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import SideMenu from '../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    computed: {
+        ...mapState({
+            company: function (state) {
+                return state.auth.company;
+            }
+        })
     }
 }
 </script>
