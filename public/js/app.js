@@ -31283,17 +31283,18 @@ var actions = {
 
             case 4:
               response = _context3.sent;
+              console.log(1, response);
 
-              if (!(response.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
-                _context3.next = 15;
+              if (!(response.data.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
+                _context3.next = 16;
                 break;
               }
 
               localStorage.setItem('authToken', response.data.data.access_token);
-              _context3.next = 9;
+              _context3.next = 10;
               return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_2__.default.post("http://money-board-api.loc.com/com/me");
 
-            case 9:
+            case 10:
               _data = _context3.sent;
               // console.log(2,data);
               context.commit('setApiStatus', true);
@@ -31306,7 +31307,7 @@ var actions = {
 
               return _context3.abrupt("return", false);
 
-            case 15:
+            case 16:
               context.commit('setApiStatus', false);
               context.commit('setLoadingStatus', false);
 
@@ -31318,7 +31319,7 @@ var actions = {
                 });
               }
 
-            case 18:
+            case 19:
             case "end":
               return _context3.stop();
           }

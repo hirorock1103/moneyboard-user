@@ -162,10 +162,9 @@ const actions = {
             data
         );
 
-        // console.log(1,response);
+        console.log(1,response);
 
-        // if (response.data.status === OK) {
-        if (response.status === OK) {
+        if (response.data.status === OK) {
             localStorage.setItem('authToken', response.data.data.access_token);
             const data = await axios.post(
                 "http://money-board-api.loc.com/com/me"
