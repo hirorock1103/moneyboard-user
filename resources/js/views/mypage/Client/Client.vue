@@ -27,6 +27,7 @@
                             </div>
                         </article>
                     </form>
+                    <button v-on:click="openModal">Click</button>
 
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -51,9 +52,33 @@
                             </table>
                         </div>
                     </article>
-
                 </div>
             </section>
+            <div id="overlay" v-show="showContent" v-on:click="closeModal">
+                <div id="content">
+                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                        <p>企業情報を削除します。本当によろしいですか？</p>
+                    </div>
+                    <table class="table table--bordered">
+                        <thead>
+                            <tr>
+                                <th>会社名</th>
+                                <th>担当者</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>株式会社サンプルカンパニー</td>
+                                <td>あああ　ああああ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                        <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;">中止</button>
+                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="closeModal">削除</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </template>
@@ -69,7 +94,8 @@ export default {
     data() {
         return {
             items: [],
-            message: null
+            message: null,
+            showContent: false
         };
     },
     created: function() {
@@ -87,6 +113,12 @@ export default {
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
+        },
+        openModal: function(){
+            this.showContent = true
+        },
+        closeModal: function(){
+            this.showContent = false
         },
         async deleteItem(id) {
             let url = "http://money-board-api.loc.com/com/client/delete";

@@ -16,6 +16,7 @@
                     <div class="text-center">
                         <!-- 画面遷移の仕方（routesのpathで指定する） -->
                         <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
+                        <button v-on:click="openModal">Click</button>
                     </div>
 
                     <!-- メッセージがあれば表示 -->
@@ -57,6 +58,36 @@
 
                 </div>
             </section>
+            <div id="overlay" v-show="showContent" v-on:click="closeModal">
+                <div id="content">
+                    <div class="[ padding--24  padding-large--48 ] bg-white">
+                        <p>担当者情報を削除します。</p>
+                        <p>選択された担当者が保持している企業情報もすべて削除されますが本当によろしいですか？</p>
+                    </div>
+                    <table class="table table--bordered">
+                        <thead>
+                            <tr>
+                                <th>使用者番号</th>
+                                <th>担当者名</th>
+                                <th>データ使用数</th>
+                                <th>更新日時</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>あああ　ああああ</td>
+                                <td class="text-center">11社 / 60社</td>
+                                <td class="text-center">2021/01/02</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                        <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;">中止</button>
+                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="closeModal">削除</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </template>
@@ -73,7 +104,8 @@ export default {
     data() {
         return {
             items: [],
-            message: null
+            message: null,
+            showContent: false
         };
     },
     created: function() {
@@ -93,7 +125,12 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
-        // ToDo:削除前にモーダル確認？
+        openModal: function(){
+            this.showContent = true
+        },
+        closeModal: function(){
+            this.showContent = false
+        },
         async deleteItem(company_code, user_code) {
             // URLのセット
             let url = "http://money-board-api.loc.com/com/user/delete";
