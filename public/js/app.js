@@ -21685,12 +21685,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 1;
                 _context.next = 4;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
-                  company_id: 123
+                  company_id: _this.$store.state.auth.company.id
                 });
 
               case 4:
                 response = _context.sent;
-                // console.log(response);
                 _this.items = response.data.data.get_list.data;
                 _context.next = 13;
                 break;
@@ -22170,7 +22169,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 url = "http://money-board-api.loc.com/com/change/mail";
                 _context.prev = 1;
-                company_code = 123;
+                company_code = _this.$store.state.auth.company_code;
                 _this.item = _objectSpread(_objectSpread({}, _this.item), {}, {
                   company_id: company_code
                 });
@@ -22544,6 +22543,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                // Todo:user_code
+                // var user_code = this.$store.state.auth.user.user_code;
                 user_code = '0614765068';
                 url = "http://money-board-api.loc.com/com/change/pass";
                 _context.prev = 2;

@@ -100,6 +100,8 @@ export default {
     },
     methods: {
         async Store(){
+            // Todo:user_code
+            // var user_code = this.$store.state.auth.user.user_code;
             var user_code = '0614765068';
             let url = "http://money-board-api.loc.com/com/change/pass";
             try {
