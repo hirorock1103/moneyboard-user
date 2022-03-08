@@ -114,9 +114,7 @@ export default {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async getItem() {
             let url = "http://money-board-api.loc.com/com/user/show";
-            // const response = await axios.post(url, {company_code: 123, user_code: this.$route.params.id});
-            const response = await axios.post(url, {company_code: 123, user_code: 6481260241});
-            // console.log(response.data.data.user);
+            const response = await axios.post(url, {company_code: this.$store.state.auth.user.company_code, user_code: this.$route.params.id});
             if (response.data.status=="NG") {
                 console.log(response.data);
                 this.message = response.data.errors.undefined_user

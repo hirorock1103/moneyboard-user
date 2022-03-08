@@ -22742,26 +22742,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, response;
+        var user, url, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/index";
-                _context.prev = 1;
-                _context.next = 4;
+                user = _this.$store.state.auth.user;
+                url = "http://money-board-api.loc.com/com/user/index?company_code=" + user.company_code;
+                _context.prev = 2;
+                _context.next = 5;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.get(url);
 
-              case 4:
+              case 5:
                 response = _context.sent;
-                console.log(response);
                 _this.items = response.data.data.data_list.data;
                 _context.next = 14;
                 break;
 
               case 9:
                 _context.prev = 9;
-                _context.t0 = _context["catch"](1);
+                _context.t0 = _context["catch"](2);
                 console.log(_context.t0);
                 _this.message = _context.t0;
                 setTimeout(function () {
@@ -22773,7 +22773,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee, null, [[2, 9]]);
       }))();
     },
     openModal: function openModal() {
@@ -23003,18 +23003,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/show"; // const response = await axios.post(url, {company_code: 123, user_code: this.$route.params.id});
-
+                url = "http://money-board-api.loc.com/com/user/show";
                 _context.next = 3;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
-                  company_code: 123,
-                  user_code: 6481260241
+                  company_code: _this.$store.state.auth.user.company_code,
+                  user_code: _this.$route.params.id
                 });
 
               case 3:
                 response = _context.sent;
 
-                // console.log(response.data.data.user);
                 if (response.data.status == "NG") {
                   console.log(response.data);
                   _this.message = response.data.errors.undefined_user;
@@ -27521,7 +27519,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
       to: {
         name: 'mypage-reps_edit',
         params: {
-          id: item.id
+          id: item.user_code
         }
       },
       "class": "[ btn  btn--small  btn--accent ] margin-right--16"
@@ -27610,7 +27608,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/reps-list_create",
+    to: "/mypage/company/reps-list",
     "class": "[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]"
   }, {
     "default": _withId(function () {

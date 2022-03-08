@@ -46,7 +46,7 @@
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
                                             <!-- idを指定して該当の編集画面へ遷移 -->
-                                            <router-link :to="{name: 'mypage-reps_edit', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link :to="{name: 'mypage-reps_edit', params: { id: item.user_code }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <!-- onClickで削除 -->
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.company_code, item.user_code)">削除</button>
                                         </th>
@@ -55,9 +55,9 @@
                             </table>
                         </div>
                     </article>
-
                 </div>
             </section>
+
             <div id="overlay" v-show="showContent" v-on:click="closeModal">
                 <div id="content">
                     <div class="[ padding--24  padding-large--48 ] bg-white">
@@ -88,6 +88,7 @@
                     </div>
                 </div>
             </div>
+
         </main>
     </div>
 </template>
@@ -114,10 +115,10 @@ export default {
     methods: {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/user/index";
+            var user = this.$store.state.auth.user;
+            let url = "http://money-board-api.loc.com/com/user/index?company_code=" + user.company_code;
             try {
                 const response = await axios.get(url);
-                console.log(response);
                 this.items = response.data.data.data_list.data;
             } catch (e){
                 console.log(e);
