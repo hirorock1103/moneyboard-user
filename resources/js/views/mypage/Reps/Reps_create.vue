@@ -29,19 +29,6 @@
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <!-- ToDo:Vuexで値を保持して自動させる -->
-                                                <th class="[ display-table-row  display-table-cell-large ]">
-                                                    企業コード（削除予定）
-                                                </th>
-                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-input  margin-top--8  form-control"
-                                                        v-model="item.company_code"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者番号
                                                 </th>
@@ -114,6 +101,7 @@ export default {
             // URL指定
             let url = "http://money-board-api.loc.com/com/user/register";
             try {
+                this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
                 // POSTでURLとデータを引数
                 const response = await axios.post(url, this.item);
                 // 返却値によって動作切り分け
