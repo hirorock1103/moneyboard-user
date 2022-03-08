@@ -176,12 +176,14 @@ export default {
             }
         },
         async updateItem() {
+            var user = this.$store.state.auth.user;
             let url = "http://money-board-api.loc.com/com/user/update";
-            this.item = {...this.item, user_code: 123, user_name: 'テストテス男'}
+            // Todo:user_codeがないのでひとまず
+            this.item = {...this.item, user_code: user.company_code, user_name: user.company_rep}
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
-                    console.log(response);
+                    // console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {

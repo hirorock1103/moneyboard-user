@@ -153,6 +153,7 @@ const actions = {
     updateCard(context, data) {
         context.commit('setCard', data);
     },
+    // ログイン
     async sendLoginRequest(context, data) {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
@@ -164,7 +165,7 @@ const actions = {
 
         console.log(1,response);
 
-        if (response.data.status === OK) {
+        if (response.data.status === 'OK') {
             localStorage.setItem('authToken', response.data.data.access_token);
             const data = await axios.post(
                 "http://money-board-api.loc.com/com/me"

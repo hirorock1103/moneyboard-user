@@ -21671,46 +21671,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     this.fetchItems();
   },
+  computed: {
+    company: function company() {
+      return this.$state.auth.company;
+    }
+  },
   methods: {
     fetchItems: function fetchItems() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, response;
+        var url, data1, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 url = "http://money-board-api.loc.com/com/client/index";
-                _context.prev = 1;
-                _context.next = 4;
+                _context.next = 3;
+                return _this.get_value();
+
+              case 3:
+                data1 = "";
+                console.log(1, data1);
+                _context.prev = 5;
+                _context.next = 8;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, {
                   company_id: 123
                 });
 
-              case 4:
+              case 8:
                 response = _context.sent;
                 // console.log(response);
                 _this.items = response.data.data.get_list.data;
-                _context.next = 13;
+                _context.next = 17;
                 break;
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](5);
                 console.log(_context.t0);
                 _this.message = _context.t0;
                 setTimeout(function () {
                   _this.message = false;
                 }, 2000);
 
-              case 13:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 8]]);
+        }, _callee, null, [[5, 12]]);
       }))();
+    },
+    get_value: function get_value() {
+      console.log(this.$store.state);
+      this.user_value = this.$store.state.user_value;
+      console.log(this.user_value);
+      console.log(this.$store.state.user_value);
     },
     openModal: function openModal() {
       this.showContent = true;
@@ -21845,33 +21862,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    this.fetchItems();
+    var company = this.$store.state.auth.company;
+    this.fetchItems(company);
   },
   methods: {
-    fetchItems: function fetchItems() {
+    fetchItems: function fetchItems(company) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, response;
+        var company_code, url, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/company/get?company_code=123";
-                _context.prev = 1;
-                _context.next = 4;
+                company_code = company.company_code;
+                url = "http://money-board-api.loc.com/com/company/get?company_code=" + company_code;
+                _context.prev = 2;
+                _context.next = 5;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.get(url);
 
-              case 4:
+              case 5:
                 response = _context.sent;
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 _this.item = response.data[0];
                 _context.next = 14;
                 break;
 
               case 9:
                 _context.prev = 9;
-                _context.t0 = _context["catch"](1);
+                _context.t0 = _context["catch"](2);
                 console.log(_context.t0);
                 _this.message = _context.t0;
                 setTimeout(function () {
@@ -21883,7 +21902,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee, null, [[2, 9]]);
       }))();
     }
   }
@@ -22060,25 +22079,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var url, response;
+        var user, url, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                url = "http://money-board-api.loc.com/com/user/update";
+                user = _this2.$store.state.auth.user;
+                url = "http://money-board-api.loc.com/com/user/update"; // Todo:user_codeがないのでひとまず
+
                 _this2.item = _objectSpread(_objectSpread({}, _this2.item), {}, {
-                  user_code: 123,
-                  user_name: 'テストテス男'
+                  user_code: user.company_code,
+                  user_name: user.company_rep
                 });
-                _context2.prev = 2;
-                _context2.next = 5;
+                _context2.prev = 3;
+                _context2.next = 6;
                 return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this2.item);
 
-              case 5:
+              case 6:
                 response = _context2.sent;
 
                 if (response.data.status == "NG") {
-                  console.log(response);
+                  // console.log(response);
                   _this2.message = response.data.message;
                   setTimeout(function () {
                     _this2.message = false;
@@ -22089,24 +22110,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-                _context2.next = 14;
+                _context2.next = 15;
                 break;
 
-              case 9:
-                _context2.prev = 9;
-                _context2.t0 = _context2["catch"](2);
+              case 10:
+                _context2.prev = 10;
+                _context2.t0 = _context2["catch"](3);
                 console.log(_context2.t0);
                 _this2.message = _context2.t0;
                 setTimeout(function () {
                   _this2.message = false;
                 }, 2000);
 
-              case 14:
+              case 15:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[2, 9]]);
+        }, _callee2, null, [[3, 10]]);
       }))();
     }
   }
@@ -31267,6 +31288,7 @@ var actions = {
   updateCard: function updateCard(context, data) {
     context.commit('setCard', data);
   },
+  // ログイン
   sendLoginRequest: function sendLoginRequest(context, data) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
       var response, _data;
@@ -31285,7 +31307,7 @@ var actions = {
               response = _context3.sent;
               console.log(1, response);
 
-              if (!(response.data.status === _util__WEBPACK_IMPORTED_MODULE_1__.OK)) {
+              if (!(response.data.status === 'OK')) {
                 _context3.next = 16;
                 break;
               }

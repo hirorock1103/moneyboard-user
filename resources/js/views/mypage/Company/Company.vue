@@ -128,14 +128,16 @@ export default {
         };
     },
     created: function() {
-        this.fetchItems();
+        var company = this.$store.state.auth.company;
+        this.fetchItems(company);
     },
     methods: {
-        async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/company/get?company_code=123";
+        async fetchItems(company) {
+            var company_code = company.company_code;
+            let url = "http://money-board-api.loc.com/com/company/get?company_code=" + company_code;
             try {
                 const response = await axios.get(url);
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 this.item = response.data[0];
             } catch (e){
                 console.log(e);
