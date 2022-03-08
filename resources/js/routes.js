@@ -30,10 +30,11 @@ import Reps_confirm from "./views/mypage/Reps/Reps_confirm.vue";
 import Client from "./views/mypage/Client/Client.vue";
 import Client_edit from "./views/mypage/Client/Client_edit.vue";
 import Client_confirm from "./views/mypage/Client/Client_confirm.vue";
-// 
+// プラン変更
 import Plan from "./views/mypage/Plan/Plan.vue";
 import Plan_edit from "./views/mypage/Plan/Plan_edit.vue";
-import Premium from "./views/mypage/Premium.vue";
+// プレミアムプラン
+import Premium from "./views/mypage/Premium/Premium.vue";
 // メールアドレスの変更
 import Email from "./views/mypage/Email/Email.vue";
 import Email_confirm from "./views/mypage/Email/Email_confirm.vue";
