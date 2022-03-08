@@ -27,7 +27,6 @@
                             </div>
                         </article>
                     </form>
-                    <button v-on:click="openModal">Click</button>
 
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -45,8 +44,33 @@
                                         <td>あああ　あああ{{ item.user_id }}</td>
                                         <th class="text-center">
                                             <router-link :to="{name: 'mypage-client_edit', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
-                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(item.id)">削除</button>
+                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
+                                        <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
+                                        <div id="content">
+                                                <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                                    <p>企業情報を削除します。本当によろしいですか？</p>
+                                                </div>
+                                                <table class="table table--bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>会社名</th>
+                                                            <th>担当者</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>{{postItem.client_name}}</td>
+                                                            <td>あああ　ああああ{{postItem.user_id}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                                    <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
+                                                    <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">削除</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </tr>
                                 </tbody>
                             </table>
@@ -54,31 +78,7 @@
                     </article>
                 </div>
             </section>
-            <div id="overlay" v-show="showContent" v-on:click="closeModal">
-                <div id="content">
-                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                        <p>企業情報を削除します。本当によろしいですか？</p>
-                    </div>
-                    <table class="table table--bordered">
-                        <thead>
-                            <tr>
-                                <th>会社名</th>
-                                <th>担当者</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>株式会社サンプルカンパニー</td>
-                                <td>あああ　ああああ</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                        <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;">中止</button>
-                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="closeModal">削除</button>
-                    </div>
-                </div>
-            </div>
+
         </main>
     </div>
 </template>
@@ -95,7 +95,8 @@ export default {
         return {
             items: [],
             message: null,
-            showContent: false
+            showContent: false,
+            postItem: "",
         };
     },
     created: function() {
@@ -105,8 +106,7 @@ export default {
         async fetchItems() {
             let url = "http://money-board-api.loc.com/com/client/index";
             try {
-                const response = await axios.post(url, {company_id: 123});
-                // console.log(response);
+                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
                 this.items = response.data.data.get_list.data;
             } catch (e){
                 console.log(e);
@@ -114,8 +114,9 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
-        openModal: function(){
+        openModal: function(item){
             this.showContent = true
+            this.postItem = item
         },
         closeModal: function(){
             this.showContent = false
