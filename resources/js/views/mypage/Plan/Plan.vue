@@ -15,6 +15,8 @@
                         </h5>
                     </div>
 
+                    {{company}}
+
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -88,15 +90,17 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>スタンダードプラン</th>
-                                        <th>プレミアムプラン</th>
+                                        <th v-for="item in items" :key="item._id">
+                                            {{item.plan_name}}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>システム利用料金</td>
-                                        <td>55,000円/月</td>
-                                        <td>132,000円/月</td>
+                                        <td v-for="item in items" :key="item._id">
+                                            {{item.price}}円/月
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>自社データ5期の比較</td>
@@ -154,11 +158,42 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    computed: {
+        ...mapState({
+            company: function (state) {
+                return state.auth.company;
+            }
+        })
+    },
+    data() {
+        return {
+            items: [],
+        };
+    },
+    created: function() {
+        this.fetchItems();
+    },
+    methods: {
+        async fetchItems() {
+            let url = "http://money-board-api.loc.com/com/plan/get";
+            try {
+                const response = await axios.post(url);
+                this.items = response.data;
+                var company = this.$store.state.auth.company;
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
     }
 }
 </script>
