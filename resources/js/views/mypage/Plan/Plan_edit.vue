@@ -26,7 +26,7 @@
                                 <table class="table width-40">
                                     <tbody>
                                         <tr>
-                                            <th class="">
+                                            <th class="nowrap">
                                                 現在の料金プラン
                                             </th>
                                             <td class="padding-bottom--16 nowrap">
@@ -46,7 +46,15 @@
                                         </tr>
                                         <tr>
                                             <th class="nowrap">
-                                                追加された現在のデータ
+                                                プランデータ数
+                                            </th>
+                                            <td class="padding-bottom--16">
+                                                {{plans.data_plan}}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="nowrap">
+                                                追加データ数
                                             </th>
                                             <td class="padding-bottom--16" style="display: flex;">
                                                 <input
@@ -63,8 +71,8 @@
                             </div>
                             <h4>
                                 現在の月額料金
-                                <span class="padding-left--8  text-accent">
-                                55,000
+                                <span class="padding-left--8  text-accent" v-if="plans != undefined">
+                                    {{plans.cost_total}}
                                 </span>
                                 円
                             </h4>
@@ -79,11 +87,11 @@
                                             <td class="padding-bottom--16">
                                                 基本料金
                                             </td>
-                                            <td class="padding-bottom--16 text-right">
-                                                55,000円
+                                            <td class="padding-bottom--16 text-right" v-if="plans != undefined">
+                                                {{plans.cost_plan}}円
                                             </td>
-                                            <td class="padding-bottom--16 text-right">
-                                                （システム使用料と登録データ60社分or120社分）
+                                            <td class="padding-bottom--16 text-right" v-if="plans != undefined">
+                                                （システム使用料と登録データ{{plans.data_plan}}社分）
                                             </td>
                                         </tr>
                                         <tr>
@@ -92,8 +100,8 @@
                                             <td class="">
                                                 追加利用料金
                                             </td>
-                                            <td class="text-right">
-                                                5,000円
+                                            <td class="text-right" v-if="plans != undefined">
+                                                {{plans.cost_add}}円
                                             </td>
                                             <td class="text-left"></td>
                                         </tr>
@@ -176,12 +184,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
-    }
+    },
+    computed: {
+        ...mapState({
+            plans: function (state) {
+                return state.auth.plans;
+            }
+        })
+    },
 }
 </script>
 
