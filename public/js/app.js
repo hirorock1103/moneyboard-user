@@ -22686,19 +22686,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.items = response.data;
                 company = _this.$store.state.auth.company;
                 _this.plans = {
-                  name: company === 2 ? 'プレミアムプラン' : 'スタンダードプラン',
-                  data_plan: company === 2 ? 120 : 60,
+                  plan_id: company.plan_id,
+                  name: company.plan_id === 2 ? 'プレミアムプラン' : 'スタンダードプラン',
+                  data_plan: company.plan_id === 2 ? 120 : 60,
                   data_add: company.additional_licenses,
-                  cost_total: (company === 2 ? 132000 : 55000) + company.additional_licenses * 1100,
-                  cost_plan: company === 2 ? 132000 : 55000,
+                  cost_total: (company.plan_id === 2 ? 132000 : 55000) + company.additional_licenses * 1100,
+                  cost_plan: company.plan_id === 2 ? 132000 : 55000,
                   cost_add: company.additional_licenses * 1100
                 };
+                console.log(_this.plans);
                 _this.$store.state.auth.plans = _this.plans;
-                _context.next = 16;
+                _context.next = 17;
                 break;
 
-              case 11:
-                _context.prev = 11;
+              case 12:
+                _context.prev = 12;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22706,12 +22708,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this.message = false;
                 }, 2000);
 
-              case 16:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 11]]);
+        }, _callee, null, [[1, 12]]);
       }))();
     }
   }
@@ -22730,8 +22732,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/axios.js */ "./resources/js/src/plugins/axios.js");
+/* harmony import */ var _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/SideMenuComponent.vue */ "./resources/js/components/SideMenuComponent.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -22740,15 +22751,77 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {
-    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  data: function data() {
+    return {
+      item: {
+        plan_id: this.$store.state.auth.plans.plan_id
+      }
+    };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  components: {
+    SideMenu: _components_SideMenuComponent_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    name: "Store"
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
     plans: function plans(state) {
       return state.auth.plans;
     }
-  }))
+  })),
+  methods: {
+    Store: function Store() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var url, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                url = "http://money-board-api.loc.com/com/company/license";
+                _context.prev = 1;
+                _this.item = _objectSpread(_objectSpread({}, _this.item), {}, {
+                  company_code: _this.$store.state.auth.company.company_code
+                });
+                _context.next = 5;
+                return _src_plugins_axios_js__WEBPACK_IMPORTED_MODULE_1__.default.post(url, _this.item);
+
+              case 5:
+                response = _context.sent;
+
+                if (response.data == "NG") {
+                  _this.message = response.data.message;
+                  setTimeout(function () {
+                    _this.message = false;
+                  }, 2000);
+                } else {
+                  _this.$router.push({
+                    name: 'mypage-plan'
+                  });
+                }
+
+                _context.next = 14;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](1);
+                console.log(_context.t0);
+                _this.message = _context.t0;
+                setTimeout(function () {
+                  _this.message = false;
+                }, 2000);
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 9]]);
+      }))();
+    }
+  }
 });
 
 /***/ }),
@@ -27627,136 +27700,151 @@ var _hoisted_11 = {
   "class": "table width-40"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "nowrap"
-}, " 現在の料金プラン "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "padding-bottom--16 nowrap"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  type: "radio",
-  id: "confirm-radio-s",
-  "class": "form-radio"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "form-radio-label  margin-bottom--8",
-  "for": "confirm-radio-s"
-}, "スタンダードブラン")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
-  "class": "padding-bottom--16 nowrap"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  type: "radio",
-  id: "confirm-radio-p",
-  "class": "form-radio"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "class": "form-radio-label  margin-bottom--8",
-  "for": "confirm-radio-p"
-}, "プレミアムプラン")])], -1
+}, " 現在の料金プラン ", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_13 = {
+  "class": "padding-bottom--16 nowrap"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "form-radio-label  margin-bottom--8",
+  "for": "confirm-radio-s"
+}, "スタンダードブラン", -1
+/* HOISTED */
+);
+
+var _hoisted_15 = {
+  "class": "padding-bottom--16 nowrap"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "class": "form-radio-label  margin-bottom--8",
+  "for": "confirm-radio-p"
+}, "プレミアムプラン", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "nowrap"
 }, " プランデータ数 ", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_18 = {
   "class": "padding-bottom--16"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": "nowrap"
-}, " 追加データ数 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+}, " 追加データ数 ", -1
+/* HOISTED */
+);
+
+var _hoisted_20 = {
   "class": "padding-bottom--16",
   style: {
     "display": "flex"
   }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-  type: "text",
-  id: "",
-  "class": "form-input",
-  placeholder: "60"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+};
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
   "class": "margin-left--12",
   style: {
     "display": "flex",
     "align-items": "center",
     "justify-content": "center"
   }
-}, "社")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td")], -1
+}, "社", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 現在の月額料金 ");
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, null, -1
+/* HOISTED */
+);
 
-var _hoisted_17 = {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 現在の月額料金 ");
+
+var _hoisted_24 = {
   key: 0,
   "class": "padding-left--8  text-accent"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 円 ");
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 円 ");
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_20 = {
+var _hoisted_27 = {
   "class": "table-scrollable  padding-right--8"
 };
-var _hoisted_21 = {
+var _hoisted_28 = {
   "class": "table width-30 nowrap"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": ""
 }, " 内訳 ", -1
 /* HOISTED */
 );
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
   "class": "padding-bottom--16"
 }, " 基本料金 ", -1
 /* HOISTED */
 );
 
-var _hoisted_24 = {
+var _hoisted_31 = {
   key: 0,
   "class": "padding-bottom--16 text-right"
 };
-var _hoisted_25 = {
+var _hoisted_32 = {
   key: 1,
   "class": "padding-bottom--16 text-right"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
   "class": ""
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
   "class": ""
 }, " 追加利用料金 ", -1
 /* HOISTED */
 );
 
-var _hoisted_28 = {
+var _hoisted_35 = {
   key: 0,
   "class": "text-right"
 };
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
   "class": "text-left"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"\" data-v-490a11df><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-490a11df><table class=\"table table--bordered\" data-v-490a11df><thead data-v-490a11df><tr data-v-490a11df><th data-v-490a11df></th><th data-v-490a11df>スタンダードプラン</th><th data-v-490a11df>プレミアムプラン</th></tr></thead><tbody data-v-490a11df><tr data-v-490a11df><td data-v-490a11df>システム利用料金</td><td data-v-490a11df>55,000円/月</td><td data-v-490a11df>132,000円/月</td></tr><tr data-v-490a11df><td data-v-490a11df>自社データ5期の比較</td><td data-v-490a11df>〇</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>他社データ比較</td><td data-v-490a11df>〇</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>財務指標評価</td><td data-v-490a11df>〇</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>顧客管理ツール</td><td data-v-490a11df>―</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>使用できる企業数</td><td data-v-490a11df>60社</td><td data-v-490a11df>120社</td></tr><tr data-v-490a11df><td data-v-490a11df>企業数の追加(1社あたり)</td><td data-v-490a11df>1,100円/月</td><td data-v-490a11df>1,100円/月</td></tr><tr data-v-490a11df><td data-v-490a11df>アプリ登録台数</td><td data-v-490a11df>無制限</td><td data-v-490a11df>無制限</td></tr><tr data-v-490a11df><td data-v-490a11df>担当者登録数</td><td data-v-490a11df>無制限</td><td data-v-490a11df>無制限</td></tr></tbody></table></div></article>", 1);
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"\" data-v-490a11df><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-490a11df><table class=\"table table--bordered\" data-v-490a11df><thead data-v-490a11df><tr data-v-490a11df><th data-v-490a11df></th><th data-v-490a11df>スタンダードプラン</th><th data-v-490a11df>プレミアムプラン</th></tr></thead><tbody data-v-490a11df><tr data-v-490a11df><td data-v-490a11df>システム利用料金</td><td data-v-490a11df>55,000円/月</td><td data-v-490a11df>132,000円/月</td></tr><tr data-v-490a11df><td data-v-490a11df>自社データ5期の比較</td><td data-v-490a11df>〇</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>他社データ比較</td><td data-v-490a11df>〇</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>財務指標評価</td><td data-v-490a11df>〇</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>顧客管理ツール</td><td data-v-490a11df>―</td><td data-v-490a11df>〇</td></tr><tr data-v-490a11df><td data-v-490a11df>使用できる企業数</td><td data-v-490a11df>60社</td><td data-v-490a11df>120社</td></tr><tr data-v-490a11df><td data-v-490a11df>企業数の追加(1社あたり)</td><td data-v-490a11df>1,100円/月</td><td data-v-490a11df>1,100円/月</td></tr><tr data-v-490a11df><td data-v-490a11df>アプリ登録台数</td><td data-v-490a11df>無制限</td><td data-v-490a11df>無制限</td></tr><tr data-v-490a11df><td data-v-490a11df>担当者登録数</td><td data-v-490a11df>無制限</td><td data-v-490a11df>無制限</td></tr></tbody></table></div></article>", 1);
 
-var _hoisted_31 = {
+var _hoisted_38 = {
   "class": "text-center"
 };
 
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("戻る");
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("確認");
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  type: "submit",
+  "class": "[ btn  btn--accent ]",
+  value: "確認"
+}, null, -1
+/* HOISTED */
+);
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -27765,37 +27853,62 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.data_plan) + "社 ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+    onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.Store && $options.Store.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "radio",
+    id: "confirm-radio-s",
+    "class": "form-radio",
+    value: "1",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return _ctx.item.plan_id = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, _ctx.item.plan_id]]), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "radio",
+    id: "confirm-radio-p",
+    "class": "form-radio",
+    value: "2",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return _ctx.item.plan_id = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, _ctx.item.plan_id]]), _hoisted_16])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.data_plan) + "社 ", 1
   /* TEXT */
-  )]), _hoisted_15])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [_hoisted_16, _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.cost_total), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" :value=\"plans.data_add\" "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    id: "",
+    "class": "form-input",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.item.additional_licenses = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.item.additional_licenses]]), _hoisted_21]), _hoisted_22])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [_hoisted_23, _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.cost_total), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_18]), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_22, _hoisted_23, _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.cost_plan) + "円 ", 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_25]), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_29, _hoisted_30, _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.cost_plan) + "円 ", 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_25, " （システム使用料と登録データ" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.data_plan) + "社分） ", 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_32, " （システム使用料と登録データ" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.data_plan) + "社分） ", 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_26, _hoisted_27, _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.cost_add) + "円 ", 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_33, _hoisted_34, _ctx.plans != undefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.plans.cost_add) + "円 ", 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_29])])])])])]), _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_36])])])])])]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/mypage/company/plan",
     "class": "[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_32];
+      return [_hoisted_39];
     }),
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/mypage/company/plan",
-    "class": "[ btn  btn--accent ]"
-  }, {
-    "default": _withId(function () {
-      return [_hoisted_33];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])])]);
+  }), _hoisted_40])], 32
+  /* HYDRATE_EVENTS */
+  )])])])]);
 });
 
 /***/ }),

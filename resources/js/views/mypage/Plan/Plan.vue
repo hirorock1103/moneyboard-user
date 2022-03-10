@@ -194,13 +194,15 @@ export default {
                 this.items = response.data;
                 var company = this.$store.state.auth.company;
                 this.plans = {
-                    name: (company === 2) ? 'プレミアムプラン' : 'スタンダードプラン',
-                    data_plan: (company === 2) ? 120 : 60,
+                    plan_id: company.plan_id,
+                    name: (company.plan_id === 2) ? 'プレミアムプラン' : 'スタンダードプラン',
+                    data_plan: (company.plan_id === 2) ? 120 : 60,
                     data_add: company.additional_licenses,
-                    cost_total: ((company === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
-                    cost_plan: (company === 2) ? 132000 : 55000,
+                    cost_total: ((company.plan_id === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
+                    cost_plan: (company.plan_id === 2) ? 132000 : 55000,
                     cost_add: company.additional_licenses * 1100,
                 };
+                console.log(this.plans);
                 this.$store.state.auth.plans = this.plans;
             } catch (e){
                 console.log(e);
