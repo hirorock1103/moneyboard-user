@@ -22659,7 +22659,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   data: function data() {
     return {
-      items: []
+      items: [],
+      plans: []
     };
   },
   created: function created() {
@@ -22684,11 +22685,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 response = _context.sent;
                 _this.items = response.data;
                 company = _this.$store.state.auth.company;
-                _context.next = 14;
+                _this.plans = {
+                  name: company === 2 ? 'プレミアムプラン' : 'スタンダードプラン',
+                  data_plan: company === 2 ? 120 : 60,
+                  data_add: company.additional_licenses,
+                  cost_total: (company === 2 ? 132000 : 55000) + company.additional_licenses * 1100,
+                  cost_plan: company === 2 ? 132000 : 55000,
+                  cost_add: company.additional_licenses * 1100
+                };
+                _context.next = 15;
                 break;
 
-              case 9:
-                _context.prev = 9;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
                 _this.message = _context.t0;
@@ -22696,12 +22705,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this.message = false;
                 }, 2000);
 
-              case 14:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee, null, [[1, 10]]);
       }))();
     }
   }
@@ -27392,63 +27401,118 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]\" data-v-73f06a0c><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-73f06a0c><h4 data-v-73f06a0c><span class=\"[ icon  solid ] fa-yen-sign  padding-right--12  text-accent\" data-v-73f06a0c></span> 現在ご利用中のプラン </h4><hr data-v-73f06a0c><div class=\"table-scrollable  padding-right--8 padding-bottom--24\" data-v-73f06a0c><table class=\"table width-40\" data-v-73f06a0c><tbody data-v-73f06a0c><tr data-v-73f06a0c><th class=\"\" data-v-73f06a0c> 現在の料金プラン </th><td class=\"padding-bottom--16\" data-v-73f06a0c> スタンダードブラン </td></tr><tr data-v-73f06a0c><th class=\"\" data-v-73f06a0c> 追加された現在のデータ </th><td class=\"padding-bottom--16\" data-v-73f06a0c> 60社 </td></tr></tbody></table></div><h4 data-v-73f06a0c> 現在の月額料金 <span class=\"padding-left--8  text-accent\" data-v-73f06a0c> 55,000 </span> 円 </h4><hr data-v-73f06a0c><div class=\"table-scrollable  padding-right--8\" data-v-73f06a0c><table class=\"table width-30\" data-v-73f06a0c><tbody data-v-73f06a0c><tr data-v-73f06a0c><th class=\"\" data-v-73f06a0c> 内訳 </th><td class=\"padding-bottom--16\" data-v-73f06a0c> 基本料金 </td><td class=\"padding-bottom--16 text-right\" data-v-73f06a0c> 55,000円 </td></tr><tr data-v-73f06a0c><th class=\"\" data-v-73f06a0c></th><td class=\"\" data-v-73f06a0c> 追加利用料金 </td><td class=\"text-right\" data-v-73f06a0c> 5,000円 </td></tr></tbody></table></div></div></article>", 1);
-
-var _hoisted_7 = {
-  "class": ""
+var _hoisted_6 = {
+  "class": "padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   "class": "[ padding--24  padding-large--48 ]  bg-white"
 };
-var _hoisted_9 = {
-  "class": "table table--bordered"
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  "class": "[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 現在ご利用中のプラン ")], -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = {
+  "class": "table-scrollable  padding-right--8 padding-bottom--24"
+};
+var _hoisted_11 = {
+  "class": "table width-40"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, null, -1
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": ""
+}, " 現在の料金プラン ", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "システム利用料金", -1
+var _hoisted_13 = {
+  "class": "padding-bottom--16"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": ""
+}, " プランデータ数 ", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "自社データ5期の比較"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇")], -1
+var _hoisted_15 = {
+  "class": "padding-bottom--16"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": ""
+}, " 追加データ数 ", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "他社データ比較"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇")], -1
+var _hoisted_17 = {
+  "class": "padding-bottom--16"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 現在の月額料金 ");
+
+var _hoisted_19 = {
+  "class": "padding-left--8  text-accent"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 円 ");
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("hr", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "財務指標評価"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇")], -1
+var _hoisted_22 = {
+  "class": "table-scrollable  padding-right--8"
+};
+var _hoisted_23 = {
+  "class": "table width-30"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": ""
+}, " 内訳 ", -1
 /* HOISTED */
 );
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "顧客管理ツール"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "―"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "〇")], -1
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+  "class": "padding-bottom--16"
+}, " 基本料金 ", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "使用できる企業数"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "60社"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "120社")], -1
+var _hoisted_26 = {
+  "class": "padding-bottom--16 text-right"
+};
+
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", {
+  "class": ""
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "企業数の追加(1社あたり)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "1,100円/月"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "1,100円/月")], -1
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", {
+  "class": ""
+}, " 追加利用料金 ", -1
 /* HOISTED */
 );
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "アプリ登録台数"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "無制限"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "無制限")], -1
-/* HOISTED */
-);
+var _hoisted_29 = {
+  "class": "text-right"
+};
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "担当者登録数"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "無制限"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, "無制限")], -1
-/* HOISTED */
-);
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<article class=\"\" data-v-73f06a0c><div class=\"[ padding--24  padding-large--48 ]  bg-white\" data-v-73f06a0c><table class=\"table table--bordered\" data-v-73f06a0c><thead data-v-73f06a0c><tr data-v-73f06a0c><th data-v-73f06a0c></th><th data-v-73f06a0c>スタンダードブラン</th><th data-v-73f06a0c>プレミアムプラン</th></tr></thead><tbody data-v-73f06a0c><tr data-v-73f06a0c><td data-v-73f06a0c>システム利用料金</td><td data-v-73f06a0c>55,000円/月</td><td data-v-73f06a0c>132,000円/月</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>自社データ5期の比較</td><td data-v-73f06a0c>〇</td><td data-v-73f06a0c>〇</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>他社データ比較</td><td data-v-73f06a0c>〇</td><td data-v-73f06a0c>〇</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>財務指標評価</td><td data-v-73f06a0c>〇</td><td data-v-73f06a0c>〇</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>顧客管理ツール</td><td data-v-73f06a0c>―</td><td data-v-73f06a0c>〇</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>使用できる企業数</td><td data-v-73f06a0c>60社</td><td data-v-73f06a0c>120社</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>企業数の追加(1社あたり)</td><td data-v-73f06a0c>1,100円/月</td><td data-v-73f06a0c>1,100円/月</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>アプリ登録台数</td><td data-v-73f06a0c>無制限</td><td data-v-73f06a0c>無制限</td></tr><tr data-v-73f06a0c><td data-v-73f06a0c>担当者登録数</td><td data-v-73f06a0c>無制限</td><td data-v-73f06a0c>無制限</td></tr></tbody></table></div></article>", 1);
 
-var _hoisted_20 = {
+var _hoisted_31 = {
   "class": "text-center"
 };
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("変更");
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
@@ -27457,30 +27521,24 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.company) + " ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SideMenu), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("main", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("section", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.plans.name), 1
   /* TEXT */
-  ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("article", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_10, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.items, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("th", {
-      key: item._id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.plan_name), 1
-    /* TEXT */
-    );
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_11, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.items, function (item) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", {
-      key: item._id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.price) + "円/月 ", 1
-    /* TEXT */
-    );
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))]), _hoisted_12, _hoisted_13, _hoisted_14, _hoisted_15, _hoisted_16, _hoisted_17, _hoisted_18, _hoisted_19])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.plans.data_plan) + "社 ", 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.plans.data_add) + "社 ", 1
+  /* TEXT */
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h4", null, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.plans.cost_total), 1
+  /* TEXT */
+  ), _hoisted_20]), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_24, _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.plans.cost_plan) + "円 ", 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [_hoisted_27, _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.plans.cost_add) + "円 ", 1
+  /* TEXT */
+  )])])])])])]), _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/mypage/company/plan_edit",
     "class": "[ btn  btn--accent ]"
   }, {
     "default": _withId(function () {
-      return [_hoisted_21];
+      return [_hoisted_32];
     }),
     _: 1
     /* STABLE */

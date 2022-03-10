@@ -15,8 +15,6 @@
                         </h5>
                     </div>
 
-                    {{company}}
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -32,15 +30,23 @@
                                                 現在の料金プラン
                                             </th>
                                             <td class="padding-bottom--16">
-                                                スタンダードブラン
+                                                {{plans.name}}
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="">
-                                                追加された現在のデータ
+                                                プランデータ数
                                             </th>
                                             <td class="padding-bottom--16">
-                                                60社
+                                                {{plans.data_plan}}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="">
+                                                追加データ数
+                                            </th>
+                                            <td class="padding-bottom--16">
+                                                {{plans.data_add}}社
                                             </td>
                                         </tr>
                                     </tbody>
@@ -49,7 +55,7 @@
                             <h4>
                                 現在の月額料金
                                 <span class="padding-left--8  text-accent">
-                                55,000
+                                {{plans.cost_total}}
                                 </span>
                                 円
                             </h4>
@@ -65,7 +71,7 @@
                                                 基本料金
                                             </td>
                                             <td class="padding-bottom--16 text-right">
-                                                55,000円
+                                                {{plans.cost_plan}}円
                                             </td>
                                         </tr>
                                         <tr>
@@ -75,7 +81,7 @@
                                                 追加利用料金
                                             </td>
                                             <td class="text-right">
-                                                5,000円
+                                                {{plans.cost_add}}円
                                             </td>
                                         </tr>
                                     </tbody>
@@ -90,17 +96,15 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th v-for="item in items" :key="item._id">
-                                            {{item.plan_name}}
-                                        </th>
+                                        <th>スタンダードブラン</th>
+                                        <th>プレミアムプラン</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>システム利用料金</td>
-                                        <td v-for="item in items" :key="item._id">
-                                            {{item.price}}円/月
-                                        </td>
+                                        <td>55,000円/月</td>
+                                        <td>132,000円/月</td>
                                     </tr>
                                     <tr>
                                         <td>自社データ5期の比較</td>
@@ -176,6 +180,7 @@ export default {
     data() {
         return {
             items: [],
+            plans: [],
         };
     },
     created: function() {
@@ -188,6 +193,14 @@ export default {
                 const response = await axios.post(url);
                 this.items = response.data;
                 var company = this.$store.state.auth.company;
+                this.plans = {
+                    name: (company === 2) ? 'プレミアムプラン' : 'スタンダードプラン',
+                    data_plan: (company === 2) ? 120 : 60,
+                    data_add: company.additional_licenses,
+                    cost_total: ((company === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
+                    cost_plan: (company === 2) ? 132000 : 55000,
+                    cost_add: company.additional_licenses * 1100,
+                };
             } catch (e){
                 console.log(e);
                 this.message = e
