@@ -21521,7 +21521,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         email_confirmation: {
           required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage('確認メールアドレスに再度入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.required),
           email: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage('正しい形を入力してください', _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.email),
-          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage('確認メールアドレスはメールアドレスと違います', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.sameAs)(this.signupForm.email_address))
+          sameAs: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.helpers.withMessage('確認メールアドレスがメールアドレスと違います', (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_3__.sameAs)(this.signupForm.email_address))
         }
       }
     };

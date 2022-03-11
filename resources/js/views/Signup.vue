@@ -180,7 +180,7 @@ export default {
                         email
                     ),
                     sameAs:helpers.withMessage(
-                        '確認メールアドレスはメールアドレスと違います',
+                        '確認メールアドレスがメールアドレスと違います',
                         sameAs(this.signupForm.email_address)
                     )
                 },
