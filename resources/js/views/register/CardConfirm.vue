@@ -156,7 +156,13 @@ export default {
     },
 
     methods: {
+//        ...mapActions('auth', ['registerUserInfo']),
+
         register() {
+
+//this.registerUserInfo().then(() => {
+//    if (this.apiStatus) {
+
 
             this.$router.push(
                 {
@@ -173,6 +179,10 @@ export default {
                     }
                 }
             )
+
+//    }
+//});
+
         },
 
         goBack() {

@@ -101,21 +101,28 @@ const routes = [
     path: "/register/user",
     component: RegisterUser,
     name: "register-user",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 新規登録内容確認画面
   {
     path: "/register/user-confirm",
     component: RegisterUserConfirm,
     name: "register-user-confirm",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // クレジットカード登録画面
   {
     path: "/register/card",
     component: RegisterCard,
     name: "register-card",
-    // beforeEnter: auth,
+    beforeEnter: auth,
+  },
+  // クレジットカード登録画面
+  {
+    path: "/register/card2",
+    component: RegisterCard2,
+    name: "register-card2",
+    beforeEnter: auth,
   },
   // クレジットカード登録画面
   {
@@ -129,13 +136,13 @@ const routes = [
     path: "/register/card-confirm",
     component: RegisterCardConfirm,
     name: "register-card-confirm",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   {
     path: "/register/completion",
     component: Completion,
     name: "register-completion",
-    // beforeEnter: auth,
+    beforeEnter: auth,
     props: true,
   },
   // ログイン画面

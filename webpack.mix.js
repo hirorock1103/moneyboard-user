@@ -13,3 +13,5 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js').vue();
 mix.sass('resources/sass/main.scss', 'public/css');
+
+//console.log('aabb');
