@@ -287,7 +287,18 @@ const actions = {
     //    }
 
     //    context.commit('setNotifications', response.data);
-    //}
+    //},
+    // データ更新
+    async updateState(context) {
+        const data = await axios.post(
+            process.env.MIX_VUE_APP_API_URL + "com/me"
+        );
+        // console.log(1,data);
+        context.commit('setApiStatus', true);
+        context.commit('setLoadingStatus', false);
+        context.commit('setUser', data.data.data.me);
+        context.commit('setCompany', data.data.auth.company);
+    },
 }
 
 export default {

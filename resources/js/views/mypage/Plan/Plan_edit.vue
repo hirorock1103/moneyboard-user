@@ -189,7 +189,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
@@ -213,17 +213,22 @@ export default {
         })
     },
     methods: {
+        ...mapActions('auth', ['updateState']),
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/license";
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.company.company_code}
-                console.log(this.item);
                 const response = await axios.post(url, this.item);
                 if(response.data=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-plan'})
+                    this.updateState().then(() => {
+                        // if (this.apiStatus) {
+                        if (true) {
+                            this.$router.push({name: 'mypage-plan'})
+                        }
+                    });
                 }
             } catch (e){
                 console.log(e);
