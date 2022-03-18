@@ -19,7 +19,7 @@
                             登録可能データ残り
                             <span class="font-weight-bold  display-none-large  padding-left--4">12</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
-                                {{ company.available_licenses_total }}</span>
+                                {{ company.additional_licenses }}</span>
                             件/{{ company.available_licenses_total }}件
                         </h5>
                     </div>

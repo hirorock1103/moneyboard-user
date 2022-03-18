@@ -131,10 +131,10 @@ export default {
     },
     methods: {
         async fetchItems() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=123";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + this.$store.state.auth.user.company_code;
             try {
                 const response = await axios.get(url);
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 this.item = response.data[0];
             } catch (e){
                 console.log(e);

@@ -68,9 +68,9 @@ export default {
         ...mapActions('auth', ['sendLogoutRequest']),
         async logout () {
             this.sendLogoutRequest().then(() => {
-                if (this.apiStatus) {
+                // if (this.apiStatus) {
                     this.$router.push('/login')
-                }
+                // }
             });
         }
     }

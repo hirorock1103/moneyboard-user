@@ -127,12 +127,13 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
             try {
                 const response = await axios.post(url, this.item);
+                console.log(response);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps_confirm'})
+                    this.$router.push({name: 'mypage-reps_confirm', params: {user_number: this.item.user_number, user_name: this.item.user_name, password: this.item.password}})
                 }
             } catch (e){
                 console.log(e);

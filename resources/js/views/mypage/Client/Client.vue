@@ -107,7 +107,7 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
-                this.items = response.data.data.get_list.data;
+                this.items = response.data.data.data_list.data;
             } catch (e){
                 console.log(e);
                 this.message = e

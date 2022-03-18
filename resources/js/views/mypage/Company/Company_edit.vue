@@ -175,6 +175,7 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
+        // ToDo:データの反映とバリデーション
         async updateItem() {
             var user = this.$store.state.auth.user;
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";

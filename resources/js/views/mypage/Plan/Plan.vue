@@ -202,7 +202,7 @@ export default {
                     cost_plan: (company.plan_id === 2) ? 132000 : 55000,
                     cost_add: company.additional_licenses * 1100,
                 };
-                console.log(this.plans);
+                // console.log(this.plans);
                 this.$store.state.auth.plans = this.plans;
             } catch (e){
                 console.log(e);

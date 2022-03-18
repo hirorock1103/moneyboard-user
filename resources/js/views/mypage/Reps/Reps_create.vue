@@ -4,7 +4,6 @@
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
-
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
@@ -111,7 +110,7 @@ export default {
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     // 問題なければ画面遷移
-                    this.$router.push({name: 'mypage-reps_confirm'})
+                    this.$router.push({name: 'mypage-reps_confirm', params: {user_number: this.item.user_number, user_name: this.item.user_name, password: this.item.password}})
                 }
             } catch (e){
                 console.log(e);

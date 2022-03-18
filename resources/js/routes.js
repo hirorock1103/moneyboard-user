@@ -216,6 +216,7 @@ const routes = [
     component: Reps_create,
     name: "mypage-reps_create",
     beforeEnter: auth,
+    props: true
   },
   // 担当者情報の編集
   {
@@ -224,6 +225,7 @@ const routes = [
     name: "mypage-reps_edit",
     props: true,
     beforeEnter: auth,
+    props: true
   },
   // 担当者情報の確認画面
   {
@@ -231,6 +233,7 @@ const routes = [
     component: Reps_confirm,
     name: "mypage-reps_confirm",
     beforeEnter: auth,
+    props: true
   },
   // 登録企業の担当者変更・削除
   {

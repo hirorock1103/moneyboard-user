@@ -31,7 +31,7 @@
                                                 担当者番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                01
+                                                {{user_number}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -39,7 +39,7 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                あああ　あああ
+                                                {{user_name}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -47,7 +47,7 @@
                                                 パスワード
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                1234567890
+                                                {{password}}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -69,6 +69,7 @@
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
+    props: ['user_number', 'user_name', 'password'],
     components: {
         SideMenu,
     },

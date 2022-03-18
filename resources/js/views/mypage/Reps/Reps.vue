@@ -137,9 +137,8 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/delete";
             try {
                 // POSTで渡す
-                const response = await axios.post(url, {company_code: company_code, user_code: user_code});
                 // Thenではなく、awaitを採用→今後増えてもこんな感じでネストしない。
-                // const response = await axios.post(demodemo, response);
+                const response = await axios.post(url, {company_code: company_code, user_code: user_code});
                 // console.log(response);
                 this.message = response.data.message
                 setTimeout(() => {this.message = false;}, 2000); // メッセージがあれば表示

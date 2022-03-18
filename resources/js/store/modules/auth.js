@@ -197,7 +197,7 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + "com/logout"
         );
 
-        if (response.data.status === OK) {
+        if (response.data.status === "OK") {
             context.commit('setApiStatus', true)
             context.commit('setUser', null)
             context.commit('setCompany', null)
