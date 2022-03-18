@@ -223,7 +223,7 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    // this.$router.push({name: 'mypage-plan'})
+                    this.$router.push({name: 'mypage-plan'})
                 }
             } catch (e){
                 console.log(e);

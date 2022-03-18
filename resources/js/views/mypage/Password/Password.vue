@@ -100,7 +100,7 @@ export default {
     },
     methods: {
         async Store(){
-            // Todo:user_code
+            // Todo:user_code→現状は変えたくないので固定値
             // var user_code = this.$store.state.auth.user.user_code;
             var user_code = '0614765068';
             let url = process.env.MIX_VUE_APP_API_URL + "com/change/pass";

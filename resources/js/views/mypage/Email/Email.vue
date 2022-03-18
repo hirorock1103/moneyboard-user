@@ -83,8 +83,8 @@ export default {
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail";
             try {
-                var company_code = this.$store.state.auth.company_code;
-                this.item = {...this.item, company_id: company_code}
+                var company_code = this.$store.state.auth.company.company_code;
+                this.item = {...this.item, company_code: company_code}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
