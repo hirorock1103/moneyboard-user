@@ -15,7 +15,7 @@ const state = {
         id: '',
         mobile_number: '',
         motivated_by: '',
-        token: ''
+        token: '',
         phone_number: '',
         plan_id: '',
         updated_at: '',
@@ -104,9 +104,7 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            // ToDo:env管理
-            // process.env.MIX_VUE_APP_API_URL + 'com/signup',
-            "http://money-board-api.loc.com/com/signup",
+            process.env.MIX_VUE_APP_API_URL + "com/signup",
             data
         );
 
@@ -129,8 +127,7 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.get(
-            // process.env.MIX_VUE_APP_API_URL + 'user/verify/' + hash
-            "http://money-board-api.loc.com/com/verify/" + hash,
+            process.env.MIX_VUE_APP_API_URL + "com/verify/" + hash,
         );
 
         if (response.data.status === OK) {
@@ -162,8 +159,7 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            // process.env.MIX_VUE_APP_API_URL + 'user/login',
-            "http://money-board-api.loc.com/com/login",
+            process.env.MIX_VUE_APP_API_URL + "com/login",
             data
         );
 
@@ -172,7 +168,7 @@ const actions = {
         if (response.data.status === 'OK') {
             localStorage.setItem('authToken', response.data.data.access_token);
             const data = await axios.post(
-                "http://money-board-api.loc.com/com/me"
+                process.env.MIX_VUE_APP_API_URL + "com/me"
             );
             // console.log(2,data);
             context.commit('setApiStatus', true);
@@ -198,8 +194,7 @@ const actions = {
     async sendLogoutRequest (context) {
         context.commit('setApiStatus', null)
         const response = await axios.post(
-            // process.env.MIX_VUE_APP_API_URL + 'user/logout'
-            "http://money-board-api.loc.com/com/logout"
+            process.env.MIX_VUE_APP_API_URL + "com/logout"
         );
 
         if (response.data.status === OK) {

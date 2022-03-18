@@ -134,7 +134,7 @@ export default {
     methods: {
         async fetchItems(company) {
             var company_code = company.company_code;
-            let url = "http://money-board-api.loc.com/com/company/get?company_code=" + company_code;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + company_code;
             try {
                 const response = await axios.get(url);
                 // console.log(response.data[0]);

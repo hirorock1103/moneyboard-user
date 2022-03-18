@@ -188,7 +188,7 @@ export default {
     },
     methods: {
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/plan/get";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/plan/get";
             try {
                 const response = await axios.post(url);
                 this.items = response.data;

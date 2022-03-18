@@ -81,7 +81,7 @@ export default {
     },
     methods: {
         async Store(){
-            let url = "http://money-board-api.loc.com/com/change/mail";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail";
             try {
                 var company_code = this.$store.state.auth.company_code;
                 this.item = {...this.item, company_id: company_code}

@@ -113,7 +113,7 @@ export default {
     methods: {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async getItem() {
-            let url = "http://money-board-api.loc.com/com/user/show";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/show";
             const response = await axios.post(url, {company_code: this.$store.state.auth.user.company_code, user_code: this.$route.params.id});
             if (response.data.status=="NG") {
                 console.log(response.data);
@@ -124,7 +124,7 @@ export default {
             }
         },
         async updateItem() {
-            let url = "http://money-board-api.loc.com/com/user/update";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){

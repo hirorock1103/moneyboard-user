@@ -99,7 +99,7 @@ export default {
     methods: {
         async Store(){
             // URL指定
-            let url = "http://money-board-api.loc.com/com/user/register";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/register";
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
                 // POSTでURLとデータを引数

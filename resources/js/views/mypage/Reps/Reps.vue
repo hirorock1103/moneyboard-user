@@ -115,7 +115,7 @@ export default {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
             var user = this.$store.state.auth.user;
-            let url = "http://money-board-api.loc.com/com/user/index?company_code=" + user.company_code;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code;
             try {
                 const response = await axios.get(url);
                 this.items = response.data.data.data_list.data;
@@ -134,7 +134,7 @@ export default {
         },
         async deleteItem(company_code, user_code) {
             // URLのセット
-            let url = "http://money-board-api.loc.com/com/user/delete";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/delete";
             try {
                 // POSTで渡す
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});

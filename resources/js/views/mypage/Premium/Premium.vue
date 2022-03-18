@@ -168,7 +168,7 @@ export default {
     methods: {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/client/index";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
                 this.items = response.data.data.get_list.data;

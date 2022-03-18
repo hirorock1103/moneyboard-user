@@ -103,7 +103,7 @@ export default {
             // Todo:user_code
             // var user_code = this.$store.state.auth.user.user_code;
             var user_code = '0614765068';
-            let url = "http://money-board-api.loc.com/com/change/pass";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/change/pass";
             try {
                 this.item = {...this.item, user_code: user_code}
                 const response = await axios.post(url, this.item);

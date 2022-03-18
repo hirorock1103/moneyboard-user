@@ -214,7 +214,7 @@ export default {
     },
     methods: {
         async Store(){
-            let url = "http://money-board-api.loc.com/com/company/license";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/company/license";
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.company.company_code}
                 const response = await axios.post(url, this.item);

@@ -104,7 +104,7 @@ export default {
     },
     methods: {
         async fetchItems() {
-            let url = "http://money-board-api.loc.com/com/client/index";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
                 this.items = response.data.data.get_list.data;
@@ -122,7 +122,7 @@ export default {
             this.showContent = false
         },
         async deleteItem(id) {
-            let url = "http://money-board-api.loc.com/com/client/delete";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/delete";
             try {
                 const response = await axios.post(url, {id: id});
                 console.log(response);

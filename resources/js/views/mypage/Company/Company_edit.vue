@@ -159,7 +159,7 @@ export default {
     },
     methods: {
         async getItem() {
-            let url = "http://money-board-api.loc.com/com/company/get";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get";
             try {
                 const response = await axios.get(url, {
                     params:{
@@ -177,7 +177,7 @@ export default {
         },
         async updateItem() {
             var user = this.$store.state.auth.user;
-            let url = "http://money-board-api.loc.com/com/user/update";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
             // Todo:user_codeがないのでひとまず
             this.item = {...this.item, user_code: user.company_code, user_name: user.company_rep}
             try {

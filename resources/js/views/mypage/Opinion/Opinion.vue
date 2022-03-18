@@ -117,7 +117,7 @@ export default {
     },
     methods: {
         async Store(){
-            let url = "http://money-board-api.loc.com/com/inquiry/store";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/store";
             this.item.inquiry_type = 2;
             try {
                 const response = await axios.post(url, this.item);
