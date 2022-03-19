@@ -124,6 +124,17 @@
                                                         class="form-input  margin-top--8">
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    カード期限
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8">
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

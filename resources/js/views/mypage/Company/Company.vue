@@ -97,6 +97,14 @@
                                                 AB**************
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                カード期限
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                                23/08
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
