@@ -7,7 +7,7 @@
                 <div class="container">
 
                     <div class="
-                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--48 ]  border-bottom">
+                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
                             担当者情報の登録・変更・削除
                         </h2>
@@ -51,7 +51,7 @@
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
                                         <div id="content">
-                                                <div class="[ padding--24  padding-large--48 ] bg-white">
+                                                <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                                     <p>担当者情報を削除します。</p>
                                                     <p>選択された担当者が保持している企業情報もすべて削除されますが本当によろしいですか？</p>
                                                 </div>
@@ -74,7 +74,7 @@
                                                     </tbody>
                                                 </table>
                                                 <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                                                    <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;">中止</button>
+                                                    <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
                                                     <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.company_code, postItem.user_code)">削除</button>
                                                 </div>
                                             </div>
