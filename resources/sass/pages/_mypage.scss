@@ -77,3 +77,9 @@
   padding: 1em;
   background:#fff;
 }
+
+// ぼかし
+.blur{
+  -ms-filter: blur(6px);
+  filter: blur(6px);
+}

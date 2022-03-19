@@ -95,9 +95,9 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody v-bind:class="{'blur': blur_flg!==2, '': blur_flg==2}">
                                     <tr>
-                                        <td>株式会社サンプルカンパニー</td>
+                                        <td>株式会社サンプルカンパニー{{blur_flg}}</td>
                                         <td>0000/00/00　00:00</td>
                                         <td>12345678910</td>
                                         <td>田中太郎</td>
@@ -160,6 +160,7 @@ export default {
     data() {
         return {
             items: [],
+            blur_flg : this.$store.state.auth.user.plan_id,
         };
     },
     created: function() {
