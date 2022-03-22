@@ -174,7 +174,7 @@ dd('カード登録');
                                     'password' =>  $register_password,
                                     'app_password' =>  '',
                                     'additional_licenses' =>  '',
-                                    'available_licences_total' =>  $register_addtional_number_of_company,
+                                    'available_licenses_total' =>  $register_addtional_number_of_company,
                                     'motivated_by' =>  $register_motivated_by,
                                 ]
             ]);

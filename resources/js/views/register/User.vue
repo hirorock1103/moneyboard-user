@@ -283,7 +283,7 @@
                                 </span>
                             </div>
                             <div class="form-row  margin-bottom--48">
-                                <label for="additional-licences" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label for="additional-licenses" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     企業データの追加
                                 </label>
                                 <span class="form-column">
@@ -292,9 +292,9 @@
                                         min="0"
                                         max="120"
                                         oninput="validity.valid||(value='');"
-                                        id="additional-licences"
+                                        id="additional-licenses"
                                         class="[ form-input  form-input--short ]"
-                                        v-model="getUser.additional_licences">
+                                        v-model="getUser.additional_licenses">
                                     <span>社</span>
                                 </span>
                             </div>
@@ -322,7 +322,7 @@
                                         <td colspan="2">（システム使用料と登録データ{{ companyAmount }}社分）</td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
-                                    <tr v-if="getUser.additional_licences > 0">
+                                    <tr v-if="getUser.additional_licenses > 0">
                                         <th class="[ display-none  display-table-cell-large ]"></th>
                                         <td>追加利用料金</td>
                                         <td>1,100円</td>
@@ -688,7 +688,7 @@ export default {
     },
     computed: {
         totalAmount() {
-            return this.planAmount + (this.getUser.additional_licences * 1100);
+            return this.planAmount + (this.getUser.additional_licenses * 1100);
         },
         companyAmount() {
             return this.planAmount == 55000 ? '60' : '120'

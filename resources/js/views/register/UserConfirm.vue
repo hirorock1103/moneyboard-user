@@ -168,8 +168,8 @@
                                         readonly>
                                 </span>
                             </div>
-                            <div class="form-row  margin-bottom--48"  v-if="getUser.additional_licences">
-                                <label for="additional_licences" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                            <div class="form-row  margin-bottom--48"  v-if="getUser.additional_licenses">
+                                <label for="additional_licenses" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     企業データの追加
                                 </label>
                                 <span class="form-column">
@@ -177,9 +177,9 @@
                                         type="number"
                                         min="0"
                                         max="120"
-                                        id="additional_licences"
+                                        id="additional_licenses"
                                         class="[ form-input  [ form-input--short  form-input--short-read ] ]"
-                                        v-model="getUser.additional_licences"
+                                        v-model="getUser.additional_licenses"
                                         readonly>
                                     <span>社</span>
                                 </span>
@@ -208,7 +208,7 @@
                                         <td colspan="2">（システム使用料と登録データ{{ companyAmount }}社分）</td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
-                                    <tr v-if="getUser.additional_licences">
+                                    <tr v-if="getUser.additional_licenses">
                                         <th class="[ display-none  display-table-cell-large ]"></th>
                                         <td>追加利用料金</td>
                                         <td>1,100円</td>
@@ -266,7 +266,7 @@ export default {
     },
     computed: {
         totalAmount() {
-            return this.planAmount + (this.getUser.additional_licences * 1100);
+            return this.planAmount + (this.getUser.additional_licenses * 1100);
         },
         companyAmount() {
             return this.planAmount == 55000 ? '60' : '120'

@@ -23,7 +23,7 @@ const state = {
         // password: '',
         // password_confirm: '',
         // app_password: '',
-        // additional_licences: '',
+        // additional_licenses: '',
     },
     card: {
         number: '',
