@@ -370,7 +370,7 @@ export default {
 
     methods: {
         setPlan() {
-            this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードブラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
+            this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
         },
 
         goBack() {

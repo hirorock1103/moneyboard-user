@@ -37,7 +37,7 @@
                                                         class="form-radio"
                                                         value="1"
                                                         v-model="item.plan_id">
-                                                    <label class="form-radio-label  margin-bottom--8" for="confirm-radio-s">スタンダードブラン</label>
+                                                    <label class="form-radio-label  margin-bottom--8" for="confirm-radio-s">スタンダードプラン</label>
                                                 </td>
                                                 <td class="padding-bottom--16 nowrap">
                                                     <input

@@ -340,7 +340,7 @@
                                         v-model="getUser.plan_id"
                                         @change="changePlan(55000)"
                                         checked>
-                                    <label class="form-radio-label" for="plan-id-0">スタンダードブラン</label>
+                                    <label class="form-radio-label" for="plan-id-0">スタンダードプラン</label>
                                 </span>
 
                                 <span class="form-column">
@@ -867,7 +867,7 @@ export default {
         ...mapActions('auth', ['updateUser']),
 
         setPlan() {
-            this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードブラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
+            this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
         },
 
         updateMotivation() {
