@@ -126,10 +126,10 @@
                                 </span>
                             </div>
                             <div class="form-row">
-                                <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]" style="white-space: nowrap;">
+                                <!-- <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]" style="white-space: nowrap;">
                                     トークン（開発用の表示）
                                 </label>
-                                <!-- {{ getToken }} -->
+                                {{ getToken }} -->
                                 <span class="form-column">
                                     <input
                                         type="text"

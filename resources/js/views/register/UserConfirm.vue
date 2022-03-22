@@ -186,7 +186,7 @@
                             </div>
                             <h4>
                                 月額料金は
-                                <span class="h2  [ text-accent  text-kerning-small ]  [ padding-right--4  padding-left--4 ]">{{ $filters.addComma(totalAmount) }}</span>
+                                <span class="h2 [ text-accent  text-kerning-small ]  [ padding-right--4  padding-left--4 ]">{{ $filters.addComma(totalAmount) }}</span>
                                 円です
                             </h4>
                             <hr>
