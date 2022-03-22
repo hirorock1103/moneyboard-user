@@ -1,35 +1,22 @@
 <template>
-
     <main>
-
         <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
             <div class="container">
-
                 <h2 class="text-center  heading-primary">新規登録</h2>
-
                 <form @submit.prevent="register">
-
                     <ProgressBar :current-step="currentStep" />
-
                     <p class="text-center  margin-bottom--48">下記項目をすべてご記入ください</p>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <div class="padding--24  bg-white">
-
                             <h4>
                                 <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
                                 基本情報
                             </h4>
-
                             <hr>
-
                             <div class="form-row">
                                 <label for="company-name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     名前
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="text"
@@ -40,18 +27,15 @@
                                         v-bind:class="[ v$.getUser.company_name.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.company_name.$error">
                                 {{ v$.getUser.company_name.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     住所
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="text"
@@ -62,18 +46,15 @@
                                         v-bind:class="[ v$.getUser.address.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.address.$error">
                                 {{ v$.getUser.address.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="phone-number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     電話番号
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="tel"
@@ -85,18 +66,15 @@
                                         v-bind:class="[ v$.getUser.phone_number.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.phone_number.$error">
                                 {{ v$.getUser.phone_number.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="company-rep" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     担当者名
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="text"
@@ -107,18 +85,15 @@
                                         v-bind:class="[ v$.getUser.company_rep.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.company_rep.$error">
                                 {{ v$.getUser.company_rep.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="mobile-number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     携帯番号
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="tel"
@@ -130,20 +105,17 @@
                                         v-bind:class="[ v$.getUser.mobile_number.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.mobile_number.$error">
                                 {{ v$.getUser.mobile_number.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="email-address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     メールアドレス
                                 </label>
-                                {{getMailAddress }}
-                                <!-- <p>{{getUser.email_address}}</p> -->
-
+                                {{ getMailAddress }}
+                                {{ this.$store.state.auth }}
                                 <span class="form-column">
                                     <input
                                         type="email"
@@ -152,16 +124,12 @@
                                         v-model="getUser.email_address"
                                         readonly>
                                 </span>
-
                             </div>
-
-
                             <div class="form-row">
-                                <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]" style="white-space: nowrap;">
                                     トークン（開発用の表示）
                                 </label>
-                                {{getToken }}
-
+                                <!-- {{ getToken }} -->
                                 <span class="form-column">
                                     <input
                                         type="text"
@@ -170,36 +138,22 @@
                                         v-model="getUser.token"
                                         readonly>
                                 </span>
-
                             </div>
-
-
                         </div>
-
                     </article>
-
-
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <div class="padding--24  bg-white">
-
                             <div class=" [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  margin-bottom--24  border-bottom">
-
                                 <h4 class="[ margin-bottom--4  margin-bottom-large--16 ]">
                                     <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
                                     パスワードの設定
                                 </h4>
-
                                 <h5 class="margin-bottom--16  padding-left--24">10文字以上（半角アルファベット大文字、小文字、半角数字の3種類を組み合わせ）</h5>
-
                             </div>
-
                             <div class="form-row">
                                 <label for="password" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     パスワード
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="password"
@@ -210,18 +164,15 @@
                                         v-bind:class="[ v$.getUser.password.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.password.$error">
                                 {{ v$.getUser.password.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="password-confirm" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     パスワード　確認用
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="password"
@@ -232,38 +183,26 @@
                                         v-bind:class="[ v$.getUser.password_confirm.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.password_confirm.$error">
                                 {{ v$.getUser.password_confirm.$errors[0].$message }}
                             </div>
-
-
                         </div>
-
                     </article>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <div class="padding--24  bg-white">
-
                             <div class=" [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  margin-bottom--24  border-bottom">
-
                                 <h4 class="[ margin-bottom--4  margin-bottom-large--16 ]">
                                     <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
                                     アプリログイン　パスワードの設定
                                 </h4>
-
                                 <h5 class="margin-bottom--16  padding-left--24">8文字以上（半角アルファベット大文字、小文字、半角数字の3種類を組み合わせ）</h5>
-
                             </div>
-
                             <div class="form-row">
                                 <label for="app-password" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     パスワード
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="password"
@@ -274,18 +213,15 @@
                                         v-bind:class="[ v$.getUser.app_password.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.app_password.$error">
                                 {{ v$.getUser.app_password.$errors[0].$message }}
                             </div>
-
                             <div class="form-row">
                                 <label for="app-password-confirm" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     パスワード　確認用
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="password"
@@ -295,23 +231,15 @@
                                         v-bind:class="[ v$.getUser.app_password_confirm.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getUser.app_password_confirm.$error">
                                 {{ v$.getUser.app_password_confirm.$errors[0].$message }}
                             </div>
-
                         </div>
-
                     </article>
-
-
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48 ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <div class="padding--24  bg-white">
-
                             <h4>
                                 <span class="padding-right--12  vertical-middle">
                                     <img src="/images/common/money-icon.svg">
@@ -319,14 +247,11 @@
                                 料金について
                                 <small class="float-right-large  font-weight-normal  display-block  padding-left--24">価格はすべて税込表記</small>
                             </h4>
-
                             <hr>
-
                             <div class="form-row" role="radio-group" aria-labelledby="plan-radio-group">
                                 <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     プラン選択
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="radio"
@@ -342,7 +267,6 @@
                                         checked>
                                     <label class="form-radio-label" for="plan-id-0">スタンダードプラン</label>
                                 </span>
-
                                 <span class="form-column">
                                     <input
                                         type="radio"
@@ -358,12 +282,10 @@
                                     <label class="form-radio-label" for="plan-id-1">プレミアムプラン</label>
                                 </span>
                             </div>
-
                             <div class="form-row  margin-bottom--48">
                                 <label for="additional-licences" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     企業データの追加
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="number"
@@ -376,25 +298,19 @@
                                     <span>社</span>
                                 </span>
                             </div>
-
                             <h4>
                                 月額料金は
                                 <span class="h2  [ text-accent  text-kerning-small ]  [ padding-right--4  padding-left--4 ]">{{ $filters.addComma(totalAmount) }}</span>
                                 円です
                             </h4>
-
                             <hr>
-
                             <table class="table  table-fixed">
-
                                 <tbody>
-
                                     <tr class="display-none-large">
                                         <th>内訳</th>
                                         <td></td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
-
                                     <tr>
                                         <th class="[ display-none  display-table-cell-large ]">内訳</th>
                                         <td>基本料金</td>
@@ -402,45 +318,30 @@
                                         <td class="[ display-none  display-table-cell-large ]">（システム使用料と登録データ{{ companyAmount }}社分）</td>
                                         <td class="[ display-none  display-table-cell-medium  display-none-large ]"></td>
                                     </tr>
-
                                     <tr class="display-none-large">
                                         <td colspan="2">（システム使用料と登録データ{{ companyAmount }}社分）</td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
-
                                     <tr v-if="getUser.additional_licences > 0">
                                         <th class="[ display-none  display-table-cell-large ]"></th>
                                         <td>追加利用料金</td>
                                         <td>1,100円</td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
-
                                 </tbody>
-
                             </table>
-
                         </div>
-
                     </article>
-
-
-
                     <article class="[ [ margin-left-medium--48  margin-right-medium--48 ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <table class="[ table  table--bordered ]  align-center">
-
                             <thead>
-
                                 <tr>
                                     <th></th>
                                     <th>スタンダードプラン</th>
                                     <th>プレミアムプラン</th>
                                 </tr>
-
                             </thead>
-
                             <tbody>
-
                                 <tr>
                                     <td>
                                         システム利用料金
@@ -452,7 +353,6 @@
                                         132,000円/月
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         自社データ5期の比較
@@ -464,7 +364,6 @@
                                         〇
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         自社データ5期の比較
@@ -476,7 +375,6 @@
                                         〇
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         他社データ比較
@@ -488,7 +386,6 @@
                                         〇
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         財務指標評価
@@ -500,7 +397,6 @@
                                         〇
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         顧客管理ツール
@@ -512,7 +408,6 @@
                                         〇
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         使用できる企業数
@@ -524,7 +419,6 @@
                                         120社
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         企業数の追加(1社あたり)
@@ -536,7 +430,6 @@
                                         1,100円/月
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         アプリ登録台数
@@ -548,7 +441,6 @@
                                         無制限
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         担当者登録数
@@ -560,26 +452,16 @@
                                         無制限
                                     </td>
                                 </tr>
-
                             </tbody>
-
                         </table>
-
                     </article>
-
-
-
                     <article class="padding--16  bg-gray  [ margin-left-medium--48  margin-right-medium--48 ]">
-
                         <div class="padding--24  bg-white" role="radiogroup" aria-labelledby="motivation-radio-group">
-
                             <h4>
                                 <span class="[ icon  solid ] fa-question-circle  padding-right--12  text-accent"></span>
                                 MoneyBoardを知ったきっかけを教えてください（任意）
                             </h4>
-
                             <hr>
-
                             <div class="form-row">
                                 <span class="form-column">
                                     <input
@@ -618,7 +500,6 @@
                                     <label class="form-radio-label" for="motivation-three">リーフレット</label>
                                 </span>
                             </div>
-
                             <div class="form-row">
                                 <span class="[ form-column  form-column--100 ]  [ display-table-row  display-table-cell-medium ]">
                                     <input
@@ -632,7 +513,6 @@
                                         v-model="getUser.motivated_by">
                                     <label class="form-radio-label" for="motivation-four">紹介</label>
                                 </span>
-
                                 <label for="recommendation-name" class="[ [ form-column  form-column--100 ]  form-label--inline-medium ]  [ display-table-row  display-table-cell-medium ]">
                                     紹介者名
                                 </label>
@@ -644,7 +524,6 @@
                                         v-model="recommendatorName">
                                 </span>
                             </div>
-
                             <div class="form-row">
                                 <span class="[ form-column  form-column--120 ]  vertical-top">
                                     <input
@@ -658,7 +537,6 @@
                                         v-model="getUser.motivated_by">
                                     <label class="form-radio-label" for="motivation-five">その他</label>
                                 </span>
-
                                 <span class="form-column">
                                     <span class="form-col  form-input--inline">
                                         <textarea
@@ -667,32 +545,16 @@
                                     </span>
                                 </span>
                             </div>
-
-
                         </div>
-
                     </article>
-
-
-
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
-
                         <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
-
                         <button type="submit" class="btn  btn--accent">確認画面</button>
-
                     </div>
-
-
-
                 </form>
-
             </div>
-
         </section>
-
     </main>
-
 </template>
 
 <script>
@@ -709,11 +571,9 @@ export default {
     components: {
         ProgressBar
     },
-
     setup() {
         return { v$: useVuelidate() };
     },
-
     data () {
         return {
             planAmount: null,
@@ -722,7 +582,6 @@ export default {
             recommendation: null,
         }
     },
-
     validations() {
         return {
             getUser: {
@@ -827,7 +686,6 @@ export default {
             },
         }
     },
-
     computed: {
         totalAmount() {
             return this.planAmount + (this.getUser.additional_licences * 1100);
@@ -855,21 +713,20 @@ export default {
             }
         },
         getMailAddress(){
+            // ToDo:メールアドレスは必要か？→必要なら、/verify/:hashでstoreに持たせる
+            // console.log(this.$store.state.auth);
             this.getUser.email_address = this.$route.query.mail_address
-//            this.getUser.email_address = "aaa@aa.bb.cc"
         },
         getToken(){
-            this.getUser.token = this.$route.query.token
+            // this.getUser.token = this.$route.query.token
+            this.getUser.token = localStorage.getItem('authToken')
         }
     },
-
     methods: {
         ...mapActions('auth', ['updateUser']),
-
         setPlan() {
             this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
         },
-
         updateMotivation() {
             if (this.getUser.motivated_by == '紹介' && this.recommendator !== null) {
                 this.getUser.motivated_by = '紹介:' + this.recommendator
@@ -877,7 +734,6 @@ export default {
                 this.getUser.motivated_by = 'その他:' + this.recommendation
             }
         },
-
         setMotivation() {
             if (this.getUser.motivated_by.indexOf('紹介:') !== -1) {
                 this.recommendator = this.getUser.motivated_by.substring(3);
@@ -887,18 +743,14 @@ export default {
                 this.getUser.motivated_by = 'その他';
             }
         },
-
         changePlan(value) {
             this.planAmount = value;
         },
-
         register() {
             this.v$.$touch();
             if (this.v$.$error) return;
             this.updateMotivation();
-
             this.updateUser(this.getUser);
-
             this.$router.push(
                 {
                     name: 'register-user-confirm',
@@ -906,12 +758,10 @@ export default {
             )
         }
     },
-
     beforeMount(){
         this.setPlan();
         this.setMotivation();
     },
-
 }
 
 </script>

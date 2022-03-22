@@ -130,12 +130,10 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + "com/verify/" + hash,
         );
 
-        if (response.data.status === OK) {
+        if (response.data.status === "OK") {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
-            // ToDo:ひとまず
             // context.commit('setUserEmail', response.data.email_address);
-            context.commit('setUserEmail', 'test@gamil.com');
             localStorage.setItem('authToken', response.data.data.register_token);
             return false;
         }

@@ -247,6 +247,7 @@
 </template>
 
 <script>
+// ToDo:メールアドレスが既に登録されていて、エラー返ってきている場合の処理
 import useVuelidate from '@vuelidate/core';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';

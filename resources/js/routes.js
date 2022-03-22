@@ -101,7 +101,7 @@ const routes = [
     path: "/register/user",
     component: RegisterUser,
     name: "register-user",
-    // beforeEnter: auth,
+    beforeEnter: auth,
   },
   // 新規登録内容確認画面
   {
