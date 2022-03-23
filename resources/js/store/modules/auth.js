@@ -108,7 +108,7 @@ const actions = {
             data
         );
 
-        if (response.status === OK) {
+        if (response.data.status === "OK") {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             return false;
@@ -116,8 +116,10 @@ const actions = {
 
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
-        if (response.status === UNPROCESSABLE_ENTITY) {
-            context.commit('setSignupErrorMessages', response.data)
+        // if (response.status === UNPROCESSABLE_ENTITY) {
+        if (response.data.status === "NG") {
+            // context.commit('setSignupErrorMessages', response.data.message)
+            context.commit('setSignupErrorMessages', '既に登録されているメールアドレスです')
         } else {
             context.commit('error/setCode', response.status, { root: true })
         }

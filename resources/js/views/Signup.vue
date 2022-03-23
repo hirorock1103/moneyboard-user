@@ -209,7 +209,6 @@
                                     v-if="v$.signupForm.email_address.$error">
                                     {{ v$.signupForm.email_address.$errors[0].$message }}
                                 </div>
-                                <p>{{ signupErrors }}</p>
                                 <div
                                     class="form-text  text-danger  margin-bottom--24"
                                     v-if="signupErrors && signupErrors.email_address">
@@ -238,6 +237,7 @@
                         </div>
                     </article>
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
+                        <p class="text-danger">{{ signupErrors }}</p>
                         <button type="submit" class="[ btn  btn--accent ]" v-bind:disabled="checkbox.terms_accepted == false">登録</button>
                     </div>
                 </form>
@@ -247,7 +247,6 @@
 </template>
 
 <script>
-// ToDo:メールアドレスが既に登録されていて、エラー返ってきている場合の処理
 import useVuelidate from '@vuelidate/core';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
@@ -259,11 +258,9 @@ export default {
     components: {
         Loading
     },
-
     setup() {
         return { v$: useVuelidate() };
     },
-
     data () {
         return {
             checkbox: {
@@ -275,7 +272,6 @@ export default {
             },
         }
     },
-
     validations() {
         return {
             checkbox: {
@@ -314,7 +310,6 @@ export default {
             },
         }
     },
-
     computed: {
         ...mapState({
             apiStatus: state => state.auth.apiStatus,
@@ -322,14 +317,11 @@ export default {
             loadingStatus: state => state.auth.loadingStatus,
         })
     },
-
     methods: {
         ...mapActions('auth', ['sendEmailRegisterRequest']),
-
         signup () {
             this.v$.$touch();
             if (this.v$.$error) return;
-
             this.sendEmailRegisterRequest({ email_address: this.signupForm.email_address }).then(() => {
                 if (this.apiStatus) {
                     this.$router.push(
@@ -347,12 +339,10 @@ export default {
                 }
             });
         },
-
         clearError () {
             this.$store.commit('auth/setSignupErrorMessages', null)
         }
     },
-
     created () {
         this.clearError()
     }
