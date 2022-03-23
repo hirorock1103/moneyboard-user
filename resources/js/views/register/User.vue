@@ -559,7 +559,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, minLength, sameAs, helpers } from '@vuelidate/validators';
+import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
 import containsNumber from '../../customValidators/containsNumber';
 import containsUppercase from '../../customValidators/containsUppercase';
 import containsLowercase from '../../customValidators/containsLowercase';
@@ -601,6 +601,10 @@ export default {
                     required: helpers.withMessage(
                         '電話番号を入力してください',
                         required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '10文字以下で入力してください',
+                        maxLength(10)
                     ),
                 },
                 company_rep: {
@@ -746,16 +750,28 @@ export default {
         changePlan(value) {
             this.planAmount = value;
         },
-        register() {
+        async register() {
             this.v$.$touch();
             if (this.v$.$error) return;
             this.updateMotivation();
             this.updateUser(this.getUser);
-            this.$router.push(
-                {
-                    name: 'register-user-confirm',
+            try {
+                let url = process.env.MIX_VUE_APP_API_URL + "com/register-validate";
+                const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
+                delete datas.company_code;
+                delete datas.user_type;
+                let response = await axios.post(url, datas);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.$router.push({name: 'register-user-confirm'})
                 }
-            )
+            } catch (e){
+                console.log(e);
+                this.message = e
+            }
         }
     },
     beforeMount(){

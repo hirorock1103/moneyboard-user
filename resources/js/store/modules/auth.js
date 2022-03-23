@@ -134,7 +134,7 @@ const actions = {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             // context.commit('setUserEmail', response.data.email_address);
-            localStorage.setItem('authToken', response.data.data.register_token);
+            localStorage.setItem('registerToken', response.data.data.register_token);
             return false;
         }
 
