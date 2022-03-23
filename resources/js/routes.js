@@ -6,10 +6,15 @@ import Signup from "./views/Signup.vue";
 import Completion from "./views/Completion.vue";
 // 仮登録（メール認証）
 import Verify from "./views/Verify.vue";
+// 新規登録画面
 import RegisterUser from "./views/register/User.vue";
+// 新規登録情報確認画面
 import RegisterUserConfirm from "./views/register/UserConfirm.vue";
+// カード新規登録
 import RegisterCard from "./views/register/Card.vue";
+// カード新規登録2
 import RegisterCard2 from "./views/register/Card2.vue";
+// カード追加確認画面
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
 // ログイン画面
 import Login from "./views/Login.vue";
@@ -101,28 +106,28 @@ const routes = [
     path: "/register/user",
     component: RegisterUser,
     name: "register-user",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
   // 新規登録内容確認画面
   {
     path: "/register/user-confirm",
     component: RegisterUserConfirm,
     name: "register-user-confirm",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
   // クレジットカード登録画面
   {
     path: "/register/card",
     component: RegisterCard,
     name: "register-card",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
-  // クレジットカード登録画面
+  // クレジットカード登録画面→おそらく必要ない？
   {
     path: "/register/card2",
     component: RegisterCard2,
     name: "register-card2",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
   // クレジットカード登録画面
   {
@@ -136,13 +141,14 @@ const routes = [
     path: "/register/card-confirm",
     component: RegisterCardConfirm,
     name: "register-card-confirm",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
+  // 完了画面
   {
     path: "/register/completion",
     component: Completion,
     name: "register-completion",
-    beforeEnter: auth,
+    // beforeEnter: auth,
     props: true,
   },
   // ログイン画面

@@ -4,7 +4,7 @@
             <div class="container">
                 <h2 class="text-center  heading-primary">登録内容のご確認</h2>
                 <form @submit.prevent="submit">
-                    <ProgressBar :current-step="currentStep" />
+                    <ProgressBar :current-step="currentStep"/>
                     <p class="text-center  margin-bottom--48">登録内容をご確認ください</p>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
                         <div class="padding--24  bg-white">

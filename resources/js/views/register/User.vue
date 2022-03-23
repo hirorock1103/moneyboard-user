@@ -261,7 +261,7 @@
                                         id="plan-id-0"
                                         class="form-radio"
                                         name="radio-group"
-                                        value="0"
+                                        value="1"
                                         v-model="getUser.plan_id"
                                         @change="changePlan(55000)"
                                         checked>
@@ -276,7 +276,7 @@
                                         id="plan-id-1"
                                         class="form-radio"
                                         name="radio-group"
-                                        value="1"
+                                        value="2"
                                         v-model="getUser.plan_id"
                                         @change="changePlan(132000)">
                                     <label class="form-radio-label" for="plan-id-1">プレミアムプラン</label>
@@ -717,7 +717,6 @@ export default {
             }
         },
         getMailAddress(){
-            // ToDo:メールアドレスは必要か？→必要なら、/verify/:hashでstoreに持たせる
             // console.log(this.$store.state.auth);
             this.getUser.email_address = this.$route.query.mail_address
         },
@@ -729,7 +728,8 @@ export default {
     methods: {
         ...mapActions('auth', ['updateUser']),
         setPlan() {
-            this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
+            this.getUser.plan_id = 1;
+            this.getUser.plan_id == 1 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
         },
         updateMotivation() {
             if (this.getUser.motivated_by == '紹介' && this.recommendator !== null) {
@@ -779,5 +779,4 @@ export default {
         this.setMotivation();
     },
 }
-
 </script>

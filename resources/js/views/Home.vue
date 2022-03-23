@@ -292,11 +292,11 @@
                     </article>
                     <article class="hp-table--blue  [ flex-container-center  flex-column ]">
                         <div class="hp-table--blue__header">
-                            <h2>スタンダードプラン</h2>
+                            <h2>プレミアムプラン</h2>
                         </div>
                         <div class="hp-table--blue__row  hp-table--blue__row--big">
                             <h3 class="text-center"> システム利用料金<br>
-                                <span class="td-title__price  td-title--big">55,000</span>
+                                <span class="td-title__price  td-title--big">132,000</span>
                                 <span class="td-title__price">円/月</span>
                             </h3>
                         </div>
@@ -314,7 +314,7 @@
                         </p>
                         <p class="hp-table--blue__row">
                             <label class="label">顧客管理ツール</label>
-                            <span class="span">-</span>
+                            <span class="span">〇</span>
                         </p>
                         <p class="hp-table--blue__row">
                             <label class="label">企業数の追加(1社あたり)</label>
