@@ -41,7 +41,8 @@ const state = {
     passwordResetErrorMessages: null,
     company: null,
     clients: null,
-    notifications: null
+    notifications: null,
+    temps: null,
 }
 
 const getters = {
@@ -50,7 +51,8 @@ const getters = {
     company: state => state.company,
     clients: state => state.clients,
     clientsNumber: state => state.clients.length,
-    notifications: state => state.notifications
+    notifications: state => state.notifications,
+    temps: state => state.temps
 };
 
 const mutations = {
@@ -95,7 +97,13 @@ const mutations = {
     },
     setNotifications(state, notifications) {
         state.notifications =notifications
-    }
+    },
+    setTemps(state, temps) {
+        state.temps = temps
+    },
+    resetTemps(state) {
+        state.temps = null
+    },
 }
 
 const actions = {
@@ -153,6 +161,12 @@ const actions = {
     },
     updateCard(context, data) {
         context.commit('setCard', data);
+    },
+    updateTemps(context, data) {
+        context.commit('setTemps', data);
+    },
+    resetTemps(context, data) {
+        context.commit('resetTemps');
     },
     // ログイン
     async sendLoginRequest(context, data) {

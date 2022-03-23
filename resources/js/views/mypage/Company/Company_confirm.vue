@@ -4,116 +4,115 @@
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
-
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
                             担当者情報の確認
                         </h2>
                     </div>
-
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
                         以下の内容で登録します
                     </div>
-
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                担当者情報
-                            </h4>
-                            <hr>
-                            <div class="table-scrollable  padding-right--8">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                名前
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ item.company_name }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                住所
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒000-0000　{{ item.address }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                電話番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ item.phone_number }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ item.company_rep }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                携帯番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                {{ item.mobile_number }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <form v-on:submit.prevent="updateItem">
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                    担当者情報
+                                </h4>
+                                <hr>
+                                <div class="table-scrollable  padding-right--8">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    名前
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    {{ item.company_name }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    住所
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    〒000-0000　{{ item.address }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    電話番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    {{ item.phone_number }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    担当者名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    {{ item.company_rep }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    携帯番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    {{ item.mobile_number }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-credit-card  padding-right--12  text-accent"></span>
-                                クレジットカード情報
-                            </h4>
-                            <hr>
-                            <div class="table-scrollable  padding-right--8">
-                                <table class="table width-50">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                カード番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                **********12
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                カード名義
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                AB**************
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                カード期限
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ] ">
-                                                23/03
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        </article>
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-credit-card  padding-right--12  text-accent"></span>
+                                    クレジットカード情報
+                                </h4>
+                                <hr>
+                                <div class="table-scrollable  padding-right--8">
+                                    <table class="table width-50">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    カード番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    **********12
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    カード名義
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    AB**************
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    カード期限
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    23/03
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        </article>
+                        <div class="text-center">
+                            <router-link :to="{name: 'mypage-company_edit', params: { company_code: item.company_code }}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <input type="submit" class="[ btn  btn--accent ]" value="確定" />
                         </div>
-                    </article>
-                    <div class="text-center">
-                        <router-link :to="{name: 'mypage-company_edit', params: { company_code: item.company_code }}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確定</router-link>
-                    </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -123,6 +122,7 @@
 <script>
 import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import { mapActions } from 'vuex';
 
 export default {
     components: {
@@ -138,20 +138,31 @@ export default {
         this.fetchItems();
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + this.$store.state.auth.user.company_code;
+            this.item = this.$store.state.auth.temps;
+        },
+        async updateItem() {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
             try {
-                const response = await axios.get(url);
-                // console.log(response.data[0]);
-                this.item = response.data[0];
+                const response = await axios.post(url, this.item);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.resetTemps();
+                    this.$router.push({name: 'mypage-company'})
+                }
             } catch (e){
                 console.log(e);
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
-        },
+        }
     }
 }
+// ToDo:クレジットカードの登録
 </script>
 
 <style lang="scss" scoped>

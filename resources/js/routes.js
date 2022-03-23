@@ -231,7 +231,6 @@ const routes = [
     name: "mypage-reps_edit",
     props: true,
     beforeEnter: auth,
-    props: true
   },
   // 担当者情報の確認画面
   {

@@ -10,11 +10,9 @@
                             登録情報の確認・変更
                         </h2>
                     </div>
-
                     <div class="message text-center margin-top--48" v-if="message">
                         <p class="alert alert-danger">{{ message }}</p>
                     </div>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -70,7 +68,6 @@
                             </div>
                         </div>
                     </article>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -110,7 +107,6 @@
                             </div>
                         </div>
                     </article>
-
                     <div class="text-center">
                         <router-link :to="{name: 'mypage-company_edit', params: { company_code: item.company_code }}" class="[ btn  btn--accent ]">変更</router-link>
                     </div>
