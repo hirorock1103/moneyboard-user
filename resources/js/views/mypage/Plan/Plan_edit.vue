@@ -215,10 +215,12 @@ export default {
     methods: {
         ...mapActions('auth', ['updateState']),
         async Store(){
+            // let url = process.env.MIX_VUE_APP_API_URL + "com/contract/update/do";
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/license";
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.company.company_code}
                 const response = await axios.post(url, this.item);
+                console.log(response);
                 if(response.data=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
