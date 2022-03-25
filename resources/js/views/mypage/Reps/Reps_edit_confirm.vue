@@ -90,6 +90,23 @@ export default {
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
+        },
+        async validateItem() {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
+            try {
+                const response = await axios.post(url, this.item);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.$router.push({name: 'mypage-reps'})
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
         }
     },
 }

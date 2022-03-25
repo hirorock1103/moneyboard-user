@@ -125,6 +125,10 @@ export default {
         })
     }
 }
+
+// ToDo:QRコードを本番URLに変更
+// ToDo:データ数を正しい情報へ変更
+// ToDo:お知らせの取得と反映
 </script>
 
 <style lang="scss" scoped>

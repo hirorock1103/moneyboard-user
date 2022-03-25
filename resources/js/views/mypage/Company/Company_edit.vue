@@ -10,8 +10,8 @@
                             登録情報の編集
                         </h2>
                     </div>
-                    <div class="message text-center margin-top--48" v-if="message">
-                        <p class="alert alert-danger">{{ message }}</p>
+                    <div class="text-center" v-if="message">
+                        <p class="text-danger">{{ message }}</p>
                     </div>
                     <form v-on:submit.prevent="validateItem">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
@@ -274,7 +274,7 @@ export default {
             this.v$.$touch();
             if (this.v$.$error) return;
             var user = this.$store.state.auth.user;
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/company/update-validate";
             // Todo:user_codeがないのでひとまず
             this.item = {...this.item, user_code: user.company_code, user_name: user.company_rep}
             try {
@@ -296,8 +296,9 @@ export default {
     }
 }
 
+// ToDo:バリデーション不可の返却値の表示
 // ToDo:クレジットカードのバリデーション
-// ToDo:戻ってきた時の値
+// ToDo:確認画面から戻ってきた時の値保持
 </script>
 
 <style lang="scss" scoped>

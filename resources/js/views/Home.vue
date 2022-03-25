@@ -385,6 +385,8 @@ export default {
         Carousel
     }
 }
+
+// ToDo:画像の差し替え（秘書の女性の画像変更）
 </script>
 
 <style lang="scss" scoped>

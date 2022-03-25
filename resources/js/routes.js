@@ -18,7 +18,9 @@ import RegisterCard2 from "./views/register/Card2.vue";
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
 // ログイン画面
 import Login from "./views/Login.vue";
+// パスワード再発行画面
 import PasswordEmail from "./views/password/Email.vue";
+// パスワード再発行（入力）画面
 import PasswordReset from "./views/password/Reset.vue";
 // マイページTop
 import MypageHome from "./views/mypage/Home.vue";
@@ -29,8 +31,9 @@ import Company_confirm from "./views/mypage/Company/Company_confirm.vue";
 // 担当者
 import Reps from "./views/mypage/Reps/Reps.vue";
 import Reps_create from "./views/mypage/Reps/Reps_create.vue";
-import Reps_edit from "./views/mypage/Reps/Reps_edit.vue";
 import Reps_confirm from "./views/mypage/Reps/Reps_confirm.vue";
+import Reps_edit from "./views/mypage/Reps/Reps_edit.vue";
+import Reps_edit_confirm from "./views/mypage/Reps/Reps_edit_confirm.vue";
 // 登録企業
 import Client from "./views/mypage/Client/Client.vue";
 import Client_edit from "./views/mypage/Client/Client_edit.vue";
@@ -158,13 +161,14 @@ const routes = [
     name: "login",
     // beforeEnter: guest,
   },
-  // パスワードの再発行
+  // パスワードの再発行のメール画面
   {
     path: "/password/email",
     component: PasswordEmail,
     name: "password-email",
     // beforeEnter: guest,
   },
+  // パスワード再発行画面
   {
     path: "/password/request/completion",
     component: Completion,
@@ -237,6 +241,14 @@ const routes = [
     path: "/mypage/company/reps-list_confirm",
     component: Reps_confirm,
     name: "mypage-reps_confirm",
+    beforeEnter: auth,
+    props: true
+  },
+  // 担当者情報の確認画面
+  {
+    path: "/mypage/company/reps-list_edit_confirm",
+    component: Reps_edit_confirm,
+    name: "mypage-reps_edit_confirm",
     beforeEnter: auth,
     props: true
   },
