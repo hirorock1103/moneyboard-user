@@ -53,8 +53,8 @@
                             <h4>
                                 現在の月額料金
                                 <span class="padding-left--8  text-accent">
-                                <!-- {{plans.cost_total}} -->
-                                {{$filters.addComma(plans.cost_total)}}
+                                {{plans.cost_total}}
+                                <!-- {{$filters.addComma(plans.cost_total)}} -->
                                 </span>
                                 円
                             </h4>
@@ -70,8 +70,8 @@
                                                 基本料金
                                             </td>
                                             <td class="padding-bottom--16 text-right">
-                                                <!-- {{plans.cost_plan}}円 -->
-                                                {{$filters.addComma(plans.cost_plan)}}円
+                                                {{plans.cost_plan}}円
+                                                <!-- {{$filters.addComma(plans.cost_plan)}}円 -->
                                             </td>
                                         </tr>
                                         <tr>
@@ -81,8 +81,8 @@
                                                 追加利用料金
                                             </td>
                                             <td class="text-right">
-                                                <!-- {{plans.cost_add}}円 -->
-                                                {{$filters.addComma(plans.cost_add)}}円
+                                                {{plans.cost_add}}円
+                                                <!-- {{$filters.addComma(plans.cost_add)}}円 -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -210,6 +210,8 @@ export default {
         },
     }
 }
+
+// ToDo:コンマエラー出る件
 </script>
 
 <style lang="scss" scoped>
