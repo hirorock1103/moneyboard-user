@@ -3,7 +3,6 @@
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
                 <div class="container">
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
@@ -11,11 +10,9 @@
                             お問い合わせ
                         </h2>
                     </div>
-
                     <div class="message text-center margin-top--48" v-if="message">
                         <p class="alert alert-danger">{{ message }}</p>
                     </div>
-
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -99,7 +96,6 @@
                             <input type="submit" class="[ btn  btn--accent ]" value="送信"/>
                         </div>
                     </form>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -135,7 +131,6 @@
                             </div>
                         </div>
                     </article>
-
                 </div>
             </section>
         </main>
@@ -164,7 +159,6 @@ export default {
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
-                    // console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
@@ -178,6 +172,8 @@ export default {
         }
     },
 }
+
+// ToDo:仕様によっては修正あり
 </script>
 
 <style lang="scss" scoped>

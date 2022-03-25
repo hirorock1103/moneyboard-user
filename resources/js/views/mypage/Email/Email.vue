@@ -3,7 +3,6 @@
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
                 <div class="container">
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
@@ -11,12 +10,10 @@
                             メールアドレスの変更
                         </h2>
                     </div>
-
-                    <div class="message text-center margin-top--48" v-if="message">
-                        <p class="alert alert-danger">{{ message }}</p>
+                    <div class="text-center" v-if="message">
+                        <p class="text-danger">{{ message }}</p>
                     </div>
-
-                    <form v-on:submit.prevent="Store">
+                    <form v-on:submit.prevent="validateItem">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
                                 <h4>
@@ -35,7 +32,14 @@
                                                     <input 
                                                     type="text" 
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.email_address"/>
+                                                    v-model="item.email_address"
+                                                        @input="v$.item.email_address.$touch"
+                                                        v-bind:class="[ v$.item.email_address.$error ? 'form-error' : null ]"/>
+                                                    <div
+                                                        class="form-text  text-danger  text-center"
+                                                        v-if="v$.item.email_address.$error">
+                                                        {{ v$.item.email_address.$errors[0].$message }}
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -46,7 +50,14 @@
                                                     <input 
                                                     type="email" 
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.email_address"/>
+                                                    v-model="item.email_address_confirm"
+                                                        @input="v$.item.email_address_confirm.$touch"
+                                                        v-bind:class="[ v$.item.email_address_confirm.$error ? 'form-error' : null ]"/>
+                                                    <div
+                                                        class="form-text  text-danger  text-center"
+                                                        v-if="v$.item.email_address_confirm.$error">
+                                                        {{ v$.item.email_address_confirm.$errors[0].$message }}
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -54,6 +65,9 @@
                                 </div>
                             </div>
                         </article>
+                        <div class="text-center">
+                            <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
+                        </div>
                         <div class="text-center">
                             <input type="submit" class="[ btn  btn--accent ]" value="変更"/>
                         </div>
@@ -65,13 +79,18 @@
 </template>
 
 <script>
-import axios from '../../../src/plugins/axios.js'
+import useVuelidate from '@vuelidate/core';
+import { required, minLength, maxLength, sameAs, helpers, email } from '@vuelidate/validators';
+import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu,
-        name: "Store"
+        name: "validateItem"
+    },
+    setup() {
+        return { v$: useVuelidate() };
     },
     data() {
         return {
@@ -79,8 +98,40 @@ export default {
             message: ""
         };
     },
+    validations() {
+        return {
+            item:{
+                email_address: {
+                    required: helpers.withMessage(
+                        'メールアドレスを入力してください',
+                        required
+                    ),
+                    email:helpers.withMessage(
+                        '正しい形を入力してください',
+                        email
+                    ),
+                },
+                email_address_confirm: {
+                    required: helpers.withMessage(
+                        '確認用メールアドレスを入力してください',
+                        required
+                    ),
+                    email:helpers.withMessage(
+                        '正しい形を入力してください',
+                        email
+                    ),
+                    sameAs: helpers.withMessage(
+                        '確認用メールアドレスが違います',
+                        sameAs(this.item.email_address)
+                    ),
+                },
+            }
+        }
+    },
     methods: {
-        async Store(){
+        async validateItem(){
+            this.v$.$touch();
+            if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail";
             try {
                 var company_code = this.$store.state.auth.company.company_code;
