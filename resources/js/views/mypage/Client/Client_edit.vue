@@ -10,7 +10,6 @@
                             登録企業の担当者変更
                         </h2>
                     </div>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -45,7 +44,6 @@
                             </div>
                         </div>
                     </article>
-
                     <div class="text-center">
                         <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                         <router-link to="/mypage/company/client/rep_confirm"  class="[ btn  btn--accent ]">確認</router-link>

@@ -4,18 +4,12 @@
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
-
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
                             登録企業の担当者変更・削除
                         </h2>
                     </div>
-
-                    <div class="message text-center margin-top--48" v-if="message">
-                        <p class="alert alert-danger">{{ message }}</p>
-                    </div>
-
                     <form>
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
                             <div class="[ padding--16 ]  bg-white  display-flex">
@@ -27,7 +21,9 @@
                             </div>
                         </article>
                     </form>
-
+                    <div class="text-center" v-if="message">
+                        <p class="text-danger">{{ message }}</p>
+                    </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <table class="table table--bordered">
@@ -47,7 +43,7 @@
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
-                                        <div id="content">
+                                            <div id="content">
                                                 <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                                     <p>企業情報を削除します。本当によろしいですか？</p>
                                                 </div>
@@ -78,7 +74,6 @@
                     </article>
                 </div>
             </section>
-
         </main>
     </div>
 </template>
@@ -137,6 +132,8 @@ export default {
         }
     }
 }
+
+// ToDo:検索機能
 </script>
 
 <style lang="scss" scoped>
