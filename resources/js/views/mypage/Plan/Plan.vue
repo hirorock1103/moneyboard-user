@@ -4,7 +4,6 @@
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
-
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
@@ -14,7 +13,6 @@
                             価格はすべて税込表記
                         </h5>
                     </div>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
@@ -55,7 +53,8 @@
                             <h4>
                                 現在の月額料金
                                 <span class="padding-left--8  text-accent">
-                                {{plans.cost_total}}
+                                <!-- {{plans.cost_total}} -->
+                                {{$filters.addComma(plans.cost_total)}}
                                 </span>
                                 円
                             </h4>
@@ -71,7 +70,8 @@
                                                 基本料金
                                             </td>
                                             <td class="padding-bottom--16 text-right">
-                                                {{plans.cost_plan}}円
+                                                <!-- {{plans.cost_plan}}円 -->
+                                                {{$filters.addComma(plans.cost_plan)}}円
                                             </td>
                                         </tr>
                                         <tr>
@@ -81,7 +81,8 @@
                                                 追加利用料金
                                             </td>
                                             <td class="text-right">
-                                                {{plans.cost_add}}円
+                                                <!-- {{plans.cost_add}}円 -->
+                                                {{$filters.addComma(plans.cost_add)}}円
                                             </td>
                                         </tr>
                                     </tbody>
@@ -89,7 +90,6 @@
                             </div>
                         </div>
                     </article>
-
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <table class="table table--bordered">
@@ -150,11 +150,9 @@
                             </table>
                         </div>
                     </article>
-
                     <div class="text-center">
                         <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>
                     </div>
-
                 </div>
             </section>
         </main>

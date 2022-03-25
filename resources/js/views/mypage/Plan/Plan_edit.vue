@@ -4,7 +4,6 @@
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
-
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
@@ -14,7 +13,6 @@
                             価格はすべて税込表記
                         </h5>
                     </div>
-
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -181,7 +179,6 @@
                             <input type="submit" class="[ btn  btn--accent ]" value="確認"/>
                         </div>
                     </form>
-
                 </div>
             </section>
         </main>
