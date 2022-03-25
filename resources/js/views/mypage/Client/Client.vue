@@ -37,9 +37,9 @@
                                 <tbody>
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.client_name }}</td>
-                                        <td>あああ　あああ{{ item.user_id }}</td>
+                                        <td>テスト　太郎{{ item.user_id }}</td>
                                         <th class="text-center">
-                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, company_rep: 'テスト太郎' }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
@@ -57,7 +57,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>{{postItem.client_name}}</td>
-                                                            <td>あああ　ああああ{{postItem.user_id}}</td>
+                                                            <td>テスト　太郎{{postItem.user_id}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -120,7 +120,6 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/delete";
             try {
                 const response = await axios.post(url, {id: id});
-                console.log(response);
                 this.message = response.data.message
                 setTimeout(() => {this.message = false;}, 2000);
                 this.fetchItems();
@@ -134,6 +133,7 @@ export default {
 }
 
 // ToDo:検索機能
+// ToDo:APIで担当者情報ふくまれたら反映させる
 </script>
 
 <style lang="scss" scoped>

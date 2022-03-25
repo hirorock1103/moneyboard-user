@@ -25,7 +25,7 @@
                                                 会社名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                株式会社サンプルカンパニー
+                                                {{ client_name }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -58,10 +58,14 @@
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
+    props: ['id', 'client_name', 'company_rep'],
     components: {
         SideMenu
     }
 }
+
+// ToDo:一覧からの情報の反映
+// ToDo:バリデーションAPI
 </script>
 
 <style lang="scss" scoped>
