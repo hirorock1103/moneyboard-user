@@ -222,8 +222,7 @@ export default {
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     this.updateState().then(() => {
-                        // if (this.apiStatus) {
-                        if (true) {
+                        if (this.apiStatus) {
                             this.$router.push({name: 'mypage-plan'})
                         }
                     });
@@ -236,6 +235,9 @@ export default {
         }
     },
 }
+
+// ToDo:新規登録画面のように動的に変更
+// ToDo:API側で"Trying to get property 'license_count' of non-object"
 </script>
 
 <style lang="scss" scoped>
