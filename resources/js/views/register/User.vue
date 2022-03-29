@@ -110,7 +110,7 @@
                                 v-if="v$.getUser.mobile_number.$error">
                                 {{ v$.getUser.mobile_number.$errors[0].$message }}
                             </div>
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <label for="email-address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     メールアドレス
                                 </label>
@@ -124,12 +124,12 @@
                                         v-model="getUser.email_address"
                                         readonly>
                                 </span>
-                            </div>
-                            <div class="form-row">
-                                <!-- <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]" style="white-space: nowrap;">
+                            </div> -->
+                            <!-- <div class="form-row">
+                                <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]" style="white-space: nowrap;">
                                     トークン（開発用の表示）
                                 </label>
-                                {{ getToken }} -->
+                                {{ getToken }}
                                 <span class="form-column">
                                     <input
                                         type="text"
@@ -138,7 +138,7 @@
                                         v-model="getUser.token"
                                         readonly>
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
                     </article>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
