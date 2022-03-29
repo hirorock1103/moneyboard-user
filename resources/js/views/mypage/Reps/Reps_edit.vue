@@ -182,7 +182,7 @@ export default {
         async validateItem(){
             this.v$.$touch();
             if (this.v$.$error) return;
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/register-validate";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
                 const response = await axios.post(url, this.item);

@@ -74,7 +74,7 @@ export default {
     },
     methods: {
         async Store(){
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/register";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
             try {
                 this.item = {company_code: this.$store.state.auth.user.company_code, user_name: this.user_name, password: this.password}
                 const response = await axios.post(url, this.item);
