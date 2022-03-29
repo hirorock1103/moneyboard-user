@@ -1,41 +1,28 @@
 <template>
-
     <main>
-
         <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
             <div class="container">
-
                 <h2 class="text-center  heading-primary">パスワードの設定</h2>
-
                 <form @submit.prevent="reset">
-
                     <loading v-model:active="loadingStatus"
                         :can-cancel="false"
                         :is-full-page="false"
                         :color="'#2FBCED'"
                         :height="90"
                         :width="100" />
-
                     <p class="text-center  margin-bottom--48">新しく設定するパスワードを入力して下さい</p>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <div class="padding--24  bg-white">
-
                             <h4>
                                 <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
                                 パスワードの設定
                                 <small class="float-right-large  font-weight-normal  display-block  padding-left--24">10文字以上（半角アルファベット大文字、小文字、半角数字の3種類を組み合わせ）</small>
                             </h4>
-
                             <hr>
-
                             <div class="form-row">
                                 <label for="password" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     パスワード
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="password"
@@ -46,24 +33,20 @@
                                         v-bind:class="[ v$.password.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.password.$error">
                                 {{ v$.password.$errors[0].$message }}
                             </div>
-
                             <div
                                 class="form-text  text-danger  margin-bottom--24"
                                 v-if="passwordResetErrors && passwordResetErrors.errors.password">
                                 <span v-for="msg in passwordResetErrors.errors.password" :key="msg">{{ msg }}</span>
                             </div>
-
                             <div class="form-row">
                                 <label for="password_confirmation" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     パスワード　確認用
                                 </label>
-
                                 <span class="form-column">
                                     <input
                                         type="password"
@@ -74,38 +57,21 @@
                                         v-bind:class="[ v$.password_confirmation.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
-
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.password_confirmation.$error">
                                 {{ v$.password_confirmation.$errors[0].$message }}
                             </div>
-
-
                         </div>
-
                     </article>
-
-
-
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
-
                         <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
-
                         <button type="submit" class="[ btn  btn--accent ]">登録</button>
-
                     </div>
-
-
-
                 </form>
-
             </div>
-
         </section>
-
     </main>
-
 </template>
 
 <script>
@@ -123,18 +89,15 @@ export default {
     components: {
         Loading
     },
-
     setup() {
         return { v$: useVuelidate() };
     },
-
     data () {
         return {
             password: '',
             password_confirmation: '',
         }
     },
-
     validations() {
         return {
             password: {
@@ -171,7 +134,6 @@ export default {
             }
         }
     },
-
     computed: {
         ...mapState({
             apiStatus: state => state.auth.apiStatus,
@@ -179,14 +141,11 @@ export default {
             loadingStatus: state => state.auth.loadingStatus,
         })
     },
-
     methods: {
         ...mapActions('auth', ['sendPasswordResetRequest']),
-
         reset () {
             this.v$.$touch();
             if (this.v$.$error) return;
-
             this.sendPasswordResetRequest(this.password).then(() => {
                 if (this.apiStatus) {
                     this.$router.push(
@@ -204,12 +163,10 @@ export default {
                 }
             });
         },
-
         clearError () {
             this.$store.commit('auth/setPasswordResetErrorMessages', null)
         }
     },
-
     created () {
         this.clearError()
     }

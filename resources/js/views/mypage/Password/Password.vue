@@ -47,7 +47,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
-                                                    パスワード（確認用）
+                                                    確認用パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
                                                     <input 
@@ -72,10 +72,18 @@
                                                 <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                     現在のパスワード
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                <td class="[ display-table-row  display-table-cell-large ]">
                                                     <input 
-                                                    type="email" 
-                                                    class="form-input  margin-top--8">
+                                                    type="password" 
+                                                    class="form-input  margin-top--8"
+                                                    v-model="item.password_present"
+                                                        @input="v$.item.password_present.$touch"
+                                                        v-bind:class="[ v$.item.password_present.$error ? 'form-error' : null ]"/>
+                                                    <div
+                                                        class="form-text  text-danger  text-center"
+                                                        v-if="v$.item.password_present.$error">
+                                                        {{ v$.item.password_present.$errors[0].$message }}
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -155,11 +163,20 @@ export default {
                         sameAs(this.item.password)
                     ),
                 },
+                password_present: {
+                    required: helpers.withMessage(
+                        '現在のパスワードを入力してください',
+                        required
+                    ),
+                },
             }
         }
     },
     methods: {
         async Store(){
+            this.v$.$touch();
+            if (this.v$.$error) return;
+            console.log(this.item);
             // Todo:user_code→現状は変えたくないので固定値
             // var user_code = this.$store.state.auth.user.user_code;
             var user_code = '0614765068';
