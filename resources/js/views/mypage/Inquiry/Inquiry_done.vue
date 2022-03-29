@@ -12,7 +12,7 @@
                         </h2>
                     </div>
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
-                        お問合せ内容を受け付けました。<br>
+                        お問い合わせ内容を受け付けました。<br>
                         内容につきましては、事務局から返信いたします。
                     </div>
                 </div>

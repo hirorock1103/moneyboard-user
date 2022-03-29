@@ -52,7 +52,7 @@ import Password_confirm from "./views/mypage/Password/Password_confirm.vue";
 // ご意見・ご要望
 import Opinion from "./views/mypage/Opinion/Opinion.vue";
 import Opinion_done from "./views/mypage/Opinion/Opinion_done.vue";
-// お問合せ
+// お問い合わせ
 import Inquiry from "./views/mypage/Inquiry/Inquiry.vue";
 import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
 //

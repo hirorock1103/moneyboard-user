@@ -73,7 +73,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
-                                                    お問合せ
+                                                    お問い合わせ
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
                                                     <input 

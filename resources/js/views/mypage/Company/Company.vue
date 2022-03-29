@@ -25,7 +25,7 @@
                                     <tbody>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                名前
+                                                会社名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                 {{ item.company_name }}

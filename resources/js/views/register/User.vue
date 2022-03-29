@@ -15,7 +15,7 @@
                             <hr>
                             <div class="form-row">
                                 <label for="company-name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
-                                    名前
+                                    会社名
                                 </label>
                                 <span class="form-column">
                                     <input
