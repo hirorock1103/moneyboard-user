@@ -1,28 +1,18 @@
 <template>
-
     <main>
-
         <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
             <div class="container  text-center">
-
                 <h2 class="text-center  heading-primary">ログイン</h2>
-
                 <form @submit.prevent="login" class="vld-parent">
-
                     <loading v-model:active="loadingStatus"
                             :can-cancel="false"
                             :is-full-page="false"
                             :color="'#2FBCED'"
                             :height="90"
                             :width="100" />
-
                     <article class="padding--16  bg-gray  [ margin-left-medium--48  margin-right-medium--48  margin-large--0  [ margin-bottom--48  margin-bottom-large--140 ] ]  display-inline-block-large  text-left">
-
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-
                             <div class="form-two-lined">
-
                                 <label
                                     for="email_address"
                                     class="form-label">
@@ -41,14 +31,11 @@
                                     v-if="v$.loginForm.email_address.$error">
                                     {{ v$.loginForm.email_address.$errors[0].$message }}
                                 </div>
-
                                 <div
                                     class="form-text  text-danger  margin-bottom--24"
                                     v-if="loginErrors && loginErrors.email_address">
                                     <span v-for="msg in loginErrors.email_address" :key="msg">{{ msg }}</span>
                                 </div>
-
-
                                 <label
                                     for="password"
                                     class="form-label">
@@ -68,31 +55,19 @@
                                     v-if="v$.loginForm.password.$error">
                                         {{ v$.loginForm.password.$errors[0].$message }}
                                 </div>
-
                                 <div class="text-center  [  margin-top--48  [ margin-bottom--16  margin-bottom-large--24 ] ]">
-
                                     <button type="submit" class="[ btn  btn--accent ]">ログイン</button>
-
                                 </div>
-
                                 <div class="text-center">
                                     <router-link to="/password/email" class="btn  btn--link">パスワードを忘れた場合</router-link>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </article>
-
                 </form>
-
             </div>
-
         </section>
-
     </main>
-
 </template>
 
 <script>
@@ -107,11 +82,9 @@ export default {
     components: {
         Loading
     },
-
     setup() {
         return { v$: useVuelidate() };
     },
-
     data () {
         return {
             loginForm: {
@@ -120,7 +93,6 @@ export default {
             },
         }
     },
-
     validations() {
         return {
             loginForm: {
@@ -143,7 +115,6 @@ export default {
             },
         }
     },
-
     computed: {
         ...mapState({
             apiStatus: state => state.auth.apiStatus,
@@ -151,14 +122,11 @@ export default {
             loadingStatus: state => state.auth.loadingStatus,
         })
     },
-
     methods: {
         ...mapActions('auth', ['sendLoginRequest']),
-
         login () {
             this.v$.$touch();
             if (this.v$.$error) return;
-
             this.sendLoginRequest(this.loginForm).then(() => {
                 if (this.apiStatus) {
                     this.$router.push(
@@ -169,12 +137,10 @@ export default {
                 }
             });
         },
-
         clearError () {
             this.$store.commit('auth/setLoginErrorMessages', null)
         }
     },
-
     created () {
         this.clearError()
     }
