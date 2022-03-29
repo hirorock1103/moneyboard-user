@@ -48,54 +48,12 @@
                             <div class="table-scrollable  padding-right--8">
                                 <table class="table-scrollable">
                                     <tbody>
-                                        <!-- <tr
-                                            v-for="notification in notifications.slice().reverse()"
-                                            :key="notification.id">
+                                        <tr v-for="item in items.reverse()" :key="item._id">
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                {{ notification.date }}
+                                                {{ formatDate(item.created_at) }}
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ notification.text }}
-                                            </td>
-                                        </tr> -->
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                2000/1/1
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                2000/1/11
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                2020/3/11
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                2020/3/11
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                2020/3/11
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id omnis, earum quas quos enim? Est vero quam aliquid, rem harum reprehenderit. At obcaecati a quisquam et dignissimos nulla enim?
+                                                &nbsp;{{ item.notice }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -110,12 +68,22 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 import { mapState } from 'vuex';
+import axios from '../../src/plugins/axios.js'
 import SideMenu from '../../components/SideMenuComponent.vue';
 
 export default {
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            items: [],
+        };
+    },
+    created: function() {
+        this.fetchItems();
     },
     computed: {
         ...mapState({
@@ -123,12 +91,25 @@ export default {
                 return state.auth.company;
             }
         })
+    },
+    methods: {
+        formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
+        async fetchItems() {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/notice/get";
+            try {
+                const response = await axios.get(url);
+                this.items = response.data;
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
     }
 }
 
 // ToDo:QRコードを本番URLに変更
-// ToDo:データ数を正しい情報へ変更
-// ToDo:お知らせの取得と反映
+// ToDo:登録可能データ数を正しい情報へ変更
 </script>
 
 <style lang="scss" scoped>
