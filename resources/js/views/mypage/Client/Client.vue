@@ -57,7 +57,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>{{postItem.client_name}}</td>
-                                                            <td>テスト　太郎{{postItem.user_id}}</td>
+                                                            <td>{{postItem.user_name}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
