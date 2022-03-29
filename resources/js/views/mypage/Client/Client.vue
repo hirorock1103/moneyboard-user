@@ -37,7 +37,7 @@
                                 <tbody>
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.client_name }}</td>
-                                        <td>テスト　太郎{{ item.user_id }}</td>
+                                        <td>{{ item.user_name }}</td>
                                         <th class="text-center">
                                             <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, company_rep: 'テスト太郎' }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
@@ -133,7 +133,6 @@ export default {
 }
 
 // ToDo:検索機能
-// ToDo:APIで担当者情報ふくまれたら反映させる
 </script>
 
 <style lang="scss" scoped>
