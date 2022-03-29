@@ -179,7 +179,7 @@ export default {
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
                 const response = await axios.post(url, this.item);
-                console.log(response, this.item);
+                // console.log(response, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
