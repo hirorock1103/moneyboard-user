@@ -35,13 +35,13 @@
                                                     <input 
                                                     type="password" 
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.password"
-                                                        @input="v$.item.password.$touch"
-                                                        v-bind:class="[ v$.item.password.$error ? 'form-error' : null ]"/>
+                                                    v-model="item.password_new"
+                                                        @input="v$.item.password_new.$touch"
+                                                        v-bind:class="[ v$.item.password_new.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.password.$error">
-                                                        {{ v$.item.password.$errors[0].$message }}
+                                                        v-if="v$.item.password_new.$error">
+                                                        {{ v$.item.password_new.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -76,13 +76,13 @@
                                                     <input 
                                                     type="password" 
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.password_present"
-                                                        @input="v$.item.password_present.$touch"
-                                                        v-bind:class="[ v$.item.password_present.$error ? 'form-error' : null ]"/>
+                                                    v-model="item.password"
+                                                        @input="v$.item.password.$touch"
+                                                        v-bind:class="[ v$.item.password.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.password_present.$error">
-                                                        {{ v$.item.password_present.$errors[0].$message }}
+                                                        v-if="v$.item.password.$error">
+                                                        {{ v$.item.password.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -131,7 +131,7 @@ export default {
     validations() {
         return {
             item:{
-                password: {
+                password_new: {
                     required: helpers.withMessage(
                         'パスワードを入力してください',
                         required
@@ -160,10 +160,10 @@ export default {
                     ),
                     sameAs: helpers.withMessage(
                         '確認用パスワードが違います',
-                        sameAs(this.item.password)
+                        sameAs(this.item.password_new)
                     ),
                 },
-                password_present: {
+                password: {
                     required: helpers.withMessage(
                         '現在のパスワードを入力してください',
                         required
@@ -176,15 +176,13 @@ export default {
         async Store(){
             this.v$.$touch();
             if (this.v$.$error) return;
-            console.log(this.item);
-            // Todo:user_code→現状は変えたくないので固定値
-            // var user_code = this.$store.state.auth.user.user_code;
-            var user_code = '0614765068';
+            var company_code = this.$store.state.auth.company.company_code;
+            console.log(localStorage.getItem('authToken') );
             let url = process.env.MIX_VUE_APP_API_URL + "com/change/pass";
             try {
-                this.item = {...this.item, user_code: user_code}
+                this.item = {...this.item, email_address: this.$store.state.auth.company.email_address, company_code: company_code}
                 const response = await axios.post(url, this.item);
-                console.log(this.item, this.$store.state.auth)
+                console.log(response,this.$store.state.auth)
                 if(response.data.status=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
