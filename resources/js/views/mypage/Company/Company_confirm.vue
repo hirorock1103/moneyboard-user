@@ -145,6 +145,7 @@ export default {
         async updateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/update";
             try {
+                console.log(this.item);
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
@@ -163,7 +164,6 @@ export default {
     }
 }
 
-// ToDo:情報の更新ができない（API側のエラー）
 // ToDo:クレジットカードの登録
 </script>
 

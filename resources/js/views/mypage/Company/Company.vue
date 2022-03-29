@@ -36,7 +36,7 @@
                                                 住所
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒000-0000　{{ item.address }}
+                                                〒{{ item.post_number }}　{{ item.address }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -140,7 +140,6 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + company_code;
             try {
                 const response = await axios.get(url);
-                // console.log(response.data[0]);
                 this.item = response.data[0];
             } catch (e){
                 console.log(e);
@@ -151,7 +150,6 @@ export default {
     }
 }
 
-// ToDo:郵便番号を取得する
 // ToDo:カード情報の取得
 </script>
 
