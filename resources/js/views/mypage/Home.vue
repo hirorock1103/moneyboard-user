@@ -47,13 +47,20 @@
                             <hr>
                             <div class="table-scrollable  padding-right--8">
                                 <table class="table-scrollable">
-                                    <tbody>
+                                    <tbody v-if="items !== null">
                                         <tr v-for="item in items.reverse()" :key="item._id">
                                             <th class="[ display-table-row  display-table-cell-large ]">
                                                 {{ formatDate(item.created_at) }}
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                 &nbsp;{{ item.notice }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody v-else>
+                                        <tr>
+                                            <td class="[ display-table-row  display-table-cell-large]">
+                                                <div class="text-center">お知らせはありません</div>
                                             </td>
                                         </tr>
                                     </tbody>

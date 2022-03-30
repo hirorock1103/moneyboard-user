@@ -28,7 +28,7 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody v-if="items !== null">
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.user_number }}</td>
                                         <td>{{ item.user_name }}</td>
@@ -68,6 +68,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr>
+                                        <td>担当者情報はありません</td>
                                     </tr>
                                 </tbody>
                             </table>

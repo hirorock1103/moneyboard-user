@@ -73,7 +73,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody v-bind:class="{'blur': blur_flg!==2, '': blur_flg==2}">
+                                <tbody v-if="items !== null" v-bind:class="{'blur': blur_flg!==2, '': blur_flg==2}">
                                     <!-- <tr>
                                         <td>株式会社サンプルカンパニー{{blur_flg}}</td>
                                         <td>0000/00/00　00:00</td>
@@ -115,6 +115,11 @@
                                         <td>{{ item.close_possibility_previous }}</td>
                                         <td>{{ item.close_possibility_befpre }}</td>
                                         <td>{{ item.comment }}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr>
+                                        <td>プレミアムプラン情報はありません</td>
                                     </tr>
                                 </tbody>
                             </table>
