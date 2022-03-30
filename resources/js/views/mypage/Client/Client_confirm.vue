@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            担当者情報の確認
+                            登録企業情報の確認
                         </h2>
                     </div>
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -36,7 +36,8 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                あああ　あああ
+                                                あああ　あああ{{user_code}}
+                                                {{items}}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -55,11 +56,44 @@
 </template>
 
 <script>
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
+    props: ['user_code'],
     components: {
         SideMenu,
+    },
+    created: function() {
+        this.fetchItems();
+    },
+    data() {
+        return {
+            items: {},
+            message: "",
+        };
+    },
+    methods: {
+        // async Store() {
+        //     let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
+        //     var valDatas = {user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code}
+        //     try {
+        //         const response = await axios.post(url, valDatas);
+        //         // console.log(response);
+        //         // if(response.data.status=="NG"){
+        //         if(false){
+        //             console.log(response);
+        //             this.message = response.data.message
+        //             setTimeout(() => {this.message = false;}, 2000);
+        //         } else {
+        //             this.$router.push({name: 'mypage-client_confirm', params: {user_code: this.selectedItem}})
+        //         }
+        //     } catch (e){
+        //         console.log(e);
+        //         this.message = e
+        //         setTimeout(() => {this.message = false;}, 2000);
+        //     }
+        // }
     }
 }
 
@@ -71,3 +105,4 @@ export default {
 @import 'resources/sass/vendors/_media.scss';
 @import 'resources/sass/pages/_mypage.scss';
 </style>
+

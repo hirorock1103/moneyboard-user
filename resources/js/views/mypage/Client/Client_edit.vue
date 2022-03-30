@@ -10,44 +10,47 @@
                             登録企業の担当者変更
                         </h2>
                     </div>
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                登録企業担当者情報
-                            </h4>
-                            <hr>
-                            <div class="table  padding-right--8">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                会社名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ client_name }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                <input
-                                                    type="text"
-                                                    id=""
-                                                    class="form-input  margin-top--8">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <form v-on:submit.prevent="validateItem">
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                    登録企業担当者情報
+                                </h4>
+                                <hr>
+                                <div class="table  padding-right--8">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    会社名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    {{ client_name }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    担当者名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <select v-model="selectedItem" class="form-input">
+                                                        <option v-for="item in items" :key="item._id" :value="item.id">
+                                                            {{item.user_name}}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        </article>
+                        <div class="text-center">
+                            <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <input type="submit" class="[ btn  btn--accent ]" value="確認" />
                         </div>
-                    </article>
-                    <div class="text-center">
-                        <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company/client/rep_confirm"  class="[ btn  btn--accent ]">確認</router-link>
-                    </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -55,17 +58,62 @@
 </template>
 
 <script>
+import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['id', 'client_name', 'company_rep'],
+    props: ['id', 'client_name', 'user_id'],
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            items: {},
+            message: "",
+            selectedItem: this.user_id,
+        };
+    },
+    created: function() {
+        this.fetchItems();
+    },
+    methods: {
+        async fetchItems() {
+            var user = this.$store.state.auth.user;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code;
+            try {
+                const response = await axios.get(url);
+                this.items = response.data.data.data_list.data;
+            } catch (e){
+                console.log(e);
+                this.message = e;
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
+        async validateItem() {
+            // ToDo:APIまち
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
+            var valDatas = {user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code}
+            console.log(valDatas);
+            console.log(this.selectedItem);
+            try {
+                // const response = await axios.post(url, valDatas);
+                // console.log(response);
+                // if(response.data.status=="NG"){
+                if(false){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    // this.$router.push({name: 'mypage-client_confirm', params: {client_name:this.client_name, user_code: this.selectedItem}})
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        }
     }
 }
-
-// ToDo:一覧からの情報の反映
-// ToDo:バリデーションAPI
 </script>
 
 <style lang="scss" scoped>
