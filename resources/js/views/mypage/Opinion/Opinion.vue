@@ -28,23 +28,26 @@
                                                 <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                     会社名
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                <td class="[ display-table-row  display-table-cell-large ]">
                                                     <input
                                                     type="text"
-                                                    class="form-input  margin-top--8"
-                                                    v-model="item.company_name"/>
+                                                    id="company_name"
+                                                    class="form-input"
+                                                    v-model="company.company_name"
+                                                    readonly/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                     名前
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                <td class="[ display-table-row  display-table-cell-large ]">
                                                     <input
                                                     type="text"
-                                                    name="name"
-                                                    class="form-input  margin-top--8"
-                                                    v-model="item.inquiry_rep"/>
+                                                    name="inquiry_rep"
+                                                    class="form-input"
+                                                    v-model="company.company_rep"
+                                                    readonly/>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -99,6 +102,7 @@
 
 <script>
 import axios from '../../../src/plugins/axios.js'
+import { mapState } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -112,11 +116,19 @@ export default {
             message: ""
         };
     },
+    computed: {
+        ...mapState({
+            company: function (state) {
+                return state.auth.company;
+            },
+        })
+    },
     methods: {
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/store";
             this.item.inquiry_type = 2;
             try {
+                this.item = {...this.item, company_name: this.company.company_name, inquiry_rep: this.company.company_rep}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
@@ -133,8 +145,6 @@ export default {
         }
     },
 }
-
-// ToDo:仕様によっては修正あり
 </script>
 
 <style lang="scss" scoped>
