@@ -61,7 +61,7 @@ import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['user_name', 'password'],
+    props: ['user_name', 'password', 'user_code'],
     components: {
         SideMenu,
         name: "Store"
@@ -75,13 +75,11 @@ export default {
     methods: {
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
-            // ToDo:動的にする
-            let user_code = 'u000000037';
+            let user_code = this.user_code;
             try {
-                this.item = {company_code: this.$store.state.auth.user.company_code, user_name: this.user_name, password: this.password, user_code: user_code}
+                this.item = {company_code: this.$store.state.auth.user.company_code, user_name: this.user_name, password: this.password, user_code: this.user_code}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
-                    console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {

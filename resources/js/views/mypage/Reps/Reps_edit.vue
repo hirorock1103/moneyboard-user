@@ -191,7 +191,7 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps_edit_confirm', params: {user_name: this.item.user_name, password: this.item.password}})
+                    this.$router.push({name: 'mypage-reps_edit_confirm', params: {user_name: this.item.user_name, password: this.item.password, user_code:this.item.user_code}})
                 }
             } catch (e){
                 console.log(e);
