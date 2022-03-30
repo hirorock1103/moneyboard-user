@@ -114,9 +114,7 @@ export default {
                         title: 'パスワードの変更',
                         subtitle: '(管理者サイトログインパス)',
                         active: false
-                    }
-                ],
-                bottomMenu: [
+                    },
                     {
                         id: 9,
                         url: '/mypage/opinion',
@@ -141,6 +139,9 @@ export default {
                         subtitle: '',
                         active: false
                     }
+                ],
+                bottomMenu: [
+
                 ]
             },
             activeButton: false,
