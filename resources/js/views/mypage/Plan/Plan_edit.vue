@@ -187,7 +187,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import axios from '../../../src/plugins/axios.js'
+import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
