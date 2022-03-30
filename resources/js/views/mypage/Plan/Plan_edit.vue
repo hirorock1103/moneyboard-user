@@ -76,7 +76,7 @@
                                 <h4>
                                     現在の月額料金
                                     <span class="padding-left--8  text-accent" v-if="plans != undefined">
-                                        {{plans.cost_total}}
+                                        {{$filters.addComma(Number(plans.cost_total))}}
                                     </span>
                                     円
                                 </h4>
@@ -92,7 +92,7 @@
                                                     基本料金
                                                 </td>
                                                 <td class="padding-bottom--16 text-right" v-if="plans != undefined">
-                                                    {{plans.cost_plan}}円
+                                                    {{$filters.addComma(Number(plans.cost_plan))}}円
                                                 </td>
                                                 <td class="padding-bottom--16 text-right" v-if="plans != undefined">
                                                     （システム使用料と登録データ{{plans.data_plan}}社分）
@@ -105,7 +105,7 @@
                                                     追加利用料金
                                                 </td>
                                                 <td class="text-right" v-if="plans != undefined">
-                                                    {{plans.cost_add}}円
+                                                    {{$filters.addComma(Number(plans.cost_add))}}円
                                                 </td>
                                                 <td class="text-left"></td>
                                             </tr>
