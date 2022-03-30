@@ -11,15 +11,29 @@
                         </h2>
                     </div>
                     <form>
-                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
+                        <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
+                            <div class="padding--16 bg-white">
                             <div class="[ padding--16 ]  bg-white  display-flex">
-                                <h4 class="[ padding-top--8 padding-top-large--8 ]" style="width:10%;">
+                                <h4 class="" style="width:10%;">
                                     <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
                                     検索
                                 </h4>
-                                <input class="form-input" placeholder="会社名や担当者名を入力して検索">
                             </div>
+
+                                <table>
+                                    <tr>
+                                        <th style="padding: 0 5px 0 20px;"><label>会社名</label></th>
+                                        <td><input class="form-input" placeholder="会社名を入力"></td>
+                                        <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
+                                        <td><input class="form-input" placeholder="担当者名を入力"></td>
+                                    </tr>
+                                </table>
+
+                        <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
+                        </div>
+
                         </article>
+
                     </form>
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
