@@ -28,7 +28,7 @@
                                                 会社名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ item.company_name }}
+                                                {{ getCompany.company_name }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -36,7 +36,7 @@
                                                 住所
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒{{ item.post_number }}　{{ item.address }}
+                                                〒{{ getCompany.post_number }}　{{ getCompany.address }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -44,7 +44,7 @@
                                                 電話番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ item.phone_number }}
+                                                {{ getCompany.phone_number }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -52,7 +52,7 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ item.company_rep }}
+                                                {{ getCompany.company_rep }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -60,7 +60,7 @@
                                                 携帯番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                {{ item.mobile_number }}
+                                                {{ getCompany.mobile_number }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -108,7 +108,7 @@
                         </div>
                     </article>
                     <div class="text-center">
-                        <router-link :to="{name: 'mypage-company_edit', params: { company_code: item.company_code }}" class="[ btn  btn--accent ]">変更</router-link>
+                        <router-link :to="{name: 'mypage-company_edit'}" class="[ btn  btn--accent ]">変更</router-link>
                     </div>
                 </div>
             </section>
@@ -118,6 +118,7 @@
 
 <script>
 import axios from '../../../src/plugins/axios.js'
+import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -126,21 +127,32 @@ export default {
     },
     data() {
         return {
-            item: [],
             message: ""
         };
     },
+    computed: {
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
+    },
     created: function() {
-        var company = this.$store.state.auth.company;
-        this.fetchItems(company);
+        this.fetchItems();
     },
     methods: {
-        async fetchItems(company) {
-            var company_code = company.company_code;
-            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + company_code;
+        ...mapActions('auth', ['updateCompany']),
+        async fetchItems() {
+            var company_code = this.getCompany.company_code;
+            // let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + company_code;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get";
             try {
-                const response = await axios.get(url);
-                this.item = response.data[0];
+                // const response = await axios.get(url);
+                const response = await axios.get(url, {
+                    params:{
+                        company_code: company_code
+                        }
+                    }
+                );
+                this.updateCompany(response.data[0]);
             } catch (e){
                 console.log(e);
                 this.message = e
@@ -149,6 +161,7 @@ export default {
         },
     }
 }
+
 // ToDo:カード情報の取得
 </script>
 

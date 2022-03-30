@@ -200,7 +200,7 @@ const routes = [
   },
   // 登録情報の編集
   {
-    path: "/mypage/company_edit/:company_code",
+    path: "/mypage/company_edit/",
     component: Company_edit,
     name: "mypage-company_edit",
     props: true,

@@ -29,7 +29,7 @@
                                                     名前
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{ item.company_name }}
+                                                    {{ getCompany.company_name }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -37,7 +37,7 @@
                                                     住所
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    〒000-0000　{{ item.address }}
+                                                    〒{{ getCompany.post_number }}　{{ getCompany.address }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -45,7 +45,7 @@
                                                     電話番号
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{ item.phone_number }}
+                                                    {{ getCompany.phone_number }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -53,7 +53,7 @@
                                                     担当者名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{ item.company_rep }}
+                                                    {{ getCompany.company_rep }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -61,7 +61,7 @@
                                                     携帯番号
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    {{ item.mobile_number }}
+                                                    {{ getCompany.mobile_number }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -109,7 +109,7 @@
                             </div>
                         </article>
                         <div class="text-center">
-                            <router-link :to="{name: 'mypage-company_edit', params: { company_code: item.company_code }}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <router-link :to="{name: 'mypage-company_edit'}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確定" />
                         </div>
                     </form>
@@ -130,22 +130,20 @@ export default {
     },
     data() {
         return {
-            item: [],
             message: ""
         };
     },
-    created: function() {
-        this.fetchItems();
+    computed: {
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
-        async fetchItems() {
-            this.item = this.$store.state.auth.temps;
-        },
         async updateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/update";
             try {
-                const response = await axios.post(url, this.item);
+                const response = await axios.post(url, this.getCompany);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message

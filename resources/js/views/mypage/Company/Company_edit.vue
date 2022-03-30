@@ -33,13 +33,13 @@
                                                         type="text"
                                                         id="company-name"
                                                         class="form-input  margin-top--8"
-                                                        v-model="item.company_name"
-                                                        @input="v$.item.company_name.$touch"
-                                                        v-bind:class="[ v$.item.company_name.$error ? 'form-error' : null ]"/>
+                                                        v-model="getCompany.company_name"
+                                                        @input="v$.getCompany.company_name.$touch"
+                                                        v-bind:class="[ v$.getCompany.company_name.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.company_name.$error">
-                                                        {{ v$.item.company_name.$errors[0].$message }}
+                                                        v-if="v$.getCompany.company_name.$error">
+                                                        {{ v$.getCompany.company_name.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -52,13 +52,13 @@
                                                         type="text"
                                                         id=""
                                                         class="form-input  margin-top--8"
-                                                        v-model="item.address"
-                                                        @input="v$.item.address.$touch"
-                                                        v-bind:class="[ v$.item.address.$error ? 'form-error' : null ]"/>
+                                                        v-model="getCompany.address"
+                                                        @input="v$.getCompany.address.$touch"
+                                                        v-bind:class="[ v$.getCompany.address.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.address.$error">
-                                                        {{ v$.item.address.$errors[0].$message }}
+                                                        v-if="v$.getCompany.address.$error">
+                                                        {{ v$.getCompany.address.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -71,13 +71,13 @@
                                                         type="text"
                                                         id=""
                                                         class="form-input  margin-top--8"
-                                                        v-model="item.phone_number"
-                                                        @input="v$.item.phone_number.$touch"
-                                                        v-bind:class="[ v$.item.phone_number.$error ? 'form-error' : null ]"/>
+                                                        v-model="getCompany.phone_number"
+                                                        @input="v$.getCompany.phone_number.$touch"
+                                                        v-bind:class="[ v$.getCompany.phone_number.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.phone_number.$error">
-                                                        {{ v$.item.phone_number.$errors[0].$message }}
+                                                        v-if="v$.getCompany.phone_number.$error">
+                                                        {{ v$.getCompany.phone_number.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -90,13 +90,13 @@
                                                         type="text"
                                                         id=""
                                                         class="form-input  margin-top--8"
-                                                        v-model="item.company_rep"
-                                                        @input="v$.item.company_rep.$touch"
-                                                        v-bind:class="[ v$.item.company_rep.$error ? 'form-error' : null ]"/>
+                                                        v-model="getCompany.company_rep"
+                                                        @input="v$.getCompany.company_rep.$touch"
+                                                        v-bind:class="[ v$.getCompany.company_rep.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.company_rep.$error">
-                                                        {{ v$.item.company_rep.$errors[0].$message }}
+                                                        v-if="v$.getCompany.company_rep.$error">
+                                                        {{ v$.getCompany.company_rep.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -109,13 +109,13 @@
                                                         type="text"
                                                         id=""
                                                         class="form-input  margin-top--8"
-                                                        v-model="item.mobile_number"
-                                                        @input="v$.item.mobile_number.$touch"
-                                                        v-bind:class="[ v$.item.mobile_number.$error ? 'form-error' : null ]"/>
+                                                        v-model="getCompany.mobile_number"
+                                                        @input="v$.getCompany.mobile_number.$touch"
+                                                        v-bind:class="[ v$.getCompany.mobile_number.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.mobile_number.$error">
-                                                        {{ v$.item.mobile_number.$errors[0].$message }}
+                                                        v-if="v$.getCompany.mobile_number.$error">
+                                                        {{ v$.getCompany.mobile_number.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -189,9 +189,6 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
-import containsNumber from '../../../customValidators/containsNumber';
-import containsUppercase from '../../../customValidators/containsUppercase';
-import containsLowercase from '../../../customValidators/containsLowercase';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 import { mapActions } from 'vuex';
@@ -205,16 +202,17 @@ export default {
     },
     data() {
         return {
-            item: {},
             message: ""
         };
     },
-    created: function() {
-        this.getItem();
+    computed: {
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
     },
     validations() {
         return {
-            item:{
+            getCompany:{
                 company_name: {
                     required: helpers.withMessage(
                         '会社名を入力してください',
@@ -253,36 +251,19 @@ export default {
         }
     },
     methods: {
-        ...mapActions('auth', ['updateTemps', 'resetTemps']),
-        async getItem() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get";
-            try {
-                const response = await axios.get(url, {
-                    params:{
-                        company_code: this.$route.params.company_code
-                        }
-                    }
-                );
-                this.item = response.data[0];
-            } catch (e){
-                console.log(e);
-                this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
-            }
-        },
-        // ToDo!:入力値とcompany_code
+        ...mapActions('auth', ['updateCompany']),
         async validateItem() {
             this.v$.$touch();
             if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/update-validate";
             try {
-                const response = await axios.post(url, this.item);
+                const response = await axios.post(url, this.getCompany);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.updateTemps(this.item);
+                    this.updateCompany(this.getCompany);
                     this.$router.push({name: 'mypage-company_confirm'})
                 }
             } catch (e){
@@ -296,7 +277,7 @@ export default {
 
 // ToDo:バリデーション不可の返却値の表示
 // ToDo:クレジットカードのバリデーション
-// ToDo:確認画面から戻ってきた時の値保持
+// ToDo:郵便番号の編集
 </script>
 
 <style lang="scss" scoped>

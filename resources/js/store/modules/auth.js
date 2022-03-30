@@ -162,6 +162,9 @@ const actions = {
     updateUser(context, data) {
         context.commit('setUser', data);
     },
+    updateCompany(context, data) {
+        context.commit('setCompany', data);
+    },
     updateCard(context, data) {
         context.commit('setCard', data);
     },
