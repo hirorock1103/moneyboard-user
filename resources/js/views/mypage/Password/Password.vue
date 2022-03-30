@@ -177,12 +177,10 @@ export default {
             this.v$.$touch();
             if (this.v$.$error) return;
             var company_code = this.$store.state.auth.company.company_code;
-            console.log(localStorage.getItem('authToken') );
             let url = process.env.MIX_VUE_APP_API_URL + "com/change/pass";
             try {
                 this.item = {...this.item, email_address: this.$store.state.auth.company.email_address, company_code: company_code}
                 const response = await axios.post(url, this.item);
-                console.log(response,this.$store.state.auth)
                 if(response.data.status=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
@@ -197,8 +195,6 @@ export default {
         }
     },
 }
-
-// ToDo:user_codeを動的に変更
 </script>
 
 <style lang="scss" scoped>
