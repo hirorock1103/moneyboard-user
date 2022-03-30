@@ -49,7 +49,7 @@
                                         <td>{{ item.client_name }}</td>
                                         <td>{{ item.user_name }}</td>
                                         <th class="text-center">
-                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, user_id: item.user_id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, user_id: item.user_id, client_code: item.client_code }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">

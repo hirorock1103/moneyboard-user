@@ -13,42 +13,43 @@
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
                         以下の内容で登録します
                     </div>
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                登録企業の担当者情報
-                            </h4>
-                            <hr>
-                            <div class="table  padding-right--8">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                会社名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                株式会社サンプルカンパニー
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                あああ　あああ{{user_code}}
-                                                {{items}}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <form v-on:submit.prevent="Store">
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4>
+                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                    登録企業の担当者情報
+                                </h4>
+                                <hr>
+                                <div class="table  padding-right--8">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    会社名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    {{client_name}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    担当者名
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    {{user_code}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        </article>
+                        <div class="text-center">
+                            <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <input type="submit" class="[ btn  btn--accent ]" value="確認" />
                         </div>
-                    </article>
-                    <div class="text-center">
-                        <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                        <router-link to="/mypage/company/client/rep"  class="[ btn  btn--accent ] [ margin-right-medium--24  margin-right-large--24 ]">確定</router-link>
-                    </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -60,12 +61,9 @@ import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['user_code'],
+    props: ['client_name', 'user_code', 'company_code', 'client_code'],
     components: {
         SideMenu,
-    },
-    created: function() {
-        this.fetchItems();
     },
     data() {
         return {
@@ -74,30 +72,28 @@ export default {
         };
     },
     methods: {
-        // async Store() {
-        //     let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
-        //     var valDatas = {user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code}
-        //     try {
-        //         const response = await axios.post(url, valDatas);
-        //         // console.log(response);
-        //         // if(response.data.status=="NG"){
-        //         if(false){
-        //             console.log(response);
-        //             this.message = response.data.message
-        //             setTimeout(() => {this.message = false;}, 2000);
-        //         } else {
-        //             this.$router.push({name: 'mypage-client_confirm', params: {user_code: this.selectedItem}})
-        //         }
-        //     } catch (e){
-        //         console.log(e);
-        //         this.message = e
-        //         setTimeout(() => {this.message = false;}, 2000);
-        //     }
-        // }
+        async Store() {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep";
+            var datas = {client_name: this.client_name, user_code: this.user_code, company_code: this.company_code, client_code: this.client_code}
+            try {
+                const response = await axios.post(url, datas);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.$router.push({name: 'mypage-client', params: {user_code: this.selectedItem}})
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        }
     }
 }
 
-// ToDO:編集情報の更新
+// ToDo:担当者名表示
 </script>
 
 <style lang="scss" scoped>

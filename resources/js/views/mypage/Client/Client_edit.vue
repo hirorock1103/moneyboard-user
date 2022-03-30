@@ -62,7 +62,7 @@ import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['id', 'client_name', 'user_id'],
+    props: ['id', 'client_name', 'user_id', 'client_code'],
     components: {
         SideMenu
     },
@@ -90,21 +90,16 @@ export default {
             }
         },
         async validateItem() {
-            // ToDo:APIまち
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
-            var valDatas = {user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code}
-            console.log(valDatas);
-            console.log(this.selectedItem);
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep-validate";
+            var valDatas = {user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code, client_code:this.client_code}
             try {
-                // const response = await axios.post(url, valDatas);
-                // console.log(response);
-                // if(response.data.status=="NG"){
-                if(false){
+                const response = await axios.post(url, valDatas);
+                if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    // this.$router.push({name: 'mypage-client_confirm', params: {client_name:this.client_name, user_code: this.selectedItem}})
+                    this.$router.push({name: 'mypage-client_confirm', params: {client_name:this.client_name, user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code, client_code:this.client_code}})
                 }
             } catch (e){
                 console.log(e);
