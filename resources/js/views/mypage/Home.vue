@@ -119,7 +119,6 @@ export default {
 }
 
 // ToDo:QRコードを本番URLに変更
-// ToDo:登録可能データ数を正しい情報へ変更
 </script>
 
 <style lang="scss" scoped>
