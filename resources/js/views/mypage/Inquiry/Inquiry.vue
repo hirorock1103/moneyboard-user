@@ -31,11 +31,11 @@
                                         <tbody>
                                             <tr>
                                                 <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
-                                                    企業名
+                                                    会社名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    <input 
-                                                    type="text" 
+                                                    <input
+                                                    type="text"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.company_name"/>
                                                 </td>
@@ -45,8 +45,8 @@
                                                     名前
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input 
-                                                    type="text" 
+                                                    <input
+                                                    type="text"
                                                     name="name"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.inquiry_rep"/>
@@ -57,8 +57,8 @@
                                                     メールアドレス
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input 
-                                                    type="email" 
+                                                    <input
+                                                    type="email"
                                                     name="email"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.inquiry_email"/>
@@ -69,8 +69,8 @@
                                                     件名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input 
-                                                    type="text" 
+                                                    <input
+                                                    type="text"
                                                     name="title"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.inquiry_title"/>
@@ -81,8 +81,8 @@
                                                     お問い合わせ
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input 
-                                                    type="text" 
+                                                    <input
+                                                    type="text"
                                                     class="form-textarea  margin-top--8"
                                                     v-model="item.inquiry_contents"/>
                                                 </td>
