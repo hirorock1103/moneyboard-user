@@ -187,7 +187,7 @@ const actions = {
             const data = await axios.post(
                 process.env.MIX_VUE_APP_API_URL + "com/me"
             );
-            console.log(2,data);
+            // console.log(2,data);
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             context.commit('setUser', data.data.data.me);
@@ -202,10 +202,14 @@ const actions = {
 
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
-        if (response.status === UNPROCESSABLE_ENTITY) {
-            context.commit('setLoginErrorMessages', response.data)
-        } else {
-            context.commit('error/setCode', response.status, { root: true })
+         // 何の処理か？
+        // if (response.status === UNPROCESSABLE_ENTITY) {
+        //     context.commit('setLoginErrorMessages', response.data)
+        // } else {
+        //     context.commit('error/setCode', response.status, { root: true })
+        // }
+        if (response.data.status === 'NG') {
+            context.commit('setLoginErrorMessages', response.data.message)
         }
     },
     // ログアウト

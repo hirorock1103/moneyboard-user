@@ -53,9 +53,10 @@
                                 <div
                                     class="form-text  text-danger"
                                     v-if="v$.loginForm.password.$error">
-                                        {{ v$.loginForm.password.$errors[0].$message }}
+                                    {{ v$.loginForm.password.$errors[0].$message }}
                                 </div>
                                 <div class="text-center  [  margin-top--48  [ margin-bottom--16  margin-bottom-large--24 ] ]">
+                                    <p v-show="loginErrors" class="text-danger">{{loginErrors}}</p>
                                     <button type="submit" class="[ btn  btn--accent ]">ログイン</button>
                                 </div>
                                 <div class="text-center">
