@@ -139,6 +139,7 @@
                             </div>
                         </div>
                     </article>
+                                <!-- {{ this.$store.state.auth }} -->
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48 ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
                         <div class="padding--24  bg-white">
                             <h4>
@@ -277,7 +278,7 @@ export default {
     },
     methods: {
         setPlan() {
-            this.getUser.plan_id == 0 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
+            this.getUser.plan_id == 1 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
         },
         goBack() {
             this.$router.push(
