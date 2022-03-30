@@ -54,7 +54,7 @@ $register_mail_address = session()->get('register_mail_address');
 
                 <div class="items">
                     <div class="item">
-                        <div class="item-title">企業名</div>
+                        <div class="item-title">会社名</div>
                         <div class="item-content">
                             {{ Form::text('company_name') }}
                         </div>

@@ -587,7 +587,7 @@ export default {
             getUser: {
                 company_name: {
                     required: helpers.withMessage(
-                        '企業名を入力してください',
+                        '会社名を入力してください',
                         required
                     ),
                 },
