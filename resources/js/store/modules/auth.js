@@ -59,6 +59,9 @@ const mutations = {
     setUser (state, user) {
         state.user = user
     },
+    setLicense (state, license) {
+        state.license = license
+    },
     setUserEmail (state, email_address) {
         state.user.email_address = email_address
     },
@@ -188,6 +191,7 @@ const actions = {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             context.commit('setUser', data.data.data.me);
+            context.commit('setLicense', data.data.data.summery);
             context.commit('setCompany', data.data.auth.company);
             // localStorage.setItem('authToken', response.data.token);
             // console.log(3,context);
@@ -311,6 +315,7 @@ const actions = {
         context.commit('setApiStatus', true);
         context.commit('setLoadingStatus', false);
         context.commit('setUser', data.data.data.me);
+        context.commit('setLicense', data.data.data.summery);
         context.commit('setCompany', data.data.auth.company);
     },
 }

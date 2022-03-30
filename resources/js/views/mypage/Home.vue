@@ -16,8 +16,8 @@
                             登録可能データ残り
                             <span class="font-weight-bold  display-none-large  padding-left--4">12</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
-                                {{ company.available_licenses_total }}</span>
-                            件/{{ company.available_licenses_total }}件
+                                {{ license.license_available_total }}</span>
+                            件/{{ license.license_total }}件
                         </h5>
                     </div>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
@@ -89,6 +89,9 @@ export default {
         ...mapState({
             company: function (state) {
                 return state.auth.company;
+            },
+            license: function (state) {
+                return state.auth.license;
             }
         })
     },
