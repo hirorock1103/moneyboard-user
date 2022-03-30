@@ -158,7 +158,6 @@ export default {
 
     methods: {
         ...mapActions('auth', ['sendLogoutRequest']),
-
         async logout () {
             this.sendLogoutRequest().then(() => {
                 if (this.apiStatus) {
