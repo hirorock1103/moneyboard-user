@@ -149,7 +149,6 @@ export default {
         },
     }
 }
-
 // ToDo:カード情報の取得
 </script>
 
