@@ -186,13 +186,12 @@ export default {
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
                 const response = await axios.post(url, this.item);
-                console.log(response, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps_confirm', params: {user_name: this.item.user_name, password: this.item.password}})
+                    this.$router.push({name: 'mypage-reps_edit_confirm', params: {user_name: this.item.user_name, password: this.item.password}})
                 }
             } catch (e){
                 console.log(e);

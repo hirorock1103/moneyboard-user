@@ -75,8 +75,10 @@ export default {
     methods: {
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
+            // ToDo:動的にする
+            let user_code = 'u000000037';
             try {
-                this.item = {company_code: this.$store.state.auth.user.company_code, user_name: this.user_name, password: this.password}
+                this.item = {company_code: this.$store.state.auth.user.company_code, user_name: this.user_name, password: this.password, user_code: user_code}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
