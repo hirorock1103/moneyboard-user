@@ -386,7 +386,7 @@ export default {
     }
 }
 
-// ToDo:画像の差し替え（秘書の女性の画像変更）
+// ToDo:画像の差し替え（秘書の女性の画像変更）→依頼済み
 </script>
 
 <style lang="scss" scoped>
