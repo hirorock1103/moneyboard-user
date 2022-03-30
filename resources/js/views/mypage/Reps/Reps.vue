@@ -124,7 +124,6 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/delete";
             try {
                 const response = await axios.post(url, {company_code: company_code, user_code: user_code});
-                // console.log(response);
                 this.message = response.data.message;
                 setTimeout(() => {this.message = false;}, 2000);
                 this.fetchItems();
