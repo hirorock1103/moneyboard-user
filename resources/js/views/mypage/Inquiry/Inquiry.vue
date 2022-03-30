@@ -84,10 +84,8 @@
                                                     お問い合わせ
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input
-                                                    type="text"
-                                                    class="form-textarea  margin-top--8"
-                                                    v-model="item.inquiry_contents"/>
+                                                    <textarea class="form-textarea margin-top--8" v-model="item.inquiry_contents" placeholder="こちらにお問い合わせ内容を入力してください。">
+                                                    </textarea>
                                                 </td>
                                             </tr>
                                         </tbody>
