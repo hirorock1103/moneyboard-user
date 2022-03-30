@@ -30,19 +30,16 @@ export default {
     components: {
         Loading
     },
-
-    props: ['hash'],
-
     data() {},
-
     mounted() {
-        this.sendVerifyRequest(this.hash).then(() => {
+        this.sendVerifyRequest(this.$route.query.token).then(() => {
+            this.resetTemps();
+            this.updateTemps(this.$route.query.email);
             if (this.apiStatus) {
-                this.$router.push('/register/user');
+                this.$router.push({ name:'register-user'});
             }
         });
     },
-
     computed: {
         ...mapGetters('auth', ['user']),
         ...mapState({
@@ -51,15 +48,12 @@ export default {
             loadingStatus: state => state.auth.loadingStatus,
         })
     },
-
     methods: {
-        ...mapActions('auth', ['sendVerifyRequest']),
-
+        ...mapActions('auth', ['sendVerifyRequest', 'updateTemps', 'resetTemps']),
         clearError () {
             this.$store.commit('auth/setVerifyErrorMessages', null)
         }
     },
-
     created () {
         this.clearError()
     }

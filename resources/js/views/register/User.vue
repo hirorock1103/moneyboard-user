@@ -110,35 +110,12 @@
                                 v-if="v$.getUser.mobile_number.$error">
                                 {{ v$.getUser.mobile_number.$errors[0].$message }}
                             </div>
-                            <!-- <div class="form-row">
+                            <div class="form-row">
                                 <label for="email-address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     メールアドレス
                                 </label>
-                                {{ getMailAddress }}
-                                {{ this.$store.state.auth }}
-                                <span class="form-column">
-                                    <input
-                                        type="email"
-                                        id="email-address"
-                                        class="form-input"
-                                        v-model="getUser.email_address"
-                                        readonly>
-                                </span>
-                            </div> -->
-                            <!-- <div class="form-row">
-                                <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]" style="white-space: nowrap;">
-                                    トークン（開発用の表示）
-                                </label>
-                                {{ getToken }}
-                                <span class="form-column">
-                                    <input
-                                        type="text"
-                                        id="token"
-                                        class="form-input"
-                                        v-model="getUser.token"
-                                        readonly>
-                                </span>
-                            </div> -->
+                                {{ this.$store.state.auth.temps }}
+                            </div>
                         </div>
                     </article>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
@@ -717,11 +694,9 @@ export default {
             }
         },
         getMailAddress(){
-            // console.log(this.$store.state.auth);
-            this.getUser.email_address = this.$route.query.mail_address
+            this.getUser.email_address = this.$route.params.email
         },
         getToken(){
-            // this.getUser.token = this.$route.query.token
             this.getUser.token = localStorage.getItem('authToken')
         }
     },

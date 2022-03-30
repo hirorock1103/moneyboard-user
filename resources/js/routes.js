@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+// LPページ
 import Home from "./views/Home.vue";
 // 新規登録ページ
 import Signup from "./views/Signup.vue";
@@ -99,7 +100,7 @@ const routes = [
   },
   // 仮登録
   {
-    path: "/verify/:hash",
+    path: "/verify",
     component: Verify,
     name: "verify",
     props: true,

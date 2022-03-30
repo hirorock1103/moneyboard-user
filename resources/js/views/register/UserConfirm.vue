@@ -85,12 +85,7 @@
                                     メールアドレス
                                 </label>
                                 <span class="form-column">
-                                    <input
-                                        type="email"
-                                        id="email_address"
-                                        class="form-input"
-                                        v-model="getUser.email_address"
-                                        readonly>
+                                    <div class="form-input" readonly>{{ this.$store.state.auth.temps }}</div>
                                 </span>
                             </div>
                         </div>
@@ -251,6 +246,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import ProgressBar from '../../components/ProgressBarComponent.vue';
 
 export default {
@@ -277,6 +273,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         setPlan() {
             this.getUser.plan_id == 1 ? (this.planAmount = 55000, this.planName = 'スタンダードプラン') : (this.planAmount = 132000, this.planName = 'プレミアムプラン');
         },
@@ -300,6 +297,7 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else{
+                    this.resetTemps();
                     this.$router.push(
                         {
                             name: 'register-card',
