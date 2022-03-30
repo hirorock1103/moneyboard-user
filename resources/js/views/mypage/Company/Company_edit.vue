@@ -270,11 +270,11 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
+        // ToDo!:入力値とcompany_code
         async validateItem() {
             this.v$.$touch();
             if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/update-validate";
-            this.item = {...this.item}
             try {
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
