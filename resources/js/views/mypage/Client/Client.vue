@@ -13,13 +13,12 @@
                     <form>
                         <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
                             <div class="padding--16 bg-white">
-                            <div class="[ padding--16 ]  bg-white  display-flex">
-                                <h4 class="" style="width:10%;">
-                                    <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
-                                    検索
-                                </h4>
-                            </div>
-
+                                <div class="[ padding--16 ]  bg-white  display-flex">
+                                    <h4 class="" style="width:10%;">
+                                        <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
+                                        検索
+                                    </h4>
+                                </div>
                                 <table>
                                     <tr>
                                         <th style="padding: 0 5px 0 20px;"><label>会社名</label></th>
@@ -28,12 +27,9 @@
                                         <td><input class="form-input" placeholder="担当者名を入力"></td>
                                     </tr>
                                 </table>
-
-                        <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
-                        </div>
-
+                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
+                            </div>
                         </article>
-
                     </form>
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
@@ -48,12 +44,12 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody v-if="items !== null">
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.client_name }}</td>
                                         <td>{{ item.user_name }}</td>
                                         <th class="text-center">
-                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, company_rep: 'テスト太郎' }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, user_id: item.user_id }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
@@ -81,6 +77,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </tr>
+                                </tbody>
+                                <tbody v-else>
+                                    <tr>
+                                        <td>登録企業情報はありません</td>
                                     </tr>
                                 </tbody>
                             </table>
