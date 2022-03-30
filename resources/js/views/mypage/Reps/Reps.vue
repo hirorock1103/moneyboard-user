@@ -107,6 +107,7 @@ export default {
             try {
                 const response = await axios.get(url);
                 this.items = response.data.data.data_list.data;
+                // console.log(this.items);
             } catch (e){
                 console.log(e);
                 this.message = e;
