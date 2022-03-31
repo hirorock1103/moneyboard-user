@@ -29,7 +29,7 @@
                                                     使用者番号
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{ item.user_number }}
+                                                    {{ getTemps.user_number }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -41,13 +41,13 @@
                                                         type="text"
                                                         id="user_name"
                                                         class="form-input  margin-top--8  form-control"
-                                                        v-model="item.user_name"
-                                                        @input="v$.item.user_name.$touch"
-                                                        v-bind:class="[ v$.item.user_name.$error ? 'form-error' : null ]"/>
+                                                        v-model="getTemps.user_name"
+                                                        @input="v$.getTemps.user_name.$touch"
+                                                        v-bind:class="[ v$.getTemps.user_name.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.user_name.$error">
-                                                        {{ v$.item.user_name.$errors[0].$message }}
+                                                        v-if="v$.getTemps.user_name.$error">
+                                                        {{ v$.getTemps.user_name.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -60,13 +60,13 @@
                                                         type="password"
                                                         id="password"
                                                         class="form-input  margin-top--8  form-control"
-                                                        v-model="item.password"
-                                                        @input="v$.item.password.$touch"
-                                                        v-bind:class="[ v$.item.password.$error ? 'form-error' : null ]"/>
+                                                        v-model="getTemps.password"
+                                                        @input="v$.getTemps.password.$touch"
+                                                        v-bind:class="[ v$.getTemps.password.$error ? 'form-error' : null ]"/>
                                                     <div
                                                         class="form-text  text-danger  text-center"
-                                                        v-if="v$.item.password.$error">
-                                                        {{ v$.item.password.$errors[0].$message }}
+                                                        v-if="v$.getTemps.password.$error">
+                                                        {{ v$.getTemps.password.$errors[0].$message }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -83,7 +83,7 @@
                                                     更新日時
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{ formatDate(item.updated_at) }}
+                                                    {{ formatDate(getTemps.updated_at) }}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -107,7 +107,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
+import { required, minLength, helpers } from '@vuelidate/validators';
 import containsNumber from '../../../customValidators/containsNumber';
 import containsUppercase from '../../../customValidators/containsUppercase';
 import containsLowercase from '../../../customValidators/containsLowercase';
@@ -125,13 +125,12 @@ export default {
     },
     data() {
         return {
-            item: {},
             message: ""
         };
     },
     validations() {
         return {
-            item:{
+            getTemps:{
                 user_name: {
                     required: helpers.withMessage(
                         '担当者名を入力してください',
@@ -163,35 +162,26 @@ export default {
             }
         }
     },
-    created: function() {
-        this.getItem();
+    computed: {
+        getTemps() {
+            return this.$store.getters['auth/temps']
+        },
     },
     methods: {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
-        async getItem() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/show";
-            const response = await axios.post(url, {company_code: this.$store.state.auth.user.company_code, user_code: this.$route.params.id});
-            if (response.data.status=="NG") {
-                console.log(response.data);
-                this.message = response.data.errors.undefined_user
-                setTimeout(() => {this.message = false;}, 2000);
-            } else {
-                this.item = response.data.data.user;
-            }
-        },
         async validateItem(){
             this.v$.$touch();
             if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/update-validate";
             try {
-                this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
-                const response = await axios.post(url, this.item);
+                this.getTemps = {...this.getTemps, company_code: this.$store.state.auth.user.company_code}
+                const response = await axios.post(url, this.getTemps);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps_edit_confirm', params: {user_name: this.item.user_name, password: this.item.password, user_code:this.item.user_code}})
+                    this.$router.push({name: 'mypage-reps_edit_confirm'})
                 }
             } catch (e){
                 console.log(e);
@@ -201,6 +191,8 @@ export default {
         }
     }
 }
+
+// ToDo:データ使用数を表示する
 </script>
 
 <style lang="scss" scoped>

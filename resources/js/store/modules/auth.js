@@ -171,7 +171,7 @@ const actions = {
     updateTemps(context, data) {
         context.commit('setTemps', data);
     },
-    resetTemps(context, data) {
+    resetTemps(context) {
         context.commit('resetTemps');
     },
     // ログイン

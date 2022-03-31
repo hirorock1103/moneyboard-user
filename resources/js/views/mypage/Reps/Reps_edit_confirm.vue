@@ -29,7 +29,7 @@
                                                     担当者名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    {{user_name}}
+                                                    {{getTemps.user_name}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -37,7 +37,7 @@
                                                     パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    {{password}}
+                                                    {{getTemps.password}}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -46,7 +46,7 @@
                             </div>
                         </article>
                         <div class="text-center">
-                            <router-link to="/mypage/company/reps-list"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <router-link to="/mypage/company/reps-list_edit"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確定"/>
                         </div>
                     </form>
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
@@ -72,18 +73,25 @@ export default {
             message: ""
         };
     },
+    computed: {
+        getTemps() {
+            return this.$store.getters['auth/temps']
+        },
+    },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/update";
             let user_code = this.user_code;
             try {
-                this.item = {company_code: this.$store.state.auth.user.company_code, user_name: this.user_name, password: this.password, user_code: this.user_code}
+                this.item = {company_code: this.getTemps.company_code, user_name: this.getTemps.user_name, password: this.getTemps.password, user_code: this.getTemps.user_code}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps'})
+                    this.resetTemps();
+                    this.$router.push({name: 'mypage-reps'});
                 }
             } catch (e){
                 console.log(e);
@@ -93,9 +101,6 @@ export default {
         },
     },
 }
-
-// ToDo:戻るボタン（値の保持まで）
-// ToDo:リロードされたらデータの保持ができてない
 </script>
 
 <style lang="scss" scoped>

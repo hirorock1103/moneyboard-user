@@ -231,7 +231,7 @@ const routes = [
   },
   // 担当者情報の編集
   {
-    path: "/mypage/company/reps-list_edit/:id",
+    path: "/mypage/company/reps-list_edit",
     component: Reps_edit,
     name: "mypage-reps_edit",
     props: true,

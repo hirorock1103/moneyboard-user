@@ -35,7 +35,7 @@
                                         <td class="text-center">11社 / 60社</td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
-                                            <router-link :to="{name: 'mypage-reps_edit', params: { id: item.user_code }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.user_code)">変更</button>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
@@ -87,6 +87,7 @@
 <script>
 import axios from '../../../src/plugins/axios.js'
 import dayjs from 'dayjs'
+import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -105,6 +106,7 @@ export default {
         this.fetchItems();
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
             var user = this.$store.state.auth.user;
@@ -138,11 +140,24 @@ export default {
                 this.message = e;
                 setTimeout(() => {this.message = false;}, 2000);
             }
-        }
+        },
+        async getItem(user_code) {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/show";
+            const response = await axios.post(url, {user_code: user_code});
+            if (response.data.status=="NG") {
+                console.log(response.data);
+                this.message = response.data.errors.undefined_user
+                setTimeout(() => {this.message = false;}, 2000);
+            } else {
+                this.resetTemps();
+                this.updateTemps(response.data.data.user);
+                this.$router.push({name: 'mypage-reps_edit'})
+            }
+        },
     }
 }
 
-// ToDo:削除モーダルのデザインの統一
+// ToDo:データ使用数を表示する
 </script>
 
 <style lang="scss" scoped>
