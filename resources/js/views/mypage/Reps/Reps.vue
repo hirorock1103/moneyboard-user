@@ -32,7 +32,7 @@
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.user_number }}</td>
                                         <td>{{ item.user_name }}</td>
-                                        <td class="text-center">11社 / 60社</td>
+                                        <td class="text-center">{{ item.use_license_count ?? 0 }}社 / {{available_licenses_total}}社</td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
                                             <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.user_code)">変更</button>
@@ -57,7 +57,7 @@
                                                         <tr>
                                                             <td>{{ postItem.user_number }}</td>
                                                             <td>{{ postItem.user_name }}</td>
-                                                            <td class="text-center">11社 / 60社</td>
+                                                            <td class="text-center">{{ item.use_license_count ?? 0 }}社 / {{available_licenses_total}}社</td>
                                                             <td class="text-center">{{ formatDate(postItem.updated_at) }}</td>
                                                         </tr>
                                                     </tbody>
@@ -97,6 +97,7 @@ export default {
     data() {
         return {
             items: [],
+            available_licenses_total: "",
             message: null,
             showContent: false,
             postItem: "",
@@ -114,8 +115,8 @@ export default {
             try {
                 const response = await axios.get(url);
                 this.items = response.data.data.data_list.data;
+                this.available_licenses_total = response.data.data.available_licenses_total[user.id];
                 this.resetTemps();
-                // console.log(this.items);
             } catch (e){
                 console.log(e);
                 this.message = e;
