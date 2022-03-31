@@ -198,6 +198,8 @@ export default {
         }
     },
 }
+
+// ToDo:状態管理うまくいかない（値の保持の件）
 </script>
 
 <style lang="scss" scoped>
