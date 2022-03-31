@@ -33,6 +33,14 @@
                                         </tr>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
+                                                企業コード
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                {{ getCompany.company_code }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
                                                 住所
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
