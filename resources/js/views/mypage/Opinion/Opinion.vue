@@ -14,10 +14,15 @@
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <h4>
-                                    <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                    ご意見・ご要望
-                                </h4>
+                                <div class="display-flex justify-content-between-large">
+                                    <h4>
+                                        <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                        ご意見・ご要望
+                                    </h4>
+                                    <h5 class="margin-bottom--16">
+                                        全ての項目をご記入ください
+                                    </h5>
+                                </div>
                                 <hr>
                                 <div class="padding-right--8">
                                     <table class="table">
