@@ -102,7 +102,8 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
+import { mapActions } from 'vuex';
+import { required, minLength, sameAs, helpers } from '@vuelidate/validators';
 import containsNumber from '../../../customValidators/containsNumber';
 import containsUppercase from '../../../customValidators/containsUppercase';
 import containsLowercase from '../../../customValidators/containsLowercase';
@@ -172,6 +173,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async validateItem(){
             this.v$.$touch();
             if (this.v$.$error) return;
@@ -179,13 +181,14 @@ export default {
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.user.company_code}
                 const response = await axios.post(url, this.item);
-                // console.log(response, this.item);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-reps_confirm', params: {user_name: this.item.user_name, password: this.item.password}})
+                    this.resetTemps();
+                    this.updateTemps(this.item);
+                    this.$router.push({name: 'mypage-reps_confirm'})
                 }
             } catch (e){
                 console.log(e);
