@@ -37,7 +37,7 @@
                                                     担当者名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{user_code}}
+                                                    {{getTemps.user_name}}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -61,7 +61,7 @@ import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['client_name', 'user_code', 'company_code', 'client_code'],
+    props: ['client_name'],
     components: {
         SideMenu,
     },
@@ -71,12 +71,16 @@ export default {
             message: "",
         };
     },
+    computed: {
+        getTemps() {
+            return this.$store.getters['auth/temps']
+        },
+    },
     methods: {
         async Store() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep";
-            var datas = {client_name: this.client_name, user_code: this.user_code, company_code: this.company_code, client_code: this.client_code}
             try {
-                const response = await axios.post(url, datas);
+                const response = await axios.post(url, this.getTemps);
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
@@ -92,8 +96,6 @@ export default {
         }
     }
 }
-
-// ToDo:担当者名表示
 </script>
 
 <style lang="scss" scoped>

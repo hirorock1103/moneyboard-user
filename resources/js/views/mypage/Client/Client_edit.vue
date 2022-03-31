@@ -58,7 +58,8 @@
 </template>
 
 <script>
-import axios from '../../../src/plugins/axios.js'
+import axios from '../../../src/plugins/axios.js';
+import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -77,6 +78,7 @@ export default {
         this.fetchItems();
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems() {
             var user = this.$store.state.auth.user;
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code;
@@ -91,7 +93,11 @@ export default {
         },
         async validateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep-validate";
-            var valDatas = {user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code, client_code:this.client_code}
+            const obj = this.items
+            const result = obj.filter((value) => {
+                return value.id == this.selectedItem
+            })
+            var valDatas = {user_code: result[0].user_code, company_code: this.$store.state.auth.user.company_code, client_code:this.client_code, user_name:result[0].user_name}
             try {
                 const response = await axios.post(url, valDatas);
                 if(response.data.status=="NG"){
@@ -99,7 +105,9 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-client_confirm', params: {client_name:this.client_name, user_code: this.selectedItem, company_code: this.$store.state.auth.user.company_code, client_code:this.client_code}})
+                    this.resetTemps();
+                    this.updateTemps(valDatas);
+                    this.$router.push({name: 'mypage-client_confirm', params: {client_name:this.client_name}})
                 }
             } catch (e){
                 console.log(e);
