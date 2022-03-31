@@ -188,11 +188,14 @@ export default {
                 const response = await axios.post(url);
                 this.items = response.data;
                 var company = this.$store.state.auth.company;
+                // console.log(this.$store.state.auth.company);
+                // console.log(this.$store.state.auth.license);
                 this.plans = {
                     plan_id: company.plan_id,
                     name: (company.plan_id === 2) ? 'プレミアムプラン' : 'スタンダードプラン',
                     data_plan: (company.plan_id === 2) ? 120 : 60,
-                    data_add: company.additional_licenses,
+                    // data_add: company.additional_licenses,
+                    data_add: this.$store.state.auth.license.license_available_total - ((company.plan_id === 2) ? 120 : 60),
                     cost_total: ((company.plan_id === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
                     cost_plan: (company.plan_id === 2) ? 132000 : 55000,
                     cost_add: company.additional_licenses * 1100,
