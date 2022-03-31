@@ -44,7 +44,7 @@
                                         <th></th>
                                     </tr>
                                 </thead>
-                                <tbody v-if="items !== null">
+                                <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.client_name }}</td>
                                         <td>{{ item.user_name }}</td>

@@ -47,7 +47,7 @@
                             <hr>
                             <div class="table-scrollable  padding-right--8">
                                 <table class="table-scrollable">
-                                    <tbody v-if="items !== null">
+                                    <tbody v-if="items.length">
                                         <tr v-for="item in items.reverse()" :key="item._id">
                                             <th class="[ display-table-row  display-table-cell-large ]">
                                                 {{ formatDate(item.created_at) }}
