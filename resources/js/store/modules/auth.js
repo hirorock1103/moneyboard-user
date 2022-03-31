@@ -318,7 +318,7 @@ const actions = {
         const data = await axios.post(
             process.env.MIX_VUE_APP_API_URL + "com/me"
         );
-        // console.log(1,data);
+        // console.log('data',data);
         context.commit('setApiStatus', true);
         context.commit('setLoadingStatus', false);
         context.commit('setUser', data.data.data.me);

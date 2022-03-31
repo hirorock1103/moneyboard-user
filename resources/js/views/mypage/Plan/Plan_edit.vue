@@ -216,13 +216,15 @@ export default {
             try {
                 this.item = {...this.item, company_code: this.$store.state.auth.company.company_code}
                 const response = await axios.post(url, this.item);
-                console.log(response);
+                // console.log('response',response);
+                // console.log('post',this.item);
                 if(response.data=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     this.updateState().then(() => {
-                        if (this.apiStatus) {
+                        // if (this.apiStatus) {
+                        if (true) {
                             this.$router.push({name: 'mypage-plan'})
                         }
                     });
