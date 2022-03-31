@@ -57,6 +57,14 @@
                                             </tr>
                                             <tr>
                                                 <th class="nowrap">
+                                                    現在の追加データ数
+                                                </th>
+                                                <td class="padding-bottom--16">
+                                                    {{plans.data_add}}社
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="nowrap">
                                                     追加データ数
                                                 </th>
                                                 <td class="padding-bottom--16" style="display: flex;">
@@ -239,7 +247,6 @@ export default {
 }
 
 // ToDo:新規登録画面のように動的に変更
-// ToDo:API側で"Trying to get property 'license_count' of non-object"
 </script>
 
 <style lang="scss" scoped>
