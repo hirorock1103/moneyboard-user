@@ -22,7 +22,7 @@
 
 /**
  * テーブルの調整
- * 
+ *
  */
 .vertical-middle {
   vertical-align: middle;
@@ -36,7 +36,7 @@
 
 /**
  * 横幅
- * 
+ *
  */
 .width-30 {
   width: 30%;
@@ -54,7 +54,7 @@
 
 /**
  * モーダル
- * 
+ *
  */
 #overlay{
   z-index:1;
@@ -82,4 +82,9 @@
 .blur{
   -ms-filter: blur(6px);
   filter: blur(6px);
+}
+
+// 警告
+.alert-danger{
+    color:red;
 }
