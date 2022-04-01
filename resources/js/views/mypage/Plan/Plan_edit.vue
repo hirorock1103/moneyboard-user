@@ -57,18 +57,10 @@
                                             </tr>
                                             <tr>
                                                 <th class="nowrap">
-                                                    現在の追加データ数
-                                                </th>
-                                                <td class="padding-bottom--16">
-                                                    {{plans.data_add}}社
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="nowrap">
                                                     追加データ数
                                                 </th>
-                                                <td class="padding-bottom--16" style="display: flex;">
-                                                    <!-- :value="plans.data_add" -->
+                                                <td class="padding-bottom--16 nowrap" style="display: flex;">
+                                                    <span style="display: flex;align-items: center;justify-content: center;">{{plans.data_add}}社　→　</span>
                                                     <input
                                                         type="text"
                                                         id=""
