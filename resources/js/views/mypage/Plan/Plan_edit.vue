@@ -13,6 +13,7 @@
                             価格はすべて税込表記
                         </h5>
                     </div>
+                    <!-- {{plans}} -->
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -34,7 +35,7 @@
                                                         id="confirm-radio-s"
                                                         class="form-radio"
                                                         value="1"
-                                                        v-model="item.plan_id">
+                                                        v-model="plans.plan_id">
                                                     <label class="form-radio-label  margin-bottom--8" for="confirm-radio-s">スタンダードプラン</label>
                                                 </td>
                                                 <td class="padding-bottom--16 nowrap">
@@ -43,7 +44,7 @@
                                                         id="confirm-radio-p"
                                                         class="form-radio"
                                                         value="2"
-                                                        v-model="item.plan_id">
+                                                        v-model="plans.plan_id">
                                                     <label class="form-radio-label  margin-bottom--8" for="confirm-radio-p">プレミアムプラン</label>
                                                 </td>
                                             </tr>
@@ -60,12 +61,12 @@
                                                     追加データ数
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap" style="display: flex;">
-                                                    <span style="display: flex;align-items: center;justify-content: center;">{{plans.data_add}}社　→　</span>
+                                                    <span style="display: flex;align-items: center;justify-content: center;">{{plans.additional_licenses}}社　→　</span>
                                                     <input
                                                         type="text"
                                                         id=""
                                                         class="form-input"
-                                                        v-model="item.additional_licenses">
+                                                        v-model="plans.additional_licenses">
                                                         <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
                                                 </td>
                                                 <td></td>
@@ -192,11 +193,7 @@ import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     data: function() {
-        return {
-            item: {
-                plan_id: this.$store.state.auth.plans.plan_id
-            },
-        }
+        return {}
     },
     components: {
         SideMenu,
@@ -214,21 +211,22 @@ export default {
         async Store(){
             let url = process.env.MIX_VUE_APP_API_URL + "com/contract/update/do";
             try {
-                this.item = {...this.item, company_code: this.$store.state.auth.company.company_code}
-                const response = await axios.post(url, this.item);
+                this.plans = {...this.plans, company_code: this.$store.state.auth.company.company_code}
+                console.log(this.plans);
+                // const response = await axios.post(url, this.plans);
                 // console.log('response',response);
                 // console.log('post',this.item);
-                if(response.data=="NG"){
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
-                } else {
-                    this.updateState().then(() => {
-                        // if (this.apiStatus) {
-                        if (true) {
-                            this.$router.push({name: 'mypage-plan'})
-                        }
-                    });
-                }
+                // if(response.data=="NG"){
+                //     this.message = response.data.message
+                //     setTimeout(() => {this.message = false;}, 2000);
+                // } else {
+                //     this.updateState().then(() => {
+                //         // if (this.apiStatus) {
+                //         if (true) {
+                //             this.$router.push({name: 'mypage-plan'})
+                //         }
+                //     });
+                // }
             } catch (e){
                 console.log(e);
                 this.message = e
@@ -237,8 +235,6 @@ export default {
         }
     },
 }
-
-// ToDo:新規登録画面のように動的に変更
 </script>
 
 <style lang="scss" scoped>

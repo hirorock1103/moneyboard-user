@@ -44,7 +44,7 @@
                                                 追加データ数
                                             </th>
                                             <td class="padding-bottom--16">
-                                                {{plans.data_add}}社
+                                                {{plans.additional_licenses}}社
                                             </td>
                                         </tr>
                                     </tbody>
@@ -194,8 +194,7 @@ export default {
                     plan_id: company.plan_id,
                     name: (company.plan_id === 2) ? 'プレミアムプラン' : 'スタンダードプラン',
                     data_plan: (company.plan_id === 2) ? 120 : 60,
-                    // data_add: company.additional_licenses,
-                    data_add: this.$store.state.auth.license.license_available_total - ((company.plan_id === 2) ? 120 : 60),
+                    additional_licenses: this.$store.state.auth.license.license_available_total - ((company.plan_id === 2) ? 120 : 60),
                     cost_total: ((company.plan_id === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
                     cost_plan: (company.plan_id === 2) ? 132000 : 55000,
                     cost_add: company.additional_licenses * 1100,
