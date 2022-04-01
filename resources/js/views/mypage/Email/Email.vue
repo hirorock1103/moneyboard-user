@@ -132,7 +132,7 @@ export default {
         async validateItem(){
             this.v$.$touch();
             if (this.v$.$error) return;
-            let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail/verify";
             try {
                 var company_code = this.$store.state.auth.company.company_code;
                 this.item = {...this.item, company_code: company_code}
