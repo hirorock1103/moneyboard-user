@@ -75,7 +75,7 @@
                                                     データ使用数
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    11/60社
+                                                    {{getTemps.use_license_count}}/{{getTemps.available_licenses_total}}社
                                                 </td>
                                             </tr>
                                             <tr>
@@ -191,8 +191,6 @@ export default {
         }
     }
 }
-
-// ToDo:データ使用数を表示する
 </script>
 
 <style lang="scss" scoped>

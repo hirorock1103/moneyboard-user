@@ -35,7 +35,7 @@
                                         <td class="text-center">{{ item.use_license_count ?? 0 }}社 / {{available_licenses_total}}社</td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
-                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.user_code)">変更</button>
+                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.user_code, item.use_license_count ?? 0, available_licenses_total)">変更</button>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
@@ -143,7 +143,7 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
-        async getItem(user_code) {
+        async getItem(user_code, use_license_count, available_licenses_total) {
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/show";
             const response = await axios.post(url, {user_code: user_code});
             if (response.data.status=="NG") {
@@ -151,15 +151,14 @@ export default {
                 this.message = response.data.errors.undefined_user
                 setTimeout(() => {this.message = false;}, 2000);
             } else {
+                let items = {...response.data.data.user, use_license_count:use_license_count, available_licenses_total:available_licenses_total}
                 this.resetTemps();
-                this.updateTemps(response.data.data.user);
+                this.updateTemps(items);
                 this.$router.push({name: 'mypage-reps_edit'})
             }
         },
     }
 }
-
-// ToDo:データ使用数を表示する
 </script>
 
 <style lang="scss" scoped>
