@@ -62,23 +62,23 @@
                                 <table class="table width-30">
                                     <tbody>
                                         <tr>
-                                            <th class="">
+                                            <th class="nowrap">
                                                 内訳
                                             </th>
-                                            <td class="padding-bottom--16">
+                                            <td class="padding-bottom--16 nowrap">
                                                 基本料金
                                             </td>
-                                            <td class="padding-bottom--16 text-right">
+                                            <td class="padding-bottom--16 text-right nowrap">
                                                 {{$filters.addComma(Number(plans.cost_plan))}}円
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class="">
                                             </th>
-                                            <td class="">
+                                            <td class="nowrap">
                                                 追加利用料金
                                             </td>
-                                            <td class="text-right">
+                                            <td class="text-right nowrap">
                                                 {{$filters.addComma(Number(plans.cost_add))}}円
                                             </td>
                                         </tr>
@@ -191,9 +191,11 @@ export default {
                 // console.log(this.$store.state.auth.company);
                 // console.log(this.$store.state.auth.license);
                 this.plans = {
+                    company_code:this.$store.state.auth.company.company_code,
                     plan_id: company.plan_id,
                     name: (company.plan_id === 2) ? 'プレミアムプラン' : 'スタンダードプラン',
                     data_plan: (company.plan_id === 2) ? 120 : 60,
+                    additional_licenses_before: this.$store.state.auth.license.license_available_total - ((company.plan_id === 2) ? 120 : 60),
                     additional_licenses: this.$store.state.auth.license.license_available_total - ((company.plan_id === 2) ? 120 : 60),
                     cost_total: ((company.plan_id === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
                     cost_plan: (company.plan_id === 2) ? 132000 : 55000,
