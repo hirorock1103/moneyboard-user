@@ -8,11 +8,6 @@
                         <h2>
                             プレミアムプラン（顧客情報管理）
                         </h2>
-                        <h5 class="margin-bottom--16">
-                            北本先生・アップハーツ様 <br>
-                            未加入時のイメージは→<br>
-                            を クリックしてください<br>
-                        </h5>
                     </div>
                     <h4 class="padding-left--48 margin-bottom--24">
                         <span class="[ icon  solid ] fa-building  padding-right--12  text-accent"></span>
