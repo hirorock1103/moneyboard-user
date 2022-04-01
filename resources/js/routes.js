@@ -262,10 +262,9 @@ const routes = [
   },
   // 登録企業の担当者 編集
   {
-    path: "/mypage/company/client/rep_edit/:id",
+    path: "/mypage/company/client/rep_edit",
     component: Client_edit,
     name: "mypage-client_edit",
-    props: true,
     beforeEnter: auth,
   },
   // 登録企業の担当者 確認画面
@@ -273,7 +272,6 @@ const routes = [
     path: "/mypage/company/client/rep_confirm",
     component: Client_confirm,
     name: "mypage-client_confirm",
-    props: true,
     beforeEnter: auth,
   },
   // プラン変更 / 使用会社数の増減

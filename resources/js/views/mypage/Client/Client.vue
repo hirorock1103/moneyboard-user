@@ -49,7 +49,7 @@
                                         <td>{{ item.client_name }}</td>
                                         <td>{{ item.user_name }}</td>
                                         <th class="text-center">
-                                            <router-link :to="{name: 'mypage-client_edit', params: { id: item.id, client_name: item.client_name, user_id: item.user_id, client_code: item.client_code }}" class="[ btn  btn--small  btn--accent ] margin-right--16">変更</router-link>
+                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
@@ -95,6 +95,7 @@
 
 <script>
 import axios from '../../../src/plugins/axios.js'
+import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
@@ -113,7 +114,9 @@ export default {
         this.fetchItems();
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems() {
+            this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
@@ -143,11 +146,17 @@ export default {
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
-        }
+        },
+        async getItem(id, client_name, user_id, client_code) {
+                let items = {id:id, client_name:client_name, user_id:user_id, client_code:client_code}
+                this.resetTemps();
+                this.updateTemps(items);
+                this.$router.push({name: 'mypage-client_edit'})
+        },
     }
 }
 
-// ToDo:検索機能
+// ToDo:検索機能→Vue側で検索？？
 </script>
 
 <style lang="scss" scoped>

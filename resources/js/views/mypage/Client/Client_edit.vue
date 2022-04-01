@@ -26,7 +26,7 @@
                                                     会社名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{ client_name }}
+                                                    {{ getTemps.client_name }}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -63,7 +63,6 @@ import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['id', 'client_name', 'user_id', 'client_code'],
     components: {
         SideMenu
     },
@@ -76,6 +75,11 @@ export default {
     },
     created: function() {
         this.fetchItems();
+    },
+    computed: {
+        getTemps() {
+            return this.$store.getters['auth/temps']
+        },
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
@@ -97,7 +101,16 @@ export default {
             const result = obj.filter((value) => {
                 return value.id == this.selectedItem
             })
-            var valDatas = {user_code: result[0].user_code, company_code: this.$store.state.auth.user.company_code, client_code:this.client_code, user_name:result[0].user_name}
+            // ToDo:ひとまず選択されてなければメッセージ表示
+            var valDatas = {
+                id: this.getTemps.id, 
+                user_id: this.getTemps.user_id, 
+                client_code:this.getTemps.client_code,
+                client_name: this.getTemps.client_name, 
+                user_code: result[0].user_code, 
+                user_name:result[0].user_name, 
+                company_code: this.$store.state.auth.user.company_code, 
+                }
             try {
                 const response = await axios.post(url, valDatas);
                 if(response.data.status=="NG"){
@@ -105,9 +118,8 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.resetTemps();
                     this.updateTemps(valDatas);
-                    this.$router.push({name: 'mypage-client_confirm', params: {client_name:this.client_name}})
+                    this.$router.push({name: 'mypage-client_confirm'})
                 }
             } catch (e){
                 console.log(e);
@@ -117,6 +129,8 @@ export default {
         }
     }
 }
+
+// ToDo:選択されている担当者の反映
 </script>
 
 <style lang="scss" scoped>

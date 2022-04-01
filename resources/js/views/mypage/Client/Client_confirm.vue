@@ -29,7 +29,7 @@
                                                     会社名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    {{client_name}}
+                                                    {{getTemps.client_name}}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -46,7 +46,7 @@
                             </div>
                         </article>
                         <div class="text-center">
-                            <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確認" />
                         </div>
                     </form>
@@ -58,10 +58,10 @@
 
 <script>
 import axios from '../../../src/plugins/axios.js'
+import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
-    props: ['client_name'],
     components: {
         SideMenu,
     },
@@ -77,6 +77,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async Store() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep";
             try {
@@ -86,7 +87,8 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-client', params: {user_code: this.selectedItem}})
+                    this.resetTemps();
+                    this.$router.push({name: 'mypage-client'})
                 }
             } catch (e){
                 console.log(e);
