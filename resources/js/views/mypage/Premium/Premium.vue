@@ -164,6 +164,8 @@ export default {
         },
     }
 }
+
+// ToDo:ソートと検索？
 </script>
 
 <style lang="scss" scoped>
