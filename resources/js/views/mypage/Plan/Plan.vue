@@ -190,7 +190,7 @@ export default {
                 var company = this.$store.state.auth.company;
                 // console.log(this.$store.state.auth.company);
                 // console.log(this.$store.state.auth.license);
-                console.log(this.$store.state.auth.contract);
+                // console.log(this.$store.state.auth.contract);
                 this.plans = {
                     company_code:this.$store.state.auth.company.company_code,
                     plan_id: company.plan_id,
