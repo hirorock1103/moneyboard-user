@@ -353,6 +353,7 @@ const actions = {
         context.commit('setUser', data.data.data.me);
         context.commit('setLicense', data.data.data.summery);
         context.commit('setCompany', data.data.auth.company);
+        context.commit('setContract', data.data.data.contract);
     },
 }
 
