@@ -30,6 +30,7 @@ export default {
     watch: {
         errorCode: {
             async handler (val) {
+                // ToDo:AuthTokenない時の処理
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push('/500')
                 } else if (val === UNAUTHORIZED) {
@@ -41,13 +42,6 @@ export default {
                     this.$router.push('/login')
                 } else if (val === NOT_FOUND) {
                     this.$router.push('/not-found')
-                } else {
-                    localStorage.removeItem('authToken')
-                    this.$store.commit('auth/setUser', null)
-                    this.$store.commit('auth/setCompany', null)
-                    this.$store.commit('auth/setContract', null)
-                    this.$router.push('/login')
-
                 }
             },
             immediate: true
