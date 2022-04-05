@@ -41,6 +41,13 @@ export default {
                     this.$router.push('/login')
                 } else if (val === NOT_FOUND) {
                     this.$router.push('/not-found')
+                } else {
+                    localStorage.removeItem('authToken')
+                    this.$store.commit('auth/setUser', null)
+                    this.$store.commit('auth/setCompany', null)
+                    this.$store.commit('auth/setContract', null)
+                    this.$router.push('/login')
+
                 }
             },
             immediate: true
