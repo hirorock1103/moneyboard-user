@@ -40,6 +40,7 @@ const state = {
     resetLinkErrorMessages: null,
     passwordResetErrorMessages: null,
     company: null,
+    contract: null,
     clients: null,
     notifications: null,
     temps: null,
@@ -49,6 +50,7 @@ const getters = {
     user: state => state.user,
     card: state => state.card,
     company: state => state.company,
+    contract: state => state.contract,
     clients: state => state.clients,
     clientsNumber: state => state.clients.length,
     notifications: state => state.notifications,
@@ -94,6 +96,9 @@ const mutations = {
     },
     setCompany(state, company) {
         state.company = company
+    },
+    setContract(state, contract) {
+        state.contract = contract
     },
     setClients(state, clients) {
         state.clients = clients
@@ -196,6 +201,7 @@ const actions = {
             context.commit('setUser', data.data.data.me);
             context.commit('setLicense', data.data.data.summery);
             context.commit('setCompany', data.data.auth.company);
+            context.commit('setContract', data.data.data.contract);
             // localStorage.setItem('authToken', response.data.token);
             // console.log(3,context);
             // console.log(4,localStorage);
