@@ -315,7 +315,6 @@ const routes = [
     path: "/mypage/company/email_verify",
     component: Email_verify,
     name: "mypage-email_verify",
-    beforeEnter: auth,
   },
   // パスワードの変更
   {
