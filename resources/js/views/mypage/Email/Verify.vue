@@ -32,9 +32,7 @@ export default {
     },
     data() {},
     mounted() {
-        this.sendVerifyRequest(this.$route.query.token).then(() => {
-            this.resetTemps();
-            this.updateTemps(this.$route.query.email);
+        this.verifyRequest(this.$route.query).then(() => {
             if (this.apiStatus) {
                 this.$router.push({ name:'register-user'});
             }
@@ -49,7 +47,7 @@ export default {
         })
     },
     methods: {
-        ...mapActions('auth', ['sendVerifyRequest', 'updateTemps', 'resetTemps']),
+        ...mapActions('auth', ['verifyRequest', 'updateTemps', 'resetTemps']),
         clearError () {
             this.$store.commit('auth/setVerifyErrorMessages', null)
         }

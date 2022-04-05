@@ -164,6 +164,29 @@ const actions = {
             context.commit('error/setCode', response.status, { root: true })
         }
     },
+    // メール再登録
+    async verifyRequest(context, hash) {
+        context.commit('setApiStatus', null);
+        context.commit('setLoadingStatus', true);
+
+        let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail";
+        let item = {token:hash.token, email_address: hash.email_address}
+        const response = await axios.post(url, item);
+
+        if (response.data.status === "OK") {
+            context.commit('setApiStatus', true);
+            context.commit('setLoadingStatus', false);
+            return false;
+        }
+
+        context.commit('setApiStatus', false);
+        context.commit('setLoadingStatus', false);
+        if (response.data.status === "NG") {
+            context.commit('setVerifyErrorMessages', 'メールの認証に失敗しました。')
+        } else {
+            context.commit('error/setCode', response.status, { root: true })
+        }
+    },
     updateUser(context, data) {
         context.commit('setUser', data);
     },
