@@ -43,6 +43,25 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                             <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
+                                                    郵便番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input  margin-top--8"
+                                                        v-model="getCompany.post_number"
+                                                        @input="v$.getCompany.post_number.$touch"
+                                                        v-bind:class="[ v$.getCompany.post_number.$error ? 'form-error' : null ]"/>
+                                                    <div
+                                                        class="form-text  text-danger  text-center"
+                                                        v-if="v$.getCompany.post_number.$error">
+                                                        {{ v$.getCompany.post_number.$errors[0].$message }}
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     住所
@@ -217,6 +236,20 @@ export default {
                     required: helpers.withMessage(
                         '会社名を入力してください',
                         required
+                    ),
+                },
+                post_number: {
+                    required: helpers.withMessage(
+                        '郵便番号を入力してください',
+                        required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '7文字で入力してください',
+                        maxLength(7)
+                    ),
+                    minLength: helpers.withMessage(
+                        '7文字で入力してください',
+                        minLength(7)
                     ),
                 },
                 address: {
