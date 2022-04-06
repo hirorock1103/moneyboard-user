@@ -11,7 +11,8 @@
 
                 <h2 class="text-center  heading-primary">クレジットカードの登録</h2>
 
-                <form @submit.prevent="register">
+                <!-- <form @submit.prevent="register"> -->
+                <form @submit.prevent="createToken">
 
                     <ProgressBar :current-step="currentStep" />
 
@@ -31,10 +32,6 @@
 <div class="group">
    <div id="card-element"></div>
 </div>
-<p style="text-align:center">
-<button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
-<button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button>
-</p>
 
 <span class="form-column">
     <input
@@ -46,12 +43,33 @@
         v-bind:class="[ v$.getCard.stripe_token.$error ? 'form-error' : null ]">
 </span>
 
+<div class="form-row">
+    <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+        名義
+    </label>
+
+    <span class="form-column">
+        <input
+            type="text"
+            id="name"
+            class="form-input"
+            v-model="getCard.name"
+            @input="v$.getCard.name.$touch"
+            v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
+    </span>
+</div>
+
+<p style="text-align:center">
+<button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
+<button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button>
+</p>
+
 <hr>
 <br><br><br>
 
                             <hr>
 
-                            <div class="form-row">
+                            <!-- <div class="form-row" style="display:none;">
                                 <label for="number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     番号
                                 </label>
@@ -66,15 +84,15 @@
                                         v-bind:class="[ v$.getCard.number.$error ? 'form-error' : null ]">
                                 </span>
 
-                            </div>
+                            </div> -->
 
-                            <div
+                            <!-- <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getCard.number.$error">
                                 {{ v$.getCard.number.$errors[0].$message }}
-                            </div>
+                            </div> -->
 
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <label for="valid-year" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     有効期限
                                 </label>
@@ -105,21 +123,21 @@
                                         @input="v$.getCard.valid_year.$touch"
                                         v-bind:class="[ v$.getCard.valid_year.$error ? 'form-error' : null ]">
                                 </span>
-                            </div>
+                            </div> -->
 
-                            <div
+                            <!-- <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getCard.valid_month.$error">
                                 {{ v$.getCard.valid_month.$errors[0].$message }}
-                            </div>
+                            </div> -->
 
-                            <div
+                            <!-- <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getCard.valid_year.$error">
                                 {{ v$.getCard.valid_year.$errors[0].$message }}
-                            </div>
+                            </div> -->
 
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <label for="security-code" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     セキュリティコード
                                 </label>
@@ -133,15 +151,15 @@
                                         @input="v$.getCard.security_code.$touch"
                                         v-bind:class="[ v$.getCard.security_code.$error ? 'form-error' : null ]">
                                 </span>
-                            </div>
+                            </div> -->
 
-                            <div
+                            <!-- <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getCard.security_code.$error">
                                 {{ v$.getCard.security_code.$errors[0].$message }}
-                            </div>
+                            </div> -->
 
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     名義
                                 </label>
@@ -155,13 +173,13 @@
                                         @input="v$.getCard.name.$touch"
                                         v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
                                 </span>
-                            </div>
+                            </div> -->
 
-                            <div
+                            <!-- <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
                                 v-if="v$.getCard.name.$error">
                                 {{ v$.getCard.name.$errors[0].$message }}
-                            </div>
+                            </div> -->
 
 
                         </div>
@@ -170,14 +188,14 @@
 
 
 
-                    <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
+                    <!-- <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
 
                         <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
 
                         <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
                         <button type="submit" class="[ btn  btn--accent ]">確認</button>
 
-                    </div>
+                    </div> -->
 
                 </form>
 
@@ -247,64 +265,64 @@ export default {
         return {
             getCard: {
                 number: {
-                    required: helpers.withMessage(
-                        '番号を入力してください',
-                        required
-                    ),
-                    minLength: helpers.withMessage(
-                        '14~16桁を入力してください',
-                        minLength(14)
-                    ),
-                    maxLength: helpers.withMessage(
-                        '14~16桁を入力してください',
-                        maxLength(16)
-                    ),
-                    numeric: helpers.withMessage(
-                        '数字のみを入力してください',
-                        numeric
-                    )
+                    // required: helpers.withMessage(
+                    //     '番号を入力してください',
+                    //     required
+                    // ),
+                    // minLength: helpers.withMessage(
+                    //     '14~16桁を入力してください',
+                    //     minLength(14)
+                    // ),
+                    // maxLength: helpers.withMessage(
+                    //     '14~16桁を入力してください',
+                    //     maxLength(16)
+                    // ),
+                    // numeric: helpers.withMessage(
+                    //     '数字のみを入力してください',
+                    //     numeric
+                    // )
                 },
                 valid_month: {
-                    required: helpers.withMessage(
-                        '有効期限を入力してください',
-                        required
-                    ),
-                    numeric: helpers.withMessage(
-                        '数字のみを入力してください',
-                        numeric
-                    ),
-                    maxValue: helpers.withMessage(
-                        '12以下の数値を指定してください',
-                        maxValue(12)
-                    )
+                    // required: helpers.withMessage(
+                    //     '有効期限を入力してください',
+                    //     required
+                    // ),
+                    // numeric: helpers.withMessage(
+                    //     '数字のみを入力してください',
+                    //     numeric
+                    // ),
+                    // maxValue: helpers.withMessage(
+                    //     '12以下の数値を指定してください',
+                    //     maxValue(12)
+                    // )
                 },
                 valid_year: {
-                    required: helpers.withMessage(
-                        '有効期限を入力してください',
-                        required
-                    ),
-                    numeric: helpers.withMessage(
-                        '数字のみを入力してください',
-                        numeric
-                    ),
-                    maxValue: helpers.withMessage(
-                        '99以下の数値を指定してください',
-                        maxValue(99)
-                    )
+                    // required: helpers.withMessage(
+                    //     '有効期限を入力してください',
+                    //     required
+                    // ),
+                    // numeric: helpers.withMessage(
+                    //     '数字のみを入力してください',
+                    //     numeric
+                    // ),
+                    // maxValue: helpers.withMessage(
+                    //     '99以下の数値を指定してください',
+                    //     maxValue(99)
+                    // )
                 },
                 security_code: {
-                    required: helpers.withMessage(
-                        'セキュリティコードを入力してください',
-                        required
-                    ),
-                    numeric: helpers.withMessage(
-                        '数字のみを入力してください',
-                        numeric
-                    ),
-                    maxLength: helpers.withMessage(
-                        '3桁を入力してください',
-                        maxLength(3)
-                    )
+                    // required: helpers.withMessage(
+                    //     'セキュリティコードを入力してください',
+                    //     required
+                    // ),
+                    // numeric: helpers.withMessage(
+                    //     '数字のみを入力してください',
+                    //     numeric
+                    // ),
+                    // maxLength: helpers.withMessage(
+                    //     '3桁を入力してください',
+                    //     maxLength(3)
+                    // )
                 },
                 name: {
                     required: helpers.withMessage(
@@ -368,7 +386,7 @@ export default {
            this.getCard.stripe_token = token.id;
 
            //クレカ確認画面に遷移
-           this.$router.push({name: 'register-card-confirm'})
+           this.$router.push({name: 'register-card-confirm2'})
 
          },
 

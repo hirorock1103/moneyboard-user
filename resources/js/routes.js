@@ -17,6 +17,8 @@ import RegisterCard from "./views/register/Card.vue";
 import RegisterCard2 from "./views/register/Card2.vue";
 // カード追加確認画面
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
+// カード追加確認画面
+import RegisterCardConfirm2 from "./views/register/CardConfirm2.vue";
 // ログイン画面
 import Login from "./views/Login.vue";
 // パスワード再発行画面
@@ -146,6 +148,13 @@ const routes = [
     path: "/register/card-confirm",
     component: RegisterCardConfirm,
     name: "register-card-confirm",
+    // beforeEnter: auth,
+  },
+  // カード登録内容確認画面
+  {
+    path: "/register/card-confirm2",
+    component: RegisterCardConfirm2,
+    name: "register-card-confirm2",
     // beforeEnter: auth,
   },
   // 完了画面
