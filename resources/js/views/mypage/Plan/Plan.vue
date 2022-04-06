@@ -198,9 +198,9 @@ export default {
                     data_plan: (this.$store.state.auth.contract.plan_id === 2) ? 120 : 60,
                     additional_licenses_before: this.$store.state.auth.contract.add_license_count,
                     additional_licenses: this.$store.state.auth.contract.add_license_count,
-                    cost_total: ((this.$store.state.auth.contract.plan_id === 2) ? 132000 : 55000) + company.additional_licenses * 1100,
+                    cost_total: ((this.$store.state.auth.contract.plan_id === 2) ? 132000 : 55000) + this.$store.state.auth.contract.add_license_count * 1100,
                     cost_plan: (this.$store.state.auth.contract.plan_id === 2) ? 132000 : 55000,
-                    cost_add: company.additional_licenses * 1100,
+                    cost_add: this.$store.state.auth.contract.add_license_count * 1100,
                 };
                 // console.log(this.plans);
                 this.$store.state.auth.plans = this.plans;
