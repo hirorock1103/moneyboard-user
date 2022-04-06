@@ -1,13 +1,8 @@
 <template>
-
     <Header />
-
     <RouterView />
-
     <Footer />
-
     <p id="exscript"></p>
-
 </template>
 
 <script>
@@ -20,20 +15,17 @@ export default {
         Header,
         Footer
     },
-
     computed: {
         errorCode () {
             return this.$store.state.error.code
         }
     },
-
     watch: {
         errorCode: {
             async handler (val) {
-                // ToDo:AuthTokenない時の処理
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push('/500')
-                } else if (val === UNAUTHORIZED) {
+                } else if (val === UNAUTHORIZED || val === 'NG') {
                     // トークンを削除
                     localStorage.removeItem('authToken')
                     // ストアのuserをクリア
