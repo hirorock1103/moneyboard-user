@@ -132,12 +132,13 @@ const actions = {
 
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
+        // response.statusをresponse.data.statusに変更
         // if (response.status === UNPROCESSABLE_ENTITY) {
         if (response.data.status === "NG") {
             // context.commit('setSignupErrorMessages', response.data.message)
             context.commit('setSignupErrorMessages', '既に登録されているメールアドレスです')
         } else {
-            context.commit('error/setCode', response.status, { root: true })
+            context.commit('error/setCode', response.data.status, { root: true })
         }
     },
     // 仮登録
@@ -158,10 +159,10 @@ const actions = {
 
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
-        if (response.status === UNPROCESSABLE_ENTITY) {
+        if (response.data.status === UNPROCESSABLE_ENTITY) {
             context.commit('setVerifyErrorMessages', response.data)
         } else {
-            context.commit('error/setCode', response.status, { root: true })
+            context.commit('error/setCode', response.data.status, { root: true })
         }
     },
     // メール再登録
@@ -185,7 +186,7 @@ const actions = {
             console.log(response.data);
             context.commit('setVerifyErrorMessages', 'メールの認証に失敗しました。')
         } else {
-            context.commit('error/setCode', response.status, { root: true })
+            context.commit('error/setCode', response.data.status, { root: true })
         }
     },
     updateUser(context, data) {
@@ -236,10 +237,10 @@ const actions = {
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
          // 何の処理か？
-        // if (response.status === UNPROCESSABLE_ENTITY) {
+        // if (response.data.status === UNPROCESSABLE_ENTITY) {
         //     context.commit('setLoginErrorMessages', response.data)
         // } else {
-        //     context.commit('error/setCode', response.status, { root: true })
+        //     context.commit('error/setCode', response.data.status, { root: true })
         // }
         if (response.data.status === 'NG') {
             context.commit('setLoginErrorMessages', response.data.message)
@@ -271,7 +272,7 @@ const actions = {
             data
         );
 
-        if (response.status === OK) {
+        if (response.data.status === OK) {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             return false;
@@ -279,10 +280,10 @@ const actions = {
 
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
-        if (response.status === UNPROCESSABLE_ENTITY) {
+        if (response.data.status === UNPROCESSABLE_ENTITY) {
             context.commit('setResetLinkErrorMessages', response.data)
         } else {
-            context.commit('error/setCode', response.status, { root: true })
+            context.commit('error/setCode', response.data.status, { root: true })
         }
     },
     async sendPasswordResetRequest(context, data) {
@@ -293,7 +294,7 @@ const actions = {
             data
         );
 
-        if (response.status === OK) {
+        if (response.data.status === OK) {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             return false;
@@ -301,10 +302,10 @@ const actions = {
 
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
-        if (response.status === UNPROCESSABLE_ENTITY) {
+        if (response.data.status === UNPROCESSABLE_ENTITY) {
             context.commit('setPasswordResetErrorMessages', response.data)
         } else {
-            context.commit('error/setCode', response.status, { root: true })
+            context.commit('error/setCode', response.data.status, { root: true })
         }
     },
     async fetchCompany(context, data) {
@@ -313,8 +314,8 @@ const actions = {
             data
         );
 
-        if (response.status !== OK) {
-            context.commit('error/setCode', response.status, { root: true })
+        if (response.data.status !== OK) {
+            context.commit('error/setCode', response.data.status, { root: true })
         }
 
         context.commit('setCompany', response.data);
@@ -325,8 +326,8 @@ const actions = {
             data
         );
 
-        if (response.status !== OK) {
-            context.commit('error/setCode', response.status, { root: true })
+        if (response.data.status !== OK) {
+            context.commit('error/setCode', response.data.status, { root: true })
         }
 
         context.commit('setClients', response.data);
@@ -337,8 +338,8 @@ const actions = {
     //        process.env.MIX_VUE_APP_API_URL + 'notifications'
     //    );
 
-    //    if (response.status !== OK) {
-    //        context.commit('error/setCode', response.status, { root: true })
+    //    if (response.data.status !== OK) {
+    //        context.commit('error/setCode', response.data.status, { root: true })
     //    }
 
     //    context.commit('setNotifications', response.data);
