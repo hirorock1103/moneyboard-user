@@ -26,13 +26,28 @@
                                 クレジットカード情報
                             </h4>
 
+<br><br><br>
 <hr>
 <div class="group">
-   <label for="card-element"> クレジットカード情報 </label>
    <div id="card-element"></div>
 </div>
+<p style="text-align:center">
+<button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
+<button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button>
+</p>
 
-<button id="custom-button" @click="createToken">Generate Token</button>
+<span class="form-column">
+    <input
+        type="hidden"
+        id="stripe_token"
+        class="form-input"
+        v-model="getCard.stripe_token"
+        @input="v$.getCard.stripe_token.$touch"
+        v-bind:class="[ v$.getCard.stripe_token.$error ? 'form-error' : null ]">
+</span>
+
+<hr>
+<br><br><br>
 
                             <hr>
 
@@ -50,6 +65,7 @@
                                         @input="v$.getCard.number.$touch"
                                         v-bind:class="[ v$.getCard.number.$error ? 'form-error' : null ]">
                                 </span>
+
                             </div>
 
                             <div
@@ -223,6 +239,8 @@ export default {
         }
       })
       this.card.mount('#card-element')
+
+
     },
 
     validations() {
@@ -298,6 +316,8 @@ export default {
                         containsAlphaSpace
                     ),
                 },
+                stripe_token: {
+                },
             },
         }
     },
@@ -333,16 +353,23 @@ export default {
         },
 
         async createToken () {
-           const { token, error } = await this.$stripe.createToken(this.cardNumber);
+
+           const { token, error } = await this.stripe.createToken(this.card);
            if (error) {
              // handle error here
              document.getElementById('card-error').innerHTML = error.message;
              return;
            }
-           alert(token);
+
+           console.log('---token---');
            console.log(token);
-           // handle the token
-           // send it to your server
+
+           //作成したトークンを保存
+           this.getCard.stripe_token = token.id;
+
+           //クレカ確認画面に遷移
+           this.$router.push({name: 'register-card-confirm'})
+
          },
 
 
@@ -350,3 +377,10 @@ export default {
 
 }
 </script>
+
+
+<style media="screen">
+    .CardField-child{
+        display:block;
+    }
+</style>

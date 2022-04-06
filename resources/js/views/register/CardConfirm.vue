@@ -163,6 +163,11 @@ export default {
 //this.registerUserInfo().then(() => {
 //    if (this.apiStatus) {
 
+            //stripe APIを使い、stripeに顧客とクレカを新規追加
+
+            //企業テーブルに基本情報を追加する　※すでに追加されてるので、stripe id(cus_xxxxx)を登録
+
+            //メール送信して、完了画面に遷移
 
             this.$router.push(
                 {
