@@ -34,7 +34,7 @@ export default {
     mounted() {
         this.verifyRequest(this.$route.query).then(() => {
             if (this.apiStatus) {
-                this.$router.push({ name:'register-user'});
+                this.$router.push({ name:'login'});
             }
         });
     },
