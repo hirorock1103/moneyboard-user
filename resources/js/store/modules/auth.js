@@ -182,6 +182,7 @@ const actions = {
         context.commit('setApiStatus', false);
         context.commit('setLoadingStatus', false);
         if (response.data.status === "NG") {
+            console.log(response.data);
             context.commit('setVerifyErrorMessages', 'メールの認証に失敗しました。')
         } else {
             context.commit('error/setCode', response.status, { root: true })
