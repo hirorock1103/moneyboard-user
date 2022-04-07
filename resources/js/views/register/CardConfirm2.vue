@@ -173,36 +173,51 @@ export default {
     methods: {
 //        ...mapActions('auth', ['registerUserInfo']),
 
-        register() {
+        async register() {
+            let url = process.env.MIX_VUE_STRIPE_API_URL;//"https://api.stripe.com/v1/customers";
+            const headers = {
+//                'Authorization': 'Bearer sk_test_51KENLHHJkC9uqpQdh7DQExDEWYNl1MDiW3SpoXJgZ9acdiH1L6Adrsf1SHn7wzdsHEywfgVzkpW6gJ8y1bls9YK600Vo2MXJPR',
+                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
 
-//this.registerUserInfo().then(() => {
-//    if (this.apiStatus) {
+            let params = new URLSearchParams()
+            params.append('email', 'test@aa.co')
+            params.append('name', 'Yamada Tarou')
+            params.append('source', this.getCard.stripe_token)
 
-            //stripe APIを使い、stripeに顧客とクレカを新規追加
-
-            //企業テーブルに基本情報を追加する　※すでに追加されてるので、stripe id(cus_xxxxx)を登録
-
-            //メール送信して、完了画面に遷移
-
-            this.$router.push(
-                {
-                    name: 'register-completion',
-                    params: {
-                        title: 'メール送信完了',
-                        message: [
-                            'ご登録ありがとうございます。',
-                            '登録されたメールアドレスに「アプリ内で使用するID」「基本情報内容」を送信しました。',
-                            'ご確認お願いします。',
-                        ],
-                        currentStep: Number(4),
-                        redirectPage: 'login'
-                    }
+            try {
+                let response = await axios.post(url, params, {headers: headers});
+                console.log(response);
+                if(response.status!="200"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else{
+                    console.log('-- stripe_id --');
+                    console.log(response.data.id);
+                    console.log('--------');
+                    // this.resetTemps();
+                    this.$router.push(
+                        {
+                            name: 'register-completion',
+                            params: {
+                                title: 'メール送信完了',
+                                message: [
+                                    'ご登録ありがとうございます。',
+                                    '登録されたメールアドレスに「アプリ内で使用するID」「基本情報内容」を送信しました。',
+                                    'ご確認お願いします。',
+                                ],
+                                currentStep: Number(4),
+                                redirectPage: 'login'
+                            }
+                        }
+                    )
                 }
-            )
-
-//    }
-//});
-
+            } catch (e){
+                console.log(e);
+                this.message = e
+            }
         },
 
         goBack() {

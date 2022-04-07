@@ -61,7 +61,8 @@
 
 <p style="text-align:center">
 <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
-<button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button>
+<!-- <button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button> -->
+<button id="custom-button" class="[ btn btn--accent ]">確認</button>
 </p>
 
 <hr>
@@ -383,6 +384,11 @@ export default {
            console.log(token);
 
            //作成したトークンを保存
+           //CardField-numberの中のinputの値
+           let test = document.getElementsByClassName('CardField-number');
+           console.log( test );
+
+//           this.getCard.name = CardField-number
            this.getCard.stripe_token = token.id;
 
            //クレカ確認画面に遷移
