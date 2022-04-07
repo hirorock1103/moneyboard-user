@@ -10,7 +10,7 @@
                             登録企業の担当者変更・削除
                         </h2>
                     </div>
-                    <form>
+                    <form v-on:submit.prevent="clientSearch">
                         <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
                             <div class="padding--16 bg-white">
                                 <div class="[ padding--16 ]  bg-white  display-flex">
@@ -22,11 +22,25 @@
                                 <table>
                                     <tr>
                                         <th style="padding: 0 5px 0 20px;"><label>会社名</label></th>
-                                        <td><input class="form-input" placeholder="会社名を入力"></td>
+                                        <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
                                         <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
-                                        <td><input class="form-input" placeholder="担当者名を入力"></td>
+                                        <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
                                     </tr>
                                 </table>
+                                <div class="[ padding--16 ]  bg-white  display-flex">
+                                    <h4 class="" style="width:15%;">
+                                        <span class="[ icon  solid ] fa-sort-amount-down-alt padding-right--12  text-accent"></span>
+                                        並べ替え
+                                    </h4>
+                                </div>
+                                <div class="">
+                                    <table>
+                                        <tr>
+                                            <th style="padding: 0 5px 0 20px;"><label>会社名順</label></th>
+                                            <td><input type="checkbox" v-model="checked"></td>
+                                        </tr>
+                                    </table>
+                                </div>
                                 <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
                             </div>
                         </article>
@@ -152,6 +166,19 @@ export default {
                 this.resetTemps();
                 this.updateTemps(items);
                 this.$router.push({name: 'mypage-client_edit'})
+        },
+        async clientSearch() {
+            this.resetTemps();
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
+            try {
+                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
+                console.log(response);
+                this.items = response.data.data.data_list.data;
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
         },
     }
 }

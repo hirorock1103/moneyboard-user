@@ -192,10 +192,10 @@ input::-moz-focus-inner {
  */
 
 input, select, textarea {
-    -webkit-appearance: none;
+    // -webkit-appearance: none;
        -moz-appearance: none;
         -ms-appearance: none;
-            appearance: none;
+            // appearance: none;
 }
 
 /**
