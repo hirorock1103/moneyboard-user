@@ -174,17 +174,16 @@ export default {
 //        ...mapActions('auth', ['registerUserInfo']),
 
         async register() {
-            let url = process.env.MIX_VUE_STRIPE_API_URL;//"https://api.stripe.com/v1/customers";
+            let url = process.env.MIX_VUE_STRIPE_API_URL;
             const headers = {
-//                'Authorization': 'Bearer sk_test_51KENLHHJkC9uqpQdh7DQExDEWYNl1MDiW3SpoXJgZ9acdiH1L6Adrsf1SHn7wzdsHEywfgVzkpW6gJ8y1bls9YK600Vo2MXJPR',
                 'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
 
-            let params = new URLSearchParams()
-            params.append('email', 'test@aa.co')
-            params.append('name', 'Yamada Tarou')
-            params.append('source', this.getCard.stripe_token)
+            let params = new URLSearchParams();
+            // params.append('email', VUEXに保存されてるメアド);
+            params.append('name', this.getCard.name);
+            params.append('source', this.getCard.stripe_token);
 
             try {
                 let response = await axios.post(url, params, {headers: headers});

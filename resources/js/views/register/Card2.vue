@@ -344,7 +344,7 @@ export default {
     computed: {
         getCard() {
             return this.$store.getters['auth/card']
-        }
+        },
     },
 
     methods: {
