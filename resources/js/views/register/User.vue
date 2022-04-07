@@ -33,6 +33,25 @@
                                 {{ v$.getUser.company_name.$errors[0].$message }}
                             </div>
                             <div class="form-row">
+                                <label for="post_number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    郵便番号
+                                </label>
+                                <span class="form-column">
+                                    <input
+                                        type="text"
+                                        id="post_number"
+                                        class="form-input"
+                                        v-model="getUser.post_number"
+                                        @input="v$.getUser.post_number.$touch"
+                                        v-bind:class="[ v$.getUser.post_number.$error ? 'form-error' : null ]">
+                                </span>
+                            </div>
+                            <div
+                                class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+                                v-if="v$.getUser.post_number.$error">
+                                {{ v$.getUser.post_number.$errors[0].$message }}
+                            </div>
+                            <div class="form-row">
                                 <label for="address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     住所
                                 </label>
@@ -566,6 +585,20 @@ export default {
                     required: helpers.withMessage(
                         '会社名を入力してください',
                         required
+                    ),
+                },
+                post_number: {
+                    required: helpers.withMessage(
+                        '郵便番号を入力してください',
+                        required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '7文字で入力してください',
+                        maxLength(7)
+                    ),
+                    minLength: helpers.withMessage(
+                        '7文字で入力してください',
+                        minLength(7)
                     ),
                 },
                 address: {
