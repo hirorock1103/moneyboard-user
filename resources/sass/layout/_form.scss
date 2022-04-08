@@ -284,3 +284,48 @@ select,
     border-color:     map-get(map-get($form-colors, invalid), 'border');
     color:            map-get(map-get($form-colors, invalid), 'text');
 }
+
+
+/**
+ * チェックボックスのスタイル（暫定で追加）by近藤
+ */
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 0 1.2em;
+    margin: 0 .2em 0;
+    cursor: pointer;
+    vertical-align:middle;
+}
+
+input[type="checkbox"]::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    width: 1em;
+    height: 1em;
+    display: block;
+}
+
+input[type="checkbox"]:checked::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-45deg);
+    width: 1em;
+    height: .6em;
+    margin-top: -.2em;
+    display: block;
+    border-left: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+}
