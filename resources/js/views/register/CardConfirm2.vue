@@ -81,7 +81,7 @@
 
                             <div class="form-row">
                                 <label for="stripe_token" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
-                                    トークン
+                                    トークン（開発用に表示しているが不要）
                                 </label>
 
                                 <span class="form-column">
