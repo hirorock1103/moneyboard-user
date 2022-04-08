@@ -172,6 +172,16 @@ export default {
             }
         }
     },
+    computed: {
+        getTemps() {
+            return this.$store.getters['auth/temps']
+        },
+    },
+    mounted: function(){
+        this.item.user_name = (this.getTemps || {}).user_name;
+        this.item.password = (this.getTemps || {}).password;
+        this.item.password_confirm = (this.getTemps || {}).password_confirm;
+    },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async validateItem(){
