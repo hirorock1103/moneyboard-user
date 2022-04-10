@@ -23,6 +23,8 @@ export default {
     watch: {
         errorCode: {
             async handler (val) {
+                // 本当はここでエラー内容を拾う
+                // console.log(val)
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push('/500')
                 } else if (val === UNAUTHORIZED || val === 'NG') {

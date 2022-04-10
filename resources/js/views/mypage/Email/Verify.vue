@@ -34,6 +34,7 @@ export default {
     mounted() {
         this.verifyRequest(this.$route.query).then(() => {
             if (this.apiStatus) {
+                // ToDo:メッセージ投げる
                 this.$router.push({ name:'login'});
             }
         });
