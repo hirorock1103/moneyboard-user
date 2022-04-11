@@ -88,7 +88,7 @@
                     財務状況の確認や同業他社データとの比較も行えます</p>
                 <div class="row">
                     <div class="col-large-6">
-                        <img src="images/home_page/svg/app_left_side.svg" alt="昇順の列の画像" style="width:100%;">
+                        <img src="images/home_page/svg/app_left_side.png" alt="昇順の列の画像" style="width:100%;">
                     </div>
                     <div class="col-large-6">
                         <ol class="hp-list-counted  hp-list-fullwidth">
