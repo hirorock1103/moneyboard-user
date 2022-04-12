@@ -285,25 +285,13 @@ export default {
             )
         },
         async submit() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/register";
-            const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
-            delete datas.company_code;
-            delete datas.user_type;
-            delete datas.email_address;
             try {
-                let response = await axios.post(url, datas);
-                if(response.data.status=="NG"){
-                    console.log(response, datas);
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
-                } else{
-                    this.resetTemps();
-                    this.$router.push(
-                        {
-                            name: 'register-card',
-                        }
-                    )
-                }
+
+                this.$router.push(
+                    {
+                        name: 'register-card',
+                    }
+                )
             } catch (e){
                 console.log(e);
                 this.message = e

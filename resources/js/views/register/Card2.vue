@@ -1,75 +1,87 @@
-
-
-
 <template>
-
     <main>
-
         <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
             <div class="container">
-
                 <h2 class="text-center  heading-primary">クレジットカードの登録</h2>
-
                 <!-- <form @submit.prevent="register"> -->
                 <form @submit.prevent="createToken">
-
                     <ProgressBar :current-step="currentStep" />
-
                     <p class="text-center  margin-bottom--48">下記項目をすべてご記入ください</p>
-
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
                         <div class="padding--24  bg-white">
-
                             <h4>
                                 <span class="[ icon  regular ] fa-credit-card  padding-right--12  text-accent"></span>
                                 クレジットカード情報
                             </h4>
 
-<br><br><br>
-<hr>
-<div class="group">
-   <div id="card-element"></div>
-</div>
-
-<span class="form-column">
-    <input
-        type="hidden"
-        id="stripe_token"
-        class="form-input"
-        v-model="getCard.stripe_token"
-        @input="v$.getCard.stripe_token.$touch"
-        v-bind:class="[ v$.getCard.stripe_token.$error ? 'form-error' : null ]">
-</span>
-
-<div class="form-row">
-    <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
-        名義
-    </label>
-
-    <span class="form-column">
-        <input
-            type="text"
-            id="name"
-            class="form-input"
-            v-model="getCard.name"
-            @input="v$.getCard.name.$touch"
-            v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
-    </span>
-</div>
-
-<p style="text-align:center">
-<button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
-<!-- <button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button> -->
-<button id="custom-button" class="[ btn btn--accent ]">確認</button>
-</p>
-
-<hr>
-<br><br><br>
 
                             <hr>
+                            <div class="group">
 
+                            </div>
+                            <div class="form-row">
+                                <label for="card-number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    番号
+                                </label>
+                                <span class="form-column">
+                                    <div id="card-number" class="form-input"></div>
+                                </span>
+                            </div>
+                            <div class="form-row">
+                                <label for="card-expiry" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    有効期限
+                                </label>
+                                <span class="form-column">
+                                    <div id="card-expiry" class="form-input"></div>
+                                </span>
+                                
+                            </div>
+                            <div class="form-row">
+                                <label for="card-cvc" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    セキュリティーコード
+                                </label>
+                                <span class="form-column">
+                                    <div id="card-cvc" class="form-input"></div>
+                                </span>
+                            </div>
+                            <span class="form-column">
+                                <input
+                                    type="hidden"
+                                    id="stripe_token"
+                                    class="form-input"
+                                    v-model="getCard.stripe_token"
+                                    @input="v$.getCard.stripe_token.$touch"
+                                    v-bind:class="[ v$.getCard.stripe_token.$error ? 'form-error' : null ]">
+                            </span>
+
+                            <div class="form-row">
+                                <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    名義
+                                </label>
+
+                                <span class="form-column">
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        class="form-input"
+                                        v-model="getCard.name"
+                                        @input="v$.getCard.name.$touch"
+                                        v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
+                                </span>
+                            </div>
+
+                            <p style="text-align:center">
+                            <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
+                            <!-- <button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button> -->
+                            <button id="custom-button" class="[ btn btn--accent ]">確認</button>
+                            </p>
+                            <!--
+                            <hr>
+                            <br><br><br>
+
+
+                                                        <hr>
+                            -->
                             <!-- <div class="form-row" style="display:none;">
                                 <label for="number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     番号
@@ -231,7 +243,10 @@ export default {
 
             stripe: null,
             card: null,
-            token: ''
+            token: '',
+            cardNumber: null,
+            cardExpiry: null,
+            cardCvc: null,
 
         }
     },
@@ -240,24 +255,63 @@ export default {
 //console.log(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY);
       this.stripe = window.Stripe(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY)
       const elements = this.stripe.elements()
-      this.card = await elements.create('card', {
-        hidePostalCode: true,
-        style: {
-          base: {
-            iconColor: '#666EE8',
-            color: '#31325F',
-            lineHeight: '40px',
-            fontWeight: 300,
-            fontFamily: 'Helvetica Neue',
-            fontSize: '15px',
+    //   this.card = await elements.create('card', {
+    //     hidePostalCode: true,
+    //     style: {
+    //       base: {
+    //         iconColor: '#666EE8',
+    //         color: '#31325F',
+    //         lineHeight: '40px',
+    //         fontWeight: 300,
+    //         fontFamily: 'Helvetica Neue',
+    //         fontSize: '15px',
 
-            '::placeholder': {
-              color: '#CFD7E0'
+    //         '::placeholder': {
+    //           color: '#CFD7E0'
+    //         }
+    //       }
+    //     }
+    //   });
+
+
+        const elementStyles = {
+            base: {
+                iconColor: '#666EE8',
+                color: '#31325F',
+                // lineHeight: '40px',
+                fontWeight: 300,
+                fontFamily: 'Helvetica Neue',
+                fontSize: '15px',
+
+                '::placeholder': {
+                color: '#CFD7E0',
+                }
+            },
+            invalid: {
+                color: "red"
             }
-          }
-        }
-      })
-      this.card.mount('#card-element')
+        };
+
+        this.cardNumber = elements.create("cardNumber", {
+            style: elementStyles,
+            placeholder: ''
+        });
+
+        this.cardExpiry = elements.create("cardExpiry", {
+            style: elementStyles,
+            placeholder: ' 月 / 年'
+        });
+
+        this.cardCvc = elements.create("cardCvc", {
+            style: elementStyles,
+            placeholder: ''
+        });
+
+    this.cardNumber.mount('#card-number');
+    this.cardExpiry.mount('#card-expiry');
+    this.cardCvc.mount('#card-cvc');
+
+    //   this.card.mount('#card-element')
 
 
     },
@@ -372,8 +426,9 @@ export default {
         },
 
         async createToken () {
-
-           const { token, error } = await this.stripe.createToken(this.card);
+            // console.log('---cardNumber---');
+            // console.log(this.cardNumber);
+           const { token, error } = await this.stripe.createToken(this.cardNumber);
            if (error) {
              // handle error here
              document.getElementById('card-error').innerHTML = error.message;
@@ -382,13 +437,14 @@ export default {
 
            console.log('---token---');
            console.log(token);
+        //    console.log(this.getCard);
 
            //作成したトークンを保存
            //CardField-numberの中のinputの値
            let test = document.getElementsByClassName('CardField-number');
-           console.log( test );
+        //    console.log( test );
 
-//           this.getCard.name = CardField-number
+            // this.getCard.name = CardField-number
            this.getCard.stripe_token = token.id;
 
            //クレカ確認画面に遷移
