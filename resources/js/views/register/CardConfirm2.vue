@@ -168,12 +168,23 @@ export default {
         getCard() {
             return this.$store.getters['auth/card']
         },
+        getUser() {
+            return this.$store.getters['auth/user']
+        },
     },
-
+    
     methods: {
 //        ...mapActions('auth', ['registerUserInfo']),
 
         async register() {
+
+            // 企業情報レコード追加準備
+            let url2 = process.env.MIX_VUE_APP_API_URL + "com/register";
+            const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
+            delete datas.company_code;
+            delete datas.user_type;
+            delete datas.email_address;
+
             let url = process.env.MIX_VUE_STRIPE_API_URL;
             const headers = {
                 'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
@@ -186,6 +197,17 @@ export default {
             params.append('source', this.getCard.stripe_token);
 
             try {
+
+                // // 企業情報レコード追加
+                let response2 = await axios.post(url2, datas);
+                if(response2.data.status=="NG"){
+                    console.log(response2, datas);
+                    this.message = response2.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.resetTemps();
+                }
+
                 let response = await axios.post(url, params, {headers: headers});
                 console.log(response);
                 if(response.status!="200"){
