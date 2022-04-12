@@ -15,7 +15,13 @@ axios_instance.interceptors.response.use(function (response) {
         // ToDo:状態管理で保持してる情報を削除
         // ログイン画面へ
         // ToDo:メッセージ投げる
-        this.$router.push('/login')
+        console.log('test');
+        this.$router.push({
+           name: 'login',
+           params: {
+               message: "テスト",
+            },
+        })
     }
     return response; // 成功時の処理
     }, function (error) { // 失敗時の処理

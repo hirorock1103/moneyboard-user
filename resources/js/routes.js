@@ -171,6 +171,7 @@ const routes = [
     component: Login,
     name: "login",
     // beforeEnter: guest,
+    props: true,
   },
   // パスワードの再発行のメール画面
   {

@@ -55,6 +55,9 @@
                                     v-if="v$.loginForm.password.$error">
                                     {{ v$.loginForm.password.$errors[0].$message }}
                                 </div>
+                                <div>
+                                    {{ message }}
+                                </div>
                                 <div class="text-center  [  margin-top--48  [ margin-bottom--16  margin-bottom-large--24 ] ]">
                                     <p v-show="loginErrors" class="text-danger">{{loginErrors}}</p>
                                     <button type="submit" class="[ btn  btn--accent ]">ログイン</button>
@@ -79,7 +82,8 @@ import { required, email, helpers } from '@vuelidate/validators';
 import { mapState, mapActions } from 'vuex';
 
 export default {
-    name: 'login',
+    name: '/login',
+    // props: ['message'],
     components: {
         Loading
     },
