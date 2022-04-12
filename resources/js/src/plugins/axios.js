@@ -19,7 +19,7 @@ axios_instance.interceptors.response.use(function (response) {
         this.$router.push({
            name: 'login',
            params: {
-               message: "テスト",
+               message2: "テスト",
             },
         })
     }

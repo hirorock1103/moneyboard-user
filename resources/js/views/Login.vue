@@ -56,7 +56,7 @@
                                     {{ v$.loginForm.password.$errors[0].$message }}
                                 </div>
                                 <div>
-                                    {{ message }}
+                                    {{ message2 }}
                                 </div>
                                 <div class="text-center  [  margin-top--48  [ margin-bottom--16  margin-bottom-large--24 ] ]">
                                     <p v-show="loginErrors" class="text-danger">{{loginErrors}}</p>
@@ -83,7 +83,7 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
     name: '/login',
-    // props: ['message'],
+    props: ['message2'],
     components: {
         Loading
     },
