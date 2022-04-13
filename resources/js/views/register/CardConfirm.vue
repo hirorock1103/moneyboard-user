@@ -80,7 +80,22 @@
                             </div>
 
                             <div class="form-row">
-                                <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label for="stripe_token" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    トークン（開発用に表示しているが不要）
+                                </label>
+
+                                <span class="form-column">
+                                    <input
+                                        type="text"
+                                        id="stripe_token"
+                                        class="form-input"
+                                        v-model="getCard.stripe_token"
+                                        readonly>
+                                </span>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="stripe_token" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     名義
                                 </label>
 
@@ -153,47 +168,83 @@ export default {
         getCard() {
             return this.$store.getters['auth/card']
         },
+        getUser() {
+            return this.$store.getters['auth/user']
+        },
     },
-
+    
     methods: {
 //        ...mapActions('auth', ['registerUserInfo']),
 
-        register() {
+        async register() {
 
-//this.registerUserInfo().then(() => {
-//    if (this.apiStatus) {
+            // 企業情報レコード追加準備
+            let url2 = process.env.MIX_VUE_APP_API_URL + "com/register";
+            const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
+            delete datas.company_code;
+            delete datas.user_type;
+            delete datas.email_address;
 
-            //stripe APIを使い、stripeに顧客とクレカを新規追加
+            let url = process.env.MIX_VUE_STRIPE_API_URL;
+            const headers = {
+                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
 
-            //企業テーブルに基本情報を追加する　※すでに追加されてるので、stripe id(cus_xxxxx)を登録
+            let params = new URLSearchParams();
+            // params.append('email', VUEXに保存されてるメアド);
+            params.append('name', this.getCard.name);
+            params.append('source', this.getCard.stripe_token);
 
-            //メール送信して、完了画面に遷移
+            try {
 
-            this.$router.push(
-                {
-                    name: 'register-completion',
-                    params: {
-                        title: 'メール送信完了',
-                        message: [
-                            'ご登録ありがとうございます。',
-                            '登録されたメールアドレスに「アプリ内で使用するID」「基本情報内容」を送信しました。',
-                            'ご確認お願いします。',
-                        ],
-                        currentStep: Number(4),
-                        redirectPage: 'login'
-                    }
+                // // 企業情報レコード追加
+                let response2 = await axios.post(url2, datas);
+                if(response2.data.status=="NG"){
+                    console.log(response2, datas);
+                    this.message = response2.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.resetTemps();
                 }
-            )
 
-//    }
-//});
-
+                let response = await axios.post(url, params, {headers: headers});
+                console.log(response);
+                if(response.status!="200"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else{
+                    console.log('-- stripe_id --');
+                    console.log(response.data.id);
+                    console.log('--------');
+                    // this.resetTemps();
+                    this.$router.push(
+                        {
+                            name: 'register-completion',
+                            params: {
+                                title: 'メール送信完了',
+                                message: [
+                                    'ご登録ありがとうございます。',
+                                    '登録されたメールアドレスに「アプリ内で使用するID」「基本情報内容」を送信しました。',
+                                    'ご確認お願いします。',
+                                ],
+                                currentStep: Number(4),
+                                redirectPage: 'login'
+                            }
+                        }
+                    )
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+            }
         },
 
         goBack() {
             this.$router.push(
                 {
-                    name: 'register-card',
+                    name: 'register-card2',
                 }
             )
         },
