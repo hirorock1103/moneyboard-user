@@ -55,7 +55,7 @@
                                     v-if="v$.loginForm.password.$error">
                                     {{ v$.loginForm.password.$errors[0].$message }}
                                 </div>
-                                <div>
+                                <div v-if="message2 != undefined">
                                     {{ message2 }}
                                 </div>
                                 <div class="text-center  [  margin-top--48  [ margin-bottom--16  margin-bottom-large--24 ] ]">
