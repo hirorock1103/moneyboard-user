@@ -198,15 +198,6 @@ export default {
 
             try {
 
-                // // 企業情報レコード追加
-                let response2 = await axios.post(url2, datas);
-                if(response2.data.status=="NG"){
-                    console.log(response2, datas);
-                    this.message = response2.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
-                } else {
-                    this.resetTemps();
-                }
 
                 let response = await axios.post(url, params, {headers: headers});
                 console.log(response);
@@ -218,6 +209,25 @@ export default {
                     console.log('-- stripe_id --');
                     console.log(response.data.id);
                     console.log('--------');
+
+                    datas.stripe_id = response.data.id;
+
+                    console.log('-- datas --');
+                    console.log(datas);
+                    console.log('--------');
+
+                    // // 企業情報レコード追加
+                    let response2 = await axios.post(url2, datas);
+                    if(response2.data.status=="NG"){
+                        console.log(response2, datas);
+                        this.message = response2.data.message
+                        setTimeout(() => {this.message = false;}, 2000);
+                    } 
+                    // else {
+                    //     this.resetTemps();
+                    // }
+                    
+
                     // this.resetTemps();
                     this.$router.push(
                         {
