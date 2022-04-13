@@ -13,12 +13,8 @@ import RegisterUser from "./views/register/User.vue";
 import RegisterUserConfirm from "./views/register/UserConfirm.vue";
 // カード新規登録
 import RegisterCard from "./views/register/Card.vue";
-// カード新規登録2
-import RegisterCard2 from "./views/register/Card2.vue";
 // カード追加確認画面
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
-// カード追加確認画面
-import RegisterCardConfirm2 from "./views/register/CardConfirm2.vue";
 // ログイン画面
 import Login from "./views/Login.vue";
 // パスワード再発行画面
@@ -129,20 +125,7 @@ const routes = [
     name: "register-card",
     // beforeEnter: auth,
   },
-  // クレジットカード登録画面→おそらく必要ない？
-  {
-    path: "/register/card2",
-    component: RegisterCard2,
-    name: "register-card2",
-    // beforeEnter: auth,
-  },
-  // クレジットカード登録画面
-  {
-    path: "/register/card2",
-    component: RegisterCard2,
-    name: "register-card2",
-    // beforeEnter: auth,
-  },
+
   // カード登録内容確認画面
   {
     path: "/register/card-confirm",
@@ -150,13 +133,7 @@ const routes = [
     name: "register-card-confirm",
     // beforeEnter: auth,
   },
-  // カード登録内容確認画面
-  {
-    path: "/register/card-confirm2",
-    component: RegisterCardConfirm2,
-    name: "register-card-confirm2",
-    // beforeEnter: auth,
-  },
+
   // 完了画面
   {
     path: "/register/completion",
