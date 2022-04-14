@@ -128,12 +128,10 @@
 
 
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
-
                         <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
                         <button type="submit" class="[ btn  btn--accent ]" v-bind:disabled="checkbox.confirmed == false">申し込み</button>
-
+                        <br>※戻った場合はクレジットカード情報はクリアされます
                     </div>
-
 
 
                 </form>
