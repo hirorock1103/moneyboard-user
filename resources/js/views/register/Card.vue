@@ -34,7 +34,7 @@
                                 <span class="form-column">
                                     <div id="card-expiry" class="form-input"></div>
                                 </span>
-                                
+
                             </div>
                             <div class="form-row">
                                 <label for="card-cvc" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
@@ -253,7 +253,7 @@ export default {
 
     async mounted() {
 //console.log(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY);
-      this.stripe = window.Stripe(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY)
+      this.stripe = window.Stripe('pk_test_51KENLHHJkC9uqpQdR5vYsNuKODZ2Rbjl0S1Mgho7GFLoYocDk2xS0OoSHvuuf8trqV8fkEw8viCEv1eW22Nsw6w300ZekE4Pog')
       const elements = this.stripe.elements()
     //   this.card = await elements.create('card', {
     //     hidePostalCode: true,
