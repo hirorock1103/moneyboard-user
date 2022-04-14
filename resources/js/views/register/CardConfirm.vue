@@ -198,17 +198,16 @@ export default {
 
             try {
 
-console.log('AAA');
+
                 let response = await axios.post(url, params, {headers: headers});
-
-console.log('BBB');
-
                 console.log(response);
                 if(response.status!="200"){
+console.log('A');
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else{
+console.log('B');
                     console.log('-- stripe_id --');
                     console.log(response.data.id);
                     console.log('--------');
