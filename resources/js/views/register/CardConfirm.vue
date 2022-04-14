@@ -197,17 +197,19 @@ export default {
             params.append('source', this.getCard.stripe_token);
 
             try {
+console.log(url);
+console.log(params);
+console.log(headers);
 
 
                 let response = await axios.post(url, params, {headers: headers});
                 console.log(response);
                 if(response.status!="200"){
-console.log('A');
+
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else{
-console.log('B');
                     console.log('-- stripe_id --');
                     console.log(response.data.id);
                     console.log('--------');
