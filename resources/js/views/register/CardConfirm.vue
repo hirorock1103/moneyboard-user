@@ -177,29 +177,32 @@ export default {
 //        ...mapActions('auth', ['registerUserInfo']),
 
         async register() {
-console.log('AAA');
+
             // 企業情報レコード追加準備
             let url2 = process.env.MIX_VUE_APP_API_URL + "com/register";
             const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
             delete datas.company_code;
             delete datas.user_type;
             delete datas.email_address;
-console.log('BBB');
+
             let url = process.env.MIX_VUE_STRIPE_API_URL;
             const headers = {
                 'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-console.log('CCC');
+
             let params = new URLSearchParams();
             // params.append('email', VUEXに保存されてるメアド);
             params.append('name', this.getCard.name);
             params.append('source', this.getCard.stripe_token);
-console.log('DDD');
+
             try {
 
-console.log('EEE');
+console.log('AAA');
                 let response = await axios.post(url, params, {headers: headers});
+
+console.log('BBB');
+
                 console.log(response);
                 if(response.status!="200"){
                     console.log(response);
@@ -246,7 +249,6 @@ console.log('EEE');
                     )
                 }
             } catch (e){
-console.log('FFF');
                 console.log(e);
                 this.message = e
             }
