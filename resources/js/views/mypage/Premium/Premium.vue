@@ -158,7 +158,7 @@ export default {
         return {
             items: [],
             showContent: false,
-            blur_flg : this.$store.state.auth.user.plan_id,
+            blur_flg : this.$store.state.auth.contract.plan_id,
         };
     },
     created: function() {
@@ -177,7 +177,7 @@ export default {
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
                 this.items = response.data.data.data_list.data;
-                this.showContent = this.$store.state.auth.user.plan_id == 2 ? false : true;
+                this.showContent = this.$store.state.auth.contract.plan_id == 2 ? false : true;
             } catch (e){
                 console.log(e);
                 this.message = e
