@@ -36,7 +36,7 @@
                                         id="number"
                                         class="form-input"
                                         v-model="getCard.number"
-                                        readonly>
+                                        readonly>**** **** **** ****
                                 </span>
                             </div>
 
@@ -45,7 +45,7 @@
                                     有効期限
                                 </label>
 
-                                <span class="form-column">
+                                <span class="form-column">** / **
                                     <input
                                         type="number"
                                         id="valid_month"
@@ -53,7 +53,7 @@
                                         v-model="getCard.valid_month"
                                         readonly>
 
-                                    <span>/</span>
+                                    <span></span>
 
                                     <input
                                         type="number"
@@ -75,7 +75,7 @@
                                         id="security_code"
                                         class="form-input"
                                         v-model="getCard.security_code"
-                                        readonly>
+                                        readonly>***
                                 </span>
                             </div>
 

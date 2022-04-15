@@ -14,7 +14,7 @@
                         </h2>
                         <h5 class="margin-bottom--16">
                             登録可能データ残り
-                            <span class="font-weight-bold  display-none-large  padding-left--4">12</span>
+                            <span class="font-weight-bold  display-none-large  padding-left--4">{{ license.license_available_total }}</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
                                 {{ license.license_available_total }}</span>
                             件/{{ license.license_total }}件
