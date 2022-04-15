@@ -120,7 +120,26 @@
                             </table>
                         </div>
                     </article>
-
+                    <div id="overlay" v-show="showContent">
+                        <div id="content">
+                            <div class="header__logo text-center">
+                                <span class="header__logo-image">
+                                    <img src="/images/header_logo.png">
+                                </span>
+                                <span class="header__logo-title  [ logo  logo__font-main ]">MoneyBoard</span>
+                            </div>
+                            <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                <p>ぼかしを解除するにはプレミアムプランになる必要があります。</p>
+                                <p>
+                                    プレミアムプランに変更をご希望の方は
+                                    <router-link to="/mypage/company/plan_edit">こちら</router-link>
+                                </p>
+                            </div>
+                            <div class="text-center padding--12 bg-white">
+                                <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">閉じる</button>
+                            </div>
+                        </div>
+                    </div>
             </section>
         </main>
     </div>
@@ -138,6 +157,7 @@ export default {
     data() {
         return {
             items: [],
+            showContent: false,
             blur_flg : this.$store.state.auth.user.plan_id,
         };
     },
@@ -145,12 +165,19 @@ export default {
         this.fetchItems();
     },
     methods: {
+        openModal: function(){
+            this.showContent = true
+        },
+        closeModal: function(){
+            this.showContent = false
+        },
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
                 this.items = response.data.data.data_list.data;
+                this.showContent = this.$store.state.auth.user.plan_id == 2 ? false : true;
             } catch (e){
                 console.log(e);
                 this.message = e
