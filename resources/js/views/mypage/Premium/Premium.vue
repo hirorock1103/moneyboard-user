@@ -68,7 +68,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody v-if="items.length" v-bind:class="{'blur': blur_flg!==2, '': blur_flg==2}">
+                                <tbody v-if="items.length" v-bind:class="{'blur': blur_flg!==2, '': blur_flg==2}" oncopy="return false">
                                     <!-- <tr>
                                         <td>株式会社サンプルカンパニー{{blur_flg}}</td>
                                         <td>0000/00/00　00:00</td>
