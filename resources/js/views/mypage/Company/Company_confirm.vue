@@ -115,12 +115,93 @@
                     </form>
                 </div>
             </section>
+
+
+
+
+
+            <!-- クレカ更新用フォーム ここから-->
+            <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
+                <div class="container">
+            <form v-on:submit.prevent="changeCard">
+                <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
+                    <div class="[ padding--24  padding-large--48 ]  bg-white">
+                        <h4>
+                            <span class="[ icon  solid ] fa-credit-card  padding-right--12  text-accent"></span>
+                            クレジットカード情報（更新用）
+                        </h4>
+                        <hr>
+                        <div class="table-scrollable  padding-right--8">
+                            <table class="table width-50">
+                                <tbody>
+                                    <tr>
+                                        <th class="[ display-table-row  display-table-cell-large ]">
+                                            番号
+                                        </th>
+                                        <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                            **** **** **** ****
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="[ display-table-row  display-table-cell-large ]">
+                                            有効期限
+                                        </th>
+                                        <td class="[ display-table-row  display-table-cell-large ] ">
+                                            **/**
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="[ display-table-row  display-table-cell-large ]">
+                                            セキュリティコード
+                                        </th>
+                                        <td class="[ display-table-row  display-table-cell-large ] ">
+                                            ***
+                                        </td>
+                                    </tr>
+
+                                    <tr style="display:none">
+                                        <th class="[ display-table-row  display-table-cell-large ]">
+                                            名義
+                                        </th>
+                                        <td class="[ display-table-row  display-table-cell-large ] ">
+                                            {{ getCard.name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="[ display-table-row  display-table-cell-large ]">
+                                            トークン（開発用）
+                                        </th>
+                                        <td class="[ display-table-row  display-table-cell-large ] ">
+                                            {{ getCard.stripe_token }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+                <div class="text-center">
+                    <router-link :to="{name: 'mypage-company_edit'}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                    <input type="submit" class="[ btn  btn--accent ]" value="クレカ更新" />
+                </div>
+            </form>
+        </div>
+    </section>
+            <!-- クレカ更新用フォーム　ここまで -->
+
+
+
+
+
         </main>
     </div>
 </template>
 
 <script>
 import axios from '../../../src/plugins/axios.js'
+import axios2 from '../../../src/plugins/axios2.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
 import { mapActions } from 'vuex';
 
@@ -133,31 +214,153 @@ export default {
             message: ""
         };
     },
+
     computed: {
         getCompany() {
             return this.$store.getters['auth/company']
+        },
+        getCard() {
+            return this.$store.getters['auth/card']
         },
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async updateItem() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/company/update";
-            try {
-                const response = await axios.post(url, this.getCompany);
-                if(response.data.status=="NG"){
+            // let url = process.env.MIX_VUE_APP_API_URL + "com/company/update";
+            // try {
+            //     const response = await axios.post(url, this.getCompany);
+            //     if(response.data.status=="NG"){
+            //         console.log(response);
+            //         this.message = response.data.message
+            //         setTimeout(() => {this.message = false;}, 2000);
+            //     } else {
+            //         this.resetTemps();
+            //         this.$router.push({name: 'mypage-company'})
+            //     }
+            // } catch (e){
+            //     console.log(e);
+            //     this.message = e
+            //     setTimeout(() => {this.message = false;}, 2000);
+            // }
+        }
+
+
+// クレカ変更処理（カードID取得、クレカ削除、クレカ登録）
+,async changeCard() {
+
+    let stripe_id = this.getCompany.stripe_id;
+    let stripe_token = this.getCard.stripe_token;
+
+    //カードIDの取得
+    let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
+    const headers = {
+        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    try {
+        console.log('-- カードID取得 --');
+        console.log(url);
+        console.log(headers);
+
+        let response = await axios2.get(url, {headers: headers});
+        console.log(response);
+        let card_id = response.data.default_source;
+
+        if(response.status!="200" || card_id == null){
+            console.log(response);
+            this.message = response.data.message
+            setTimeout(() => {this.message = false;}, 2000);
+        } else{
+            //カード削除
+            console.log('-- カード削除 --');
+            console.log(card_id);
+            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
+            const headers = {
+                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            let response = await axios2.delete(url, {headers: headers});
+
+            console.log(response);
+            if(response.status!="200"){
+
+                console.log(response);
+                this.message = response.data.message
+                setTimeout(() => {this.message = false;}, 2000);
+            } else{
+
+                //カード作成
+                console.log('-- カード作成 --');
+                let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
+                const headers = {
+                    'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+                let params = new URLSearchParams();
+                params.append('source', stripe_token);
+
+                let response = await axios2.post(url, params, {headers: headers});
+
+                console.log(response);
+                if(response.status!="200"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
-                } else {
+                } else{
                     this.resetTemps();
                     this.$router.push({name: 'mypage-company'})
                 }
-            } catch (e){
-                console.log(e);
-                this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
             }
         }
+
+        if( card_id == null ){//カードがない場合は作成だけする
+
+            //カード作成
+            console.log('-- カード作成（もともとない場合） --');
+            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
+            const headers = {
+                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+
+            let params = new URLSearchParams();
+            params.append('source', stripe_token);
+
+            let response = await axios2.post(url, params, {headers: headers});
+
+            console.log(response);
+            if(response.status!="200"){
+                console.log(response);
+                this.message = response.data.message
+                setTimeout(() => {this.message = false;}, 2000);
+            } else{
+                this.resetTemps();
+                this.$router.push({name: 'mypage-company'})
+            }
+
+
+        }
+
+    } catch (e){
+        console.log(e);
+        this.message = e
+    }
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
 

@@ -70,6 +70,8 @@
                                 </span>
                             </div>
 
+                            <div id="card-error" style="color:red;text-align:center;margin-bottom:10px;"></div>
+
                             <p style="text-align:center">
                             <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
                             <!-- <button id="custom-button" class="[ btn btn--accent ]" @click="createToken">確認</button> -->

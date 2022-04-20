@@ -150,6 +150,7 @@
                                     クレジットカード情報
                                 </h4>
                                 <hr>
+
                                 <div class="table-scrollable  padding-right--8">
                                     <table class="table width-50">
                                         <tbody>
@@ -199,6 +200,79 @@
                             <input type="submit" class="[ btn  btn--accent ]" value="確認" />
                         </div>
                     </form>
+
+                    <!-- トークン作成用のクレカ入力　ここから -->
+                    <form @submit.prevent="createToken">
+                        <ProgressBar :current-step="currentStep" />
+                        <p class="text-center  margin-bottom--48"></p>
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
+                            <div class="padding--24  bg-white">
+                                <h4>
+                                    <span class="[ icon  regular ] fa-credit-card  padding-right--12  text-accent"></span>
+                                    クレジットカード情報
+                                </h4>
+
+
+                                <hr>
+                                <div class="group">
+
+                                </div>
+                                <div class="form-row">
+                                    <label for="card-number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                        番号
+                                    </label>
+                                    <span class="form-column">
+                                        <div id="card-number" class="form-input"></div>
+                                    </span>
+                                </div>
+                                <div class="form-row">
+                                    <label for="card-expiry" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                        有効期限
+                                    </label>
+                                    <span class="form-column">
+                                        <div id="card-expiry" class="form-input"></div>
+                                    </span>
+
+                                </div>
+                                <div class="form-row">
+                                    <label for="card-cvc" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                        セキュリティーコード
+                                    </label>
+                                    <span class="form-column">
+                                        <div id="card-cvc" class="form-input"></div>
+                                    </span>
+                                </div>
+
+                                <div class="form-row" style="display:none">
+                                    <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                        名義
+                                    </label>
+
+                                    <span class="form-column">
+                                        <input
+                                        type="text"
+                                        id="name"
+                                        class="form-input"
+                                        v-model="getCard.name"
+                                        @input="v$.getCard.name.$touch"
+                                        v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
+                                    </span>
+                                </div>
+
+                                <div id="card-error" style="color:red;text-align:center;margin-bottom:10px;"></div>
+
+                                <p style="text-align:center">
+                                    <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                                    <button id="custom-button" class="[ btn btn--accent ]">確認</button>
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                    </form>
+                    <!-- トークン作成用のクレカ入力　ここまで -->
+
                 </div>
             </section>
         </main>
@@ -228,7 +302,53 @@ export default {
         getCompany() {
             return this.$store.getters['auth/company']
         },
+        getCard() {
+            return this.$store.getters['auth/card']
+        },
     },
+
+    async mounted() {
+        this.stripe = window.Stripe(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY)
+        const elements = this.stripe.elements()
+        const elementStyles = {
+            base: {
+                iconColor: '#666EE8',
+                color: '#31325F',
+                // lineHeight: '40px',
+                fontWeight: 300,
+                fontFamily: 'Helvetica Neue',
+                fontSize: '15px',
+
+                '::placeholder': {
+                color: '#CFD7E0',
+                }
+            },
+            invalid: {
+                color: "red"
+            }
+        };
+
+        this.cardNumber = elements.create("cardNumber", {
+            style: elementStyles,
+            placeholder: ''
+        });
+
+        this.cardExpiry = elements.create("cardExpiry", {
+            style: elementStyles,
+            placeholder: ' 月 / 年'
+        });
+
+        this.cardCvc = elements.create("cardCvc", {
+            style: elementStyles,
+            placeholder: ''
+        });
+
+    this.cardNumber.mount('#card-number');
+    this.cardExpiry.mount('#card-expiry');
+    this.cardCvc.mount('#card-cvc');
+
+    },
+
     validations() {
         return {
             getCompany:{
@@ -280,11 +400,57 @@ export default {
                         required
                     ),
                 },
+
             }
+
+            ,getCard:{
+                number: {
+                },
+                valid_month: {
+                },
+                valid_year: {
+                },
+                security_code: {
+                },
+                name: {
+                },
+                stripe_token: {
+                },
+            }
+
         }
     },
     methods: {
         ...mapActions('auth', ['updateCompany']),
+
+
+        async createToken () {
+            // console.log('---cardNumber---');
+            // console.log(this.cardNumber);
+           const { token, error } = await this.stripe.createToken(this.cardNumber);
+           if (error) {
+             // handle error here
+             document.getElementById('card-error').innerHTML = error.message;
+             return;
+           }
+
+           console.log('---token---');
+           console.log(token);
+        //    console.log(this.getCard);
+
+           //作成したトークンを保存
+           //CardField-numberの中のinputの値
+           let test = document.getElementsByClassName('CardField-number');
+        //    console.log( test );
+
+            // this.getCard.name = CardField-number
+           this.getCard.stripe_token = token.id;
+
+           //クレカ確認画面に遷移
+           this.$router.push({name: 'mypage-company_confirm'})
+
+         },
+
         async validateItem() {
             this.v$.$touch();
             if (this.v$.$error) return;
@@ -308,9 +474,6 @@ export default {
     }
 }
 
-// ToDo:バリデーション不可の返却値の表示
-// ToDo:クレジットカードのバリデーション
-// ToDo:郵便番号の編集
 </script>
 
 <style lang="scss" scoped>
