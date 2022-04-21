@@ -71,7 +71,7 @@
  */
 
 .table-scrollable {
-  max-height: 315px;
+  max-height: 400px;
   overflow: auto;
   @include scrollbars(
     16px,

@@ -34,10 +34,18 @@
                                             </tr>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
+                                                    郵便番号
+                                                </th>
+                                                <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                    〒{{ getCompany.post_number }}
+                                                </td>
+                                            </tr>                                            
+                                            <tr>
+                                                <th class="[ display-table-row  display-table-cell-large ]">
                                                     住所
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    〒{{ getCompany.post_number }}　{{ getCompany.address }}
+                                                    {{ getCompany.address }}
                                                 </td>
                                             </tr>
                                             <tr>
