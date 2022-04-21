@@ -27,6 +27,10 @@ import MypageHome from "./views/mypage/Home.vue";
 import Company from "./views/mypage/Company/Company.vue";
 import Company_edit from "./views/mypage/Company/Company_edit.vue";
 import Company_confirm from "./views/mypage/Company/Company_confirm.vue";
+// カード情報の確認・変更
+import Card from "./views/mypage/Card/Card.vue";
+import Card_edit from "./views/mypage/Card/Card_edit.vue";
+import Card_confirm from "./views/mypage/Card/Card_confirm.vue";
 // 担当者
 import Reps from "./views/mypage/Reps/Reps.vue";
 import Reps_create from "./views/mypage/Reps/Reps_create.vue";
@@ -198,6 +202,29 @@ const routes = [
     path: "/mypage/company_confirm",
     component: Company_confirm,
     name: "mypage-company_confirm",
+    props: true,
+    beforeEnter: auth,
+  },
+    // カード情報の確認・変更
+  {
+    path: "/mypage/card",
+    component: Card,
+    name: "mypage-card",
+    beforeEnter: auth,
+  },
+  // カード情報の編集
+  {
+    path: "/mypage/card_edit/",
+    component: Card_edit,
+    name: "mypage-card_edit",
+    props: true,
+    beforeEnter: auth,
+  },
+  // カード情報の確認
+  {
+    path: "/mypage/card_confirm",
+    component: Card_confirm,
+    name: "mypage-card_confirm",
     props: true,
     beforeEnter: auth,
   },

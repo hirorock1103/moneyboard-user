@@ -68,6 +68,14 @@ export default {
                         active: false
                     },
                     {
+                        id: 12,
+                        url: '/mypage/card',
+                        icon: 'fa-credit-card',
+                        title: 'カード情報の確認・変更',
+                        subtitle: '',
+                        active: false
+                    },                    
+                    {
                         id: 3,
                         url: '/mypage/company/reps-list',
                         icon: 'fa-user-circle',

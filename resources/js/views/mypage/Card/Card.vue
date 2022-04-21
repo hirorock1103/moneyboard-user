@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            登録情報の確認・変更
+                            カード情報の確認・変更
                         </h2>
                     </div>
                     <div class="text-center" v-if="message">
@@ -16,68 +16,56 @@
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
-                                <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
-                                基本情報
+                                <span class="[ icon  solid ] fa-credit-card  padding-right--12  text-accent"></span>
+                                クレジットカード情報
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8">
-                                <table class="table">
+                                <table class="table width-50">
                                     <tbody>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                会社名
+                                                番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.company_name }}
+                                                **** **** **** {{ getCard.number }}
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                企業コード
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.company_code }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                住所
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒{{ getCompany.post_number }}　{{ getCompany.address }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                電話番号
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.phone_number }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                担当者名
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.company_rep }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                携帯番号
+                                                有効期限
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                {{ getCompany.mobile_number }}
+                                            {{ getCard.valid_month }} / {{ getCard.valid_year }}
                                             </td>
                                         </tr>
+
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                セキュリティコード
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                                ***
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                名義
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ] ">
+                                            {{ getCard.name }}
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </article>
                     <div class="text-center">
-                        <router-link :to="{name: 'mypage-company_edit'}" class="[ btn  btn--accent ]">変更</router-link>
+                        <router-link :to="{name: 'mypage-card_edit'}" class="[ btn  btn--accent ]">変更</router-link>
                     </div>
                 </div>
             </section>
@@ -86,7 +74,7 @@
 </template>
 
 <script>
-import axios from '../../../src/plugins/axios.js'
+import axios2 from '../../../src/plugins/axios2.js'
 import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
@@ -103,31 +91,76 @@ export default {
         getCompany() {
             return this.$store.getters['auth/company']
         },
+        getCard() {
+            return this.$store.getters['auth/card']
+        },
     },
     created: function() {
-        this.fetchItems();
+        this.GetCardInfo();
     },
     methods: {
         ...mapActions('auth', ['updateCompany']),
-        async fetchItems() {
-            var company_code = this.getCompany.company_code;
-            // let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + company_code;
-            let url = process.env.MIX_VUE_APP_API_URL + "com/company/get";
+
+        async GetCardInfo(){
+
+            let stripe_id = this.getCompany.stripe_id;
+
+            //カード情報の取得
+            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
+            const headers = {
+                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+
             try {
-                // const response = await axios.get(url);
-                const response = await axios.get(url, {
-                    params:{
-                        company_code: company_code
-                        }
+                let response = await axios2.get(url, {headers: headers});
+                console.log(response);
+                let card_id = response.data.default_source;
+                let name = response.data.name;
+
+                this.getCard.name = name;
+
+                if(response.status!="200" || card_id == null){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else{
+
+                    //カード情報の取得
+                    let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
+                    const headers = {
+                        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
-                );
-                this.updateCompany(response.data[0]);
+
+                    let response = await axios2.get(url, {headers: headers});
+                    console.log(response);
+                    if(response.status!="200" || card_id == null){
+                        console.log(response);
+                        this.message = response.data.message
+                        setTimeout(() => {this.message = false;}, 2000);
+                    } else{
+                        //
+                        // let brand = response.data.brand;
+                        let valid_month = response.data.exp_month;
+                        let valid_year = response.data.exp_year;
+                        let number = response.data.last4;
+
+                        // this.getCard.brand = brand;
+                        this.getCard.valid_month = valid_month;
+                        this.getCard.valid_year = valid_year;
+                        this.getCard.number = number;
+                    }
+                }
+
             } catch (e){
                 console.log(e);
                 this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
             }
+
         },
+
+
     }
 }
 

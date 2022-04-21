@@ -20,6 +20,13 @@
 
                 <li class="menu__link">
                     <router-link to="/">
+                        <span class="menu__icon  [ icon  solid  fa-pen-nib ]"></span>
+                        <span>カード情報の確認・変更</span>
+                    </router-link>
+                </li>                
+
+                <li class="menu__link">
+                    <router-link to="/">
                         <span class="menu__icon  [ icon  solid  fa-user-circle ]"></span>
                         <span>担当者情報の登録・変更・削除</span>
                     </router-link>
