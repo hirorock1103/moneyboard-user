@@ -16,17 +16,30 @@
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <h4>
+                                <h4 v-if="plans.name === 'プレミアムプラン' && plans.data_plan === 60">
                                     <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    現在ご利用中のプラン
+                                    ご利用プランの変更予約
+                                    <span  style="color: red; font-size: 5px;">　※スタンダードプランへ変更する場合の適応は、翌月からとなります。今月はプレミアムプランでご利用いただけます。</span>
                                 </h4>
+                                <h4 v-else>
+                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                    ご利用プランの変更
+                                </h4>                                
                                 <hr>
                                 <div class="table-scrollable  padding-right--8 padding-bottom--24">
                                     <table class="table width-40">
                                         <tbody>
                                             <tr>
                                                 <th class="nowrap">
-                                                    現在の料金プラン
+                                                    現在の料金プラン                
+                                                </th>
+                                                <td class="padding-bottom--16">
+                                                    {{plans.name}}
+                                                </td>                                           
+                                            </tr>                                        
+                                            <tr>
+                                                <th class="nowrap">
+                                                    変更後の料金プラン
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap">
                                                     <input
@@ -57,6 +70,22 @@
                                                     {{plans.data_plan}}社
                                                 </td>
                                             </tr>
+                                        </tbody>
+                                    </table>                                         
+                                </div>
+                                <h4 v-if="plans.additional_licenses_before > plans.additional_licenses && plans.additional_licenses !== ''">
+                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                    追加データ数の変更予約
+                                    <span style="color: red; font-size: 5px;">　※追加データ数を減らす場合は、翌月からの適応となります。今月は現在の追加データ数でご利用いただけます。</span>
+                                </h4>
+                                <h4 v-else>
+                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                    追加データ数の変更
+                                </h4>                                
+                                <hr>                                
+                                <div class="table-scrollable  padding-right--8 padding-bottom--24">
+                                    <table class="table width-40">
+                                        <tbody>
                                             <tr>
                                                 <th class="nowrap">
                                                     追加データ数
@@ -75,7 +104,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
+                                </div>                                                                        
                                 <h4>
                                     現在の月額料金
                                     <span class="padding-left--8  text-accent" v-if="plans != undefined">

@@ -58,7 +58,7 @@
                                 円
                             </h4>
                             <hr>
-                            <div class="table-scrollable  padding-right--8">
+                            <div class="table-scrollable  padding-right--8  padding-bottom--24">
                                 <table class="table width-30">
                                     <tbody>
                                         <tr>
@@ -85,6 +85,44 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <h4 v-if="nextPlans !== 'NULL'">
+                                <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                来月からのプラン情報
+                            </h4>
+                            <hr v-if="nextPlans !== 'NULL'">
+                            <div v-if="nextPlans !== 'NULL'" class="table-scrollable  padding-right--8 padding-bottom--24">
+                                <table class="table width-40">
+                                    <tbody>
+                                        <tr>
+                                            <th class="">
+                                                来月の料金プラン
+                                            </th>
+                                            <td v-if="nextPlans.plan_id === 1" class="padding-bottom--16">
+                                                スタンダードプラン
+                                            </td>
+                                            <td v-else class="padding-bottom--16">
+                                                プレミアムプラン
+                                            </td>                                            
+                                        </tr>
+                                        <tr>
+                                            <th class="">
+                                                プランデータ数
+                                            </th>
+                                            <td class="padding-bottom--16">
+                                                {{nextPlans.license_count}}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="">
+                                                追加データ数
+                                            </th>
+                                            <td class="padding-bottom--16">
+                                                {{nextPlans.add_license_count}}社
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>                            
                         </div>
                     </article>
                     <article class="">
@@ -176,10 +214,12 @@ export default {
         return {
             items: [],
             plans: [],
+            nextPlans: [],
         };
     },
     created: function() {
         this.fetchItems();
+        this.nextMonthPlans();
     },
     methods: {
         async fetchItems() {
@@ -190,7 +230,7 @@ export default {
                 var company = this.$store.state.auth.company;
                 // console.log(this.$store.state.auth.company);
                 // console.log(this.$store.state.auth.license);
-                // console.log(this.$store.state.auth.contract);
+                console.log(this.items);
                 this.plans = {
                     company_code:this.$store.state.auth.company.company_code,
                     plan_id: this.$store.state.auth.contract.plan_id,
@@ -210,6 +250,23 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
+
+        async nextMonthPlans() {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/change-contract-request/get";
+            try {
+                const response = await axios.get(url);
+                console.log(response);
+                this.nextPlans = response.data.data.change_contract_requests ?? 'NULL';
+                // console.log('---nextPlans---');
+                // console.log(this.nextPlans);
+                // this.$store.state.auth.plans = this.plans;
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
+
     }
 }
 </script>
