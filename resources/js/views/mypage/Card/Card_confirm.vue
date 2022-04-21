@@ -73,7 +73,7 @@
                             </div>
                         </article>
                         <div class="text-center">
-                            <router-link :to="{name: 'mypage-company_edit'}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <router-link :to="{name: 'mypage-card_edit'}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="クレカ更新" />
                         </div>
                     </form>

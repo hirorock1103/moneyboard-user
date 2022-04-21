@@ -75,7 +75,7 @@
                                 <div id="card-error" style="color:red;text-align:center;margin-bottom:10px;"></div>
 
                                 <p style="text-align:center">
-                                    <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                                    <router-link to="/mypage/card"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                                     <button id="custom-button" class="[ btn btn--accent ]">確認</button>
                                 </p>
 
