@@ -586,6 +586,10 @@ export default {
                         '会社名を入力してください',
                         required
                     ),
+                    maxLength: helpers.withMessage(
+                        '50文字以下で入力してください',
+                        maxLength(50)
+                    ),
                 },
                 post_number: {
                     required: helpers.withMessage(
@@ -610,6 +614,10 @@ export default {
                         '企業住所を入力してください',
                         required
                     ),
+                    maxLength: helpers.withMessage(
+                        '200文字以下で入力してください',
+                        maxLength(200)
+                    ),
                 },
                 phone_number: {
                     required: helpers.withMessage(
@@ -630,11 +638,19 @@ export default {
                         '担当者名を入力してください',
                         required
                     ),
+                    maxLength: helpers.withMessage(
+                        '50文字以下で入力してください',
+                        maxLength(50)
+                    ),
                 },
                 mobile_number: {
                     required: helpers.withMessage(
                         '携帯電話番号を入力してください',
                         required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '11文字以下で入力してください',
+                        maxLength(11)
                     ),
                     decimal: helpers.withMessage(
                         '半角数字で入力してください',
@@ -649,6 +665,10 @@ export default {
                     minLength: helpers.withMessage(
                         '10文字以上を入力してください',
                         minLength(10)
+                    ),
+                    maxLength: helpers.withMessage(
+                        '20文字以下で入力してください',
+                        maxLength(20)
                     ),
                     containsNumber: helpers.withMessage(
                         '半角数字を含めてください',
@@ -681,6 +701,10 @@ export default {
                     minLength: helpers.withMessage(
                         '8文字以上を入力してください',
                         minLength(8)
+                    ),
+                    maxLength: helpers.withMessage(
+                        '20文字以下で入力してください',
+                        maxLength(20)
                     ),
                     containsNumber: helpers.withMessage(
                         '半角数字を含めてください',
