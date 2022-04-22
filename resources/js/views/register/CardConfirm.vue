@@ -29,69 +29,21 @@
                                 <label for="number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     番号
                                 </label>
-
-                                <span class="form-column">
-                                    <input
-                                        type="number"
-                                        id="number"
-                                        class="form-input"
-                                        v-model="getCard.number"
-                                        readonly>**** **** **** ****
-                                </span>
+                                <span class="form-column">**** **** **** {{ getCard.number }}</span>
                             </div>
 
                             <div class="form-row">
                                 <label for="valid_year" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     有効期限
                                 </label>
-
-                                <span class="form-column">** / **
-                                    <input
-                                        type="number"
-                                        id="valid_month"
-                                        class="[ form-input  [ form-input--short  form-input--short-read ] ]"
-                                        v-model="getCard.valid_month"
-                                        readonly>
-
-                                    <span></span>
-
-                                    <input
-                                        type="number"
-                                        id="valid_year"
-                                        class="[ form-input  [ form-input--short  form-input--short-read ] ]"
-                                        v-model="getCard.valid_year"
-                                        readonly>
-                                </span>
+                                <span class="form-column">{{ getCard.valid_month }} / {{ getCard.valid_year }}</span>
                             </div>
 
                             <div class="form-row">
                                 <label for="security_code" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     セキュリティコード
                                 </label>
-
-                                <span class="form-column">
-                                    <input
-                                        type="password"
-                                        id="security_code"
-                                        class="form-input"
-                                        v-model="getCard.security_code"
-                                        readonly>***
-                                </span>
-                            </div>
-
-                            <div class="form-row">
-                                <label for="stripe_token" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
-                                    トークン（開発用に表示しているが不要）
-                                </label>
-
-                                <span class="form-column">
-                                    <input
-                                        type="text"
-                                        id="stripe_token"
-                                        class="form-input"
-                                        v-model="getCard.stripe_token"
-                                        readonly>
-                                </span>
+                                <span class="form-column">***</span>
                             </div>
 
                             <div class="form-row">
@@ -161,7 +113,9 @@ export default {
             },
         }
     },
-
+    created: function() {
+        this.GetCardInfo();
+    },
     computed: {
         getCard() {
             return this.$store.getters['auth/card']
@@ -173,6 +127,42 @@ export default {
 
     methods: {
 //        ...mapActions('auth', ['registerUserInfo']),
+
+async GetCardInfo(){
+
+    let token = this.getCard.stripe_token;
+
+    //カード情報の取得
+    let url = "https://api.stripe.com/v1/tokens/" + token;
+    const headers = {
+        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    try {
+        let response = await axios.get(url, {headers: headers});
+        console.log(response);
+        let valid_month = response.data.card.exp_month;
+        let valid_year = response.data.card.exp_year;
+        let number = response.data.card.last4;
+
+        this.getCard.valid_month = valid_month;
+        this.getCard.valid_year = valid_year;
+        this.getCard.number = number;
+
+        if(response.status!="200" || card_id == null){
+            console.log(response);
+            this.message = response.data.message
+            setTimeout(() => {this.message = false;}, 2000);
+        }else{
+        }
+
+    } catch (e){
+        console.log(e);
+        this.message = e
+    }
+
+},
 
         async register() {
 
