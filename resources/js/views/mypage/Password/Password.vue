@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            管理サイトのパスワードを変更する
+                            パスワードを変更する
                         </h2>
                     </div>
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -32,8 +32,8 @@
                                                     パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    <input 
-                                                    type="password" 
+                                                    <input
+                                                    type="password"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password_new"
                                                         @input="v$.item.password_new.$touch"
@@ -50,8 +50,8 @@
                                                     確認用パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input 
-                                                    type="password" 
+                                                    <input
+                                                    type="password"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password_confirm"
                                                         @input="v$.item.password_confirm.$touch"
@@ -73,8 +73,8 @@
                                                     現在のパスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]">
-                                                    <input 
-                                                    type="password" 
+                                                    <input
+                                                    type="password"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password"
                                                         @input="v$.item.password.$touch"
