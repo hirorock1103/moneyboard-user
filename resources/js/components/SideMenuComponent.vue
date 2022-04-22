@@ -74,7 +74,7 @@ export default {
                         title: 'カード情報の確認・変更',
                         subtitle: '',
                         active: false
-                    },                    
+                    },
                     {
                         id: 3,
                         url: '/mypage/company/reps-list',
@@ -112,7 +112,7 @@ export default {
                         url: '/mypage/company/email',
                         icon: 'fa-envelope',
                         title: 'メールアドレスの変更',
-                        subtitle: '(管理者サイトログインID)',
+                        subtitle: '(ログインID)',
                         active: false
                     },
                     {
@@ -120,7 +120,7 @@ export default {
                         url: '/mypage/company/password',
                         icon: 'fa-key',
                         title: 'パスワードの変更',
-                        subtitle: '(管理者サイトログインパス)',
+                        subtitle: '(ログインパス)',
                         active: false
                     },
                     {
