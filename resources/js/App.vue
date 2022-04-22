@@ -2,7 +2,7 @@
     <Header />
     <RouterView />
     <Footer />
-    <p id="exscript"></p>
+    <p id="exscript" style="margin-bottom:0"></p>
 </template>
 
 <script>

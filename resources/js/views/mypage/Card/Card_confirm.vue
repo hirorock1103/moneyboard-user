@@ -59,14 +59,6 @@
                                                     {{ getCard.name }}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th class="[ display-table-row  display-table-cell-large ]">
-                                                    トークン（開発用）
-                                                </th>
-                                                <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    {{ getCard.stripe_token }}
-                                                </td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -109,7 +101,7 @@ export default {
     },
     created: function() {
         this.GetCardInfo();
-    },    
+    },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
 
