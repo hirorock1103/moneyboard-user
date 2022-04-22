@@ -29,7 +29,7 @@
                                                     番号
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    **** **** **** ****
+                                                    <span class="form-column">**** **** **** {{ getCard.number }}</span>
                                                 </td>
                                             </tr>
 
@@ -38,7 +38,7 @@
                                                     有効期限
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    **/**
+                                                    <span class="form-column">{{ getCard.valid_month }} / {{ getCard.valid_year }}</span>
                                                 </td>
                                             </tr>
 
@@ -107,6 +107,9 @@ export default {
             return this.$store.getters['auth/card']
         },
     },
+    created: function() {
+        this.GetCardInfo();
+    },    
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
 
@@ -212,6 +215,44 @@ export default {
                 this.message = e
             }
         },
+
+        async GetCardInfo(){
+
+            let token = this.getCard.stripe_token;
+
+            //カード情報の取得
+            let url = "https://api.stripe.com/v1/tokens/" + token;
+            const headers = {
+                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+
+            try {
+                let response = await axios2.get(url, {headers: headers});
+                // console.log('---response---');
+                // console.log(response);
+                let valid_month = response.data.card.exp_month;
+                let valid_year = response.data.card.exp_year;
+                let number = response.data.card.last4;
+
+                this.getCard.valid_month = valid_month;
+                this.getCard.valid_year = valid_year;
+                this.getCard.number = number;
+
+                if(response.status!="200" || card_id == null){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                }else{
+                }
+
+            } catch (e){
+                console.log(e);
+                this.message = e
+            }
+
+        },
+
     }
 }
 
