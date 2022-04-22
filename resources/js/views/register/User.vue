@@ -555,7 +555,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
+import { required, minLength, maxLength, decimal, sameAs, helpers } from '@vuelidate/validators';
 import containsNumber from '../../customValidators/containsNumber';
 import containsUppercase from '../../customValidators/containsUppercase';
 import containsLowercase from '../../customValidators/containsLowercase';
@@ -600,6 +600,10 @@ export default {
                         '7文字で入力してください',
                         minLength(7)
                     ),
+                    decimal: helpers.withMessage(
+                        '半角数字で入力してください',
+                        decimal
+                    ),
                 },
                 address: {
                     required: helpers.withMessage(
@@ -616,6 +620,10 @@ export default {
                         '10文字以下で入力してください',
                         maxLength(10)
                     ),
+                    decimal: helpers.withMessage(
+                        '半角数字で入力してください',
+                        decimal
+                    ),
                 },
                 company_rep: {
                     required: helpers.withMessage(
@@ -627,6 +635,10 @@ export default {
                     required: helpers.withMessage(
                         '携帯電話番号を入力してください',
                         required
+                    ),
+                    decimal: helpers.withMessage(
+                        '半角数字で入力してください',
+                        decimal
                     ),
                 },
                 password: {

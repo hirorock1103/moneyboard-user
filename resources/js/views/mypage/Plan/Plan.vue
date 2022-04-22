@@ -102,7 +102,7 @@
                                             </td>
                                             <td v-else class="padding-bottom--16">
                                                 プレミアムプラン
-                                            </td>                                            
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th class="">
@@ -122,7 +122,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>                            
+                            </div>
                         </div>
                     </article>
                     <article class="">
@@ -252,9 +252,15 @@ export default {
         },
 
         async nextMonthPlans() {
+            var company_code = this.$store.state.auth.company.company_code;
             let url = process.env.MIX_VUE_APP_API_URL + "com/change-contract-request/get";
             try {
-                const response = await axios.get(url);
+//                const response = await axios.get(url);
+                const response = await axios.get(url, {
+                    params:{
+                        company_code: company_code
+                        }
+                    });
                 console.log(response);
                 this.nextPlans = response.data.data.change_contract_requests ?? 'NULL';
                 // console.log('---nextPlans---');
