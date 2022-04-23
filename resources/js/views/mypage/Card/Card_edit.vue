@@ -56,7 +56,7 @@
                                     </span>
                                 </div>
 
-                                <div class="form-row" style="display:none">
+                                <div class="form-row">
                                     <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                         名義
                                     </label>
@@ -184,8 +184,6 @@ export default {
         ...mapActions('auth', ['updateCompany']),
 
         async createToken () {
-            // console.log('---cardNumber---');
-            // console.log(this.cardNumber);
            const { token, error } = await this.stripe.createToken(this.cardNumber);
            if (error) {
              // handle error here
@@ -193,16 +191,11 @@ export default {
              return;
            }
 
-           console.log('---token---');
-           console.log(token);
-        //    console.log(this.getCard);
 
            //作成したトークンを保存
            //CardField-numberの中のinputの値
            let test = document.getElementsByClassName('CardField-number');
-        //    console.log( test );
 
-            // this.getCard.name = CardField-number
            this.getCard.stripe_token = token.id;
 
            //クレカ確認画面に遷移

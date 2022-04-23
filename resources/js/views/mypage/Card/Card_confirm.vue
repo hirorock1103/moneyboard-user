@@ -51,7 +51,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr style="display:none">
+                                            <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     名義
                                                 </th>
@@ -106,72 +106,57 @@ export default {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
 
 
-        // クレカ変更処理（カードID取得、クレカ削除、クレカ登録）
+        // クレカ変更処理（カードID取得、クレカ削除、クレカ登録、顧客更新）
         async changeCard() {
 
             let stripe_id = this.getCompany.stripe_id;
             let stripe_token = this.getCard.stripe_token;
-
-            //カードIDの取得
-            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
             const headers = {
                 'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
 
-            try {
-                console.log('-- カードID取得 --');
-                console.log(url);
-                console.log(headers);
+            //カードIDの取得
+            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
 
+            try {
                 let response = await axios2.get(url, {headers: headers});
-                console.log(response);
                 let card_id = response.data.default_source;
 
                 if(response.status!="200" || card_id == null){
-                    console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else{
                     //カード削除
-                    console.log('-- カード削除 --');
-                    console.log(card_id);
                     let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
-                    const headers = {
-                        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
                     let response = await axios2.delete(url, {headers: headers});
-
-                    console.log(response);
                     if(response.status!="200"){
-
-                        console.log(response);
                         this.message = response.data.message
                         setTimeout(() => {this.message = false;}, 2000);
                     } else{
-
                         //カード作成
-                        console.log('-- カード作成 --');
                         let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
-                        const headers = {
-                            'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-
                         let params = new URLSearchParams();
                         params.append('source', stripe_token);
 
                         let response = await axios2.post(url, params, {headers: headers});
-
-                        console.log(response);
                         if(response.status!="200"){
-                            console.log(response);
                             this.message = response.data.message
                             setTimeout(() => {this.message = false;}, 2000);
                         } else{
-                            this.resetTemps();
-                            this.$router.push({name: 'mypage-card'})
+                            //顧客名義の更新
+                            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
+                            let params = new URLSearchParams();
+                            params.append('name', this.getCard.name);
+
+                            let response = await axios2.post(url, params, {headers: headers});
+                            if(response.status!="200"){
+                                this.message = response.data.message
+                                setTimeout(() => {this.message = false;}, 2000);
+                            } else{
+                                this.resetTemps();
+                                this.$router.push({name: 'mypage-card'})
+                            }
                         }
                     }
                 }
@@ -179,26 +164,28 @@ export default {
                 if( card_id == null ){//カードがない場合は作成だけする
 
                     //カード作成
-                    console.log('-- カード作成（もともとない場合） --');
                     let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
-                    const headers = {
-                        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-
                     let params = new URLSearchParams();
                     params.append('source', stripe_token);
 
                     let response = await axios2.post(url, params, {headers: headers});
-
-                    console.log(response);
                     if(response.status!="200"){
-                        console.log(response);
                         this.message = response.data.message
                         setTimeout(() => {this.message = false;}, 2000);
                     } else{
-                        this.resetTemps();
-                        this.$router.push({name: 'mypage-card'})
+                        //顧客名義の更新
+                        let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
+                        let params = new URLSearchParams();
+                        params.append('name', this.getCard.name);
+
+                        let response = await axios2.post(url, params, {headers: headers});
+                        if(response.status!="200"){
+                            this.message = response.data.message
+                            setTimeout(() => {this.message = false;}, 2000);
+                        } else{
+                            this.resetTemps();
+                            this.$router.push({name: 'mypage-card'})
+                        }
                     }
                 }
 

@@ -180,47 +180,23 @@ async GetCardInfo(){
             }
 
             let params = new URLSearchParams();
-            // params.append('email', VUEXに保存されてるメアド);
             params.append('name', this.getCard.name);
             params.append('source', this.getCard.stripe_token);
 
             try {
-console.log(url);
-console.log(params);
-console.log(headers);
-
-
                 let response = await axios.post(url, params, {headers: headers});
-                console.log(response);
                 if(response.status!="200"){
-
-                    console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else{
-                    console.log('-- stripe_id --');
-                    console.log(response.data.id);
-                    console.log('--------');
-
                     datas.stripe_id = response.data.id;
-
-                    console.log('-- datas --');
-                    console.log(datas);
-                    console.log('--------');
-
                     // // 企業情報レコード追加
                     let response2 = await axios.post(url2, datas);
                     if(response2.data.status=="NG"){
-                        console.log(response2, datas);
                         this.message = response2.data.message
                         setTimeout(() => {this.message = false;}, 2000);
                     }
-                    // else {
-                    //     this.resetTemps();
-                    // }
 
-
-                    // this.resetTemps();
                     this.$router.push(
                         {
                             name: 'register-completion',

@@ -104,49 +104,36 @@ export default {
         async GetCardInfo(){
 
             let stripe_id = this.getCompany.stripe_id;
-
-            //カード情報の取得
-            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
             const headers = {
                 'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
 
             try {
+                //カード情報の取得
+                let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
                 let response = await axios2.get(url, {headers: headers});
-                console.log(response);
                 let card_id = response.data.default_source;
                 let name = response.data.name;
 
                 this.getCard.name = name;
 
                 if(response.status!="200" || card_id == null){
-                    console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else{
 
                     //カード情報の取得
                     let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
-                    const headers = {
-                        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-
                     let response = await axios2.get(url, {headers: headers});
-                    console.log(response);
                     if(response.status!="200" || card_id == null){
-                        console.log(response);
                         this.message = response.data.message
                         setTimeout(() => {this.message = false;}, 2000);
                     } else{
-                        //
-                        // let brand = response.data.brand;
                         let valid_month = response.data.exp_month;
                         let valid_year = response.data.exp_year;
                         let number = response.data.last4;
 
-                        // this.getCard.brand = brand;
                         this.getCard.valid_month = valid_month;
                         this.getCard.valid_year = valid_year;
                         this.getCard.number = number;
