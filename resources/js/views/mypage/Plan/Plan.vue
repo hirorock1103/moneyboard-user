@@ -17,11 +17,11 @@
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
                                 <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                現在ご利用中のプラン
+                                ご利用中のプラン
                             </h4>
                             <hr>
                             <div class="table-scrollable  padding-right--8 padding-bottom--24">
-                                <table class="table width-40">
+                                <table class="table width-80">
                                     <tbody>
                                         <tr>
                                             <th class="">
@@ -29,19 +29,20 @@
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{plans.name}}
+                                                (使用できる企業数：{{plans.data_plan}}社)
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th class="">
                                                 プランデータ数
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{plans.data_plan}}社
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th class="">
-                                                追加データ数
+                                                現在の追加データ数
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{plans.additional_licenses}}社
@@ -85,36 +86,39 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <h4 v-if="nextPlans !== 'NULL'">
+
+
+                            <h4 v-if="nextPlans !== 'NULL'" style="color:fuchsia;margin-top: 40px;">
                                 <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                来月からのプラン情報
+                                来月のプラン
+                                <span style="font-size:14px;color:black">※来月の追加データ数は、実際に使用されているデータ数により増加する場合があります。</span>
                             </h4>
                             <hr v-if="nextPlans !== 'NULL'">
                             <div v-if="nextPlans !== 'NULL'" class="table-scrollable  padding-right--8 padding-bottom--24">
-                                <table class="table width-40">
+                                <table class="table width-80">
                                     <tbody>
                                         <tr>
                                             <th class="">
                                                 来月の料金プラン
                                             </th>
                                             <td v-if="nextPlans.plan_id === 1" class="padding-bottom--16">
-                                                スタンダードプラン
+                                                スタンダードプラン(使用できる企業数：{{nextPlans.license_count}}社)
                                             </td>
                                             <td v-else class="padding-bottom--16">
-                                                プレミアムプラン
+                                                プレミアムプラン(使用できる企業数：{{nextPlans.license_count}}社)
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th class="">
                                                 プランデータ数
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{nextPlans.license_count}}社
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th class="">
-                                                追加データ数
+                                                来月の追加データ数
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{nextPlans.add_license_count}}社
@@ -123,6 +127,11 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <div class="text-center">
+                                <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>
+                            </div>
+
                         </div>
                     </article>
                     <article class="">
@@ -185,9 +194,6 @@
                             </table>
                         </div>
                     </article>
-                    <div class="text-center">
-                        <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>
-                    </div>
                 </div>
             </section>
         </main>
