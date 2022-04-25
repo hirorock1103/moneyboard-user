@@ -13,33 +13,65 @@
                             価格はすべて税込表記
                         </h5>
                     </div>
+
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
-                            <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <h4 v-if="plans.name === 'プレミアムプラン' && plans.data_plan === 60">
-                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    ご利用プランの変更予約
-                                    <span  style="color: red; font-size: 5px;">　※スタンダードプランへ変更する場合の適応は、翌月からとなります。今月はプレミアムプランでご利用いただけます。</span>
+
+
+                            <div class="[ padding--24  padding-large--48 ]  bg-white" style="padding-bottom:0!important;">
+                                <h4>
+                                    ご利用中のプラン
                                 </h4>
-                                <h4 v-else>
-                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    ご利用プランの変更
-                                </h4>                                
                                 <hr>
                                 <div class="table-scrollable  padding-right--8 padding-bottom--24">
-                                    <table class="table width-40">
+                                    <table class="table width-80">
                                         <tbody>
                                             <tr>
-                                                <th class="nowrap">
-                                                    現在の料金プラン                
+                                                <th>
+                                                    現在のプラン
                                                 </th>
-                                                <td class="padding-bottom--16">
-                                                    {{plans.name}}
-                                                </td>                                           
-                                            </tr>                                        
+                                                <td>
+                                                    <span v-if="getContract.plan_id === 1">
+                                                        スタンダードプラン(使用できる企業数：60社)
+                                                    </span>
+                                                    <span v-else>
+                                                        プレミアブラン(使用できる企業数：60社)
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    現在の企業数の追加数
+                                                </th>
+                                                <td>
+                                                    {{getContract.add_license_count}}社
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    現在の月額料金
+                                                </th>
+                                                <td>
+                                                    {{$filters.addComma(Number(getContract.price))}}円
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="[ padding--24  padding-large--48 ]  bg-white">
+                                <h4 style="color:fuchsia;">変更</h4>
+                                <p style="margin-bottom:0;font-weight:bold; color: red; font-size: 14px;">※「プレミアムプラン」への変更や「企業数の追加数」の増加は、"すぐ"に更新されます。</p>
+                                <p style="margin-bottom:0;font-weight:bold; color: red; font-size: 14px;">※「スタンダードプラン」への変更や「企業数の追加数」の減少は、"翌月"に更新されます。</p>
+                                <hr>
+                                <div class="table-scrollable  padding-right--8 padding-bottom--24">
+                                    <table class="table width-80">
+                                        <tbody>
+
                                             <tr>
                                                 <th class="nowrap">
-                                                    変更後の料金プラン
+                                                    変更後のプラン
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap">
                                                     <input
@@ -49,7 +81,7 @@
                                                         value="1"
                                                         v-model="plans.plan_id"
                                                         @change="changePlan(55000, 60)">
-                                                    <label class="form-radio-label  margin-bottom--8" for="confirm-radio-s">スタンダードプラン</label>
+                                                    <label class="form-radio-label  margin-bottom--8" for="confirm-radio-s">スタンダードプラン<br>(使用できる企業数：60社)</label>
                                                 </td>
                                                 <td class="padding-bottom--16 nowrap">
                                                     <input
@@ -59,36 +91,45 @@
                                                         value="2"
                                                         v-model="plans.plan_id"
                                                         @change="changePlan(132000, 120)">
-                                                    <label class="form-radio-label  margin-bottom--8" for="confirm-radio-p">プレミアムプラン</label>
+                                                    <label class="form-radio-label  margin-bottom--8" for="confirm-radio-p">プレミアムプラン<br>(使用できる企業数：120社)</label>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <th class="nowrap">
-                                                    プランデータ数
+                                                    変更後の企業数の追加数
                                                 </th>
-                                                <td class="padding-bottom--16">
-                                                    {{plans.data_plan}}社
+                                                <td class="padding-bottom--16 nowrap" style="display: flex;">
+                                                    <input
+                                                        type="text"
+                                                        id=""
+                                                        class="form-input"
+                                                        v-model="plans.additional_licenses"
+                                                        @input="changeData(plans.additional_licenses)">
+                                                        <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
                                                 </td>
+                                                <td></td>
                                             </tr>
+
                                         </tbody>
-                                    </table>                                         
+                                    </table>
                                 </div>
-                                <h4 v-if="plans.additional_licenses_before > plans.additional_licenses && plans.additional_licenses !== ''">
+                                <!-- <h4 v-if="plans.additional_licenses_before > plans.additional_licenses && plans.additional_licenses !== ''">
                                     <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    追加データ数の変更予約
-                                    <span style="color: red; font-size: 5px;">　※追加データ数を減らす場合は、翌月からの適応となります。今月は現在の追加データ数でご利用いただけます。</span>
+                                    企業数の追加数の変更予約
+                                    <span style="color: red; font-size: 5px;">　※企業数の追加数を減らす場合は、翌月からの適応となります。今月は現在の企業数の追加数でご利用いただけます。</span>
                                 </h4>
                                 <h4 v-else>
                                     <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    追加データ数の変更
-                                </h4>                                
-                                <hr>                                
+                                    企業数の追加数の変更
+                                </h4>
+                                <hr>
                                 <div class="table-scrollable  padding-right--8 padding-bottom--24">
                                     <table class="table width-40">
                                         <tbody>
                                             <tr>
                                                 <th class="nowrap">
-                                                    追加データ数
+                                                    企業数の追加数
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap" style="display: flex;">
                                                     <span style="display: flex;align-items: center;justify-content: center;">{{plans.additional_licenses_before}}社　→　</span>
@@ -104,9 +145,9 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>                                                                        
-                                <h4>
-                                    現在の月額料金
+                                </div> -->
+                                <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                    変更後の月額料金
                                     <span class="padding-left--8  text-accent" v-if="plans != undefined">
                                         {{$filters.addComma(Number(plans.cost_total))}}
                                     </span>
@@ -126,9 +167,9 @@
                                                 <td class="padding-bottom--16 text-right" v-if="plans != undefined">
                                                     {{$filters.addComma(Number(plans.cost_plan))}}円
                                                 </td>
-                                                <td class="padding-bottom--16 text-right" v-if="plans != undefined">
+                                                <!-- <td class="padding-bottom--16 text-right" v-if="plans != undefined">
                                                     （システム使用料と登録データ{{plans.data_plan}}社分）
-                                                </td>
+                                                </td> -->
                                             </tr>
                                             <tr>
                                                 <th class="">
@@ -144,8 +185,13 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                                <div class="text-center">
+                                    <input type="submit" class="[ btn  btn--accent ]" value="変更の確定"/>
+                                </div>
                             </div>
                         </article>
+
                         <article class="">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
                                 <table class="table table--bordered">
@@ -206,10 +252,11 @@
                                 </table>
                             </div>
                         </article>
+
                         <div class="text-center">
                             <router-link to="/mypage/company/plan"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                            <input type="submit" class="[ btn  btn--accent ]" value="確認"/>
                         </div>
+
                     </form>
                 </div>
             </section>
@@ -224,7 +271,12 @@ import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
     data: function() {
-        return {}
+        return {
+            nextPlans: [],
+        }
+    },
+    mounted: function() {
+        this.nextMonthPlans();
     },
     components: {
         SideMenu,
@@ -236,7 +288,10 @@ export default {
             plans: function (state) {
                 return state.auth.plans;
             }
-        })
+        }),
+        getContract() {
+            return this.$store.getters['auth/contract']
+        },
     },
     methods: {
         ...mapActions('auth', ['updateState']),
@@ -271,8 +326,37 @@ export default {
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
-        }
+        },
+        async nextMonthPlans() {
+            var company_code = this.$store.state.auth.company.company_code;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/change-contract-request/get";
+            try {
+                const response = await axios.get(url, {
+                    params:{
+                        company_code: company_code
+                        }
+                    });
+                console.log(response);
+                this.nextPlans = response.data.data.change_contract_requests ?? 'NULL';
+
+                this.plans.plan_id = this.nextPlans.plan_id;
+                this.plans.additional_licenses = this.nextPlans.add_license_count;
+
+                this.plans.cost_total = this.nextPlans.price;
+                this.plans.cost_plan = this.nextPlans.plan_price;
+                this.plans.data_plan = this.nextPlans.license_count;
+                this.plans.cost_add = this.nextPlans.add_unit_price;
+
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
+
+
     },
+
 }
 </script>
 
