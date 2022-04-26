@@ -17,6 +17,8 @@ import RegisterCard from "./views/register/Card.vue";
 import RegisterCardConfirm from "./views/register/CardConfirm.vue";
 // ログイン画面
 import Login from "./views/Login.vue";
+// ログアウト画面
+import Logoff from "./views/Logout.vue";
 // パスワード再発行画面
 import PasswordEmail from "./views/password/Email.vue";
 // パスワード再発行（入力）画面
@@ -82,6 +84,15 @@ const auth = (to, from, next) => {
 };
 
 const routes = [
+
+    // ログアウト画面
+    {
+      path: "/logoff",
+      component: Logoff,
+      name: "logoff",
+      beforeEnter: auth,
+    },
+
   // トップページ
   {
     path: "/",

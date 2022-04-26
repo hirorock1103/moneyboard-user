@@ -53,7 +53,7 @@ const getters = {
     company: state => state.company,
     contract: state => state.contract,
     clients: state => state.clients,
-    clientsNumber: state => state.clients.length,
+//    clientsNumber: state => state.clients.length,
     notifications: state => state.notifications,
     temps: state => state.temps
 };
@@ -212,6 +212,14 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + "com/login",
             data
         );
+        const card_initial =  {
+                number: '',
+                valid_year: '',
+                valid_month: '',
+                security_code: '',
+                name: '',
+                stripe_token: '',
+        };
 
         // console.log(1,response);
 
@@ -220,13 +228,15 @@ const actions = {
             const data = await axios.post(
                 process.env.MIX_VUE_APP_API_URL + "com/me"
             );
-            // console.log(2,data);
+            //console.log(2,data);
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             context.commit('setUser', data.data.data.me);
             context.commit('setLicense', data.data.data.summery);
             context.commit('setCompany', data.data.auth.company);
             context.commit('setContract', data.data.data.contract);
+            context.commit('setCard', card_initial);
+
             // localStorage.setItem('authToken', response.data.token);
             // console.log(3,context);
             // console.log(4,localStorage);
@@ -257,6 +267,8 @@ const actions = {
             context.commit('setApiStatus', true)
             context.commit('setUser', null)
             context.commit('setCompany', null)
+            context.commit('setCard', null)
+            context.commit('setContract', null)
             localStorage.removeItem('authToken');
             return false
         }
