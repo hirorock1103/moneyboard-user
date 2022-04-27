@@ -11,7 +11,8 @@
                         </h2>
                     </div>
 
-                    <form v-on:submit.prevent="Store">
+
+                    <form @submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
                                 <div class="display-flex justify-content-between-large">
@@ -76,7 +77,15 @@
                                                     type="text"
                                                     name="title"
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.inquiry_title"/>
+                                                    v-model="item.inquiry_title"
+                                                    @input="v$.item.inquiry_title.$touch"
+                                                    v-bind:class="[ v$.item.inquiry_title.$error ? 'form-error' : null ]">
+                                                    <div
+                                                        class="form-text  text-danger text-center [ margin-bottom--24   ]  "
+                                                        v-if="v$.item.inquiry_title.$error">
+                                                        {{ v$.item.inquiry_title.$errors[0].$message }}
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                             <tr>
@@ -84,8 +93,15 @@
                                                     お問い合わせ
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <textarea class="form-textarea margin-top--8" v-model="item.inquiry_contents" placeholder="こちらにお問い合わせ内容を入力してください。">
+                                                    <textarea class="form-textarea margin-top--8" v-model="item.inquiry_contents" placeholder="こちらにお問い合わせ内容を入力してください。"
+                                                    @input="v$.item.inquiry_contents.$touch"
+                                                    v-bind:class="[ v$.item.inquiry_contents.$error ? 'form-error' : null ]">
                                                     </textarea>
+                                                    <div
+                                                        class="form-text  text-danger text-center [ margin-bottom--24   ]  "
+                                                        v-if="v$.item.inquiry_contents.$error">
+                                                        {{ v$.item.inquiry_contents.$errors[0].$message }}
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -142,6 +158,8 @@
 </template>
 
 <script>
+import useVuelidate from '@vuelidate/core';
+import { required, maxLength, helpers } from '@vuelidate/validators';
 import axios from '../../../src/plugins/axios.js'
 import { mapState } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
@@ -151,12 +169,40 @@ export default {
         SideMenu,
         name: "Store"
     },
+    setup() {
+        return { v$: useVuelidate() };
+    },
     data() {
         return {
             item: {},
             message: ""
         };
     },
+
+    validations() {
+        return {
+            item: {
+                inquiry_title: {
+                    required: helpers.withMessage(
+                        '件名を入力してください',
+                        required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '50文字以下で入力してください',
+                        maxLength(50)
+                    ),
+                },
+                inquiry_contents: {
+                    required: helpers.withMessage(
+                        'お問い合わせを入力してください',
+                        required
+                    ),
+                }
+            }
+        }
+    },
+
+
     computed: {
         ...mapState({
             company: function (state) {
@@ -166,6 +212,8 @@ export default {
     },
     methods: {
         async Store(){
+            this.v$.$touch();
+            if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/store";
             this.item.inquiry_type = 1;
             try {
