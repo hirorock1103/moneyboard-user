@@ -62,7 +62,9 @@
                                                     type="email"
                                                     name="email"
                                                     class="form-input  margin-top--8"
-                                                    v-model="item.inquiry_email"/>
+                                                    v-model="company.email_address"
+                                                    readonly/>
+                                                    <!-- v-model="item.inquiry_email"/> -->
                                                 </td>
                                             </tr>
                                             <tr>
