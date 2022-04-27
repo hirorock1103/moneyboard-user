@@ -118,10 +118,40 @@ const mutations = {
 const actions = {
     // 新規登録
     async sendEmailRegisterRequest(context, data) {
+
+        const user_initial = {
+            additional_licenses: '',
+            address: '',
+            admin_password: '',
+            available_licenses_total: '',
+            company_code: '',
+            company_name: '',
+            company_rep: '',
+            created_at: '',
+            email_address: '',
+            id: '',
+            mobile_number: '',
+            motivated_by: '',
+            token: '',
+            phone_number: '',
+            plan_id: '',
+            updated_at: '',
+            user_type: '',
+        }
+        const card_initial =  {
+            number: '',
+            valid_year: '',
+            valid_month: '',
+            security_code: '',
+            name: '',
+            stripe_token: '',
+        };
+
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         context.commit('setCompany', null)
-        context.commit('setCard', null)
+        context.commit('setUser', user_initial)
+        context.commit('setCard', card_initial)
         context.commit('setContract', null)
 
         const response = await axios.post(
