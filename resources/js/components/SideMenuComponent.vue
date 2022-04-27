@@ -112,7 +112,6 @@ export default {
                         url: '/mypage/company/email',
                         icon: 'fa-envelope',
                         title: 'メールアドレスの変更',
-                        subtitle: '(ログインID)',
                         active: false
                     },
                     {
@@ -120,7 +119,6 @@ export default {
                         url: '/mypage/company/password',
                         icon: 'fa-key',
                         title: 'パスワードの変更',
-                        subtitle: '(ログインパス)',
                         active: false
                     },
                     {

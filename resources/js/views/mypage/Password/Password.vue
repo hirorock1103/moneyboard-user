@@ -137,8 +137,8 @@ export default {
                         required
                     ),
                     minLength: helpers.withMessage(
-                        '8文字以上を入力してください',
-                        minLength(8)
+                        '10文字以上を入力してください',
+                        minLength(10)
                     ),
                     containsNumber: helpers.withMessage(
                         '半角数字を含めてください',
