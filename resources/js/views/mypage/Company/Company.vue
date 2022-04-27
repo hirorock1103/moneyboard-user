@@ -46,7 +46,7 @@
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                 〒{{ getCompany.post_number }}
                                             </td>
-                                        </tr>                                        
+                                        </tr>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
                                                 住所
@@ -77,6 +77,14 @@
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
                                                 {{ getCompany.mobile_number }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                メールアドレス（ログインID）
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                {{ getCompany.email_address }}
                                             </td>
                                         </tr>
                                     </tbody>
