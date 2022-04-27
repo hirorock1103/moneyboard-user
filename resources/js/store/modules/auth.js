@@ -120,6 +120,10 @@ const actions = {
     async sendEmailRegisterRequest(context, data) {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
+        context.commit('setCompany', null)
+        context.commit('setCard', null)
+        context.commit('setContract', null)
+
         const response = await axios.post(
             process.env.MIX_VUE_APP_API_URL + "com/signup",
             data
