@@ -201,7 +201,7 @@ async GetCardInfo(){
                         {
                             name: 'register-completion',
                             params: {
-                                title: 'メール送信完了',
+                                title: '申込完了',
                                 message: [
                                     'ご登録ありがとうございます。',
                                     '登録されたメールアドレスとパスワードを使い「ログイン」ボタンからログインしてください。',
