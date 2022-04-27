@@ -217,7 +217,7 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/store";
             this.item.inquiry_type = 1;
             try {
-                this.item = {...this.item, company_name: this.company.company_name, inquiry_rep: this.company.company_rep}
+                this.item = {...this.item, company_name: this.company.company_name, inquiry_rep: this.company.company_rep, inquiry_email: this.company.email_address}
                 const response = await axios.post(url, this.item);
                 if(response.data.status=="NG"){
                     this.message = response.data.message
