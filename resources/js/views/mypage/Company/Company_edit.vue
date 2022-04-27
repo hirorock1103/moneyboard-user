@@ -160,7 +160,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
+import { required, minLength, maxLength, decimal, sameAs, helpers } from '@vuelidate/validators';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 import { mapActions } from 'vuex';
@@ -182,14 +182,17 @@ export default {
             return this.$store.getters['auth/company']
         },
     },
-
     validations() {
         return {
-            getCompany:{
+            getCompany: {
                 company_name: {
                     required: helpers.withMessage(
                         '会社名を入力してください',
                         required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '50文字以下で入力してください',
+                        maxLength(50)
                     ),
                 },
                 post_number: {
@@ -205,11 +208,19 @@ export default {
                         '7文字で入力してください',
                         minLength(7)
                     ),
+                    decimal: helpers.withMessage(
+                        '半角数字で入力してください',
+                        decimal
+                    ),
                 },
                 address: {
                     required: helpers.withMessage(
                         '住所を入力してください',
                         required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '200文字以下で入力してください',
+                        maxLength(200)
                     ),
                 },
                 phone_number: {
@@ -221,11 +232,19 @@ export default {
                         '10文字以下で入力してください',
                         maxLength(10)
                     ),
+                    decimal: helpers.withMessage(
+                        '半角数字で入力してください',
+                        decimal
+                    ),
                 },
                 company_rep: {
                     required: helpers.withMessage(
                         '担当者名を入力してください',
                         required
+                    ),
+                    maxLength: helpers.withMessage(
+                        '50文字以下で入力してください',
+                        maxLength(50)
                     ),
                 },
                 mobile_number: {
@@ -233,10 +252,16 @@ export default {
                         '携帯電話番号を入力してください',
                         required
                     ),
+                    maxLength: helpers.withMessage(
+                        '11文字以下で入力してください',
+                        maxLength(11)
+                    ),
+                    decimal: helpers.withMessage(
+                        '半角数字で入力してください',
+                        decimal
+                    ),
                 },
-
-            }
-
+            },
         }
     },
     methods: {

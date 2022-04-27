@@ -101,8 +101,9 @@
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap" style="display: flex;">
                                                     <input
-                                                        type="text"
-                                                        id=""
+                                                        type="number"
+                                                        max=10000
+                                                        min=0
                                                         class="form-input"
                                                         v-model="plans.additional_licenses"
                                                         @input="changeData(plans.additional_licenses)">
