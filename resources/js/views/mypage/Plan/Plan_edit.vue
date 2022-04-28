@@ -63,7 +63,7 @@
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
                                 <h4 style="color:fuchsia;">変更</h4>
                                 <p style="margin-bottom:0;font-weight:bold; color: red; font-size: 14px;">※「プレミアムプラン」への変更や「企業数の追加数」の増加は、"すぐ"に更新されます。</p>
-                                <p style="margin-bottom:0;font-weight:bold; color: red; font-size: 14px;">※「スタンダードプラン」への変更や「企業数の追加数」の減少は、"翌月"に更新されます。</p>
+                                <p style="margin-bottom:0;font-weight:bold; color: red; font-size: 14px;">※「スタンダードプラン」への変更や「企業数の追加数」の減少は、"来月"に更新されます。</p>
                                 <hr>
                                 <div class="table-scrollable  padding-right--8 padding-bottom--24">
                                     <table class="table width-80">
