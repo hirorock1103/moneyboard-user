@@ -106,7 +106,7 @@
                                             </td>
                                         </tr> -->
                                         <tr>
-                                            <th class="">
+                                            <th class="padding-bottom--16">
                                                 来月の企業数の追加数
                                             </th>
                                             <td class="">
@@ -114,7 +114,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="">
+                                            <th class="padding-bottom--16">
                                                 来月の月額料金
                                             </th>
                                             <td class="">
