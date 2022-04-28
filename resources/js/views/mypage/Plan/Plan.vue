@@ -81,7 +81,7 @@
                             <h4 v-if="nextPlans !== 'NULL'" style="color:fuchsia;margin-top:40px;">
                                 来月のプラン
                             </h4>
-                            <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
+                            <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「来月の月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
                             <hr v-if="nextPlans !== 'NULL'">
                             <div v-if="nextPlans !== 'NULL'" class="table-scrollable  padding-right--8 padding-bottom--24">
                                 <table class="table width-80">
