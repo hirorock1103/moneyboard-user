@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            登録企業の担当者変更・削除
+                            登録企業一覧
                         </h2>
                     </div>
                     <form v-on:submit.prevent="clientSearch">
@@ -21,7 +21,7 @@
                                 </div>
                                 <table>
                                     <tr>
-                                        <th style="padding: 0 5px 0 20px;"><label>会社名</label></th>
+                                        <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
                                         <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
                                         <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
                                         <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
@@ -36,7 +36,7 @@
                                 <div class="">
                                     <table>
                                         <tr>
-                                            <th style="padding: 0 5px 0 20px;"><label>会社名順</label></th>
+                                            <th style="padding: 0 5px 0 20px;"><label>企業名順</label></th>
                                             <td><input type="checkbox" v-model="checked"></td>
                                         </tr>
                                     </table>
@@ -53,7 +53,7 @@
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
-                                        <th>会社名</th>
+                                        <th>企業名</th>
                                         <th>担当者</th>
                                         <th></th>
                                     </tr>

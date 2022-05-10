@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            登録企業情報の確認
+                            登録企業の担当者変更確認
                         </h2>
                     </div>
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -47,7 +47,7 @@
                         </article>
                         <div class="text-center">
                             <router-link to="/mypage/company/client/rep_edit"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                            <input type="submit" class="[ btn  btn--accent ]" value="確認" />
+                            <input type="submit" class="[ btn  btn--accent ]" value="確定" />
                         </div>
                     </form>
                 </div>

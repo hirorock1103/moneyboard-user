@@ -63,7 +63,7 @@ export default {
                         id: 2,
                         url: '/mypage/company',
                         icon: 'fa-pen-nib',
-                        title: '登録情報の確認・変更',
+                        title: '登録情報',
                         subtitle: '',
                         active: false
                     },
@@ -71,7 +71,7 @@ export default {
                         id: 12,
                         url: '/mypage/card',
                         icon: 'fa-credit-card',
-                        title: 'カード情報の確認・変更',
+                        title: 'カード情報',
                         subtitle: '',
                         active: false
                     },
@@ -79,7 +79,7 @@ export default {
                         id: 3,
                         url: '/mypage/company/reps-list',
                         icon: 'fa-user-circle',
-                        title: '担当者情報の登録・変更・削除',
+                        title: '担当者一覧',
                         subtitle: '',
                         active: false
                     },
@@ -87,7 +87,7 @@ export default {
                         id: 4,
                         url: '/mypage/company/client/rep',
                         icon: 'fa-building',
-                        title: '登録企業の担当者変更・削除',
+                        title: '登録企業一覧',
                         subtitle: '',
                         active: false
                     },
@@ -95,7 +95,7 @@ export default {
                         id: 5,
                         url: '/mypage/company/plan',
                         icon: 'fa-list',
-                        title: 'プラン変更 / 使用会社数の増減',
+                        title: 'ご利用プラン',
                         subtitle: '',
                         active: false
                     },
@@ -111,14 +111,14 @@ export default {
                         id: 7,
                         url: '/mypage/company/email',
                         icon: 'fa-envelope',
-                        title: 'メールアドレスの変更',
+                        title: 'メールアドレス変更',
                         active: false
                     },
                     {
                         id: 8,
                         url: '/mypage/company/password',
                         icon: 'fa-key',
-                        title: 'パスワードの変更',
+                        title: 'パスワード変更',
                         active: false
                     },
                     {

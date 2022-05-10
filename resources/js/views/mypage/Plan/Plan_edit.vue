@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            プラン変更/使用会社数の増減
+                            プラン変更/追加企業数の増減
                         </h2>
                         <h5 class="margin-bottom--16">
                             価格はすべて税込表記
@@ -35,7 +35,7 @@
                                                         スタンダードプラン(使用できる企業数：60社)
                                                     </span>
                                                     <span v-else>
-                                                        プレミアブラン(使用できる企業数：120社)
+                                                        プレミアムプラン(使用できる企業数：120社)
                                                     </span>
                                                 </td>
                                             </tr>

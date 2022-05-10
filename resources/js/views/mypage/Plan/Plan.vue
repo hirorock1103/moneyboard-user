@@ -7,7 +7,7 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            プラン変更/使用会社数の増減
+                            ご利用プラン
                         </h2>
                         <h5 class="margin-bottom--16">
                             価格はすべて税込表記
@@ -15,16 +15,15 @@
                     </div>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                ご利用中のプラン
-                            </h4>
-                            <hr>
+                            <h3><span class="[ icon  solid ] fa-list padding-right--12  text-accent"></span>
+                                現在のプラン
+                            </h3>
                             <div class="table-scrollable  padding-right--8 padding-bottom--24">
                                 <table class="table width-80">
                                     <tbody>
                                         <tr>
                                             <th class="">
-                                                現在のプラン
+                                                プラン名
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{plans.name}}
@@ -33,7 +32,7 @@
                                         </tr>
                                         <tr>
                                             <th class="">
-                                                現在の企業数の追加数
+                                                追加企業数
                                             </th>
                                             <td class="padding-bottom--16">
                                                 {{plans.additional_licenses}}社
@@ -49,7 +48,7 @@
                                 </span>
                                 円
                             </h4>
-                            <hr>
+                            
                             <div class="table-scrollable  padding-right--8  padding-bottom--24">
                                 <table class="table width-30">
                                     <tbody>
@@ -78,17 +77,17 @@
                                 </table>
                             </div>
 
-                            <h4 v-if="nextPlans !== 'NULL'" style="color:fuchsia;margin-top:40px;">
-                                来月のプラン
-                            </h4>
-                            <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「来月の月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
                             <hr v-if="nextPlans !== 'NULL'">
+                            <h3 v-if="nextPlans !== 'NULL'" style="margin-top:40px;"><span class="[ icon  solid ] fa-list padding-right--12  text-accent"></span>
+                                来月のプラン
+                            <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「来月の月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
+                            </h3>
                             <div v-if="nextPlans !== 'NULL'" class="table-scrollable  padding-right--8 padding-bottom--24">
                                 <table class="table width-80">
                                     <tbody>
                                         <tr>
                                             <th class="">
-                                                来月のプラン
+                                                プラン名
                                             </th>
                                             <td v-if="nextPlans.plan_id === 1" class="padding-bottom--16">
                                                 スタンダードプラン(使用できる企業数：{{nextPlans.license_count}}社)
@@ -106,23 +105,22 @@
                                             </td>
                                         </tr> -->
                                         <tr>
-                                            <th class="padding-bottom--16">
-                                                来月の企業数の追加数
+                                            <th>
+                                                追加企業数
                                             </th>
-                                            <td class="">
+                                            <td class="padding-bottom--16">
                                                 {{nextPlans.add_license_count}}社
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="padding-bottom--16">
-                                                来月の月額料金
-                                            </th>
-                                            <td class="">
-                                                {{$filters.addComma(Number(nextPlans.price))}}円
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                    来月の月額料金
+                                    <span class="padding-left--8  text-accent">
+                                    {{$filters.addComma(Number(nextPlans.price))}}
+                                    </span>
+                                    円
+                                </h4>                                
                             </div>
 
                             <div class="text-center">
