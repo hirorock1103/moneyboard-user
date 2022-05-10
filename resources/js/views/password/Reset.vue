@@ -94,6 +94,10 @@ export default {
     },
     data () {
         return {
+            api_data: {
+                email_address: '',
+                password: ''
+            },
             password: '',
             password_confirmation: '',
         }
@@ -146,7 +150,10 @@ export default {
         reset () {
             this.v$.$touch();
             if (this.v$.$error) return;
-            this.sendPasswordResetRequest(this.password).then(() => {
+
+            this.api_data.email_address =  this.$route.query.email_address;
+            this.api_data.password = this.password;
+            this.sendPasswordResetRequest(this.api_data).then(() => {
                 if (this.apiStatus) {
                     this.$router.push(
                         {
