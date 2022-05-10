@@ -52,7 +52,8 @@ const getters = {
     clients: state => state.clients,
 //    clientsNumber: state => state.clients.length,
     notifications: state => state.notifications,
-    temps: state => state.temps
+    temps: state => state.temps,
+    changeflg: state => state.changeflg,
 };
 
 const mutations = {
@@ -110,6 +111,9 @@ const mutations = {
     resetTemps(state) {
         state.temps = null
     },
+    setChangeFlg(state, changeflg) {
+        state.changeflg = changeflg
+    }
 }
 
 const actions = {

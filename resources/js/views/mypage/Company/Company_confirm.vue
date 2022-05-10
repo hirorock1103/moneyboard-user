@@ -121,7 +121,8 @@ export default {
                 } else {
                     this.resetTemps();
                     // alert('更新しました');
-                    this.$store.state.changeflg = 1;
+                    this.$store.commit('auth/setChangeFlg', 1)
+
                     this.$router.push({name: 'mypage-company'})
                 }
             } catch (e){
