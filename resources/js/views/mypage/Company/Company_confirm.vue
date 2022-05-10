@@ -39,7 +39,7 @@
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     〒{{ getCompany.post_number }}
                                                 </td>
-                                            </tr>                                            
+                                            </tr>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     住所
@@ -80,7 +80,7 @@
                         <div class="text-center">
                             <router-link :to="{name: 'mypage-company_edit'}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確定" />
-                        </div>                        
+                        </div>
                     </form>
                 </div>
             </section>
@@ -120,6 +120,8 @@ export default {
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     this.resetTemps();
+                    // alert('更新しました');
+                    this.$store.state.changeflg = 1;
                     this.$router.push({name: 'mypage-company'})
                 }
             } catch (e){

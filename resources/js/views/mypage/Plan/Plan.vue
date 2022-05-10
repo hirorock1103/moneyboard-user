@@ -48,7 +48,7 @@
                                 </span>
                                 円
                             </h4>
-                            
+
                             <div class="table-scrollable  padding-right--8  padding-bottom--24">
                                 <table class="table width-30">
                                     <tbody>
@@ -77,7 +77,7 @@
                                 </table>
                             </div>
 
-                            <hr v-if="nextPlans !== 'NULL'">
+                            <hr v-if="nextPlans !== 'NULL'" style="margin:32px 0;">
                             <h3 v-if="nextPlans !== 'NULL'" style="margin-top:40px;"><span class="[ icon  solid ] fa-list padding-right--12  text-accent"></span>
                                 来月のプラン
                             <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「来月の月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
@@ -114,14 +114,15 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    来月の月額料金
-                                    <span class="padding-left--8  text-accent">
-                                    {{$filters.addComma(Number(nextPlans.price))}}
-                                    </span>
-                                    円
-                                </h4>                                
                             </div>
+
+                            <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                来月の月額料金
+                                <span class="padding-left--8  text-accent">
+                                    {{$filters.addComma(Number(nextPlans.price))}}
+                                </span>
+                                円
+                            </h4>
 
                             <div class="text-center">
                                 <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>

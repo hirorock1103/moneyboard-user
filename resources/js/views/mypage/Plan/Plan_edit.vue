@@ -28,7 +28,7 @@
                                         <tbody>
                                             <tr>
                                                 <th>
-                                                    現在のプラン
+                                                    プラン名
                                                 </th>
                                                 <td>
                                                     <span v-if="getContract.plan_id === 1">
@@ -41,7 +41,7 @@
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    現在の企業数の追加数
+                                                    追加企業数
                                                 </th>
                                                 <td>
                                                     {{getContract.add_license_count}}社
@@ -49,7 +49,7 @@
                                             </tr>
                                             <tr>
                                                 <th>
-                                                    現在の月額料金
+                                                    月額料金
                                                 </th>
                                                 <td>
                                                     {{$filters.addComma(Number(getContract.price))}}円
@@ -71,7 +71,7 @@
 
                                             <tr>
                                                 <th class="nowrap">
-                                                    変更後のプラン
+                                                    プラン名
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap">
                                                     <input
@@ -97,7 +97,7 @@
 
                                             <tr>
                                                 <th class="nowrap">
-                                                    変更後の企業数の追加数
+                                                    追加企業数
                                                 </th>
                                                 <td class="padding-bottom--16 nowrap" style="display: flex;">
                                                     <input
@@ -115,38 +115,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- <h4 v-if="plans.additional_licenses_before > plans.additional_licenses && plans.additional_licenses !== ''">
-                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    企業数の追加数の変更予約
-                                    <span style="color: red; font-size: 5px;">　※企業数の追加数を減らす場合は、翌月からの適応となります。今月は現在の企業数の追加数でご利用いただけます。</span>
-                                </h4>
-                                <h4 v-else>
-                                    <span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                    企業数の追加数の変更
-                                </h4>
-                                <hr>
-                                <div class="table-scrollable  padding-right--8 padding-bottom--24">
-                                    <table class="table width-40">
-                                        <tbody>
-                                            <tr>
-                                                <th class="nowrap">
-                                                    企業数の追加数
-                                                </th>
-                                                <td class="padding-bottom--16 nowrap" style="display: flex;">
-                                                    <span style="display: flex;align-items: center;justify-content: center;">{{plans.additional_licenses_before}}社　→　</span>
-                                                    <input
-                                                        type="text"
-                                                        id=""
-                                                        class="form-input"
-                                                        v-model="plans.additional_licenses"
-                                                        @input="changeData(plans.additional_licenses)">
-                                                        <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div> -->
+
                                 <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
                                     変更後の月額料金
                                     <span class="padding-left--8  text-accent" v-if="plans != undefined">
@@ -168,9 +137,7 @@
                                                 <td class="padding-bottom--16 text-right" v-if="plans != undefined">
                                                     {{$filters.addComma(Number(plans.cost_plan))}}円
                                                 </td>
-                                                <!-- <td class="padding-bottom--16 text-right" v-if="plans != undefined">
-                                                    （システム使用料と登録データ{{plans.data_plan}}社分）
-                                                </td> -->
+
                                             </tr>
                                             <tr>
                                                 <th class="">
@@ -340,13 +307,25 @@ export default {
                 console.log(response);
                 this.nextPlans = response.data.data.change_contract_requests ?? 'NULL';
 
-                this.plans.plan_id = this.nextPlans.plan_id;
-                this.plans.additional_licenses = this.nextPlans.add_license_count;
+                //change_contract_requestsがある場合
+                if( this.nextPlans != 'NULL' ){
+                    this.plans.plan_id = this.nextPlans.plan_id;
+                    this.plans.additional_licenses = this.nextPlans.add_license_count;
 
-                this.plans.cost_total = this.nextPlans.price;
-                this.plans.cost_plan = this.nextPlans.plan_price;
-                this.plans.data_plan = this.nextPlans.license_count;
-                this.plans.cost_add = this.nextPlans.add_unit_price;
+                    this.plans.cost_total = this.nextPlans.price;
+                    this.plans.cost_plan = this.nextPlans.plan_price;
+                    this.plans.data_plan = this.nextPlans.license_count;
+                    this.plans.cost_add = this.nextPlans.add_unit_price;
+                }else{ //ない場合
+
+                    this.plans.plan_id = getContract.plan_id;
+                    this.plans.additional_licenses = getContract.add_license_count;
+
+                    this.plans.cost_total = getContract.price;
+                    this.plans.cost_plan = getContract.plan_price;
+                    this.plans.data_plan = getContract.license_count;
+                    this.plans.cost_add = getContract.add_unit_price;
+                }
 
             } catch (e){
                 console.log(e);

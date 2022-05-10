@@ -20,10 +20,6 @@ const state = {
         plan_id: '',
         updated_at: '',
         user_type: '',
-        // password: '',
-        // password_confirm: '',
-        // app_password: '',
-        // additional_licenses: '',
     },
     card: {
         number: '',
@@ -45,6 +41,7 @@ const state = {
     clients: null,
     notifications: null,
     temps: null,
+    changeflg: 0,
 }
 
 const getters = {
