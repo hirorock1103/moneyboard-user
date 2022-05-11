@@ -27,6 +27,7 @@
                                         <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
                                     </tr>
                                 </table>
+                                <!--
                                 <div class="[ padding--16 ]  bg-white  display-flex">
                                     <h4 class="" style="width:15%;">
                                         <span class="[ icon  solid ] fa-sort-amount-down-alt padding-right--12  text-accent"></span>
@@ -41,6 +42,7 @@
                                         </tr>
                                     </table>
                                 </div>
+                                -->
                                 <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
                             </div>
                         </article>
@@ -50,11 +52,13 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
+                            <div v-if="sort_key"> 【並べ替え】　{{ sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ sort_asc ? '昇順' : '降順'}}</div>
+                            <div v-else> 【並べ替え】　指定なし</div>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
-                                        <th>企業名</th>
-                                        <th>担当者</th>
+                                        <th @click="sortBy('client_name')" :class="addClass('client_name')">企業名</th>
+                                        <th @click="sortBy('user_name')" :class="addClass('user_name')">担当者</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -122,6 +126,8 @@ export default {
             message: null,
             showContent: false,
             postItem: "",
+            sort_key: "",
+            sort_asc: true,
         };
     },
     created: function() {
@@ -179,6 +185,40 @@ export default {
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
+        },
+        sortBy(key) {
+            this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
+            this.sort_key = key;
+
+            if(key === "client_name") {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);
+                this.items.sort(function(a, b) {
+                    var client_nameA = a.client_name.toUpperCase();
+                    var client_nameB = b.client_name.toUpperCase();
+                    if (client_nameA < client_nameB) return -1 * set;
+                    if (client_nameA > client_nameB) return 1 * set;
+                    return 0;
+                });
+            }
+
+            if(key === "user_name") {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);
+                this.items.sort(function(a, b) {
+                    var user_nameA = a.user_name.toUpperCase();
+                    var user_nameB = b.user_name.toUpperCase();
+                    if (user_nameA < user_nameB) return -1 * set;
+                    if (user_nameA > user_nameB) return 1 * set;
+                    return 0;
+                });
+            }
+        },
+        addClass(key) {
+            return {
+                asc: this.sort_key === key && this.sort_asc,
+                desc: this.sort_key === key && !this.sort_asc,
+            };
         },
     }
 }

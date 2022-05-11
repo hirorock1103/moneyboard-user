@@ -88,3 +88,12 @@
 .alert-danger{
     color:red;
 }
+
+// ソート用矢印
+.asc::after {
+  content: "↑";
+}
+
+.desc::after {
+  content: "↓";
+}
