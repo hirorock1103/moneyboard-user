@@ -319,7 +319,7 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + 'com/reset/password/verify',
             data
         );
-
+console.log(response);
         if (response.status === OK) {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
@@ -348,7 +348,7 @@ const actions = {
         console.log('--response--');
         console.log(response);
 
-        if (response.status === OK) {
+        if (response.data.status === "OK") {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             return false;

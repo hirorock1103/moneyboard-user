@@ -96,6 +96,7 @@ export default {
         return {
             api_data: {
                 email_address: '',
+                token: '',
                 password: ''
             },
             password: '',
@@ -152,6 +153,7 @@ export default {
             if (this.v$.$error) return;
 
             this.api_data.email_address =  this.$route.query.email_address;
+            this.api_data.token =  this.$route.query.token;
             this.api_data.password = this.password;
             this.sendPasswordResetRequest(this.api_data).then(() => {
                 if (this.apiStatus) {
@@ -162,6 +164,19 @@ export default {
                                 title: 'パスワード設定完了',
                                 message: [
                                     'パスワードの設定が完了いたしました。',
+                                ],
+                                redirectPage: 'login'
+                            }
+                        }
+                    )
+                }else{
+                    this.$router.push(
+                        {
+                            name: 'request-completion',
+                            params: {
+                                title: 'パスワード設定失敗',
+                                message: [
+                                    'パスワードの設定が失敗しました。申し訳ございませんが最初からやり直してください。',
                                 ],
                                 redirectPage: 'login'
                             }
