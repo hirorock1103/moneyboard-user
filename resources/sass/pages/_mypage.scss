@@ -92,8 +92,12 @@
 // ソート用矢印
 .asc::after {
   content: "↑";
+  color: blue;
+  font-weight: 900;
 }
 
 .desc::after {
   content: "↓";
+  color: blue;
+  font-weight: 900;
 }

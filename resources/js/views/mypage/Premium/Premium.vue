@@ -9,10 +9,35 @@
                             プレミアムプラン（顧客情報管理）
                         </h2>
                     </div>
-                    <h4 class="padding-left--48 margin-bottom--24">
+                    <form v-if="blur_flg === 2" v-on:submit.prevent="clientSearch">
+                        <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
+                            <div class="padding--16 bg-white">
+                                <div class="[ padding--16 ]  bg-white  display-flex">
+                                    <h4 class="" style="width:10%;">
+                                        <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
+                                        検索
+                                    </h4>
+                                </div>
+                                <table>
+                                    <tr>
+                                        <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
+                                        <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
+                                        <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
+                                        <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
+                                    </tr>
+                                </table>
+                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
+                            </div>
+                        </article>
+                    </form>                    
+                    <h4 class="padding-left--48 margin-bottom--24 margin-top--48">
                         <span class="[ icon  solid ] fa-building  padding-right--12  text-accent"></span>
                         データ登録している企業情報一覧
                     </h4>
+                    <div v-if="blur_flg === 2">
+                        <div class="padding-left--48 margin-bottom--24" v-if="sort_key"> 【並べ替え】　{{ sort_index.[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
+                        <div class="padding-left--48 margin-bottom--24" v-else> 【並べ替え】　指定なし</div>                    
+                    </div>
                     <article class="">
                         <div class="[ margin-left-medium--48  margin-left-large--48 ] [ margin-right-medium--48  margin-right-large--48 ] bg-white">
                             <table class="table--bordered table-scrollable" style="white-space: nowrap;overflow-y: hidden;max-height: none;">
@@ -28,41 +53,41 @@
                                         <th></th>
                                     </tr>
                                     <tr>
-                                        <th class="text-left padding-left--12">会社名
+                                        <th @click="sortBy('client_name')" :class="addClass('client_name')" class="text-left padding-left--12">企業名
                                         </th>
-                                        <th class="text-left padding-left--12">更新日時
+                                        <th @click="sortBy('updated_at')" :class="addClass('updated_at')" class="text-left padding-left--12">更新日時
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">法人番号
+                                        <th @click="sortBy('corporate_number')" :class="addClass('corporate_number')" class="text-left padding-left--12 padding-right--12">法人番号
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">担当者
+                                        <th @click="sortBy('user_name')" :class="addClass('user_name')" class="text-left padding-left--12 padding-right--12">担当者
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">業種
+                                        <th @click="sortBy('business_type')" :class="addClass('business_type')" class="text-left padding-left--12 padding-right--12">業種
                                         </th>
-                                        <th class="text-left padding-left--12">年商（単位：万円）
+                                        <th @click="sortBy('anualsales')" :class="addClass('anualsales')" class="text-left padding-left--12">年商（単位：万円）
                                         </th>
-                                        <th class="text-left padding-left--12">資本金（単位：万円）
+                                        <th @click="sortBy('capital')" :class="addClass('capital')" class="text-left padding-left--12">資本金（単位：万円）
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">面談場所
+                                        <th @click="sortBy('interview_place')" :class="addClass('interview_place')" class="text-left padding-left--12 padding-right--12">面談場所
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">代表者年齢
+                                        <th @click="sortBy('ceo_age')" :class="addClass('ceo_age')" class="text-left padding-left--12 padding-right--12">代表者年齢
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">従業員平均年齢
+                                        <th @click="sortBy('average_age')" :class="addClass('average_age')" class="text-left padding-left--12 padding-right--12">従業員平均年齢
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">重要指標
+                                        <th @click="sortBy('important_index')" :class="addClass('important_index')" class="text-left padding-left--12 padding-right--12">重要指標
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">安全性指標
+                                        <th @click="sortBy('safety_index')" :class="addClass('safety_index')" class="text-left padding-left--12 padding-right--12">安全性指標
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">収益性指標
+                                        <th @click="sortBy('profit_index')" :class="addClass('profit_index')" class="text-left padding-left--12 padding-right--12">収益性指標
                                         </th>
-                                        <th class="text-left padding-left--12 padding-right--12">資金効率性指標
+                                        <th @click="sortBy('fund_efficiency_index')" :class="addClass('fund_efficiency_index')" class="text-left padding-left--12 padding-right--12">資金効率性指標
                                         </th>
-                                        <th class="text-left padding-left--12">余剰金目安（単位：万円）
+                                        <th @click="sortBy('surplus_guideline')" :class="addClass('surplus_guideline')" class="text-left padding-left--12">余剰金目安（単位：万円）
                                         </th>
-                                        <th class="text-left padding-left--12">今回
+                                        <th @click="sortBy('close_possibility_now')" :class="addClass('close_possibility_now')" class="text-left padding-left--12">今回
                                         </th>
-                                        <th class="text-left padding-left--12">前回
+                                        <th @click="sortBy('close_possibility_previous')" :class="addClass('close_possibility_previous')" class="text-left padding-left--12">前回
                                         </th>
-                                        <th class="text-left padding-left--12">前々回
+                                        <th @click="sortBy('close_possibility_befpre')" :class="addClass('close_possibility_befpre')" class="text-left padding-left--12">前々回
                                         </th>
                                         <th class="text-left padding-left--12 padding-right--12">コメント
                                         </th>
@@ -94,8 +119,8 @@
                                         <td>{{ item.client_name }}</td>
                                         <td>{{ formatDate(item.updated_at) }}</td>
                                         <td>{{ item.corporate_number }}</td>
-                                        <td>{{ item.user_id }}</td>
-                                        <td>{{ item.business_type }}</td>
+                                        <td>{{ item.user_name }}</td>
+                                        <td>{{ business_type_list.[item.business_type] }}</td>
                                         <td>{{ item.anualsales }}</td>
                                         <td>{{ item.capital }}</td>
                                         <td>{{ item.interview_place }}</td>
@@ -159,6 +184,36 @@ export default {
             items: [],
             showContent: false,
             blur_flg : this.$store.state.auth.contract.plan_id,
+            sort_key: "",
+            sort_asc: true,
+            sort_index: {
+                client_name: "企業名",
+                updated_at: "更新日時",
+                user_name: "担当者名",
+                corporate_number: "法人番号",
+                business_type: "業種",
+                anualsales: "年商（単位：万円）",
+                capital: "資本金（単位：万円）",
+                interview_place: "面談場所",
+                ceo_age: "代表者年齢",
+                average_age: "従業員平均年齢",
+                important_index: "重要指標",
+                safety_index: "安全性指標",
+                profit_index: "収益性指標",
+                fund_efficiency_index: "資金効率性指標",
+                surplus_guideline: "余剰金目安（単位：万円）",
+                close_possibility_now: "成約の可能性（今回）",
+                close_possibility_previous: "成約の可能性（前回）",
+                close_possibility_befpre: "成約の可能性（前々回）",
+            },
+            business_type_list: {
+                1:'製造業',
+                2:'建設業',
+                3:'飲食業',
+                4:'卸売業',
+                5:'小売業',
+                6:'全業種',
+            },            
         };
     },
     created: function() {
@@ -183,7 +238,90 @@ export default {
                 this.message = e
                 setTimeout(() => {this.message = false;}, 2000);
             }
+            console.log(this.items);
         },
+        async clientSearch() {
+            // this.resetTemps();
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
+            try {
+                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
+                console.log(response);
+                this.items = response.data.data.data_list.data;
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+        },
+        sortBy(key) {
+
+            // スタンダードプランはソート機能不可
+            if(this.blur_flg === 1) {
+                return;
+            }
+
+            this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
+            this.sort_key = key;
+
+            // 文字列のソート
+            var StringSortList = [
+                "client_name",
+                "user_name",
+                "interview_place",
+                "close_possibility_now",
+                "close_possibility_previous",
+                "close_possibility_befpre",
+            ];
+            if(StringSortList.includes(key)) {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);
+                this.items.sort(function(a, b) {
+                    var A = a.[key].toUpperCase();
+                    var B = b.[key].toUpperCase();
+                    if (A < B) return -1 * set;
+                    if (A > B) return 1 * set;
+                    return 0;
+                });
+            }
+
+            // 数値のソート
+            var NumberSortList = [
+                "corporate_number",
+                "business_type",
+                "anualsales",
+                "capital",
+                "ceo_age",
+                "average_age",
+                "important_index",
+                "safety_index",
+                "profit_index",
+                "fund_efficiency_index",
+                "surplus_guideline",
+            ];
+            if(NumberSortList.includes(key)) {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);                
+                this.items.sort(function (a, b) {
+                return (a.[key] - b.[key]) * set
+                });
+            }
+
+            // 日付のソート
+            if(key === 'updated_at') {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);                
+                this.items.sort(function (a, b) {
+                return (a.updated_at > b.updated_at ? 1 : -1) * set
+                });
+            }            
+                                          
+        },
+        addClass(key) {
+            return {
+                asc: this.sort_key === key && this.sort_asc,
+                desc: this.sort_key === key && !this.sort_asc,
+            };
+        },              
     }
 }
 
