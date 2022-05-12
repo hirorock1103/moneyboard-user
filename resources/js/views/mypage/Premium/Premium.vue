@@ -29,14 +29,14 @@
                                 <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
                             </div>
                         </article>
-                    </form>                    
+                    </form>
                     <h4 class="padding-left--48 margin-bottom--24 margin-top--48">
                         <span class="[ icon  solid ] fa-building  padding-right--12  text-accent"></span>
                         データ登録している企業情報一覧
                     </h4>
                     <div v-if="blur_flg === 2">
                         <div class="padding-left--48 margin-bottom--24" v-if="sort_key"> 【並べ替え】　{{ sort_index.[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
-                        <div class="padding-left--48 margin-bottom--24" v-else> 【並べ替え】　指定なし</div>                    
+                        <div class="padding-left--48 margin-bottom--24" v-else> 【並べ替え】　指定なし</div>
                     </div>
                     <article class="">
                         <div class="[ margin-left-medium--48  margin-left-large--48 ] [ margin-right-medium--48  margin-right-large--48 ] bg-white">
@@ -213,7 +213,7 @@ export default {
                 4:'卸売業',
                 5:'小売業',
                 6:'全業種',
-            },            
+            },
         };
     },
     created: function() {
@@ -255,73 +255,73 @@ export default {
         },
         sortBy(key) {
 
-            // スタンダードプランはソート機能不可
-            if(this.blur_flg === 1) {
-                return;
-            }
+            // // スタンダードプランはソート機能不可
+            // if(this.blur_flg === 1) {
+            //     return;
+            // }
+            //
+            // this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
+            // this.sort_key = key;
+            //
+            // // 文字列のソート
+            // var StringSortList = [
+            //     "client_name",
+            //     "user_name",
+            //     "interview_place",
+            //     "close_possibility_now",
+            //     "close_possibility_previous",
+            //     "close_possibility_befpre",
+            // ];
+            // if(StringSortList.includes(key)) {
+            //     let set = 1;
+            //     this.sort_asc ? (set = 1) : (set = -1);
+            //     this.items.sort(function(a, b) {
+            //         var A = a.[key].toUpperCase();
+            //         var B = b.[key].toUpperCase();
+            //         if (A < B) return -1 * set;
+            //         if (A > B) return 1 * set;
+            //         return 0;
+            //     });
+            // }
+            //
+            // // 数値のソート
+            // var NumberSortList = [
+            //     "corporate_number",
+            //     "business_type",
+            //     "anualsales",
+            //     "capital",
+            //     "ceo_age",
+            //     "average_age",
+            //     "important_index",
+            //     "safety_index",
+            //     "profit_index",
+            //     "fund_efficiency_index",
+            //     "surplus_guideline",
+            // ];
+            // if(NumberSortList.includes(key)) {
+            //     let set = 1;
+            //     this.sort_asc ? (set = 1) : (set = -1);
+            //     this.items.sort(function (a, b) {
+            //     return (a.[key] - b.[key]) * set
+            //     });
+            // }
+            //
+            // // 日付のソート
+            // if(key === 'updated_at') {
+            //     let set = 1;
+            //     this.sort_asc ? (set = 1) : (set = -1);
+            //     this.items.sort(function (a, b) {
+            //     return (a.updated_at > b.updated_at ? 1 : -1) * set
+            //     });
+            // }            
 
-            this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
-            this.sort_key = key;
-
-            // 文字列のソート
-            var StringSortList = [
-                "client_name",
-                "user_name",
-                "interview_place",
-                "close_possibility_now",
-                "close_possibility_previous",
-                "close_possibility_befpre",
-            ];
-            if(StringSortList.includes(key)) {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);
-                this.items.sort(function(a, b) {
-                    var A = a.[key].toUpperCase();
-                    var B = b.[key].toUpperCase();
-                    if (A < B) return -1 * set;
-                    if (A > B) return 1 * set;
-                    return 0;
-                });
-            }
-
-            // 数値のソート
-            var NumberSortList = [
-                "corporate_number",
-                "business_type",
-                "anualsales",
-                "capital",
-                "ceo_age",
-                "average_age",
-                "important_index",
-                "safety_index",
-                "profit_index",
-                "fund_efficiency_index",
-                "surplus_guideline",
-            ];
-            if(NumberSortList.includes(key)) {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);                
-                this.items.sort(function (a, b) {
-                return (a.[key] - b.[key]) * set
-                });
-            }
-
-            // 日付のソート
-            if(key === 'updated_at') {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);                
-                this.items.sort(function (a, b) {
-                return (a.updated_at > b.updated_at ? 1 : -1) * set
-                });
-            }            
-                                          
         },
         addClass(key) {
             return {
                 asc: this.sort_key === key && this.sort_asc,
                 desc: this.sort_key === key && !this.sort_asc,
             };
-        },              
+        },
     }
 }
 
