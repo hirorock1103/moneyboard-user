@@ -255,65 +255,65 @@ export default {
         },
         sortBy(key) {
 
-            // // スタンダードプランはソート機能不可
-            // if(this.blur_flg === 1) {
-            //     return;
-            // }
-            //
-            // this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
-            // this.sort_key = key;
-            //
-            // // 文字列のソート
-            // var StringSortList = [
-            //     "client_name",
-            //     "user_name",
-            //     "interview_place",
-            //     "close_possibility_now",
-            //     "close_possibility_previous",
-            //     "close_possibility_befpre",
-            // ];
-            // if(StringSortList.includes(key)) {
-            //     let set = 1;
-            //     this.sort_asc ? (set = 1) : (set = -1);
-            //     this.items.sort(function(a, b) {
-            //         var A = a.[key].toUpperCase();
-            //         var B = b.[key].toUpperCase();
-            //         if (A < B) return -1 * set;
-            //         if (A > B) return 1 * set;
-            //         return 0;
-            //     });
-            // }
-            //
-            // // 数値のソート
-            // var NumberSortList = [
-            //     "corporate_number",
-            //     "business_type",
-            //     "anualsales",
-            //     "capital",
-            //     "ceo_age",
-            //     "average_age",
-            //     "important_index",
-            //     "safety_index",
-            //     "profit_index",
-            //     "fund_efficiency_index",
-            //     "surplus_guideline",
-            // ];
-            // if(NumberSortList.includes(key)) {
-            //     let set = 1;
-            //     this.sort_asc ? (set = 1) : (set = -1);
-            //     this.items.sort(function (a, b) {
-            //     return (a.[key] - b.[key]) * set
-            //     });
-            // }
-            //
-            // // 日付のソート
-            // if(key === 'updated_at') {
-            //     let set = 1;
-            //     this.sort_asc ? (set = 1) : (set = -1);
-            //     this.items.sort(function (a, b) {
-            //     return (a.updated_at > b.updated_at ? 1 : -1) * set
-            //     });
-            // }            
+            // スタンダードプランはソート機能不可
+            if(this.blur_flg === 1) {
+                return;
+            }
+
+            this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
+            this.sort_key = key;
+
+            // 文字列のソート
+            var StringSortList = [
+                "client_name",
+                "user_name",
+                "interview_place",
+                "close_possibility_now",
+                "close_possibility_previous",
+                "close_possibility_befpre",
+            ];
+            if(StringSortList.includes(key)) {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);
+                this.items.sort(function(a, b) {
+                    var A = a.[key].toUpperCase();
+                    var B = b.[key].toUpperCase();
+                    if (A < B) return -1 * set;
+                    if (A > B) return 1 * set;
+                    return 0;
+                });
+            }
+
+            // 数値のソート
+            var NumberSortList = [
+                "corporate_number",
+                "business_type",
+                "anualsales",
+                "capital",
+                "ceo_age",
+                "average_age",
+                "important_index",
+                "safety_index",
+                "profit_index",
+                "fund_efficiency_index",
+                "surplus_guideline",
+            ];
+            if(NumberSortList.includes(key)) {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);
+                this.items.sort(function (a, b) {
+                return (a.[key] - b.[key]) * set
+                });
+            }
+
+            // 日付のソート
+            if(key === 'updated_at') {
+                let set = 1;
+                this.sort_asc ? (set = 1) : (set = -1);
+                this.items.sort(function (a, b) {
+                return (a.updated_at > b.updated_at ? 1 : -1) * set
+                });
+            }            
 
         },
         addClass(key) {
