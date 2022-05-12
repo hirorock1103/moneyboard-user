@@ -91,6 +91,10 @@ export default {
 
     data () {
         return {
+            api_data: {
+                email_address: '',
+                password: ''
+            },
             email_address: '',
         }
     },
@@ -125,7 +129,8 @@ export default {
             this.v$.$touch();
             if (this.v$.$error) return;
 
-            this.sendResetLinkRequest(this.email_address).then(() => {
+            this.api_data.email_address = this.email_address;
+            this.sendResetLinkRequest(this.api_data).then(() => {
                 if (this.apiStatus) {
                     this.$router.push(
                         {

@@ -315,10 +315,11 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email',
+            // process.env.MIX_VUE_APP_API_URL + 'user/password/reset/send-email',
+            process.env.MIX_VUE_APP_API_URL + 'com/reset/password/verify',
             data
         );
-
+console.log(response);
         if (response.status === OK) {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
@@ -337,11 +338,17 @@ const actions = {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + 'user/password/reset',
+//            process.env.MIX_VUE_APP_API_URL + 'user/password/reset',
+            process.env.MIX_VUE_APP_API_URL + 'com/reset/password/do',
             data
         );
 
-        if (response.status === OK) {
+        console.log('--data--');
+        console.log(data);
+        console.log('--response--');
+        console.log(response);
+
+        if (response.data.status === "OK") {
             context.commit('setApiStatus', true);
             context.commit('setLoadingStatus', false);
             return false;
