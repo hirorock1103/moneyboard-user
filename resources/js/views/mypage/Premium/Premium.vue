@@ -35,7 +35,7 @@
                         データ登録している企業情報一覧
                     </h4>
                     <div v-if="blur_flg === 2">
-                        <div class="padding-left--48 margin-bottom--24" v-if="sort_key"> 【並べ替え】　{{ sort_index.[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
+                        <div class="padding-left--48 margin-bottom--24" v-if="sort_key"> 【並べ替え】　{{ sort_index[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
                         <div class="padding-left--48 margin-bottom--24" v-else> 【並べ替え】　指定なし</div>
                     </div>
                     <article class="">
@@ -120,7 +120,7 @@
                                         <td>{{ formatDate(item.updated_at) }}</td>
                                         <td>{{ item.corporate_number }}</td>
                                         <td>{{ item.user_name }}</td>
-                                        <td>{{ business_type_list.[item.business_type] }}</td>
+                                        <td>{{ business_type_list[item.business_type] }}</td>
                                         <td>{{ item.anualsales }}</td>
                                         <td>{{ item.capital }}</td>
                                         <td>{{ item.interview_place }}</td>
@@ -276,8 +276,8 @@ export default {
                 let set = 1;
                 this.sort_asc ? (set = 1) : (set = -1);
                 this.items.sort(function(a, b) {
-                    var A = a.[key].toUpperCase();
-                    var B = b.[key].toUpperCase();
+                    var A = a[key].toUpperCase();
+                    var B = b[key].toUpperCase();
                     if (A < B) return -1 * set;
                     if (A > B) return 1 * set;
                     return 0;
@@ -302,7 +302,7 @@ export default {
                 let set = 1;
                 this.sort_asc ? (set = 1) : (set = -1);
                 this.items.sort(function (a, b) {
-                return (a.[key] - b.[key]) * set
+                return (a[key] - b[key]) * set
                 });
             }
 
