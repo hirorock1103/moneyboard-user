@@ -5,49 +5,49 @@
             <ul v-if="company" class="menu__list--top">
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage">
                         <span class="menu__icon  [ icon  solid  fa-home ]"></span>
                         <span>マイページTOP</span>
                     </router-link>
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company">
                         <span class="menu__icon  [ icon  solid  fa-pen-nib ]"></span>
                         <span>登録情報</span>
                     </router-link>
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/card">
                         <span class="menu__icon  [ icon  solid  fa-pen-nib ]"></span>
                         <span>カード情報</span>
                     </router-link>
-                </li>                
+                </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company/reps-list">
                         <span class="menu__icon  [ icon  solid  fa-user-circle ]"></span>
                         <span>担当者一覧</span>
                     </router-link>
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company/client/rep">
                         <span class="menu__icon  [ icon  solid  fa-building ]"></span>
                         <span>登録企業一覧</span>
                     </router-link>
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company/plan">
                         <span class="menu__icon  [ icon  solid  fa-list ]"></span>
                         <span>ご利用プラン</span>
                     </router-link>
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company/premium/client-list">
                         <span class="menu__icon  [ icon  solid  fa-medal ]"></span>
                         <span>プレミアムプラン<br>
                             <small>(顧客情報管理)</small>
@@ -56,7 +56,7 @@
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company/email">
                         <span class="menu__icon  [ icon  solid  fa-envelope ]"></span>
                         <span>メールアドレス変更<br>
                             <small>(管理者サイトログインID)</small>
@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/company/password">
                         <span class="menu__icon  [ icon  solid  fa-key ]"></span>
                         <span>パスワード変更<br>
                             <small>(管理者サイトログインパス)</small>
@@ -78,13 +78,13 @@
             <ul v-if="company" class="menu__list--bottom">
 
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/opinion">
                         <span class="menu__icon  [ icon  solid  fa-comments ]"></span>
                         <span>ご意見・ご要望</span>
                     </router-link>
                 </li>
                 <li class="menu__link">
-                    <router-link to="/">
+                    <router-link to="/mypage/inquiry">
                         <span class="menu__icon  [ icon  solid  fa-question-circle ]"></span>
                         <span>お問い合わせ</span>
                     </router-link>
