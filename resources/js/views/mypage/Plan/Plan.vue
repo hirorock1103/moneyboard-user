@@ -116,7 +116,7 @@
                                 </table>
                             </div>
 
-                            <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                            <h4 v-if="nextPlans !== 'NULL'"><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
                                 来月の月額料金
                                 <span class="padding-left--8  text-accent">
                                     {{$filters.addComma(Number(nextPlans.price))}}
