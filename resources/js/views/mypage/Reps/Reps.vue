@@ -10,14 +10,18 @@
                             担当者一覧
                         </h2>
                     </div>
+
                     <div class="text-center">
                         <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--accent ]">担当者新規登録</router-link>
                     </div>
+
                     <div class="text-center margin-top--48" v-if="message">
                         <p class="text-danger">{{ message }}</p>
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
+                            <p class="text-right">
+                            データ使用数は合計{{available_licenses_total}}社まで</p>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
@@ -32,7 +36,7 @@
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.user_number }}</td>
                                         <td>{{ item.user_name }}</td>
-                                        <td class="text-center">{{ item.use_license_count ?? 0 }}社 / {{available_licenses_total}}社</td>
+                                        <td class="text-center">{{ item.use_license_count ?? 0 }}社</td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
                                             <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.user_code, item.use_license_count ?? 0, available_licenses_total)">変更</button>
@@ -57,7 +61,7 @@
                                                         <tr>
                                                             <td>{{ postItem.user_number }}</td>
                                                             <td>{{ postItem.user_name }}</td>
-                                                            <td class="text-center">{{ item.use_license_count ?? 0 }}社 / {{available_licenses_total}}社</td>
+                                                            <td class="text-center">{{ item.use_license_count ?? 0 }}社</td>
                                                             <td class="text-center">{{ formatDate(postItem.updated_at) }}</td>
                                                         </tr>
                                                     </tbody>
@@ -96,7 +100,7 @@ export default {
     },
     data() {
         return {
-            items: [],
+            items: [""],
             available_licenses_total: "",
             message: null,
             showContent: false,
