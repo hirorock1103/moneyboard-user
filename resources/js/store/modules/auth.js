@@ -66,6 +66,9 @@ const mutations = {
     setUserEmail (state, email_address) {
         state.user.email_address = email_address
     },
+    setAddress (state, address) {
+        state.user.address = address
+    },
     // setUserToken (state, token) {
     //         state.user.token = token
     //     },

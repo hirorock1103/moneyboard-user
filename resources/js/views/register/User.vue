@@ -42,9 +42,11 @@
                                         id="post_number"
                                         class="form-input"
                                         v-model="getUser.post_number"
-                                        @input="v$.getUser.post_number.$touch"
+                                        @input="searchAddress"
                                         v-bind:class="[ v$.getUser.post_number.$error ? 'form-error' : null ]">
                                 </span>
+                                <!-- <button type="button" class="[ btn btn--small btn--accent ]" @click="searchAddress">住所自動入力</button> -->
+
                             </div>
                             <div
                                 class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
@@ -562,6 +564,8 @@ import containsLowercase from '../../customValidators/containsLowercase';
 import ProgressBar from '../../components/ProgressBarComponent.vue';
 import { mapActions } from 'vuex';
 
+const jsonpAdapter = require('axios-jsonp')
+
 export default {
     name: 'register-user',
     components: {
@@ -793,6 +797,21 @@ export default {
         },
         changePlan(value) {
             this.planAmount = value;
+        },
+        searchAddress() {
+            const zipCode = this.getUser.post_number;
+            axios.get(`https://api.zipaddress.net/?zipcode=${zipCode}`, {adapter: jsonpAdapter}).then(rs => {
+                const response = rs.data
+                console.log(response);
+                if(response.code===400||response.code===404){
+                    this.$store.commit('auth/setAddress', '')
+                }else{
+                    let address = response.pref + response.city + response.town
+                    this.$store.commit('auth/setAddress', address)
+                }
+
+
+            })
         },
         async register() {
             this.v$.$touch();

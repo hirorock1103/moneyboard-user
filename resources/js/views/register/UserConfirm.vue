@@ -28,6 +28,19 @@
                             </div>
                             <div class="form-row">
                                 <label for="address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                    郵便番号
+                                </label>
+                                <span class="form-column">
+                                    <input
+                                        type="text"
+                                        id="post_number"
+                                        class="form-input"
+                                        v-model="getUser.post_number"
+                                        readonly>
+                                </span>
+                            </div>
+                            <div class="form-row">
+                                <label for="address" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     住所
                                 </label>
                                 <span class="form-column">
