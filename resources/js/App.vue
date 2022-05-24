@@ -32,6 +32,11 @@ export default {
                     localStorage.removeItem('authToken')
                     // ストアのuserをクリア
                     this.$store.commit('auth/setUser', null)
+                    // ストアの情報をクリア
+                    this.$store.commit('setCompany', null)
+                    this.$store.commit('setCard', null)
+                    this.$store.commit('setContract', null)
+                    this.$store.commit('setApiStatus', false)
                     // ログイン画面へ
                     this.$router.push('/login')
                 } else if (val === NOT_FOUND) {
