@@ -37,7 +37,7 @@
                                                     パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    {{getTemps.password}}
+                                                    {{getTemps.password.replace( /./g, '*' )}}
                                                 </td>
                                             </tr>
                                         </tbody>
