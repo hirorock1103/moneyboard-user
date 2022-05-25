@@ -223,6 +223,10 @@ export default {
         this.fetchItems();
         this.nextMonthPlans();
     },
+    mounted: function() {
+        this.fetchItems();
+        this.nextMonthPlans();
+    },
     methods: {
         async fetchItems() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/plan/get";

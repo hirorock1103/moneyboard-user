@@ -28,6 +28,7 @@ export default {
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push('/500')
                 } else if (val === UNAUTHORIZED || val === 'NG') {
+                    console.log('認証失敗(App.vue)！！');
                     // トークンを削除
                     localStorage.removeItem('authToken')
                     // ストアのuserをクリア

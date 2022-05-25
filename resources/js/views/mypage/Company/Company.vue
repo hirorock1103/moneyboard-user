@@ -134,10 +134,8 @@ export default {
         ...mapActions('auth', ['updateCompany']),
         async fetchItems() {
             var company_code = this.getCompany.company_code;
-            // let url = process.env.MIX_VUE_APP_API_URL + "com/company/get?company_code=" + company_code;
             let url = process.env.MIX_VUE_APP_API_URL + "com/company/get";
             try {
-                // const response = await axios.get(url);
                 const response = await axios.get(url, {
                     params:{
                         company_code: company_code
@@ -169,4 +167,12 @@ export default {
 @import 'resources/sass/abstracts/_variables.scss';
 @import 'resources/sass/vendors/_media.scss';
 @import 'resources/sass/pages/_mypage.scss';
+</style>
+
+<style media="screen">
+@media (max-width: 992px) {
+  .display-flex {
+      display:block !important;
+  }
+}
 </style>

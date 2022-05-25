@@ -14,9 +14,9 @@
                         </h5>
                     </div>
 
-                    <form v-on:submit.prevent="Store">
-                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
 
+                    <form>
+                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--24  margin-bottom-large--24 ] ]">
 
                             <div class="[ padding--24  padding-large--48 ]  bg-white" style="padding-bottom:0!important;">
                                 <h4>
@@ -155,8 +155,48 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <input type="submit" class="[ btn  btn--accent ]" value="変更の確定"/>
+                                    <button type="button" class="[ btn  btn--accent ]" v-on:click="openModal(item)">確認</button>
                                 </div>
+
+
+                                <!-- 変更内容を確認するダイアログ -->
+                                <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
+                                    <div id="content">
+                                        <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                            <p>プランを変更いたします</p>
+                                            <p>アップグレードの場合は今月、ダウングレードの場合は来月からプランが変更されますが本当によろしいですか？</p>
+                                        </div>
+                                        <table class="table table--bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>プラン</th>
+                                                    <th>追加企業数</th>
+                                                    <th>月額料金</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td v-if="plans.plan_id == 1" class="padding-bottom--16">
+                                                        スタンダードプラン
+                                                        <!-- {{plans.plan_id}} -->
+                                                    </td>
+                                                    <td v-else class="padding-bottom--16">
+                                                        プレミアムプラン
+                                                        <!-- {{plans.plan_id}} -->
+                                                    </td>
+                                                    <td>{{plans.additional_licenses}}社</td>
+                                                    <td>{{$filters.addComma(Number(plans.cost_total))}}円</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
+                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="Store()">確定</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </article>
 
@@ -241,6 +281,7 @@ export default {
     data: function() {
         return {
             nextPlans: [],
+            postItem: "",
         }
     },
     mounted: function() {
@@ -272,13 +313,21 @@ export default {
             this.plans.cost_add = this.plans.additional_licenses * 1100;
             this.plans.cost_total = this.plans.cost_plan + this.plans.cost_add;
         },
+        openModal: function(item){
+            this.showContent = true;
+            this.postItem = item;
+        },
+        closeModal: function(){
+            this.showContent = false;
+            this.$router.push({name: 'mypage-plan'})//ダイアログ終了後はプラン詳細へ
+        },
         async Store(){
+
             let url = process.env.MIX_VUE_APP_API_URL + "com/contract/update/do";
+
             try {
                 this.plans = {...this.plans}
-                // console.log(this.plans);
                 const response = await axios.post(url, this.plans);
-                // console.log(response);
                 if(response.data=="NG"){
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
@@ -289,6 +338,7 @@ export default {
                         }
                     });
                 }
+
             } catch (e){
                 console.log(e);
                 this.message = e
