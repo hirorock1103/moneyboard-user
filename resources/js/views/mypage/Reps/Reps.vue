@@ -121,13 +121,13 @@ export default {
                 const response = await axios.get(url);
 //                console.log(response.data.error_code);
 
-//                if (typeof response.data.error_code === 'undefined') {
+                if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                     this.available_licenses_total = response.data.data.available_licenses_total[user.id];
                     this.resetTemps();
-//                }else{
-//                    this.$router.push({name: 'logoff'})
-//                }
+                }else{
+                    this.$router.push({name: 'logoff'})
+                }
 
             } catch (e){
                 console.log(e);
