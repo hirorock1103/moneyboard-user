@@ -141,11 +141,11 @@ export default {
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
 
-                if (typeof response.data.error_code === 'undefined') {
+//                if (typeof response.data.error_code === 'undefined') {
                     this.items = response.data.data.data_list.data;
-                }else{
-                    this.$router.push({name: 'logoff'})
-                }
+//                }else{
+//                    this.$router.push({name: 'logoff'})
+//                }
 
             } catch (e){
                 console.log(e);
