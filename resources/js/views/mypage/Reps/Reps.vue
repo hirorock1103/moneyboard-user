@@ -61,7 +61,7 @@
                                                         <tr>
                                                             <td>{{ postItem.user_number }}</td>
                                                             <td>{{ postItem.user_name }}</td>
-                                                            <td class="text-center">{{ item.use_license_count ?? 0 }}社</td>
+                                                            <td class="text-center">{{ postItem.use_license_count ?? 0 }}社</td>
                                                             <td class="text-center">{{ formatDate(postItem.updated_at) }}</td>
                                                         </tr>
                                                     </tbody>

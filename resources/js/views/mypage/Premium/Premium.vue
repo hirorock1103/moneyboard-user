@@ -230,7 +230,7 @@ export default {
         async fetchItems() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
-                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id});
                 this.items = response.data.data.data_list.data;
                 this.showContent = this.$store.state.auth.contract.plan_id == 2 ? false : true;
             } catch (e){
@@ -244,7 +244,7 @@ export default {
             // this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
-                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
             } catch (e){
@@ -313,7 +313,7 @@ export default {
                 this.items.sort(function (a, b) {
                 return (a.updated_at > b.updated_at ? 1 : -1) * set
                 });
-            }            
+            }
 
         },
         addClass(key) {
