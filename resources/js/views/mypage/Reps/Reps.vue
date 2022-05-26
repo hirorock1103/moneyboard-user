@@ -45,8 +45,8 @@
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
                                             <div id="content">
                                                 <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                                                    <p>担当者情報を削除します。</p>
-                                                    <p>選択された担当者が保持している企業情報もすべて削除されますが本当によろしいですか？</p>
+                                                    <p>担当者情報を本当に削除してもよろしいですか？</p>
+                                                    <p>※担当者が保持している企業情報は、「企業一覧から担当者を変更」していただくか、「企業情報を削除」してください。</p>
                                                 </div>
                                                 <table class="table table--bordered">
                                                     <thead>

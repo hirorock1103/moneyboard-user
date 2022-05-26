@@ -49,7 +49,9 @@
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.client_name }}</td>
-                                        <td>{{ item.user_name }}</td>
+                                        <td v-if="item.user_del === null">{{ item.user_name }}</td>
+                                        <td v-else>{{ item.user_name }}<span style="color:red">(削除)</span></td>
+
                                         <th class="text-center">
                                             <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>

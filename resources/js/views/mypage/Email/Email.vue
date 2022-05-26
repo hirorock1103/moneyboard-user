@@ -29,8 +29,8 @@
                                                     変更後のメールアドレス
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    <input 
-                                                    type="text" 
+                                                    <input
+                                                    type="text"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.email_address"
                                                         @input="v$.item.email_address.$touch"
@@ -47,8 +47,8 @@
                                                     変更後のメールアドレス（確認用）
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input 
-                                                    type="email" 
+                                                    <input
+                                                    type="email"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.email_address_confirm"
                                                         @input="v$.item.email_address_confirm.$touch"
@@ -109,6 +109,10 @@ export default {
                     email:helpers.withMessage(
                         '正しい形を入力してください',
                         email
+                    ),
+                    maxLength: helpers.withMessage(
+                        '255文字以内で入力してください',
+                        maxLength(255)
                     ),
                 },
                 email_address_confirm: {

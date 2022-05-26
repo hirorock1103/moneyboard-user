@@ -103,7 +103,7 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { mapActions } from 'vuex';
-import { required, minLength, sameAs, helpers } from '@vuelidate/validators';
+import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
 import containsNumber from '../../../customValidators/containsNumber';
 import containsUppercase from '../../../customValidators/containsUppercase';
 import containsLowercase from '../../../customValidators/containsLowercase';
@@ -132,6 +132,10 @@ export default {
                         '担当者名を入力してください',
                         required
                     ),
+                    maxLength: helpers.withMessage(
+                        '16文字以下で入力してください',
+                        maxLength(16)
+                    ),
                 },
                 password: {
                     required: helpers.withMessage(
@@ -141,6 +145,10 @@ export default {
                     minLength: helpers.withMessage(
                         '8文字以上を入力してください',
                         minLength(8)
+                    ),
+                    maxLength: helpers.withMessage(
+                        '255文字以下で入力してください',
+                        maxLength(255)
                     ),
                     containsNumber: helpers.withMessage(
                         '半角数字を含めてください',

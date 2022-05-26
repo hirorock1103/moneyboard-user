@@ -86,7 +86,8 @@
 
 <script>
 import dayjs from 'dayjs'
-import { mapState } from 'vuex';
+//import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import axios from '../../src/plugins/axios.js'
 import SideMenu from '../../components/SideMenuComponent.vue';
 
@@ -101,6 +102,7 @@ export default {
     },
     created: function() {
         this.fetchItems();
+        this.updateState();
     },
     computed: {
         ...mapState({
@@ -113,6 +115,7 @@ export default {
         })
     },
     methods: {
+        ...mapActions('auth', ['updateState']),
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/notice/get";

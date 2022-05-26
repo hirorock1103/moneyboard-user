@@ -140,6 +140,10 @@ export default {
                         '10文字以上を入力してください',
                         minLength(10)
                     ),
+                    maxLength: helpers.withMessage(
+                        '255文字以内で入力してください',
+                        maxLength(255)
+                    ),
                     containsNumber: helpers.withMessage(
                         '半角数字を含めてください',
                         containsNumber
