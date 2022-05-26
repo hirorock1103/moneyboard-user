@@ -27,22 +27,6 @@
                                         <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
                                     </tr>
                                 </table>
-                                <!--
-                                <div class="[ padding--16 ]  bg-white  display-flex">
-                                    <h4 class="" style="width:15%;">
-                                        <span class="[ icon  solid ] fa-sort-amount-down-alt padding-right--12  text-accent"></span>
-                                        並べ替え
-                                    </h4>
-                                </div>
-                                <div class="">
-                                    <table>
-                                        <tr>
-                                            <th style="padding: 0 5px 0 20px;"><label>企業名順</label></th>
-                                            <td><input type="checkbox" v-model="checked"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                -->
                                 <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
                             </div>
                         </article>
@@ -140,11 +124,10 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
-
+                console.log(response);
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                 }else{
-                    alert(response.data.error_code);
                     this.$router.push({name: 'logoff'})
                 }
 
@@ -186,8 +169,7 @@ export default {
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
                 console.log(response);
-
-                if (typeof response.data.error_code === 'undefined') {
+                if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                 }else{
                     this.$router.push({name: 'logoff'})
