@@ -79,7 +79,7 @@ const auth = (to, from, next) => {
   if (localStorage.getItem("authToken")) {
     return next();
   } else {
-    return next("/login");
+    return next("/logoff");
   }
 };
 
@@ -90,7 +90,7 @@ const routes = [
       path: "/logoff",
       component: Logoff,
       name: "logoff",
-      beforeEnter: auth,
+//      beforeEnter: auth,
     },
 
   // トップページ

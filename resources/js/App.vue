@@ -28,16 +28,16 @@ export default {
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push('/500')
                 } else if (val === UNAUTHORIZED || val === 'NG') {
-                    console.log('認証失敗(App.vue)！！');
+                    // console.log('認証失敗(App.vue)！！');
                     // トークンを削除
                     localStorage.removeItem('authToken')
                     // ストアのuserをクリア
                     this.$store.commit('auth/setUser', null)
                     // ストアの情報をクリア
-                    this.$store.commit('setCompany', null)
-                    this.$store.commit('setCard', null)
-                    this.$store.commit('setContract', null)
-                    this.$store.commit('setApiStatus', false)
+                    this.$store.commit('auth/setCompany', null)
+                    this.$store.commit('auth/setCard', null)
+                    this.$store.commit('auth/setContract', null)
+                    this.$store.commit('auth/setApiStatus', false)
                     // ログイン画面へ
                     this.$router.push('/login')
                 } else if (val === NOT_FOUND) {

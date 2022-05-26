@@ -115,12 +115,20 @@ export default {
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems() {
             var user = this.$store.state.auth.user;
+
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code;
             try {
                 const response = await axios.get(url);
-                this.items = response.data.data.data_list.data;
-                this.available_licenses_total = response.data.data.available_licenses_total[user.id];
-                this.resetTemps();
+//                console.log(response.data.error_code);
+
+                if (typeof response.data.error_code === 'undefined') {
+                    this.items = response.data.data.data_list.data;
+                    this.available_licenses_total = response.data.data.available_licenses_total[user.id];
+                    this.resetTemps();
+                }else{
+                    this.$router.push({name: 'logoff'})
+                }
+
             } catch (e){
                 console.log(e);
                 this.message = e;

@@ -140,7 +140,13 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
-                this.items = response.data.data.data_list.data;
+
+                if (typeof response.data.error_code === 'undefined') {
+                    this.items = response.data.data.data_list.data;
+                }else{
+                    this.$router.push({name: 'logoff'})
+                }
+
             } catch (e){
                 console.log(e);
                 this.message = e
@@ -179,7 +185,13 @@ export default {
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.company.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
                 console.log(response);
-                this.items = response.data.data.data_list.data;
+
+                if (typeof response.data.error_code === 'undefined') {
+                    this.items = response.data.data.data_list.data;
+                }else{
+                    this.$router.push({name: 'logoff'})
+                }
+
             } catch (e){
                 console.log(e);
                 this.message = e
