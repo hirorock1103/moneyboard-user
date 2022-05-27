@@ -250,7 +250,7 @@
 import useVuelidate from '@vuelidate/core';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-import { required, email, sameAs, helpers } from '@vuelidate/validators';
+import { required, maxLength, email, sameAs, helpers } from '@vuelidate/validators';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -291,6 +291,10 @@ export default {
                     email:helpers.withMessage(
                         '正しい形を入力してください',
                         email
+                    ),
+                    maxLength: helpers.withMessage(
+                        '255文字以内で入力してください',
+                        maxLength(255)
                     ),
                 },
                 email_confirmation: {

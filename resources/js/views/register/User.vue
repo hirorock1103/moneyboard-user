@@ -543,6 +543,11 @@
                                     </span>
                                 </span>
                             </div>
+                            <div
+                                class="form-text  text-danger "
+                                v-if="v$.getUser.motivated_by.$error">
+                                {{ v$.getUser.motivated_by.$errors[0].$message }}
+                            </div>
                         </div>
                     </article>
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
@@ -737,6 +742,12 @@ export default {
                         minLength(8)
                     )
                 },
+                motivated_by: {
+                    maxLength: helpers.withMessage(
+                        '50文字以下で入力してください',
+                        maxLength(50)
+                    ),
+                },
             },
         }
     },
@@ -814,9 +825,9 @@ export default {
             })
         },
         async register() {
+            this.updateMotivation();
             this.v$.$touch();
             if (this.v$.$error) return;
-            this.updateMotivation();
             this.updateUser(this.getUser);
             try {
                 let url = process.env.MIX_VUE_APP_API_URL + "com/register-validate";

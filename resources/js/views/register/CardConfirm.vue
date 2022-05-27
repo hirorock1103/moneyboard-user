@@ -60,11 +60,13 @@
                                         readonly>
                                 </span>
                             </div>
-
-
                         </div>
-
                     </article>
+
+                    <div class="text-center" v-if="this.stripe_msg">
+                        <p class="text-danger">{{ this.stripe_msg }}</p>
+                    </div>
+
 
                     <div class="text-center">
 
@@ -76,8 +78,6 @@
                         <label class="form-checkbox-label" for="confirm-checkbox">上記内容で申し込みます</label>
 
                     </div>
-
-
 
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
                         <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
@@ -111,6 +111,7 @@ export default {
             checkbox: {
                 confirmed: false,
             },
+            stripe_msg:"",
         }
     },
     created: function() {
@@ -185,9 +186,16 @@ async GetCardInfo(){
 
             try {
                 let response = await axios.post(url, params, {headers: headers});
+
                 if(response.status!="200"){
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
+
+                    if(typeof response.data.message === 'undefined'){
+                        this.stripe_msg = "クレジットカードの登録に失敗しました。戻って別のクレジットカードを登録してください";
+                    }else{
+                        this.stripe_msg = response.data.message;
+                    }
+
+                    setTimeout(() => {this.stripe_msg = false;}, 2000);
                 } else{
                     datas.stripe_id = response.data.id;
                     // // 企業情報レコード追加
