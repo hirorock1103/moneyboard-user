@@ -35,7 +35,9 @@ export default {
         this.verifyRequest(this.$route.query).then(() => {
             if (this.apiStatus) {
                 // ToDo:メッセージ投げる
-                this.$router.push({ name:'login'});
+                this.$router.push({ 
+                    name:'Email_complete'
+                });
             }
         });
     },
