@@ -69,6 +69,9 @@ const mutations = {
     setAddress (state, address) {
         state.user.address = address
     },
+    setCompanyAddress (state, address) {
+        state.company.address = address
+    },
     // setUserToken (state, token) {
     //         state.user.token = token
     //     },
