@@ -87,7 +87,7 @@ export default {
                         id: 4,
                         url: '/mypage/company/client/rep',
                         icon: 'fa-building',
-                        title: '登録企業の担当者変更・削除',
+                        title: '登録企業一覧/担当者変更・削除',
                         subtitle: '',
                         active: false
                     },
