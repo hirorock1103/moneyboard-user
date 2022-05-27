@@ -52,6 +52,7 @@ import Premium from "./views/mypage/Premium/Premium.vue";
 import Email from "./views/mypage/Email/Email.vue";
 import Email_confirm from "./views/mypage/Email/Email_confirm.vue";
 import Email_verify from "./views/mypage/Email/Verify.vue";
+import Email_complete from "./views/mypage/Email/Email_complete.vue";
 // パスワードの変更
 import Password from "./views/mypage/Password/Password.vue";
 import Password_confirm from "./views/mypage/Password/Password_confirm.vue";
@@ -339,6 +340,13 @@ const routes = [
     path: "/mypage/company/email_verify",
     component: Email_verify,
     name: "mypage-email_verify",
+  },
+    // メールアドレスの変更　完了
+  {
+    path: "/mypage/company/Email_complete",
+    component: Email_complete,
+    name: "Email_complete",
+    // beforeEnter: guest,
   },
   // パスワードの変更
   {
