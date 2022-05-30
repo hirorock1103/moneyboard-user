@@ -212,10 +212,11 @@ async GetCardInfo(){
                                 title: '申込完了',
                                 message: [
                                     'ご登録ありがとうございます。',
-                                    '登録されたメールアドレスとパスワードを使い「ログイン」ボタンからログインしてください。',
+                                    '登録されたメールアドレスに「お申し込み内容」を送信いたしました。',
+                                    'ご確認お願いいたします。',
                                 ],
                                 currentStep: Number(4),
-                                redirectPage: 'login'
+                                // redirectPage: 'login'
                             }
                         }
                     )
