@@ -35,7 +35,7 @@
                 <li class="menu__link">
                     <router-link to="/mypage/company/client/rep">
                         <span class="menu__icon  [ icon  solid  fa-building ]"></span>
-                        <span>登録企業一覧</span>
+                        <span>登録企業一覧/担当者変更・削除</span>
                     </router-link>
                 </li>
 
