@@ -64,6 +64,7 @@
                             </div>
                         </div>
                     </article>
+
                     <div class="text-center">
                         <router-link :to="{name: 'mypage-card_edit'}" class="[ btn  btn--accent ]">変更</router-link>
                     </div>
@@ -119,13 +120,18 @@ export default {
                 this.getCard.name = name;
 
                 if(response.status!="200" || card_id == null){
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
+
+                    // this.message = response.data.message
+                    // setTimeout(() => {this.message = false;}, 2000);
+                    this.message = "クレジットカードを登録してください。"
+
                 } else{
+                    this.message = "";
 
                     //カード情報の取得
                     let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
                     let response = await axios2.get(url, {headers: headers});
+
                     if(response.status!="200" || card_id == null){
                         this.message = response.data.message
                         setTimeout(() => {this.message = false;}, 2000);
@@ -144,6 +150,7 @@ export default {
                 console.log(e);
                 this.message = e
             }
+
 
         },
 

@@ -10,9 +10,15 @@
                             カード情報の変更確認
                         </h2>
                     </div>
+
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
                         以下の内容で登録します
                     </div>
+
+                    <div class="text-center" v-if="message">
+                        <p class="text-danger">{{ message }}</p>
+                    </div>
+
                     <form v-on:submit.prevent="changeCard">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
@@ -64,6 +70,7 @@
                                 </div>
                             </div>
                         </article>
+
                         <div class="text-center">
                             <router-link :to="{name: 'mypage-card_edit'}" class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="クレカ更新" />
@@ -87,7 +94,7 @@ export default {
     },
     data() {
         return {
-            message: ""
+            message: "",
         };
     },
 
@@ -123,45 +130,7 @@ export default {
                 let response = await axios2.get(url, {headers: headers});
                 let card_id = response.data.default_source;
 
-                if(response.status!="200" || card_id == null){
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
-                } else{
-                    //カード削除
-                    let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
-                    let response = await axios2.delete(url, {headers: headers});
-                    if(response.status!="200"){
-                        this.message = response.data.message
-                        setTimeout(() => {this.message = false;}, 2000);
-                    } else{
-                        //カード作成
-                        let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
-                        let params = new URLSearchParams();
-                        params.append('source', stripe_token);
-
-                        let response = await axios2.post(url, params, {headers: headers});
-                        if(response.status!="200"){
-                            this.message = response.data.message
-                            setTimeout(() => {this.message = false;}, 2000);
-                        } else{
-                            //顧客名義の更新
-                            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
-                            let params = new URLSearchParams();
-                            params.append('name', this.getCard.name);
-
-                            let response = await axios2.post(url, params, {headers: headers});
-                            if(response.status!="200"){
-                                this.message = response.data.message
-                                setTimeout(() => {this.message = false;}, 2000);
-                            } else{
-                                this.resetTemps();
-                                this.$router.push({name: 'mypage-card'})
-                            }
-                        }
-                    }
-                }
-
-                if( card_id == null ){//カードがない場合は作成だけする
+                if(response.status!="200" || card_id == null){//カード情報がない場合は作成する
 
                     //カード作成
                     let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
@@ -170,9 +139,15 @@ export default {
 
                     let response = await axios2.post(url, params, {headers: headers});
                     if(response.status!="200"){
-                        this.message = response.data.message
+
+                        if(typeof response.data.message === 'undefined'){
+                            this.message = "更新に失敗しました。申し訳ございませんが、別のクレジットカードを登録してください";
+                        }else{
+                            this.message = response.data.message;
+                        }
                         setTimeout(() => {this.message = false;}, 2000);
-                    } else{
+                    }else{
+
                         //顧客名義の更新
                         let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
                         let params = new URLSearchParams();
@@ -180,11 +155,60 @@ export default {
 
                         let response = await axios2.post(url, params, {headers: headers});
                         if(response.status!="200"){
+
                             this.message = response.data.message
                             setTimeout(() => {this.message = false;}, 2000);
                         } else{
+
                             this.resetTemps();
                             this.$router.push({name: 'mypage-card'})
+                        }
+                    }
+
+                } else{
+                    //カード削除
+                    let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
+                    let response = await axios2.delete(url, {headers: headers});
+                    if(response.status!="200"){
+
+                        this.message = response.data.message
+                        setTimeout(() => {this.message = false;}, 2000);
+                    } else{
+
+                        //カード作成
+                        let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
+                        let params = new URLSearchParams();
+                        params.append('source', stripe_token);
+
+                        let response = await axios2.post(url, params, {headers: headers});
+
+                        if(response.status!="200"){
+
+                            console.log(response);
+                            if(typeof response.data.message === 'undefined'){
+                                this.message = "更新に失敗しました。申し訳ございませんが、別のクレジットカードを登録してください";
+                            }else{
+                                this.message = response.data.message;
+                            }
+
+                            setTimeout(() => {this.message = false;}, 2000);
+                        } else{
+
+                            //顧客名義の更新
+                            let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
+                            let params = new URLSearchParams();
+                            params.append('name', this.getCard.name);
+
+                            let response = await axios2.post(url, params, {headers: headers});
+                            if(response.status!="200"){
+
+                                this.message = response.data.message
+                                setTimeout(() => {this.message = false;}, 2000);
+                            } else{
+
+                                this.resetTemps();
+                                this.$router.push({name: 'mypage-card'})
+                            }
                         }
                     }
                 }
@@ -192,7 +216,20 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+                this.message = "更新に失敗しました。申し訳ございませんが、別のクレジットカードを登録してください";
+                setTimeout(() => {this.message = false;}, 2000);
+                //カード情報のクリア
+                const card_initial =  {
+                    number: '',
+                    valid_year: '',
+                    valid_month: '',
+                    security_code: '',
+                    name: '',
+                    stripe_token: '',
+                };
+                this.$store.commit('auth/setCard', card_initial)
             }
+
         },
 
         async GetCardInfo(){
@@ -218,7 +255,7 @@ export default {
                 this.getCard.valid_year = valid_year;
                 this.getCard.number = number;
 
-                if(response.status!="200" || card_id == null){
+                if(response.status!="200"){
                     console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
@@ -228,6 +265,7 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
             }
 
         },
