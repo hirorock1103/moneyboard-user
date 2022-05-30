@@ -44,10 +44,13 @@
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
                                             <div id="content">
-                                                <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                                <div v-if="postItem.use_license_count === null" class="text-center [ padding--24  padding-large--48 ] bg-white">
                                                     <p>担当者情報を本当に削除してもよろしいですか？</p>
-                                                    <p>※担当者が保持している企業情報は、「企業一覧から担当者を変更」していただくか、「企業情報を削除」してください。</p>
                                                 </div>
+                                                <div v-else class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                                    <p style="color: red;">担当者が保持している企業情報があるため、担当者を削除することができません。</p>
+                                                    <p>※担当者が保持している企業情報は、「企業一覧から担当者を変更」していただくか、「企業情報を削除」してください。</p>
+                                                </div>                                                
                                                 <table class="table table--bordered">
                                                     <thead>
                                                         <tr>
@@ -68,7 +71,7 @@
                                                 </table>
                                                 <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                                     <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
-                                                    <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.company_code, postItem.user_code)">削除</button>
+                                                    <button v-if="postItem.use_license_count === null" class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.company_code, postItem.user_code)">削除</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,6 +126,7 @@ export default {
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
+                    console.log(this.items);
                     this.available_licenses_total = response.data.data.available_licenses_total[user.id];
                     this.resetTemps();
                 }else{
