@@ -24,7 +24,13 @@
                                         <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
                                         <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
                                         <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
-                                        <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
+                                        <td>
+                                            <select v-model="user_name" class="form-input">
+                                                <option v-for="user in user_list">
+                                                    {{user.user_name}}
+                                                </option>
+                                            </select>
+                                        </td>                                        
                                     </tr>
                                 </table>
                                 <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
@@ -109,6 +115,7 @@ export default {
     data() {
         return {
             items: [],
+            user_list: [],
             message: null,
             showContent: false,
             postItem: "",
@@ -130,6 +137,7 @@ export default {
                 console.log(response);
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
+                    this.user_list = response.data.data.user_list;
                 }else{
                     this.$router.push({name: 'logoff'})
                 }
