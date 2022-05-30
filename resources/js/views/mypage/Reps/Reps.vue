@@ -22,6 +22,10 @@
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <p class="text-right">
                             データ使用数は合計{{available_licenses_total}}社まで</p>
+                            <p>担当数：{{pagenation.total}}人</p>
+                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
+                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(2)">2page</button>
+                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
@@ -50,7 +54,7 @@
                                                 <div v-else class="text-center [ padding--24  padding-large--48 ] bg-white">
                                                     <p style="color: red;">担当者が保持している企業情報があるため、担当者を削除することができません。</p>
                                                     <p>※担当者が保持している企業情報は、「企業一覧から担当者を変更」していただくか、「企業情報を削除」してください。</p>
-                                                </div>                                                
+                                                </div>
                                                 <table class="table table--bordered">
                                                     <thead>
                                                         <tr>
@@ -83,6 +87,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+
                         </div>
                     </article>
                 </div>
@@ -108,18 +113,24 @@ export default {
             message: null,
             showContent: false,
             postItem: "",
+            pagenation: {　//オブジェクト
+                current_page: 0,
+                last_page: 0,
+                total: 0
+            }
+
         };
     },
     created: function() {
-        this.fetchItems();
+        this.fetchItems(1);
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
-        async fetchItems() {
+        async fetchItems(page) {
             var user = this.$store.state.auth.user;
 
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code + "&page=" + page;
             try {
                 const response = await axios.get(url);
 //                console.log(response.data.error_code);
@@ -127,8 +138,14 @@ export default {
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                     console.log(this.items);
+
                     this.available_licenses_total = response.data.data.available_licenses_total[user.id];
                     this.resetTemps();
+
+                    this.pagenation.current_page = response.data.data.data_list.current_page;
+                    this.pagenation.last_page = response.data.data.data_list.last_page;
+                    this.pagenation.total = response.data.data.data_list.total;
+
                 }else{
                     this.$router.push({name: 'logoff'})
                 }
@@ -162,6 +179,7 @@ export default {
         async getItem(user_code, use_license_count, available_licenses_total) {
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/show";
             const response = await axios.post(url, {user_code: user_code});
+
             if (response.data.status=="NG") {
                 console.log(response.data);
                 this.message = response.data.errors.undefined_user
