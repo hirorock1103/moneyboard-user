@@ -20,11 +20,12 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <p>{{pagenation.current_page}}ページ目／{{pagenation.last_page}}ページ（担当数：{{pagenation.total}}人）</p>
+                            <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（担当数：{{pagenation.total}}人）</p>
                             <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
                             <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.prev_page)">前へ</button>
                             <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.next_page)">次へ</button>
                             <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
+
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
@@ -87,6 +88,7 @@
                                 </tbody>
                             </table>
                             <!-- <p class="text-right">データ使用数は合計//{{available_licenses_total}}社まで</p> -->
+
                         </div>
                     </article>
                 </div>
@@ -118,7 +120,7 @@ export default {
                 current_page: 0,
                 last_page: 0,
                 total: 0
-            }
+            },
 
         };
     },
