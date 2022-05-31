@@ -20,12 +20,11 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <p class="text-right">
-                            データ使用数は合計{{available_licenses_total}}社まで</p>
-                            <p>担当数：{{pagenation.total}}人</p>
-                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
-                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(2)">2page</button>
-                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
+                            <p>{{pagenation.current_page}}ページ目／{{pagenation.last_page}}ページ（担当数：{{pagenation.total}}人）</p>
+                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
+                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.prev_page)">前へ</button>
+                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.next_page)">次へ</button>
+                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
@@ -87,7 +86,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-
+                            <!-- <p class="text-right">データ使用数は合計//{{available_licenses_total}}社まで</p> -->
                         </div>
                     </article>
                 </div>
@@ -114,6 +113,8 @@ export default {
             showContent: false,
             postItem: "",
             pagenation: {　//オブジェクト
+                prev_page: 0,
+                next_page: 0,
                 current_page: 0,
                 last_page: 0,
                 total: 0
@@ -145,6 +146,18 @@ export default {
                     this.pagenation.current_page = response.data.data.data_list.current_page;
                     this.pagenation.last_page = response.data.data.data_list.last_page;
                     this.pagenation.total = response.data.data.data_list.total;
+
+                    if(this.pagenation.current_page === 1){
+                        this.pagenation.prev_page = 1;
+                    }else{
+                        this.pagenation.prev_page = this.pagenation.current_page - 1;
+                    }
+
+                    if(this.pagenation.current_page === this.pagenation.last_page){
+                        this.pagenation.next_page = this.pagenation.last_page;
+                    }else{
+                        this.pagenation.next_page = this.pagenation.current_page + 1;
+                    }
 
                 }else{
                     this.$router.push({name: 'logoff'})
