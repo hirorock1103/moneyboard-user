@@ -9,7 +9,7 @@
                             プレミアムプラン（顧客情報管理）
                         </h2>
                     </div>
-                    <form v-if="blur_flg === 2" v-on:submit.prevent="clientSearch">
+                    <form v-if="blur_flg === 2" v-on:submit.prevent="clientSearch(1)">
                         <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
                             <div class="padding--16 bg-white">
                                 <div class="[ padding--16 ]  bg-white  display-flex">
@@ -40,6 +40,22 @@
                     </div>
                     <article class="">
                         <div class="[ margin-left-medium--48  margin-left-large--48 ] [ margin-right-medium--48  margin-right-large--48 ] bg-white">
+
+                            <div v-if="items.length">
+                                <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
+                                <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(1)">最初</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>
+
+                                <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.prev_page)">前へ</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.prev_page)">前へ</button>
+
+                                <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.next_page)">次へ</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.next_page)">次へ</button>
+
+                                <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.last_page)">最後</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.last_page)">最後</button>
+                            </div>
+
                             <table class="table--bordered table-scrollable" style="white-space: nowrap;overflow-y: hidden;max-height: none;">
                                 <thead>
                                     <tr>
@@ -214,10 +230,17 @@ export default {
                 5:'小売業',
                 6:'全業種',
             },
+            pagenation: {
+                prev_page: 0,
+                next_page: 0,
+                current_page: 0,
+                last_page: 0,
+                total: 0
+            },
         };
     },
     created: function() {
-        this.fetchItems();
+        this.fetchItems(1);
     },
     methods: {
         openModal: function(){
@@ -227,12 +250,29 @@ export default {
             this.showContent = false
         },
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
-        async fetchItems() {
-            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
+        async fetchItems(page) {
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id});
+                //console.log(response);
                 this.items = response.data.data.data_list.data;
                 this.showContent = this.$store.state.auth.contract.plan_id == 2 ? false : true;
+
+                //ページネーション情報の設定
+                this.pagenation.current_page = response.data.data.data_list.current_page;
+                this.pagenation.last_page = response.data.data.data_list.last_page;
+                this.pagenation.total = response.data.data.data_list.total;
+                if(this.pagenation.current_page === 1){
+                    this.pagenation.prev_page = 1;
+                }else{
+                    this.pagenation.prev_page = this.pagenation.current_page - 1;
+                }
+                if(this.pagenation.current_page === this.pagenation.last_page){
+                    this.pagenation.next_page = this.pagenation.last_page;
+                }else{
+                    this.pagenation.next_page = this.pagenation.current_page + 1;
+                }
+
             } catch (e){
                 console.log(e);
                 this.message = e
@@ -240,13 +280,31 @@ export default {
             }
             console.log(this.items);
         },
-        async clientSearch() {
+        async clientSearch(page) {
             // this.resetTemps();
-            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
+
+
+                //ページネーション情報の設定
+                this.pagenation.current_page = response.data.data.data_list.current_page;
+                this.pagenation.last_page = response.data.data.data_list.last_page;
+                this.pagenation.total = response.data.data.data_list.total;
+                if(this.pagenation.current_page === 1){
+                    this.pagenation.prev_page = 1;
+                }else{
+                    this.pagenation.prev_page = this.pagenation.current_page - 1;
+                }
+                if(this.pagenation.current_page === this.pagenation.last_page){
+                    this.pagenation.next_page = this.pagenation.last_page;
+                }else{
+                    this.pagenation.next_page = this.pagenation.current_page + 1;
+                }
+
+
             } catch (e){
                 console.log(e);
                 this.message = e

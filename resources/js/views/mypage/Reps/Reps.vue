@@ -21,7 +21,7 @@
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <div v-if="items.length">
-                                <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（担当数：{{pagenation.total}}人）</p>
+                                <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
                                 <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>
 
@@ -122,7 +122,7 @@ export default {
             message: null,
             showContent: false,
             postItem: "",
-            pagenation: {　//オブジェクト
+            pagenation: {
                 prev_page: 0,
                 next_page: 0,
                 current_page: 0,
@@ -153,16 +153,15 @@ export default {
                     this.available_licenses_total = response.data.data.available_licenses_total[user.id];
                     this.resetTemps();
 
+                    //ページネーション情報の設定
                     this.pagenation.current_page = response.data.data.data_list.current_page;
                     this.pagenation.last_page = response.data.data.data_list.last_page;
                     this.pagenation.total = response.data.data.data_list.total;
-
                     if(this.pagenation.current_page === 1){
                         this.pagenation.prev_page = 1;
                     }else{
                         this.pagenation.prev_page = this.pagenation.current_page - 1;
                     }
-
                     if(this.pagenation.current_page === this.pagenation.last_page){
                         this.pagenation.next_page = this.pagenation.last_page;
                     }else{
