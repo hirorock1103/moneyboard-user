@@ -20,12 +20,20 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（担当数：{{pagenation.total}}人）</p>
-                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
-                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.prev_page)">前へ</button>
-                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.next_page)">次へ</button>
-                            <button style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
+                            <div v-if="items.length">
+                                <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（担当数：{{pagenation.total}}人）</p>
+                                <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>
 
+                                <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.prev_page)">前へ</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.prev_page)">前へ</button>
+
+                                <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.next_page)">次へ</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.next_page)">次へ</button>
+
+                                <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
+                                <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
+                            </div>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
