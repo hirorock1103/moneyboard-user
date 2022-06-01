@@ -60,7 +60,7 @@
 
                                         <th class="text-center">
                                             <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
-                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
+                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
                                             <div id="content">
