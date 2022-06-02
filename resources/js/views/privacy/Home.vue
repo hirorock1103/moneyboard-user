@@ -2,7 +2,7 @@
 
     <div class="display-flex">
         <SideMenu v-if="isShow"/>
-        <main class="mypage__main">
+        <main class="mypage__main" :class="{noside_main:!isShow}">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
                     <h2 class="text-center  heading-primary">プライバシーポリシー</h2>
@@ -112,4 +112,3 @@ export default {
 @import 'resources/sass/vendors/_media.scss';
 @import 'resources/sass/pages/_mypage.scss';
 </style>
-
