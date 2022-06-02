@@ -34,9 +34,10 @@
                         <span class="[ icon  solid ] fa-building  padding-right--12  text-accent"></span>
                         データ登録している企業情報一覧
                     </h4>
-                    <div v-if="blur_flg === 2">
-                        <div class="padding-left--48 margin-bottom--24" v-if="sort_key"> 【並べ替え】　{{ sort_index[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
-                        <div class="padding-left--48 margin-bottom--24" v-else> 【並べ替え】　指定なし</div>
+                    <div v-if="blur_flg === 2" class="margin-bottom--24">
+                        <div class="padding-left--48" v-if="sort_key"> 【並べ替え】　{{ sort_index[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
+                        <div class="padding-left--48" v-else> 【並べ替え】　指定なし</div>
+                        <span class="padding-left--48" style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。</small></span>
                     </div>
                     <article class="">
                         <div class="[ margin-left-medium--48  margin-left-large--48 ] [ margin-right-medium--48  margin-right-large--48 ] bg-white">
