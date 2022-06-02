@@ -45,7 +45,7 @@
                             <div v-if="sort_key"> 【並べ替え】　{{ sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ sort_asc ? '昇順' : '降順'}}</div>
                             <div v-else> 【並べ替え】　指定なし</div>
 
-                            <div v-if="items.length">
+                            <div v-if="pagenation.total > 10">
                                 <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
                                 <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(1)">最初</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>

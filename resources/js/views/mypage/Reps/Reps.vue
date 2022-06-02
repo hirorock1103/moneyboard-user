@@ -20,7 +20,7 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <div v-if="items.length">
+                            <div v-if="pagenation.total > 10">
                                 <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
                                 <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>
