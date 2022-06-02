@@ -1,7 +1,7 @@
 <template>
 
     <div class="display-flex">
-        <SideMenu/>
+        <SideMenu v-if="isShow"/>
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
@@ -94,6 +94,15 @@ import SideMenu from '../../components/SideMenuComponent.vue';
 export default {
     components: {
         SideMenu
+    },
+    data() {
+        return {
+            isShow: false
+        }
+    },
+    created() {
+        // trueにしたりfalseにしたり
+        this.isShow = localStorage.getItem('authToken')
     }
 }
 </script>
