@@ -400,14 +400,14 @@ const routes = [
     path: "/privacy",
     component: Privacy,
     name: "privacy",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
   // 利用規約
   {
     path: "/terms",
     component: Terms,
     name: "terms",
-    beforeEnter: auth,
+    // beforeEnter: auth,
   },
   // システムエラーページ
   {
