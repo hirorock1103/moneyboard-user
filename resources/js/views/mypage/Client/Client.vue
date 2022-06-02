@@ -44,6 +44,7 @@
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <div v-if="sort_key"> 【並べ替え】　{{ sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ sort_asc ? '昇順' : '降順'}}</div>
                             <div v-else> 【並べ替え】　指定なし</div>
+                            <span style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。</small></span>
 
                             <div v-if="items.length">
                                 <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
