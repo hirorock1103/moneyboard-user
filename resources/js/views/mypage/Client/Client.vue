@@ -1,5 +1,13 @@
 <template>
     <div class="display-flex">
+
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -123,10 +131,13 @@
 import axios from '../../../src/plugins/axios.js'
 import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
+        Loading
     },
     data() {
         return {
@@ -144,6 +155,8 @@ export default {
                 last_page: 0,
                 total: 0
             },
+            loadingStatus:true,
+
         };
     },
     created: function() {
@@ -152,6 +165,9 @@ export default {
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems(page) {
+
+            this.loadingStatus = true;
+
             this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
@@ -185,8 +201,13 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
         openModal: function(item){
             this.showContent = true
@@ -215,6 +236,9 @@ export default {
                 this.$router.push({name: 'mypage-client_edit'})
         },
         async clientSearch(page) {
+
+            this.loadingStatus = true;
+
             this.resetTemps();
 //            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
@@ -247,8 +271,13 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
         sortBy(key) {
             this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);

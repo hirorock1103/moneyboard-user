@@ -1,5 +1,13 @@
 <template>
     <div class="display-flex">
+
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -200,10 +208,13 @@
 import { mapState } from 'vuex';
 import axios from '../../../src/plugins/axios.js'
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
+        Loading
     },
     computed: {
         ...mapState({
@@ -217,6 +228,8 @@ export default {
             items: [],
             plans: [],
             nextPlans: [],
+            loadingStatus:true,
+
         };
     },
     created: function() {
@@ -229,6 +242,9 @@ export default {
     },
     methods: {
         async fetchItems() {
+
+            this.loadingStatus = true;
+
             let url = process.env.MIX_VUE_APP_API_URL + "com/plan/get";
             try {
                 const response = await axios.post(url);
@@ -253,11 +269,19 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
 
         async nextMonthPlans() {
+
+            this.loadingStatus = true;
+
             var company_code = this.$store.state.auth.company.company_code;
             let url = process.env.MIX_VUE_APP_API_URL + "com/change-contract-request/get";
             try {
@@ -275,8 +299,13 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
 
     }

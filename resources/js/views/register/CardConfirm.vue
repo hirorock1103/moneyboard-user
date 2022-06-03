@@ -6,6 +6,13 @@
 
             <div class="container">
 
+                <loading v-model:active="loadingStatus"
+                        :can-cancel="false"
+                        :is-full-page="false"
+                        :color="'#2FBCED'"
+                        :height="90"
+                        :width="100" />
+
                 <h2 class="text-center  heading-primary">登録内容のご確認</h2>
 
                 <form @submit.prevent="register">
@@ -98,11 +105,14 @@
 
 <script>
 import ProgressBar from '../../components/ProgressBarComponent.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     name: 'register-card-confirm',
     components: {
-        ProgressBar
+        ProgressBar,
+        Loading
     },
 
     data () {
@@ -112,6 +122,7 @@ export default {
                 confirmed: false,
             },
             stripe_msg:"",
+            loadingStatus:false,
         }
     },
     created: function() {
@@ -166,7 +177,7 @@ async GetCardInfo(){
 },
 
         async register() {
-
+            this.loadingStatus = true;
             // 企業情報レコード追加準備
             let url2 = process.env.MIX_VUE_APP_API_URL + "com/register";
             const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
@@ -195,13 +206,17 @@ async GetCardInfo(){
                         this.stripe_msg = response.data.message;
                     }
 
+                    this.loadingStatus = false;
                     setTimeout(() => {this.stripe_msg = false;}, 2000);
                 } else{
+
                     datas.stripe_id = response.data.id;
                     // // 企業情報レコード追加
                     let response2 = await axios.post(url2, datas);
                     if(response2.data.status=="NG"){
                         this.message = response2.data.message
+
+                        this.loadingStatus = false;
                         setTimeout(() => {this.message = false;}, 2000);
                     }
 
@@ -225,6 +240,9 @@ async GetCardInfo(){
                 console.log(e);
                 this.message = e
             }
+
+            this.loadingStatus = false;
+
         },
 
         goBack() {

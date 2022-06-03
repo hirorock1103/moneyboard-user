@@ -1,5 +1,13 @@
 <template>
     <div class="display-flex">
+
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -78,14 +86,19 @@
 import axios2 from '../../../src/plugins/axios2.js'
 import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
+        Loading
     },
     data() {
         return {
-            message: ""
+            message: "",
+            loadingStatus:true,
         };
     },
     computed: {
@@ -103,6 +116,8 @@ export default {
         ...mapActions('auth', ['updateCompany']),
 
         async GetCardInfo(){
+
+            this.loadingStatus = true;
 
             let stripe_id = this.getCompany.stripe_id;
             const headers = {
@@ -134,6 +149,8 @@ export default {
 
                     if(response.status!="200" || card_id == null){
                         this.message = response.data.message
+
+                        this.loadingStatus = false;
                         setTimeout(() => {this.message = false;}, 2000);
                     } else{
                         let valid_month = response.data.exp_month;
@@ -150,6 +167,8 @@ export default {
                 console.log(e);
                 this.message = e
             }
+
+            this.loadingStatus = false;
 
 
         },

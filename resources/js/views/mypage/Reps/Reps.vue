@@ -1,5 +1,13 @@
 <template>
     <div class="display-flex">
+
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -110,10 +118,14 @@ import axios from '../../../src/plugins/axios.js'
 import dayjs from 'dayjs'
 import { mapActions } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 
 export default {
     components: {
-        SideMenu
+        SideMenu,
+        Loading
     },
     data() {
         return {
@@ -129,7 +141,7 @@ export default {
                 last_page: 0,
                 total: 0
             },
-
+            loadingStatus:true,
         };
     },
     created: function() {
@@ -139,6 +151,9 @@ export default {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems(page) {
+
+            this.loadingStatus = true;
+
             var user = this.$store.state.auth.user;
 
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code + "&page=" + page;
@@ -175,8 +190,12 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e;
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
         openModal: function(item){
             this.showContent = true;

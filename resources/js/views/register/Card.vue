@@ -2,6 +2,14 @@
     <main>
         <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
             <div class="container">
+
+                <loading v-model:active="loadingStatus"
+                        :can-cancel="false"
+                        :is-full-page="false"
+                        :color="'#2FBCED'"
+                        :height="90"
+                        :width="100" />
+
                 <h2 class="text-center  heading-primary">クレジットカードの登録</h2>
                 <form @submit.prevent="createToken">
                     <ProgressBar :current-step="currentStep" />
@@ -89,11 +97,15 @@ import { required, minLength, numeric, maxValue, maxLength, helpers } from '@vue
 import containsAlphaSpace from '../../customValidators/containsAlphaSpace';
 import ProgressBar from '../../components/ProgressBarComponent.vue';
 import { mapActions } from 'vuex';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
+
 
 export default {
     name: 'register-card',
     components: {
-        ProgressBar
+        ProgressBar,
+        Loading
     },
 
     setup() {
@@ -110,7 +122,7 @@ export default {
             cardNumber: null,
             cardExpiry: null,
             cardCvc: null,
-
+            loadingStatus:false,
         }
     },
 
@@ -215,21 +227,25 @@ export default {
         },
 
         async createToken () {
-           const { token, error } = await this.stripe.createToken(this.cardNumber);
-           if (error) {
-             // handle error here
-             document.getElementById('card-error').innerHTML = error.message;
-             return;
-           }
 
-           //作成したトークンを保存
-           //CardField-numberの中のinputの値
-           let test = document.getElementsByClassName('CardField-number');
+            this.loadingStatus = true;
 
-           this.getCard.stripe_token = token.id;
+            const { token, error } = await this.stripe.createToken(this.cardNumber);
+            if (error) {
+                this.loadingStatus = false;
+                // handle error here
+                document.getElementById('card-error').innerHTML = error.message;
+                return;
+            }
 
-           //クレカ確認画面に遷移
-           this.$router.push({name: 'register-card-confirm'})
+            //作成したトークンを保存
+            //CardField-numberの中のinputの値
+            let test = document.getElementsByClassName('CardField-number');
+
+            this.getCard.stripe_token = token.id;
+
+            //クレカ確認画面に遷移
+            this.$router.push({name: 'register-card-confirm'})
 
          },
 
