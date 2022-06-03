@@ -140,6 +140,7 @@ export default {
         },
         clearError () {
             this.$store.commit('auth/setLoginErrorMessages', null)
+            localStorage.removeItem('authToken')
         }
     },
     created () {
