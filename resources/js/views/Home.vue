@@ -383,6 +383,21 @@ export default {
     name: 'home',
     components: {
         Carousel
+    },
+    computed: {
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
+    },
+    methods: {
+        clearAuthToken () {
+            localStorage.removeItem('authToken')
+        }
+    },
+    created () {
+        if( localStorage.getItem('authToken') && this.getCompany === null ){
+            this.clearAuthToken()
+        }
     }
 }
 

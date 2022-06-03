@@ -32,10 +32,26 @@ export default {
             isShow: false,
         }
     },
+    computed: {
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
+    },
+    methods: {
+        clearAuthToken () {
+            localStorage.removeItem('authToken')
+        }
+    },
     created() {
+        if( localStorage.getItem('authToken') && this.getCompany === null ){
+            this.clearAuthToken()
+        }
+
         // trueにしたりfalseにしたり
         this.isShow = localStorage.getItem('authToken')
+
     }
+
 }
 </script>
 
