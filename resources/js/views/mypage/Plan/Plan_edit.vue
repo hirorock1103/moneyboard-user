@@ -398,7 +398,7 @@ export default {
                     this.plans.cost_total = this.nextPlans.price;
                     this.plans.cost_plan = this.nextPlans.plan_price;
                     this.plans.data_plan = this.nextPlans.license_count;
-                    this.plans.cost_add = this.nextPlans.add_unit_price;
+                    this.plans.cost_add = this.nextPlans.add_unit_price * this.nextPlans.add_license_count;
                 }else{ //ない場合
 
                     this.plans.plan_id = getContract.plan_id;
@@ -407,7 +407,7 @@ export default {
                     this.plans.cost_total = getContract.price;
                     this.plans.cost_plan = getContract.plan_price;
                     this.plans.data_plan = getContract.license_count;
-                    this.plans.cost_add = getContract.add_unit_price;
+                    this.plans.cost_add = getContract.add_unit_price * getContract.add_license_count;
                 }
 
             } catch (e){
