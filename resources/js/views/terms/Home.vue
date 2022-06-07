@@ -50,7 +50,11 @@ export default {
         // trueにしたりfalseにしたり
         this.isShow = localStorage.getItem('authToken')
 
-    }
+    },
+    mounted: function(){
+        document.title = "利用規約 | MoneyBoard"
+    },
+
 
 }
 </script>

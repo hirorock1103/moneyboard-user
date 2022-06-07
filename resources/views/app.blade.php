@@ -8,6 +8,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta name="description">
+
+    <link rel="icon" href="/images/favicon.ico" id="favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/header_logo.png">
+
+
     <title>{{ config('app.name', 'MoneyBoard') }}</title>
 
     <!-- Styles -->

@@ -349,6 +349,9 @@ export default {
     },
     created () {
         this.clearError()
-    }
+    },
+    mounted: function(){
+        document.title = "新規登録 | MoneyBoard"
+    },
 }
 </script>

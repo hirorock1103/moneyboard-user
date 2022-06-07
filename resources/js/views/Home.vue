@@ -398,7 +398,10 @@ export default {
         if( localStorage.getItem('authToken') && this.getCompany === null ){
             this.clearAuthToken()
         }
-    }
+    },
+    mounted: function(){
+        document.title = "MoneyBoard"
+    },
 }
 
 // ToDo:画像の差し替え（秘書の女性の画像変更）→依頼済み

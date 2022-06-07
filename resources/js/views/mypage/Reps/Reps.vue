@@ -147,6 +147,9 @@ export default {
     created: function() {
         this.fetchItems(1);
     },
+    mounted: function(){
+        document.title = "担当者一覧 | MoneyBoard"
+    },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),

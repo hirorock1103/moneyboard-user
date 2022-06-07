@@ -101,6 +101,9 @@ export default {
             loadingStatus:true,
         };
     },
+    mounted: function(){
+        document.title = "カード情報 | MoneyBoard"
+    },
     computed: {
         getCompany() {
             return this.$store.getters['auth/company']

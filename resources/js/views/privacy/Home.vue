@@ -118,7 +118,11 @@ export default {
         // trueにしたりfalseにしたり
         this.isShow = localStorage.getItem('authToken')
 
-    }
+    },
+
+    mounted: function(){
+        document.title = "プライバシポリシー | MoneyBoard"
+    },
 }
 </script>
 

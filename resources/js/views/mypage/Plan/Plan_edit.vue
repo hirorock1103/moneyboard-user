@@ -102,14 +102,22 @@
                                                 <td class="padding-bottom--16 nowrap" style="display: flex;">
                                                     <input
                                                         type="number"
-                                                        max=10000
+                                                        max=9999
                                                         min=0
                                                         class="form-input"
                                                         v-model="plans.additional_licenses"
-                                                        @input="changeData(plans.additional_licenses)">
+                                                        @input="changeData(plans.additional_licenses)"
+                                                        v-bind:class="[ v$.plans.additional_licenses.$error ? 'form-error' : null ]">
                                                         <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
                                                 </td>
-                                                <td></td>
+
+                                                <td
+                                                    class="form-text  text-danger  text-center"
+                                                    v-if="v$.plans.additional_licenses.$error">
+                                                    {{ v$.plans.additional_licenses.$errors[0].$message }}
+                                                </td>
+
+
                                             </tr>
 
                                         </tbody>
@@ -273,15 +281,34 @@
 </template>
 
 <script>
+import useVuelidate from '@vuelidate/core';
+import { required, maxLength, helpers } from '@vuelidate/validators';
 import { mapState, mapActions } from 'vuex';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 
 export default {
+    setup() {
+        return {
+            v$: useVuelidate()
+        };
+    },
     data: function() {
         return {
             nextPlans: [],
             postItem: "",
+        }
+    },
+    validations() {
+        return {
+            plans: {
+                additional_licenses: {
+                    maxLength: helpers.withMessage(
+                        '9999件以内で入力してください',
+                        maxLength(4)
+                    ),
+                },
+            }
         }
     },
     mounted: function() {
@@ -312,8 +339,13 @@ export default {
         changeData() {
             this.plans.cost_add = this.plans.additional_licenses * 1100;
             this.plans.cost_total = this.plans.cost_plan + this.plans.cost_add;
+
+            this.v$.plans.additional_licenses.$touch();
+
         },
         openModal: function(item){
+            this.v$.$touch();
+            if (this.v$.$error) return;
             this.showContent = true;
             this.postItem = item;
         },
@@ -322,7 +354,8 @@ export default {
             this.$router.push({name: 'mypage-plan'})//ダイアログ終了後はプラン詳細へ
         },
         async Store(){
-
+            this.v$.$touch();
+            if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/contract/update/do";
 
             try {

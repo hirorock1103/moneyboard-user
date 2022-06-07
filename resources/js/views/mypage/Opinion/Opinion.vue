@@ -170,6 +170,9 @@ export default {
             },
         })
     },
+    mounted: function(){
+        document.title = "ご意見・ご要望 | MoneyBoard"
+    },
     methods: {
         async Store(){
             this.v$.$touch();

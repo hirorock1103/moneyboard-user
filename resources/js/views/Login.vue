@@ -145,6 +145,9 @@ export default {
     },
     created () {
         this.clearError()
-    }
+    },
+    mounted: function(){
+        document.title = "ログイン | MoneyBoard"
+    },
 }
 </script>

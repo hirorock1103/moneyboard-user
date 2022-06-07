@@ -37,7 +37,7 @@
                 <div class="menu-button__bar bar2"></div>
                 <div class="menu-button__bar bar3"></div>
             </nav>
-            <Menu v-bind:class="{ 'menu-visible': MenuBtn }" />
+            <Menu @MenuClose="MenuClose(status)" v-bind:class="{ 'menu-visible': MenuBtn }" />
         </div>
     </header>
 </template>
@@ -72,7 +72,11 @@ export default {
                     this.$router.push('/login')
                 // }
             });
+        },
+        MenuClose (status) {//子から受け取る
+            this.MenuBtn = status
         }
+
     }
 }
 </script>

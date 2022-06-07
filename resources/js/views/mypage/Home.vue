@@ -104,6 +104,9 @@ export default {
         this.fetchItems();
         this.updateState();
     },
+    mounted: function(){
+        document.title = "マイページ | MoneyBoard"
+    },
     computed: {
         ...mapState({
             company: function (state) {

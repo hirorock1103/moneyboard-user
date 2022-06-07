@@ -155,6 +155,11 @@ export default {
 
     created () {
         this.clearError()
-    }
+    },
+
+    mounted: function(){
+        document.title = "パスワードの再発行 | MoneyBoard"
+    },
+
 }
 </script>

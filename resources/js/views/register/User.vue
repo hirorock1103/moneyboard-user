@@ -852,5 +852,9 @@ export default {
         this.setPlan();
         this.setMotivation();
     },
+
+    mounted: function(){
+        document.title = "新規登録 | MoneyBoard"
+    },
 }
 </script>

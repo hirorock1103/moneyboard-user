@@ -128,6 +128,9 @@ export default {
             message: ""
         };
     },
+    mounted: function(){
+        document.title = "パスワード変更 | MoneyBoard"
+    },
     validations() {
         return {
             item:{

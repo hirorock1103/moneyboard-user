@@ -1,5 +1,13 @@
 <template>
     <div class="display-flex">
+
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -83,11 +91,14 @@ import useVuelidate from '@vuelidate/core';
 import { required, minLength, maxLength, sameAs, helpers, email } from '@vuelidate/validators';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
     components: {
         SideMenu,
-        name: "validateItem"
+        name: "validateItem",
+        Loading,
     },
     setup() {
         return { v$: useVuelidate() };
@@ -95,8 +106,12 @@ export default {
     data() {
         return {
             item: {},
-            message: ""
+            message: "",
+            loadingStatus:false,
         };
+    },
+    mounted: function(){
+        document.title = "メールアドレス変更 | MoneyBoard"
     },
     validations() {
         return {
@@ -136,6 +151,9 @@ export default {
         async validateItem(){
             this.v$.$touch();
             if (this.v$.$error) return;
+
+            this.loadingStatus = true;
+
             let url = process.env.MIX_VUE_APP_API_URL + "com/change/mail/verify";
             try {
                 var company_code = this.$store.state.auth.company.company_code;
@@ -144,13 +162,16 @@ export default {
                 if(response.data.status=="NG"){
                     console.log(response);
                     this.message = response.data.message
+                    this.loadingStatus = false;
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     this.$router.push({name: 'mypage-email_confirm'})
                 }
+                this.loadingStatus = false;
             } catch (e){
                 console.log(e);
                 this.message = e
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 20000);
             }
         }

@@ -118,7 +118,9 @@ export default {
     },
     mounted: function(){
         this.checkStatus();
+        document.title = "登録情報 | MoneyBoard"
     },
+
     computed: {
         getCompany() {
             return this.$store.getters['auth/company']

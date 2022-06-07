@@ -256,6 +256,9 @@ export default {
     created: function() {
         this.fetchItems(1);
     },
+    mounted: function(){
+        document.title = "プレミアムプラン | MoneyBoard"
+    },
     methods: {
         openModal: function(){
             this.showContent = true

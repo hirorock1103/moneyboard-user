@@ -162,6 +162,9 @@ export default {
     created: function() {
         this.fetchItems(1);
     },
+    mounted: function(){
+        document.title = "登録企業一覧 | MoneyBoard"
+    },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems(page) {

@@ -239,7 +239,9 @@ export default {
     mounted: function() {
         this.fetchItems();
         this.nextMonthPlans();
+        document.title = "ご利用プラン | MoneyBoard"
     },
+
     methods: {
         async fetchItems() {
 

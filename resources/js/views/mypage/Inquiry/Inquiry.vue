@@ -210,6 +210,11 @@ export default {
             },
         })
     },
+
+    mounted: function(){
+        document.title = "お問い合わせ | MoneyBoard"
+    },
+
     methods: {
         async Store(){
             this.v$.$touch();
