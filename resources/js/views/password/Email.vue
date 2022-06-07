@@ -6,6 +6,13 @@
 
             <div class="container  text-center">
 
+                <loading v-model:active="loadingStatus"
+                        :can-cancel="false"
+                        :is-full-page="false"
+                        :color="'#2FBCED'"
+                        :height="90"
+                        :width="100" />
+
                 <h2 class="text-center  heading-primary">パスワードの再発行</h2>
 
                 <p class="text-center  margin-bottom--48">登録されているメールアドレスを入力して下さい</p>
@@ -96,6 +103,7 @@ export default {
                 password: ''
             },
             email_address: '',
+            loadingStatus:false,
         }
     },
 
@@ -129,6 +137,8 @@ export default {
             this.v$.$touch();
             if (this.v$.$error) return;
 
+            this.loadingStatus = true;
+
             this.api_data.email_address = this.email_address;
             this.sendResetLinkRequest(this.api_data).then(() => {
                 if (this.apiStatus) {
@@ -146,6 +156,9 @@ export default {
                     )
                 }
             });
+
+            this.loadingStatus = false;
+
         },
 
         clearError () {
