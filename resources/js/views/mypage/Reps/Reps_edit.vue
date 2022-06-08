@@ -128,6 +128,9 @@ export default {
             message: ""
         };
     },
+    mounted: function(){
+        document.title = "担当者情報の変更 | MoneyBoard"
+    },
     validations() {
         return {
             getTemps:{

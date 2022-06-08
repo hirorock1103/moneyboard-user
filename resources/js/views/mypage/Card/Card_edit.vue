@@ -121,6 +121,9 @@ export default {
     },
 
     async mounted() {
+
+        document.title = "カード情報の変更 | MoneyBoard"
+
         this.stripe = window.Stripe(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY)
         const elements = this.stripe.elements()
         const elementStyles = {

@@ -186,6 +186,7 @@ export default {
         },
     },
     mounted: function(){
+        document.title = "担当者情報の登録 | MoneyBoard"
         this.item.user_name = (this.getTemps || {}).user_name;
         this.item.password = (this.getTemps || {}).password;
         this.item.password_confirm = (this.getTemps || {}).password_confirm;

@@ -314,6 +314,7 @@ export default {
         }
     },
     mounted: function() {
+        document.title = "プラン変更/追加企業数の増減 | MoneyBoard"
         this.nextMonthPlans();
     },
     components: {

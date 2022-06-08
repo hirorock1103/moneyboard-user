@@ -179,6 +179,9 @@ export default {
             message: ""
         };
     },
+    mounted: function(){
+        document.title = "登録情報の変更 | MoneyBoard"
+    },
     computed: {
         getCompany() {
             return this.$store.getters['auth/company']
@@ -303,7 +306,7 @@ export default {
                     this.$store.commit('auth/setCompanyAddress', address)
                 }
             })
-        },        
+        },
     }
 }
 

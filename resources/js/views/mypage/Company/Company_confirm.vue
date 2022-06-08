@@ -102,7 +102,9 @@ export default {
             message: ""
         };
     },
-
+    mounted: function(){
+        document.title = "登録情報の変更確認 | MoneyBoard"
+    },
     computed: {
         getCompany() {
             return this.$store.getters['auth/company']

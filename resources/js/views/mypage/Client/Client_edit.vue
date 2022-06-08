@@ -76,6 +76,9 @@ export default {
     created: function() {
         this.fetchItems();
     },
+    mounted: function(){
+        document.title = "登録企業の担当者変更 | MoneyBoard"
+    },
     computed: {
         getTemps() {
             return this.$store.getters['auth/temps']
@@ -103,13 +106,13 @@ export default {
             })
             // ToDo:ひとまず選択されてなければメッセージ表示
             var valDatas = {
-                id: this.getTemps.id, 
-                user_id: this.getTemps.user_id, 
+                id: this.getTemps.id,
+                user_id: this.getTemps.user_id,
                 client_code:this.getTemps.client_code,
-                client_name: this.getTemps.client_name, 
-                user_code: result[0].user_code, 
-                user_name:result[0].user_name, 
-                company_code: this.$store.state.auth.user.company_code, 
+                client_name: this.getTemps.client_name,
+                user_code: result[0].user_code,
+                user_name:result[0].user_name,
+                company_code: this.$store.state.auth.user.company_code,
                 }
             try {
                 const response = await axios.post(url, valDatas);

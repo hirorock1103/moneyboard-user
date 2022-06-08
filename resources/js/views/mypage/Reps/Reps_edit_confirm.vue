@@ -73,6 +73,9 @@ export default {
             message: ""
         };
     },
+    mounted: function(){
+        document.title = "担当者情報の変更確認 | MoneyBoard"
+    },
     computed: {
         getTemps() {
             return this.$store.getters['auth/temps']

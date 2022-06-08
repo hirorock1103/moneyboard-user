@@ -109,6 +109,9 @@ export default {
     created: function() {
         this.GetCardInfo();
     },
+    mounted: function(){
+        document.title = "カード情報の変更確認 | MoneyBoard"
+    },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
 

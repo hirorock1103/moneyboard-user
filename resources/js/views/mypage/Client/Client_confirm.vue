@@ -71,6 +71,9 @@ export default {
             message: "",
         };
     },
+    mounted: function(){
+        document.title = "登録企業の担当者変更確認 | MoneyBoard"
+    },
     computed: {
         getTemps() {
             return this.$store.getters['auth/temps']
@@ -105,4 +108,3 @@ export default {
 @import 'resources/sass/vendors/_media.scss';
 @import 'resources/sass/pages/_mypage.scss';
 </style>
-
