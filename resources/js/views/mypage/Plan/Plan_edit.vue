@@ -104,10 +104,12 @@
                                                         type="number"
                                                         max=9999
                                                         min=0
+                                                        maxLength='4'
                                                         class="form-input"
                                                         v-model="plans.additional_licenses"
                                                         @input="changeData(plans.additional_licenses)"
-                                                        v-bind:class="[ v$.plans.additional_licenses.$error ? 'form-error' : null ]">
+                                                        v-bind:class="[ v$.plans.additional_licenses.$error ? 'form-error' : null ]"
+                                                        oninput="javascript:if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                                                         <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
                                                 </td>
 

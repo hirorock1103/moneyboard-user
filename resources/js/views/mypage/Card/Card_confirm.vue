@@ -166,34 +166,29 @@ export default {
                     }
 
                 } else{
-                    //カード削除
-                    let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
-                    let response = await axios2.delete(url, {headers: headers});
+                    //カード作成
+                    let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
+                    let params = new URLSearchParams();
+                    params.append('source', stripe_token);
+
+                    let response = await axios2.post(url, params, {headers: headers});
                     if(response.status!="200"){
 
-                        this.message = response.data.message
+                        console.log(response);
+                        if(typeof response.data.message === 'undefined'){
+                            this.message = "更新に失敗しました。申し訳ございませんが、別のクレジットカードを登録してください";
+                        }else{
+                            this.message = response.data.message;
+                        }
                         setTimeout(() => {this.message = false;}, 2000);
+
                     } else{
 
-                        //カード作成
-                        let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources";
-                        let params = new URLSearchParams();
-                        params.append('source', stripe_token);
+                        //カード削除
+                        let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id + "/sources/" + card_id;
+                        let response = await axios2.delete(url, {headers: headers});
 
-                        let response = await axios2.post(url, params, {headers: headers});
-
-                        if(response.status!="200"){
-
-                            console.log(response);
-                            if(typeof response.data.message === 'undefined'){
-                                this.message = "更新に失敗しました。申し訳ございませんが、別のクレジットカードを登録してください";
-                            }else{
-                                this.message = response.data.message;
-                            }
-
-                            setTimeout(() => {this.message = false;}, 2000);
-                        } else{
-
+                        if(1){ //カード削除は失敗しても作成でデフォルトが変わってるので、そのまま顧客名義の更新APIを呼ぶ
                             //顧客名義の更新
                             let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
                             let params = new URLSearchParams();
@@ -201,15 +196,14 @@ export default {
 
                             let response = await axios2.post(url, params, {headers: headers});
                             if(response.status!="200"){
-
                                 this.message = response.data.message
                                 setTimeout(() => {this.message = false;}, 2000);
                             } else{
-
                                 this.resetTemps();
                                 this.$router.push({name: 'mypage-card'})
                             }
                         }
+
                     }
                 }
 
