@@ -54,7 +54,7 @@
                             <div v-else> 【並べ替え】　指定なし</div>
                             <span style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。</small></span>
 
-                            <div v-if="pagenation.total > 10">
+                            <div v-if="pagenation.total > pagenation.per_page">
                                 <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
                                 <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(1)">最初</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>
@@ -79,12 +79,13 @@
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.client_name }}</td>
-                                        <td v-if="item.user_del === null">{{ item.user_name }}</td>
-                                        <td v-else>{{ item.user_name }}<span style="color:red">(削除)</span></td>
+                                        <td v-if="item.user_del === null" v-bind:class="{'alert-danger': item.user_name === null}">{{ item.user_name !== null ? item.user_name : "除外中" }}</td>
+                                        <td v-else>{{ item.user_name }}<span class="alert-danger">(削除)</span></td>
 
                                         <th class="text-center">
                                             <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
-                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
+                                            <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
+                                            <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
                                             <div id="content">
@@ -153,7 +154,8 @@ export default {
                 next_page: 0,
                 current_page: 0,
                 last_page: 0,
-                total: 0
+                total: 0,
+                per_page: 0
             },
             loadingStatus:true,
 
@@ -176,12 +178,14 @@ export default {
             try {
 //                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id});
+
                 console.log(response);
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                     this.user_list = response.data.data.user_list;
 
                     //ページネーション情報の設定
+                    this.pagenation.per_page = response.data.data.data_list.per_page;
                     this.pagenation.current_page = response.data.data.data_list.current_page;
                     this.pagenation.last_page = response.data.data.data_list.last_page;
                     this.pagenation.total = response.data.data.data_list.total;
@@ -206,7 +210,7 @@ export default {
                 this.message = e
 
                 this.loadingStatus = false;
-                setTimeout(() => {this.message = false;}, 2000);
+//                setTimeout(() => {this.message = false;}, 2000);
             }
 
             this.loadingStatus = false;
@@ -253,6 +257,7 @@ export default {
                     this.items = response.data.data.data_list.data;
 
                     //ページネーション情報の設定
+                    this.pagenation.per_page = response.data.data.data_list.per_page;
                     this.pagenation.current_page = response.data.data.data_list.current_page;
                     this.pagenation.last_page = response.data.data.data_list.last_page;
                     this.pagenation.total = response.data.data.data_list.total;
@@ -276,7 +281,7 @@ export default {
                 this.message = e
 
                 this.loadingStatus = false;
-                setTimeout(() => {this.message = false;}, 2000);
+//                setTimeout(() => {this.message = false;}, 2000);
             }
 
             this.loadingStatus = false;

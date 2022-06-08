@@ -28,7 +28,7 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <div v-if="pagenation.total > 10">
+                            <div v-if="pagenation.total > pagenation.per_page">
                                 <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
                                 <button v-if="pagenation.current_page!==1" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(1)">最初</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]">最初</button>
@@ -139,7 +139,8 @@ export default {
                 next_page: 0,
                 current_page: 0,
                 last_page: 0,
-                total: 0
+                total: 0,
+                per_page: 0,
             },
             loadingStatus:true,
         };
@@ -172,6 +173,7 @@ export default {
                     this.resetTemps();
 
                     //ページネーション情報の設定
+                    this.pagenation.per_page = response.data.data.data_list.per_page;
                     this.pagenation.current_page = response.data.data.data_list.current_page;
                     this.pagenation.last_page = response.data.data.data_list.last_page;
                     this.pagenation.total = response.data.data.data_list.total;
