@@ -179,7 +179,7 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
 //                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
-                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1});
 
                 console.log(response);
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
