@@ -83,14 +83,16 @@
                                         <td v-else>{{ item.user_name }}<span class="alert-danger">(削除)</span></td>
 
                                         <th class="text-center">
-                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
+                                            <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
+                                            <button v-else class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">復旧</button>
                                             <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
                                             <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外</button>
                                         </th>
                                         <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
                                             <div id="content">
                                                 <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                                                    <p>企業情報を削除します。本当によろしいですか？</p>
+                                                    <p>使用しているライセンスから除外します。本当によろしいですか？</p>
+                                                    <p>※登録企業に紐づいている担当者も除外されます。</p>
                                                 </div>
                                                 <table class="table table--bordered">
                                                     <thead>
@@ -108,7 +110,7 @@
                                                 </table>
                                                 <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                                     <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
-                                                    <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">削除</button>
+                                                    <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行</button>
                                                 </div>
                                             </div>
                                         </div>
