@@ -152,14 +152,14 @@ export default {
                         title: 'パスワード変更',
                         active: false
                     },
-                    {
-                        id: 9,
-                        url: '/mypage/opinion',
-                        icon: 'fa-comments',
-                        title: 'ご意見・ご要望',
-                        subtitle: '',
-                        active: false
-                    },
+                    // {
+                    //     id: 9,
+                    //     url: '/mypage/opinion',
+                    //     icon: 'fa-comments',
+                    //     title: 'ご意見・ご要望',
+                    //     subtitle: '',
+                    //     active: false
+                    // },
                     {
                         id: 10,
                         url: '/mypage/inquiry',

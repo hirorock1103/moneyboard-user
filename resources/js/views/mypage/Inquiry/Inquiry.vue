@@ -177,7 +177,7 @@ export default {
                 // console.log(response);
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
-                    this.items = response.data.data.data_list;
+                    this.items = response.data.data.data_list.data;
 
                 }else{
                     this.$router.push({name: 'logoff'})

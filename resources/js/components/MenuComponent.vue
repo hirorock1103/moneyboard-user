@@ -111,13 +111,15 @@
                 </ul>
 
                 <ul v-if="company" class="menu__list--bottom">
-
+                    <!--
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/opinion">
                             <span class="menu__icon  [ icon  solid  fa-comments ]"></span>
                             <span>ご意見・ご要望</span>
                         </router-link>
                     </li>
+                    -->
+
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/inquiry">
                             <span class="menu__icon  [ icon  solid  fa-question-circle ]"></span>
