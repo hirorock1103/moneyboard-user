@@ -61,6 +61,9 @@ import Opinion from "./views/mypage/Opinion/Opinion.vue";
 import Opinion_done from "./views/mypage/Opinion/Opinion_done.vue";
 // お問い合わせ
 import Inquiry from "./views/mypage/Inquiry/Inquiry.vue";
+import Inquiry_new from "./views/mypage/Inquiry/Inquiry_new.vue";
+import Inquiry_show from "./views/mypage/Inquiry/Inquiry_show.vue";
+import Inquiry_add from "./views/mypage/Inquiry/Inquiry_add.vue";
 import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
 //
 import SystemError from "./views/errors/System.vue";
@@ -375,13 +378,34 @@ const routes = [
     name: "mypage-opinion_done",
     beforeEnter: auth,
   },
-  // お問い合わせ
+  // お問い合わせ 一覧
   {
     path: "/mypage/inquiry",
     component: Inquiry,
     name: "mypage-inquiry",
     beforeEnter: auth,
   },
+    // 新規お問い合わせ
+  {
+    path: "/mypage/inquiry_new",
+    component: Inquiry_new,
+    name: "mypage-inquiry_new",
+    beforeEnter: auth,
+  },
+  // お問い合わせ 詳細
+  {
+    path: "/mypage/inquiry_show/:id",
+    component: Inquiry_show,
+    name: "mypage-inquiry_show",
+    beforeEnter: auth,
+  },
+    // お問い合わせ 返信
+  {
+    path: "/mypage/inquiry_add",
+    component: Inquiry_add,
+    name: "mypage-inquiry_add",
+    beforeEnter: auth,
+  },  
   {
     path: "/mypage/inquiry_done",
     component: Inquiry_done,
