@@ -8,14 +8,11 @@
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            お問い合わせ/一覧
+                            お問い合わせ/詳細（{{ type[topic.type] }}）
                         </h2>
                     </div>
-                    <div class="text-center [ padding--24 ]">
-                        <router-link to="/mypage/inquiry_new"  class="[ btn  btn--accent ]">新規お問い合わせ</router-link>
-                    </div>
                     <!--
-                    <form v-on:submit.prevent="clientSearch()">
+                    <form v-on:submit.prevent="clientSearch(1)">
                         <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
                             <div class="padding--16 bg-white">
                                 <div class="[ padding--16 ]  bg-white  display-flex">
@@ -43,33 +40,27 @@
                         </article>
                     </form>
                     -->
+
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
                     </div>
+                
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>お問い合わせ種別</th>
-                                        <th>最新メッセージ本文</th>
-                                        <th>最終送信者</th>
-                                        <th>最新送信日時</th>
-                                        <th>状態</th>
-                                        <th>詳細</th>
+                                        <th>送信者</th>
+                                        <th style="width:700px;">本文</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
                                         <td>{{ item.id }}</td>
-                                        <td>{{ type[item.type] }}</td>
-                                        <td v-if="item.body.length > 6">{{ item.body.substr(0, 6) }}...</td>
-                                        <td v-else>{{ item.body }}</td>                                        
-                                        <td>{{ item.company_name }}</td>
-                                        <td>{{ item.delivery_time }}</td>
-                                        <td>{{ status[item.status] }}</td>
-                                        <td><router-link :to="{name: 'mypage-inquiry_show', params: { id: item.id }}" class="[ btn  btn--small  btn--outline ] margin-right--16 margin-left--16">詳細</router-link></td>
+                                        <td v-if="item.attribute === 0">お客様</td>
+                                        <td v-else>運営</td>
+                                        <td>{{ item.body }}</td>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
@@ -80,41 +71,10 @@
                             </table>
                         </div>
                     </article>
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                        <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <h4>
-                                <span class="[ icon  solid ] fa-phone-alt  padding-right--12  text-accent"></span>
-                                電話での問い合わせ
-                            </h4>
-                            <hr>
-                            <div class="table-scrollable  padding-right--8">
-                                <table class="table margin-bottom--8">
-                                    <tbody>
-                                        <tr>
-                                            <th class="[ display-table-row  display-table-cell-large ]">
-                                                問い合わせ窓口TEL　06-6314-6685
-                                            </th>
-                                            <td class="[ display-table-row  display-table-cell-large ]"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td class="[ display-table-row  display-table-cell-large ]">
-                                                運営元　　株式会社PPFパートナーズ
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="[ display-table-row  display-table-cell-large ]">
-                                                住　所　　大阪府大阪市北区天神橋1丁目7番17号　イケガミノースハウス4階
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </article>                    
+                    <div class="text-center [ padding--24 ]">
+                        <router-link to="/mypage/inquiry"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>                    
+                        <router-link :to="{name: 'mypage-inquiry_add', params: { id: topic_id, type: topic.type}}"  class="[ btn  btn--accent ]">返信</router-link>
+                    </div>                        
                 </div>
             </section>
         </main>
@@ -137,6 +97,7 @@ export default {
         return {
             items: [],
             message: null,
+            topic: [],
             type: {
                 0: "料金について",
                 1: "プランについて",
@@ -144,41 +105,35 @@ export default {
                 3: "ご意見・ご要望",
                 4: "その他",
             },
-            status: {
-                0: "対応中",
-                1: "完了",
-            },            
+            topic_id: "",                     
         };
     },
     created: function() {
         this.fetchItems(1);
     },
     mounted: function(){
-        document.title = "お問い合わせ/一覧 | MoneyBoard"
+        document.title = "お問い合わせ/詳細 | MoneyBoard"
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems(page) {
 
-
             this.resetTemps();
-            let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/index";
-                // console.log('this.$store.state.auth.user.id');
-                // console.log(this.$store.state.auth.user.id);
+
+            let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/show";
+            this.topic_id = this.$route.params.id;
+                // console.log('this.topic_id');
+                // console.log(this.topic_id);
             try {
                 const response = await axios.get(url, {
                     params: {
-                        user_id: this.$store.state.auth.user.id,
-                        site: "user",
+                        id: this.topic_id,
                     }
                 });
 
-                // console.log('response');
-                // console.log(response);
-
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list;
-
+                    this.topic = response.data.data.topic;
                 }else{
                     this.$router.push({name: 'logoff'})
                 }
