@@ -254,7 +254,15 @@ export default {
 
         };
     },
+    computed: {
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
+    },
     created: function() {
+        if(this.getCompany.use_status === 98 || this.getCompany.use_status === 99){
+            this.$router.push({name: 'mypage-home'})
+        }
         this.fetchItems(1);
     },
     mounted: function(){

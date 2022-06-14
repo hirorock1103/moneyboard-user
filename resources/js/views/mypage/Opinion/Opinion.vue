@@ -170,6 +170,11 @@ export default {
             },
         })
     },
+    created: function() {
+        if(this.company.use_status === 98 || this.company.use_status === 99){
+            this.$router.push({name: 'mypage-home'})
+        }
+    },
     mounted: function(){
         document.title = "ご意見・ご要望 | MoneyBoard"
     },

@@ -4,7 +4,38 @@
         <nav class="nav  menu">
             <div class="menu__inner  text-white">
 
-                <ul
+                <ul v-if="user.use_status === 98 || user.use_status === 99"
+                    v-for="(menu, index_noUse) in menuItems_noUse"
+                    :class="{ 'menu__list--top':index_noUse === 'topMenu','menu__list--bottom':index_noUse === 'bottomMenu' }"
+                    :key="index_noUse">
+                    <li
+                        v-for="item in menu"
+                        :class="{ 'menu__link--active': item.active == true }"
+                        class="menu__link"
+                        :key="item.id">
+
+                        <router-link
+                            v-if="item.url !== ''"
+                            :to="item.url"
+                            exact-active-class="menu__link--active">
+                            <span class="menu__icon  icon  solid" :class="[item.icon]"></span>
+
+                            <span v-if="item.subtitle !== ''">
+                                {{ item.title }}<br>
+                                <small>{{ item.subtitle }}</small>
+                            </span>
+
+                            <span v-else>{{ item.title }}</span>
+                        </router-link>
+
+                        <button v-else @click="logout" class="btn">
+                            <span class="menu__icon  icon  solid" :class="[item.icon]"></span>
+                            <span>{{ item.title }}</span>
+                        </button>
+                    </li>
+
+                </ul>
+                <ul v-else
                     v-for="(menu, index) in menuItems"
                     :class="{ 'menu__list--top':index === 'topMenu','menu__list--bottom':index === 'bottomMenu' }"
                     :key="index">
@@ -150,6 +181,48 @@ export default {
 
                 ]
             },
+            menuItems_noUse: {
+                topMenu: [
+                    {
+                        id: 1,
+                        url: '/mypage',
+                        icon: 'fa-home',
+                        title: 'マイページTOP',
+                        subtitle: '',
+                        active: false
+                    },
+                    {
+                        id: 12,
+                        url: '/mypage/card',
+                        icon: 'fa-credit-card',
+                        title: 'カード情報',
+                        subtitle: '',
+                        active: false
+                    },
+                    {
+                        id: 10,
+                        url: '/mypage/inquiry',
+                        icon: 'fa-question-circle',
+                        title: 'お問い合わせ',
+                        subtitle: '',
+                        active: false
+                    },
+                    {
+                        id: 11,
+                        url: '/logoff',
+                        icon: 'fa-sign-out-alt',
+                        title: 'ログアウト',
+                        subtitle: '',
+                        active: false
+                    }
+                ],
+                bottomMenu: [
+
+                ]
+            },
+
+
+
             activeButton: false,
         };
     },
