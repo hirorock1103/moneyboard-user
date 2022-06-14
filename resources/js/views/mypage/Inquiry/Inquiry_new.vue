@@ -85,26 +85,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
-                                                    件名
-                                                </th>
-                                                <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <input
-                                                    type="text"
-                                                    name="title"
-                                                    class="form-input  margin-top--8"
-                                                    v-model="item.inquiry_title"
-                                                    @input="v$.item.inquiry_title.$touch"
-                                                    v-bind:class="[ v$.item.inquiry_title.$error ? 'form-error' : null ]">
-                                                    <div
-                                                        class="form-text  text-danger text-center [ margin-bottom--24 ]"
-                                                        v-if="v$.item.inquiry_title.$error">
-                                                        {{ v$.item.inquiry_title.$errors[0].$message }}
-                                                    </div>
-
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
                                                     本文
                                                 </th>
@@ -170,16 +150,6 @@ export default {
                         required
                     ),
                 },                
-                inquiry_title: {
-                    required: helpers.withMessage(
-                        '件名を入力してください',
-                        required
-                    ),
-                    maxLength: helpers.withMessage(
-                        '50文字以下で入力してください',
-                        maxLength(50)
-                    ),
-                },
                 inquiry_contents: {
                     required: helpers.withMessage(
                         'お問い合わせを入力してください',
@@ -209,7 +179,6 @@ export default {
 
                 const response = await axios.post(url, {
                     type: this.item.type,
-                    title: this.item.inquiry_title,
                     body: this.item.inquiry_contents,
                     user_id: this.$store.state.auth.company.id,
                 });
