@@ -104,12 +104,10 @@
                                                         type="number"
                                                         max=9999
                                                         min=0
-                                                        maxLength='4'
                                                         class="form-input"
                                                         v-model="plans.additional_licenses"
                                                         @input="changeData(plans.additional_licenses)"
-                                                        v-bind:class="[ v$.plans.additional_licenses.$error ? 'form-error' : null ]"
-                                                        oninput="javascript:if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                                        v-bind:class="[ v$.plans.additional_licenses.$error ? 'form-error' : null ]">
                                                         <span class="margin-left--12" style="display: flex;align-items: center;justify-content: center;">社</span>
                                                 </td>
 
@@ -194,7 +192,7 @@
                                                         プレミアムプラン
                                                         <!-- {{plans.plan_id}} -->
                                                     </td>
-                                                    <td>{{plans.additional_licenses}}社</td>
+                                                    <td>{{Number(plans.additional_licenses)}}社</td>
                                                     <td>{{$filters.addComma(Number(plans.cost_total))}}円</td>
                                                 </tr>
                                             </tbody>
@@ -349,6 +347,9 @@ export default {
             this.plans.cost_total = this.plans.cost_plan + this.plans.cost_add;
         },
         changeData() {
+            if(this.plans.additional_licenses !== ''){
+                this.plans.additional_licenses = Number(this.plans.additional_licenses);
+            }
             this.plans.cost_add = this.plans.additional_licenses * 1100;
             this.plans.cost_total = this.plans.cost_plan + this.plans.cost_add;
 
