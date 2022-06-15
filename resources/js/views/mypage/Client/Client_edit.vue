@@ -88,15 +88,16 @@ export default {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems() {
             var user = this.$store.state.auth.user;
-            let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code + "&type=1";
             try {
                 const response = await axios.get(url);
-                this.items = response.data.data.data_list.data;
+                this.items = response.data.data.data_list;
             } catch (e){
                 console.log(e);
                 this.message = e;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
         },
         async validateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep-validate";
