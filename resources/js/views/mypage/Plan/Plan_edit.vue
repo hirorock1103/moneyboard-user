@@ -284,7 +284,8 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, maxLength, helpers } from '@vuelidate/validators';
+import { required, integer, between, helpers } from '@vuelidate/validators';
+import notNumber from '../../../customValidators/notNumber';
 import { mapState, mapActions } from 'vuex';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
@@ -305,9 +306,17 @@ export default {
         return {
             plans: {
                 additional_licenses: {
-                    maxLength: helpers.withMessage(
-                        '9999件以内で入力してください',
-                        maxLength(4)
+                    between: helpers.withMessage(
+                        '0〜9999の間で入力してください',
+                        between(0, 9999)
+                    ),
+                    notNumber: helpers.withMessage(
+                        '0〜9999の間で入力してください',
+                        notNumber
+                    ),
+                    integer: helpers.withMessage(
+                        '0〜9999の間で入力してください',
+                        integer
                     ),
                 },
             }
