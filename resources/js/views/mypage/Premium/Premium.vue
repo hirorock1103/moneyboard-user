@@ -320,7 +320,7 @@ export default {
             // this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
-                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
 
