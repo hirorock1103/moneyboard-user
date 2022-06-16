@@ -88,32 +88,6 @@
                                             <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
                                             <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外</button>
                                         </th>
-                                        <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
-                                            <div id="content">
-                                                <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                                                    <p>使用しているライセンスから除外します。本当によろしいですか？</p>
-                                                    <p>※登録企業に紐づいている担当者も除外されます。</p>
-                                                </div>
-                                                <table class="table table--bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>会社名</th>
-                                                            <th>担当者</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>{{postItem.client_name}}</td>
-                                                            <td>{{postItem.user_name}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <div class="text-center [ padding--24  padding-large--48 ] bg-white">
-                                                    <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
-                                                    <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行</button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
@@ -122,6 +96,32 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div id="overlay" :val="postItem" v-show="showContent" v-on:click="closeModal">
+                                <div id="content">
+                                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                        <p>使用しているライセンスから除外します。本当によろしいですか？</p>
+                                        <p>※登録企業に紐づいている担当者も除外されます。</p>
+                                    </div>
+                                    <table class="table table--bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>会社名</th>
+                                                <th>担当者</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{postItem.client_name}}</td>
+                                                <td>{{postItem.user_name}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center [ padding--24  padding-large--48 ] bg-white">
+                                        <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
+                                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </article>
                 </div>
