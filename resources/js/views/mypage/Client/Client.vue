@@ -78,8 +78,10 @@
                                 </thead>
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
+                                        {{ item.user_name === null ? item.user_name = "除外中" : "" }}
                                         <td>{{ item.client_name }}</td>
-                                        <td v-if="item.user_del === null" v-bind:class="{'alert-danger': item.user_name === null}">{{ item.user_name !== null ? item.user_name : "除外中" }}</td>
+                                        <td v-if="item.user_del === null && item.user_name === '除外中'" v-bind:class="{'alert-danger': item.user_name === null}" style="color:red;">{{ item.user_name }}</td>
+                                        <td v-else-if="item.user_del === null" v-bind:class="{'alert-danger': item.user_name === null}">{{ item.user_name }}</td>
                                         <td v-else>{{ item.user_name }}<span class="alert-danger">(削除)</span></td>
 
                                         <th class="text-center">
