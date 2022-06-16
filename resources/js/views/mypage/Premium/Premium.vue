@@ -315,6 +315,7 @@ export default {
         },
         async clientSearch(page) {
 
+            this.sort_key = "";
             this.loadingStatus = true;
 
             // this.resetTemps();
