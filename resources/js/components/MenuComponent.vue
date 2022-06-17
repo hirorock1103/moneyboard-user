@@ -15,7 +15,7 @@
 
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/card">
-                            <span class="menu__icon  [ icon  solid  fa-pen-nib ]"></span>
+                            <span class="menu__icon  [ icon  solid  fa-credit-card ]"></span>
                             <span>カード情報</span>
                         </router-link>
                     </li>
@@ -55,7 +55,7 @@
 
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/card">
-                            <span class="menu__icon  [ icon  solid  fa-pen-nib ]"></span>
+                            <span class="menu__icon  [ icon  solid  fa-credit-card ]"></span>
                             <span>カード情報</span>
                         </router-link>
                     </li>
