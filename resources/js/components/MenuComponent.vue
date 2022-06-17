@@ -94,7 +94,6 @@
                         <router-link to="/mypage/company/email">
                             <span class="menu__icon  [ icon  solid  fa-envelope ]"></span>
                             <span>メールアドレス変更<br>
-                                <small>(管理者サイトログインID)</small>
                             </span>
                         </router-link>
                     </li>
@@ -103,7 +102,6 @@
                         <router-link to="/mypage/company/password">
                             <span class="menu__icon  [ icon  solid  fa-key ]"></span>
                             <span>パスワード変更<br>
-                                <small>(管理者サイトログインパス)</small>
                             </span>
                         </router-link>
                     </li>
