@@ -164,7 +164,7 @@ export default {
                 const response = await axios.post(url, {
                     topic_id: this.topic_id,
                     body: this.item.inquiry_contents,
-                    user_id: this.$store.state.auth.company.id,
+                    user_id: this.company.company_id,
                     attribute: 0,
                 });
                 // console.log(response);

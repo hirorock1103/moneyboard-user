@@ -180,7 +180,7 @@ export default {
                 const response = await axios.post(url, {
                     type: this.item.type,
                     body: this.item.inquiry_contents,
-                    user_id: this.$store.state.auth.company.id,
+                    user_id: this.company.company_id,
                 });
                 // console.log(response);
                 if(response.data.status=="NG"){

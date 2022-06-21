@@ -80,7 +80,8 @@
                                         <td>{{ type[item.type] }}</td>
                                         <td v-if="item.body.length > 6">{{ item.body.substr(0, 6) }}...</td>
                                         <td v-else>{{ item.body }}</td>                                        
-                                        <td>{{ item.company_name }}</td>
+                                        <td v-if="item.attribute === 0">{{ item.company_name }}</td>
+                                        <td v-else>運営</td>
                                         <td>{{ item.delivery_time }}</td>
                                         <td>{{ status[item.status] }}</td>
                                         <td><router-link :to="{name: 'mypage-inquiry_show', params: { id: item.id }}" class="[ btn  btn--small  btn--outline ] margin-right--16 margin-left--16">詳細</router-link></td>
@@ -194,8 +195,8 @@ export default {
                     }
                 });
 
-                // console.log('response');
-                // console.log(response);
+                console.log('response');
+                console.log(response);
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
