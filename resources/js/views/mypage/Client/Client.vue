@@ -30,10 +30,10 @@
                                 <table>
                                     <tr>
                                         <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
-                                        <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
+                                        <td><input v-model="search_params.client_name" class="form-input" placeholder=""></td>
                                         <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
                                         <td>
-                                            <select v-model="user_name" class="form-input">
+                                            <select v-model="search_params.user_name" class="form-input">
                                                 <option v-for="user in user_list">
                                                     {{user.user_name}}
                                                 </option>
@@ -41,7 +41,8 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
+                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ] margin-right--16">検索</button>
+                                <button style="margin:20px 0 0 0" type="button" @click="clear()" class="[ btn  btn--small btn--accent ]">クリア</button>
                             </div>
                         </article>
                     </form>
@@ -50,7 +51,7 @@
                     </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
-                            <div v-if="sort_key"> 【並べ替え】　{{ sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ sort_asc ? '昇順' : '降順'}}</div>
+                            <div v-if="search_params.sort_key"> 【並べ替え】　{{ search_params.sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ search_params.sort_asc ? '昇順' : '降順'}}</div>
                             <div v-else> 【並べ替え】　指定なし</div>
                             <span style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。</small></span>
 
@@ -151,8 +152,6 @@ export default {
             message: null,
             showContent: false,
             postItem: "",
-            sort_key: "",
-            sort_asc: true,
             pagenation: {
                 prev_page: 0,
                 next_page: 0,
@@ -162,7 +161,12 @@ export default {
                 per_page: 0
             },
             loadingStatus:true,
-
+            search_params: {
+                client_name: '',
+                user_name: '',
+                sort_key: '',
+                sort_asc: true,
+   },
         };
     },
     computed: {
@@ -174,10 +178,16 @@ export default {
         if(this.getCompany.use_status === 98 || this.getCompany.use_status === 99){
             this.$router.push({name: 'mypage-home'})
         }
+        if(sessionStorage.hasOwnProperty('client-search-params')) {
+            this.search_params = JSON.parse(
+                sessionStorage.getItem('client-search-params')
+            );
+        }
         this.fetchItems(1);
     },
     mounted: function(){
         document.title = "登録企業一覧 | MoneyBoard"
+
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
@@ -188,10 +198,8 @@ export default {
             this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
-//                const response = await axios.post(url, {company_id: this.$store.state.auth.company.id});
-                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
 
-                console.log(response);
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                     this.user_list = response.data.data.user_list;
@@ -222,7 +230,7 @@ export default {
                 this.message = e
 
                 this.loadingStatus = false;
-//                setTimeout(() => {this.message = false;}, 2000);
+                setTimeout(() => {this.message = false;}, 2000);
             }
 
             this.loadingStatus = false;
@@ -256,15 +264,14 @@ export default {
         },
         async clientSearch(page) {
 
+            sessionStorage.setItem('client-search-params', JSON.stringify(this.search_params));
+
             this.loadingStatus = true;
 
             this.resetTemps();
-//            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index";
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
-                // const response = await axios.post(url, {company_id: this.$store.state.auth.company.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
-                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
-                console.log(response);
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, checked: this.checked, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
 
@@ -293,50 +300,37 @@ export default {
                 this.message = e
 
                 this.loadingStatus = false;
-//                setTimeout(() => {this.message = false;}, 2000);
+                setTimeout(() => {this.message = false;}, 2000);
             }
 
             this.loadingStatus = false;
 
         },
         sortBy(key) {
-            this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
-            this.sort_key = key;
+            this.search_params.sort_key === key ? (this.search_params.sort_asc = !this.search_params.sort_asc) : (this.search_params.sort_asc = true);
+            this.search_params.sort_key = key;
 
-            if(key === "client_name") {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);
-                this.items.sort(function(a, b) {
-                    var client_nameA = a.client_name.toUpperCase();
-                    var client_nameB = b.client_name.toUpperCase();
-                    if (client_nameA < client_nameB) return -1 * set;
-                    if (client_nameA > client_nameB) return 1 * set;
-                    return 0;
-                });
-            }
+            this.clientSearch(1)
 
-            if(key === "user_name") {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);
-                this.items.sort(function(a, b) {
-                    var user_nameA = a.user_name.toUpperCase();
-                    var user_nameB = b.user_name.toUpperCase();
-                    if (user_nameA < user_nameB) return -1 * set;
-                    if (user_nameA > user_nameB) return 1 * set;
-                    return 0;
-                });
-            }
         },
         addClass(key) {
             return {
-                asc: this.sort_key === key && this.sort_asc,
-                desc: this.sort_key === key && !this.sort_asc,
+                asc: this.search_params.sort_key === key && this.search_params.sort_asc,
+                desc: this.search_params.sort_key === key && !this.search_params.sort_asc,
             };
         },
+        clear() {
+            this.search_params = {
+                client_name: '',
+                user_name: '',
+                sort_key: '',
+                sort_asc: true,
+            };
+            sessionStorage.removeItem('client-search-params');
+            this.clientSearch(1)
+        }
     }
 }
-
-// ToDo:検索機能→Vue側で検索？？
 </script>
 
 <style lang="scss" scoped>

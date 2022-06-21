@@ -312,7 +312,7 @@
                                     <tr>
                                         <th class="[ display-none  display-table-cell-large ]">内訳</th>
                                         <td>基本料金</td>
-                                        <td>{{ $filters.addComma(planAmount) }}円</td>
+                                        <td style="text-align:right">{{ $filters.addComma(planAmount) }}円</td>
                                         <td class="[ display-none  display-table-cell-large ]">（システム使用料と登録データ{{ companyAmount }}社分）</td>
                                         <td class="[ display-none  display-table-cell-medium  display-none-large ]"></td>
                                     </tr>
@@ -323,7 +323,7 @@
                                     <tr v-if="getUser.additional_licenses > 0">
                                         <th class="[ display-none  display-table-cell-large ]"></th>
                                         <td>追加利用料金</td>
-                                        <td>1,100円</td>
+                                        <td style="text-align:right">{{$filters.addComma(addLicensesAmount)}}円</td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
                                 </tbody>
@@ -757,6 +757,9 @@ export default {
         },
         companyAmount() {
             return this.planAmount == 55000 ? '60' : '120'
+        },
+        addLicensesAmount(){
+            return (this.getUser.additional_licenses * 1100);
         },
         getUser() {
             return this.$store.getters['auth/user']

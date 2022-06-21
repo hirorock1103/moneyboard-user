@@ -162,35 +162,14 @@
                                 <label class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     プラン選択
                                 </label>
-                                <span class="form-column">
-                                    <input
-                                        type="radio"
-                                        id="plan_id"
-                                        class="form-radio"
-                                        v-model="getUser.plan_id"
-                                        checked
-                                        disabled>
-                                    <input
-                                        type="text"
-                                        class="form-input"
-                                        v-model="planName"
-                                        readonly>
-                                </span>
+                                <span class="form-column">{{planName}}</span>
                             </div>
                             <div class="form-row  margin-bottom--48"  v-if="getUser.additional_licenses">
                                 <label for="additional_licenses" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     企業データの追加
                                 </label>
                                 <span class="form-column">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        max="120"
-                                        id="additional_licenses"
-                                        class="[ form-input  [ form-input--short  form-input--short-read ] ]"
-                                        v-model="getUser.additional_licenses"
-                                        readonly>
-                                    <span>社</span>
+                                    <span>{{getUser.additional_licenses}}社</span>
                                 </span>
                             </div>
                             <h4>
@@ -209,7 +188,7 @@
                                     <tr>
                                         <th class="[ display-none  display-table-cell-large ]">内訳</th>
                                         <td>基本料金</td>
-                                        <td>{{ $filters.addComma(planAmount) }}円</td>
+                                        <td style="text-align:right">{{ $filters.addComma(planAmount) }}円</td>
                                         <td class="[ display-none  display-table-cell-large ]">（システム使用料と登録データ{{ companyAmount }}社分）</td>
                                         <td class="[ display-none  display-table-cell-medium  display-none-large ]"></td>
                                     </tr>
@@ -220,7 +199,7 @@
                                     <tr v-if="getUser.additional_licenses">
                                         <th class="[ display-none  display-table-cell-large ]"></th>
                                         <td>追加利用料金</td>
-                                        <td>1,100円</td>
+                                        <td style="text-align:right">{{ $filters.addComma(addLicensesAmount) }}円</td>
                                         <td class="[ display-none  display-table-cell-medium ]"></td>
                                     </tr>
                                 </tbody>
@@ -280,6 +259,9 @@ export default {
         },
         companyAmount() {
             return this.planAmount == 55000 ? '60' : '120'
+        },
+        addLicensesAmount(){
+            return (this.getUser.additional_licenses * 1100);
         },
         getUser() {
             return this.$store.getters['auth/user']
