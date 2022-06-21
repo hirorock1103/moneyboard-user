@@ -113,7 +113,15 @@ export default {
         },
     },
     created: function() {
-        this.GetCardInfo();
+        if(this.getCompany===null || this.getCompany.use_status===null){
+            localStorage.removeItem('authToken')
+            this.$router.push({name: 'logoff'})
+        // }else if(this.getCompany.use_status === 98 || this.getCompany.use_status === 99){
+        //     this.$router.push({name: 'mypage-home'})
+        }else{
+            this.GetCardInfo();
+        }
+
     },
     methods: {
         ...mapActions('auth', ['updateCompany']),

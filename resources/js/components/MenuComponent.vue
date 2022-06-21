@@ -2,7 +2,7 @@
     <nav class="nav  [ menu  menu__hidden ] display-none-large">
         <div class="menu__inner  text-white">
 
-            <div v-if="company && (user.use_status === 99 || user.use_status === 98)">
+            <div v-if="company && user && (user.use_status === 99 || user.use_status === 98)">
                 <ul v-if="company" class="menu__list--top">
 
                     <li class="menu__link" v-on:click="MenuClose()">

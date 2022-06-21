@@ -211,7 +211,7 @@ export default {
         return {
             items: [],
             showContent: false,
-            blur_flg : this.$store.state.auth.contract.plan_id,
+            blur_flg : 1,
             sort_key: "",
             sort_asc: true,
             sort_index: {
@@ -260,10 +260,15 @@ export default {
         },
     },
     created: function() {
-        if(this.getCompany.use_status === 98 || this.getCompany.use_status === 99){
+        if(this.getCompany===null || this.getCompany.use_status===null){
+            localStorage.removeItem('authToken')
+            this.$router.push({name: 'logoff'})
+        }else if(this.getCompany.use_status === 98 || this.getCompany.use_status === 99){
             this.$router.push({name: 'mypage-home'})
+        }else{
+            this.fetchItems(1);
+            this.blur_flg = this.$store.state.auth.contract.plan_id
         }
-        this.fetchItems(1);
     },
     mounted: function(){
         document.title = "プレミアムプラン | MoneyBoard"

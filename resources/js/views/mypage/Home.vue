@@ -6,28 +6,28 @@
                 <div class="container">
 
                     <small class="[ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
-                        <span v-if="company.use_status==1">利用中</span>
-                        <span v-else-if="company.use_status==2">翌月利用停止予定</span>
-                        <span v-else-if="company.use_status==98" style="color:red;font-size:18px">利用停止中</span>
-                        <span v-else-if="company.use_status==99" style="color:red;font-size:18px">強制利用停止中</span>
+                        <span v-if="company && company.use_status==1">利用中</span>
+                        <span v-else-if="company && company.use_status==2">翌月利用停止予定</span>
+                        <span v-else-if="company && company.use_status==98" style="color:red;font-size:18px">利用停止中</span>
+                        <span v-else-if="company && company.use_status==99" style="color:red;font-size:18px">強制利用停止中</span>
                         <span v-else>ログインエラー</span>
                     </small>
                     <br>
                     <small class="[ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
-                        企業コード {{ company.company_code }}
+                        企業コード {{ company ? company.company_code : "" }}
                     </small>
                     <div class="
                     [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
                         <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
-                            {{ company.company_name }}
+                            {{ company ? company.company_name : "" }}
                         </h2>
 
                         <h5 class="margin-bottom--16">
                             <!-- 契約状態：{{if(company.use_status==1) "利用中"}} -->
-                            <span class="font-weight-bold  display-none-large  padding-left--4">{{ license.license_available_total }}</span>
+                            <span class="font-weight-bold  display-none-large  padding-left--4">{{ license ? license.license_available_total : "" }}</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
-                                {{ license.license_available_total }}</span>
-                            件/{{ license.license_total }}件（残り/使用企業数上限）
+                                {{ license ? license.license_available_total : "" }}</span>
+                            件/{{ license ? license.license_total : "" }}件（残り/使用企業数上限）
                         </h5>
                     </div>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
@@ -101,8 +101,14 @@ export default {
         };
     },
     created: function() {
-        this.fetchItems();
-        this.updateState();
+        if(this.getCompany===null || this.getCompany.use_status===null){
+            localStorage.removeItem('authToken')
+            this.$router.push({name: 'logoff'})
+        }else{
+            this.fetchItems();
+            this.updateState();
+        }
+
     },
     mounted: function(){
         document.title = "マイページ | MoneyBoard"
@@ -115,7 +121,10 @@ export default {
             license: function (state) {
                 return state.auth.license;
             }
-        })
+        }),
+        getCompany() {
+            return this.$store.getters['auth/company']
+        },
     },
     methods: {
         ...mapActions('auth', ['updateState']),

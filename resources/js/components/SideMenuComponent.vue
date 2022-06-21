@@ -4,7 +4,7 @@
         <nav class="nav  menu">
             <div class="menu__inner  text-white">
 
-                <ul v-if="user.use_status === 98 || user.use_status === 99"
+                <ul v-if="user && (user.use_status === 98 || user.use_status === 99)"
                     v-for="(menu, index_noUse) in menuItems_noUse"
                     :class="{ 'menu__list--top':index_noUse === 'topMenu','menu__list--bottom':index_noUse === 'bottomMenu' }"
                     :key="index_noUse">

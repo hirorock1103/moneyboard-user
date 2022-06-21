@@ -171,7 +171,10 @@ export default {
         })
     },
     created: function() {
-        if(this.company.use_status === 98 || this.company.use_status === 99){
+        if(this.company===null || this.company.use_status===null){
+            localStorage.removeItem('authToken')
+            this.$router.push({name: 'logoff'})
+        }else if(this.company.use_status === 98 || this.company.use_status === 99){
             this.$router.push({name: 'mypage-home'})
         }
     },
