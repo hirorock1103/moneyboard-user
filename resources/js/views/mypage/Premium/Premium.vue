@@ -29,12 +29,13 @@
                                 <table>
                                     <tr>
                                         <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
-                                        <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
+                                        <td><input v-model="search_params.client_name" class="form-input" placeholder=""></td>
                                         <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
-                                        <td><input v-model="user_name" class="form-input" placeholder="担当者名を入力"></td>
+                                        <td><input v-model="search_params.user_name" class="form-input" placeholder=""></td>
                                     </tr>
                                 </table>
-                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
+                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ] margin-right--16">検索</button>
+                                <button style="margin:20px 0 0 0" type="button" @click="clear()" class="[ btn  btn--small btn--accent ]">クリア</button>
                             </div>
                         </article>
                     </form>
@@ -43,7 +44,7 @@
                         データ登録している企業情報一覧
                     </h4>
                     <div v-if="blur_flg === 2" class="margin-bottom--24">
-                        <div class="padding-left--48" v-if="sort_key"> 【並べ替え】　{{ sort_index[sort_key] }}: {{ sort_asc ? '昇順' : '降順'}}</div>
+                        <div class="padding-left--48" v-if="search_params.sort_key"> 【並べ替え】　{{ sort_index[search_params.sort_key] }}: {{ search_params.sort_asc ? '昇順' : '降順'}}</div>
                         <div class="padding-left--48" v-else> 【並べ替え】　指定なし</div>
                         <span class="padding-left--48" style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。</small></span>
                     </div>
@@ -251,7 +252,12 @@ export default {
                 per_page: 0,
             },
             loadingStatus:true,
-
+            search_params: {
+                client_name: '',
+                user_name: '',
+                sort_key: '',
+                sort_asc: true,
+            },
         };
     },
     computed: {
@@ -266,6 +272,13 @@ export default {
         }else if(this.getCompany.use_status === 98 || this.getCompany.use_status === 99){
             this.$router.push({name: 'mypage-home'})
         }else{
+
+            if(sessionStorage.hasOwnProperty('premium-search-params')) {
+                this.search_params = JSON.parse(
+                    sessionStorage.getItem('premium-search-params')
+                );
+            }
+
             this.fetchItems(1);
             this.blur_flg = this.$store.state.auth.contract.plan_id
         }
@@ -287,7 +300,7 @@ export default {
 
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
-                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
                 this.showContent = this.$store.state.auth.contract.plan_id == 2 ? false : true;
@@ -320,13 +333,15 @@ export default {
         },
         async clientSearch(page) {
 
+            sessionStorage.setItem('premium-search-params', JSON.stringify(this.search_params));
+
             this.sort_key = "";
             this.loadingStatus = true;
 
             // this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
             try {
-                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.user_name, client_name: this.client_name, checked: this.checked});
+                const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.search_params.user_name, client_name: this.search_params.client_name, checked: this.checked, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
 
@@ -365,68 +380,28 @@ export default {
                 return;
             }
 
-            this.sort_key === key ? (this.sort_asc = !this.sort_asc) : (this.sort_asc = true);
-            this.sort_key = key;
+            this.search_params.sort_key === key ? (this.search_params.sort_asc = !this.search_params.sort_asc) : (this.search_params.sort_asc = true);
+            this.search_params.sort_key = key;
 
-            // 文字列のソート
-            var StringSortList = [
-                "client_name",
-                "user_name",
-                "interview_place",
-                "close_possibility_now",
-                "close_possibility_previous",
-                "close_possibility_befpre",
-            ];
-            if(StringSortList.includes(key)) {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);
-                this.items.sort(function(a, b) {
-                    var A = a[key].toUpperCase();
-                    var B = b[key].toUpperCase();
-                    if (A < B) return -1 * set;
-                    if (A > B) return 1 * set;
-                    return 0;
-                });
-            }
-
-            // 数値のソート
-            var NumberSortList = [
-                "corporate_number",
-                "business_type",
-                "anualsales",
-                "capital",
-                "ceo_age",
-                "average_age",
-                "important_index",
-                "safety_index",
-                "profit_index",
-                "fund_efficiency_index",
-                "surplus_guideline",
-            ];
-            if(NumberSortList.includes(key)) {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);
-                this.items.sort(function (a, b) {
-                return (a[key] - b[key]) * set
-                });
-            }
-
-            // 日付のソート
-            if(key === 'updated_at') {
-                let set = 1;
-                this.sort_asc ? (set = 1) : (set = -1);
-                this.items.sort(function (a, b) {
-                return (a.updated_at > b.updated_at ? 1 : -1) * set
-                });
-            }
+            this.clientSearch(1)
 
         },
         addClass(key) {
             return {
-                asc: this.sort_key === key && this.sort_asc,
-                desc: this.sort_key === key && !this.sort_asc,
+                asc: this.search_params.sort_key === key && this.search_params.sort_asc,
+                desc: this.search_params.sort_key === key && !this.search_params.sort_asc,
             };
         },
+        clear() {
+            this.search_params = {
+                client_name: '',
+                user_name: '',
+                sort_key: '',
+                sort_asc: true,
+            };
+            sessionStorage.removeItem('premium-search-params');
+            this.clientSearch(1)
+        }
     }
 }
 
