@@ -84,53 +84,54 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div v-if="nextPlans !== 'NULL' && (nextPlans.type !== 1 || nextPlans.type !== 0)">
+                                <hr style="margin:32px 0;">
+                                <h3 style="margin-top:40px;"><span class="[ icon  solid ] fa-list padding-right--12  text-accent"></span>
+                                    来月のプラン
+                                <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「来月の月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
+                                </h3>
+                                <div class="table-scrollable  padding-right--8 padding-bottom--24">
+                                    <table class="table width-80">
+                                        <tbody>
+                                            <tr>
+                                                <th class="">
+                                                    プラン名
+                                                </th>
+                                                <td v-if="nextPlans.plan_id === 1" class="padding-bottom--16">
+                                                    スタンダードプラン(使用できる企業数：{{nextPlans.license_count}}社)
+                                                </td>
+                                                <td v-else class="padding-bottom--16">
+                                                    プレミアムプラン(使用できる企業数：{{nextPlans.license_count}}社)
+                                                </td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <th class="">
+                                                    プランデータ数
+                                                </th>
+                                                <td class="padding-bottom--16">
+                                                    {{nextPlans.license_count}}社
+                                                </td>
+                                            </tr> -->
+                                            <tr>
+                                                <th>
+                                                    追加企業数
+                                                </th>
+                                                <td class="padding-bottom--16">
+                                                    {{nextPlans.add_license_count}}社
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                            <hr v-if="nextPlans !== 'NULL'" style="margin:32px 0;">
-                            <h3 v-if="nextPlans !== 'NULL'" style="margin-top:40px;"><span class="[ icon  solid ] fa-list padding-right--12  text-accent"></span>
-                                来月のプラン
-                            <p style="margin-bottom:0;font-size:14px;color:red">※「来月の企業数の追加数」および「来月の月額料金」は、ご使用の企業数により"増加"する場合がございます</p>
-                            </h3>
-                            <div v-if="nextPlans !== 'NULL'" class="table-scrollable  padding-right--8 padding-bottom--24">
-                                <table class="table width-80">
-                                    <tbody>
-                                        <tr>
-                                            <th class="">
-                                                プラン名
-                                            </th>
-                                            <td v-if="nextPlans.plan_id === 1" class="padding-bottom--16">
-                                                スタンダードプラン(使用できる企業数：{{nextPlans.license_count}}社)
-                                            </td>
-                                            <td v-else class="padding-bottom--16">
-                                                プレミアムプラン(使用できる企業数：{{nextPlans.license_count}}社)
-                                            </td>
-                                        </tr>
-                                        <!-- <tr>
-                                            <th class="">
-                                                プランデータ数
-                                            </th>
-                                            <td class="padding-bottom--16">
-                                                {{nextPlans.license_count}}社
-                                            </td>
-                                        </tr> -->
-                                        <tr>
-                                            <th>
-                                                追加企業数
-                                            </th>
-                                            <td class="padding-bottom--16">
-                                                {{nextPlans.add_license_count}}社
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <h4><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
+                                    来月の月額料金
+                                    <span class="padding-left--8  text-accent">
+                                        {{$filters.addComma(Number(nextPlans.price))}}
+                                    </span>
+                                    円
+                                </h4>
                             </div>
-
-                            <h4 v-if="nextPlans !== 'NULL'"><span class="[ icon  solid ] fa-yen-sign  padding-right--12  text-accent"></span>
-                                来月の月額料金
-                                <span class="padding-left--8  text-accent">
-                                    {{$filters.addComma(Number(nextPlans.price))}}
-                                </span>
-                                円
-                            </h4>
 
                             <div class="text-center">
                                 <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>

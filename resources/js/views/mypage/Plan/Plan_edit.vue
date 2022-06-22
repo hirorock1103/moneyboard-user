@@ -102,7 +102,7 @@
                                                 <td class="padding-bottom--16 nowrap" style="display: flex;">
                                                     <input
                                                         type="number"
-                                                        max=9999
+                                                        max=120
                                                         min=0
                                                         class="form-input"
                                                         v-model="plans.additional_licenses"
@@ -173,7 +173,7 @@
                                         <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                             <p>プランを変更いたします</p>
                                             <p>アップグレードの場合は今月、ダウングレードの場合は来月からプランが変更されますが本当によろしいですか？</p>
-                                        </div>
+                                        </div>                                       
                                         <table class="table table--bordered">
                                             <thead>
                                                 <tr>
@@ -305,15 +305,15 @@ export default {
             plans: {
                 additional_licenses: {
                     between: helpers.withMessage(
-                        '0〜9999の間で入力してください',
-                        between(0, 9999)
+                        '0〜120の間で入力してください',
+                        between(0, 120)
                     ),
                     notNumber: helpers.withMessage(
-                        '0〜9999の間で入力してください',
+                        '0〜120の間で入力してください',
                         notNumber
                     ),
                     integer: helpers.withMessage(
-                        '0〜9999の間で入力してください',
+                        '0〜120の間で入力してください',
                         integer
                     ),
                 },
@@ -338,7 +338,7 @@ export default {
         getContract() {
             return this.$store.getters['auth/contract']
         },
-    },
+    },   
     methods: {
         ...mapActions('auth', ['updateState']),
         changePlan(value,data) {
