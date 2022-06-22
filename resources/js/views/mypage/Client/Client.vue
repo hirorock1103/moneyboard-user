@@ -268,6 +268,10 @@ export default {
         },
         async clientSearch(page) {
 
+            if (!localStorage.getItem("authToken")) {
+                this.$router.push({name: 'logoff'})
+            }
+
             sessionStorage.setItem('client-search-params', JSON.stringify(this.search_params));
 
             this.loadingStatus = true;

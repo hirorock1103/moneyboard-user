@@ -1,4 +1,5 @@
 <template>
+    <p style="text-align:center;margin:100px 0">セッション切れのためログイン画面に遷移します</p>
 </template>
 
 <script>
@@ -17,6 +18,8 @@ export default {
 
     },
     mounted(){
+        sessionStorage.removeItem('client-search-params');
+        sessionStorage.removeItem('premium-search-params');
         this.logout()
     }
 }
