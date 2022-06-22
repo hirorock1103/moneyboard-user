@@ -29,7 +29,7 @@
                                                 会社名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.company_name }}
+                                                {{ getCompany ? getCompany.company_name : "" }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -37,7 +37,7 @@
                                                 企業コード
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.company_code }}
+                                                {{ getCompany ? getCompany.company_code : ""}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -45,7 +45,7 @@
                                                 郵便番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                〒{{ getCompany.post_number }}
+                                                〒{{ getCompany ? getCompany.post_number : "" }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -53,7 +53,7 @@
                                                 住所
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.address }}
+                                                {{ getCompany ? getCompany.address : "" }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -61,7 +61,7 @@
                                                 電話番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.phone_number }}
+                                                {{ getCompany ? getCompany.phone_number : "" }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -69,7 +69,7 @@
                                                 担当者名
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.company_rep }}
+                                                {{ getCompany ? getCompany.company_rep : "" }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -77,7 +77,7 @@
                                                 携帯番号
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ] ">
-                                                {{ getCompany.mobile_number }}
+                                                {{ getCompany ? getCompany.mobile_number : "" }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -85,7 +85,7 @@
                                                 メールアドレス（ログインID）
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany.email_address }}
+                                                {{ getCompany ? getCompany.email_address : "" }}
                                             </td>
                                         </tr>
                                     </tbody>
