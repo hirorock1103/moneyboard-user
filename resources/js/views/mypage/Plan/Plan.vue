@@ -262,7 +262,7 @@ export default {
                 var company = this.$store.state.auth.company;
                 // console.log(this.$store.state.auth.company);
                 // console.log(this.$store.state.auth.license);
-                console.log(this.items);
+                // console.log(this.items);
                 this.plans = {
                     company_code:this.$store.state.auth.company.company_code,
                     plan_id: this.$store.state.auth.contract.plan_id,
@@ -301,7 +301,7 @@ export default {
                         company_code: company_code
                         }
                     });
-                console.log(response);
+                // console.log(response);
                 this.nextPlans = response.data.data.change_contract_requests ?? 'NULL';
                 // console.log('---nextPlans---');
                 // console.log(this.nextPlans);

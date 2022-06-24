@@ -173,7 +173,7 @@
                                         <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                             <p>プランを変更いたします</p>
                                             <p>アップグレードの場合は今月、ダウングレードの場合は来月からプランが変更されますが本当によろしいですか？</p>
-                                        </div>                                       
+                                        </div>
                                         <table class="table table--bordered">
                                             <thead>
                                                 <tr>
@@ -199,7 +199,7 @@
                                         </table>
                                         <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                             <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
-                                            <button class="[ btn  btn--small  btn--outline ]" v-on:click="Store()">確定</button>
+                                            <button type="button" class="[ btn  btn--small  btn--outline ]" v-on:click="Store()">確定</button>
                                         </div>
                                     </div>
                                 </div>
@@ -338,7 +338,7 @@ export default {
         getContract() {
             return this.$store.getters['auth/contract']
         },
-    },   
+    },
     methods: {
         ...mapActions('auth', ['updateState']),
         changePlan(value,data) {
@@ -364,7 +364,7 @@ export default {
         },
         closeModal: function(){
             this.showContent = false;
-            this.$router.push({name: 'mypage-plan'})//ダイアログ終了後はプラン詳細へ
+//            this.$router.push({name: 'mypage-plan'})//ダイアログ終了後はプラン詳細へ
         },
         async Store(){
             this.v$.$touch();
@@ -400,7 +400,7 @@ export default {
                         company_code: company_code
                         }
                     });
-                console.log(response);
+//                console.log(response);
                 this.nextPlans = response.data.data.change_contract_requests ?? 'NULL';
 
                 //change_contract_requestsがある場合
