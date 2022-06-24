@@ -245,8 +245,8 @@ export default {
         }
     },
     mounted: function() {
-        // this.fetchItems();
-        // this.nextMonthPlans();
+        this.fetchItems();
+        this.nextMonthPlans();
         document.title = "ご利用プラン | MoneyBoard"
     },
 
