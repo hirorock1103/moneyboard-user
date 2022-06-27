@@ -60,7 +60,7 @@
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
                                                     <select v-model="item.type" class="form-input"
                                                         @input="v$.item.type.$touch"
-                                                        v-bind:class="[ v$.item.type.$error ? 'form-error' : null ]">                                                  
+                                                        v-bind:class="[ v$.item.type.$error ? 'form-error' : null ]">
                                                         <option value="0">
                                                             料金について
                                                         </option>
@@ -75,13 +75,13 @@
                                                         </option>
                                                         <option value="4">
                                                             その他
-                                                        </option>                                                                                                                                                                                                                                     
+                                                        </option>
                                                     </select>
                                                     <div
                                                         class="form-text  text-danger text-center [ margin-bottom--24   ]  "
                                                         v-if="v$.item.type.$error">
                                                         {{ v$.item.type.$errors[0].$message }}
-                                                    </div>                                                    
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -129,7 +129,7 @@ import SideMenu from '../../../components/SideMenuComponent.vue';
 export default {
     components: {
         SideMenu,
-        
+
     },
     setup() {
         return { v$: useVuelidate() };
@@ -149,7 +149,7 @@ export default {
                         'お問い合わせ種別を選択してください',
                         required
                     ),
-                },                
+                },
                 inquiry_contents: {
                     required: helpers.withMessage(
                         'お問い合わせを入力してください',
@@ -164,7 +164,7 @@ export default {
             company: function (state) {
                 return state.auth.company;
             },
-        })
+        }),
     },
     mounted: function(){
         document.title = "お問い合わせ/新規 | MoneyBoard"
@@ -176,11 +176,10 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/store";
 
             try {
-
                 const response = await axios.post(url, {
                     type: this.item.type,
                     body: this.item.inquiry_contents,
-                    user_id: this.company.company_id,
+                    user_id: this.$store.state.auth.user.id,//this.company.company_id,
                 });
                 // console.log(response);
                 if(response.data.status=="NG"){

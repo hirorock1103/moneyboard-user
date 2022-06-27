@@ -108,7 +108,7 @@ import SideMenu from '../../../components/SideMenuComponent.vue';
 export default {
     components: {
         SideMenu,
-        
+
     },
     setup() {
         return { v$: useVuelidate() };
@@ -125,7 +125,7 @@ export default {
 
     validations() {
         return {
-            item: {             
+            item: {
                 inquiry_contents: {
                     required: helpers.withMessage(
                         'お問い合わせを入力してください',
@@ -150,7 +150,7 @@ export default {
      created: function() {
         this.topic_id = this.$route.params.id;
         this.type = this.$route.params.type;
-    },   
+    },
 
     methods: {
         async Reply(){
@@ -164,7 +164,7 @@ export default {
                 const response = await axios.post(url, {
                     topic_id: this.topic_id,
                     body: this.item.inquiry_contents,
-                    user_id: this.company.company_id,
+                    user_id: this.$store.state.auth.user.id,//this.company.company_id,
                     attribute: 0,
                 });
                 // console.log(response);
