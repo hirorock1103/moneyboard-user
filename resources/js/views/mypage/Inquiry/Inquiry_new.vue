@@ -59,7 +59,7 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
                                                     <select v-model="item.type" class="form-input"
-                                                        @input="v$.item.type.$touch"
+                                                        @change="v$.item.type.$touch"
                                                         v-bind:class="[ v$.item.type.$error ? 'form-error' : null ]">
                                                         <option value="0">
                                                             料金について
