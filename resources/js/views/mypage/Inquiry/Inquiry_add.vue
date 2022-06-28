@@ -57,11 +57,11 @@
                                                 <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
                                                     お問い合わせ種別
                                                 </th>
-                                                <td v-if="type == 0" class="[ display-table-row  display-table-cell-large ] ">料金について</td>
-                                                <td v-if="type == 1" class="[ display-table-row  display-table-cell-large ] ">プランについて</td>
-                                                <td v-if="type == 2" class="[ display-table-row  display-table-cell-large ] ">使い方について</td>
-                                                <td v-if="type == 3" class="[ display-table-row  display-table-cell-large ] ">ご意見・ご要望</td>
-                                                <td v-if="type == 4" class="[ display-table-row  display-table-cell-large ] ">その他</td>
+                                                <td v-if="temps.type == 0" class="[ display-table-row  display-table-cell-large ] ">料金について</td>
+                                                <td v-if="temps.type == 1" class="[ display-table-row  display-table-cell-large ] ">プランについて</td>
+                                                <td v-if="temps.type == 2" class="[ display-table-row  display-table-cell-large ] ">使い方について</td>
+                                                <td v-if="temps.type == 3" class="[ display-table-row  display-table-cell-large ] ">ご意見・ご要望</td>
+                                                <td v-if="temps.type == 4" class="[ display-table-row  display-table-cell-large ] ">その他</td>
                                             </tr>
                                             <tr>
                                                 <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
@@ -88,7 +88,7 @@
                             <p class="alert alert-danger">{{ message }}</p>
                         </div>
                         <div class="text-center margin-bottom--48  margin-bottom-large--88">
-                            <router-link :to="{name: 'mypage-inquiry_show', params: { id: topic_id }}"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                            <router-link :to="{name: 'mypage-inquiry_show', params: { id: temps.id }}"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="送信"/>
                         </div>
                     </form>
@@ -104,6 +104,7 @@ import { required, maxLength, helpers } from '@vuelidate/validators';
 import axios from '../../../src/plugins/axios.js'
 import { mapState } from 'vuex';
 import SideMenu from '../../../components/SideMenuComponent.vue';
+import { mapActions } from 'vuex';
 
 export default {
     components: {
@@ -140,19 +141,29 @@ export default {
             company: function (state) {
                 return state.auth.company;
             },
-        })
+            temps: function (state) {
+                return state.auth.temps;
+            },            
+        })      
     },
 
     mounted: function(){
         document.title = "お問い合わせ/返信 | MoneyBoard"
     },
-
      created: function() {
-        this.topic_id = this.$route.params.id;
-        this.type = this.$route.params.type;
+        this.setTemps();
+        console.log(this.temps);
     },
 
     methods: {
+        ...mapActions('auth', ['updateTemps', 'resetTemps']),
+        setTemps: function(){
+            console.log('this.$route.params');
+            console.log(Object.keys(this.$route.params).length);
+            if(Object.keys(this.$route.params).length !== 0) {
+                this.updateTemps(this.$route.params);
+            }
+        },
         async Reply(){
             this.v$.$touch();
             if (this.v$.$error) return;
@@ -162,7 +173,7 @@ export default {
             try {
 
                 const response = await axios.post(url, {
-                    topic_id: this.topic_id,
+                    topic_id: this.temps.id,
                     body: this.item.inquiry_contents,
                     user_id: this.$store.state.auth.user.id,//this.company.company_id,
                     attribute: 0,
@@ -172,7 +183,7 @@ export default {
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-inquiry_show', params: { id: this.topic_id }})
+                    this.$router.push({name: 'mypage-inquiry_show', params: { id: this.temps.id }})
                 }
             } catch (e){
                 console.log(e);
