@@ -1,6 +1,13 @@
 <template>
     <div class="display-flex">
 
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -44,7 +51,7 @@
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
                     </div>
-                
+
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <div v-if="pagenation.total > pagenation.per_page">
@@ -60,7 +67,7 @@
 
                                 <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
-                            </div>                        
+                            </div>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
@@ -86,9 +93,9 @@
                         </div>
                     </article>
                     <div class="text-center [ padding--24 ]">
-                        <router-link to="/mypage/inquiry"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>                    
+                        <router-link to="/mypage/inquiry"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                         <router-link :to="{name: 'mypage-inquiry_add', params: { id: topic_id, type: topic.type}}"  class="[ btn  btn--accent ]">返信</router-link>
-                    </div>                        
+                    </div>
                 </div>
             </section>
         </main>
@@ -127,7 +134,8 @@ export default {
                 last_page: 0,
                 total: 0,
                 per_page: 0,
-            },                               
+            },
+            loadingStatus:true,
         };
     },
     created: function() {
@@ -139,7 +147,7 @@ export default {
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems(page) {
-
+            this.loadingStatus = true;
             this.resetTemps();
 
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/show" + "?page=" + page;
@@ -152,7 +160,7 @@ export default {
                         id: this.topic_id,
                     }
                 });
-                console.log(response);
+                // console.log(response);
                 // console.log(page);
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
@@ -184,8 +192,13 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
     }
 }

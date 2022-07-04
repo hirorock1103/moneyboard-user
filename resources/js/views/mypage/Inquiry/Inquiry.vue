@@ -1,6 +1,13 @@
 <template>
     <div class="display-flex">
 
+        <loading v-model:active="loadingStatus"
+                :can-cancel="false"
+                :is-full-page="false"
+                :color="'#2FBCED'"
+                :height="90"
+                :width="100" />
+
         <SideMenu />
         <main class="mypage__main">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
@@ -61,7 +68,7 @@
 
                                 <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="fetchItems(pagenation.last_page)">最後</button>
-                            </div>                         
+                            </div>
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
@@ -79,7 +86,7 @@
                                         <td>{{ item.id }}</td>
                                         <td>{{ type[item.type] }}</td>
                                         <td v-if="item.body.length > 6">{{ item.body.substr(0, 6) }}...</td>
-                                        <td v-else>{{ item.body }}</td>                                        
+                                        <td v-else>{{ item.body }}</td>
                                         <td v-if="item.attribute === 0">{{ item.company_name }}</td>
                                         <td v-else>運営</td>
                                         <td>{{ item.delivery_time }}</td>
@@ -129,7 +136,7 @@
                                 </table>
                             </div>
                         </div>
-                    </article>                    
+                    </article>
                 </div>
             </section>
         </main>
@@ -170,7 +177,8 @@ export default {
                 last_page: 0,
                 total: 0,
                 per_page: 0,
-            },                         
+            },
+            loadingStatus:true,
         };
     },
     created: function() {
@@ -182,7 +190,7 @@ export default {
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async fetchItems(page) {
-
+            this.loadingStatus = true;
             this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/index" + "?page=" + page;
                 // console.log('this.$store.state.auth.user.id');
@@ -195,8 +203,8 @@ export default {
                     }
                 });
 
-                console.log('response');
-                console.log(response);
+                // console.log('response');
+                // console.log(response);
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
@@ -215,7 +223,7 @@ export default {
                         this.pagenation.next_page = this.pagenation.last_page;
                     }else{
                         this.pagenation.next_page = this.pagenation.current_page + 1;
-                    }                    
+                    }
 
                 }else{
                     this.$router.push({name: 'logoff'})
@@ -224,8 +232,13 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+
+                this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
+
+            this.loadingStatus = false;
+
         },
     }
 }

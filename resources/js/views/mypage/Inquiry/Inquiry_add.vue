@@ -143,8 +143,8 @@ export default {
             },
             temps: function (state) {
                 return state.auth.temps;
-            },            
-        })      
+            },
+        })
     },
 
     mounted: function(){
