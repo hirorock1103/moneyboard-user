@@ -88,7 +88,7 @@
                                         <th class="text-center">
                                             <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
                                             <button v-else class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">復旧</button>
-                                            <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
+                                            <button v-if="item.user_name=== '除外中'" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
                                             <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外</button>
                                         </th>
                                     </tr>
