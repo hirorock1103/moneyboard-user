@@ -41,7 +41,7 @@
                     </form>
                     <h4 class="padding-left--48 margin-bottom--24 margin-top--48">
                         <span class="[ icon  solid ] fa-building  padding-right--12  text-accent"></span>
-                        データ登録している企業情報一覧
+                        ライセンスを割り当てている企業情報一覧
                     </h4>
                     <div v-if="blur_flg === 2" class="margin-bottom--24">
                         <div class="padding-left--48" v-if="search_params.sort_key"> 【並べ替え】　{{ sort_index[search_params.sort_key] }}: {{ search_params.sort_asc ? '昇順' : '降順'}}</div>

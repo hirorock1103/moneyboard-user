@@ -151,7 +151,13 @@ export default {
                         }
                     }
                 );
-                this.updateCompany(response.data[0]);
+
+                if( response.data === '' ){
+                    //authTokenで取得した企業コードとリクエストの企業コードが異なるためデータの更新はしない
+                }else{
+                    this.updateCompany(response.data[0]);
+                }
+
             } catch (e){
                 console.log(e);
                 this.message = e
