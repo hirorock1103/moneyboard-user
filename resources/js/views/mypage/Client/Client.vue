@@ -200,7 +200,7 @@ export default {
             this.loadingStatus = true;
 
             this.resetTemps();
-            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_user" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
 
@@ -277,7 +277,7 @@ export default {
             this.loadingStatus = true;
 
             this.resetTemps();
-            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_user" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {

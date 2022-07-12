@@ -298,11 +298,36 @@ export default {
 
             this.loadingStatus = true;
 
-            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_prem" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
+
+                //スタンダードの場合
+               if(this.$store.state.auth.contract.plan_id === 1){
+                    for( var i = 0; i < this.items.length; i++ ){
+                        this.items[i]['client_name'] = 'ダミー会社';
+                        this.items[i]['corporate_number'] = 99999;
+                        this.items[i]['user_name'] = "ダミー太郎";
+                        this.items[i]['business_type'] = 1;
+                        this.items[i]['anualsales'] = 1000;
+                        this.items[i]['capital'] = 10000;
+                        this.items[i]['interview_place'] = '喫茶店';
+                        this.items[i]['ceo_age'] = 40;
+                        this.items[i]['average_age'] = 30;
+                        this.items[i]['important_index'] = 0;
+                        this.items[i]['safety_index'] = 0;
+                        this.items[i]['profit_index'] = 0;
+                        this.items[i]['fund_efficiency_index'] = 0;
+                        this.items[i]['surplus_guideline'] = 0;
+                        this.items[i]['close_possibility_now'] = 0;
+                        this.items[i]['close_possibility_previous'] = 0;
+                        this.items[i]['close_possibility_befpre'] = 0;
+                        this.items[i]['comment'] = 'ダミーデータです。プレミアムプランに申し込んでください';
+                    }
+               }
+
                 this.showContent = this.$store.state.auth.contract.plan_id == 2 ? false : true;
 
                 //ページネーション情報の設定
@@ -329,7 +354,7 @@ export default {
             }
 
             this.loadingStatus = false;
-            console.log(this.items);
+//            console.log(this.items);
         },
         async clientSearch(page) {
 
@@ -343,11 +368,35 @@ export default {
             this.loadingStatus = true;
 
             // this.resetTemps();
-            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index" + "?page=" + page;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_prem" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
+
+                //スタンダードの場合
+               if(this.$store.state.auth.contract.plan_id === 1){
+                    for( var i = 0; i < this.items.length; i++ ){
+                        this.items[i]['client_name'] = 'ダミー会社';
+                        this.items[i]['corporate_number'] = 99999;
+                        this.items[i]['user_name'] = "ダミー太郎";
+                        this.items[i]['business_type'] = 1;
+                        this.items[i]['anualsales'] = 1000;
+                        this.items[i]['capital'] = 10000;
+                        this.items[i]['interview_place'] = '喫茶店';
+                        this.items[i]['ceo_age'] = 40;
+                        this.items[i]['average_age'] = 30;
+                        this.items[i]['important_index'] = 0;
+                        this.items[i]['safety_index'] = 0;
+                        this.items[i]['profit_index'] = 0;
+                        this.items[i]['fund_efficiency_index'] = 0;
+                        this.items[i]['surplus_guideline'] = 0;
+                        this.items[i]['close_possibility_now'] = 0;
+                        this.items[i]['close_possibility_previous'] = 0;
+                        this.items[i]['close_possibility_befpre'] = 0;
+                        this.items[i]['comment'] = 'ダミーデータです。プレミアムプランに申し込んでください';
+                    }
+               }
 
                 //ページネーション情報の設定
                 this.pagenation.per_page = response.data.data.data_list.per_page;
