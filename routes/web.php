@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\BasicAuthMiddleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,8 @@
 |
 */
 
-Route::get('/{any}', function() {
-    return view('app');
-})->where('any', '.*');
+//Route::group(['middleware' => 'basicauth'], function() {
+    Route::get('/{any}', function() {
+        return view('app');
+    })->where('any', '.*')->middleware('basicauth');
+//});
