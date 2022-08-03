@@ -177,7 +177,7 @@ const actions = {
         // if (response.status === UNPROCESSABLE_ENTITY) {
         if (response.data.status === "NG") {
             // context.commit('setSignupErrorMessages', response.data.message)
-            console.log(response.data.message);
+            console.log(response.data);
             context.commit('setSignupErrorMessages', '既に登録されているメールアドレスです')
         } else {
             context.commit('error/setCode', response.status, { root: true })
