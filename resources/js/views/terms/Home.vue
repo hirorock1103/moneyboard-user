@@ -8,9 +8,11 @@
                     <h2 class="text-center  heading-primary">利用規約</h2>
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <h4 class="margin-bottom--24">利用規約</h4>
+                                <h4 class="margin-bottom--24">約款</h4>
                                 <div class="table-scrollable">
-                                    <small>作成中</small>
+                                    <small>
+                                        本約款には、当社とユーザーとの間の権利義務関係及び本サービスの提供条件並びに当社の免責事項等が定められていますので、本サービスの利用にあたり、全文をお読みいただいたうえで、これに同意いただく必要があります。
+                                    </small>
                                 </div>
                             </div>
                         </article>
