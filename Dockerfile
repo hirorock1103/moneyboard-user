@@ -17,7 +17,7 @@ RUN yum -y install crontabs zip unzip
 # install remi repo
 RUN wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 RUN rpm -Uvh remi-release-7*.rpm
-RUN yum-config-manager --enable remi-php73
+RUN yum-config-manager --enable remi-php74
 
 # install php7
 RUN \
@@ -29,7 +29,8 @@ RUN \
 	php-xml \
 	php-mysqlnd \
 	php-pdo \
-	php-dom \
+	php-gd \
+	php-zip \
 	php-opcache --nogpgcheck \
 	php-bcmath
 

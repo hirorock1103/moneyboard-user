@@ -32,9 +32,9 @@ services:
        - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ppf
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: moneyboard #案件名
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 11032189
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
