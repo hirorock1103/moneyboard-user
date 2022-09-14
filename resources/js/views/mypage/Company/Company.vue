@@ -34,12 +34,20 @@
                                         </tr>
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
-                                                企業コード
+                                                企業コード(アプリログインID)
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                 {{ getCompany ? getCompany.company_code : ""}}
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th class="[ display-table-row  display-table-cell-large ]">
+                                                アプリ パスワード
+                                            </th>
+                                            <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
+                                                {{ getCompany ? getCompany.plain_password : ""}}
+                                            </td>
+                                        </tr>                                        
                                         <tr>
                                             <th class="[ display-table-row  display-table-cell-large ]">
                                                 郵便番号
@@ -151,7 +159,7 @@ export default {
                         }
                     }
                 );
-
+                
                 if( response.data === '' ){
                     //authTokenで取得した企業コードとリクエストの企業コードが異なるためデータの更新はしない
                 }else{
