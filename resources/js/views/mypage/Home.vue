@@ -33,7 +33,7 @@
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <h4>
                                 <span class="[ icon  solid ] fa-qrcode  padding-right--12  text-accent"></span>
-                                アプリダウンロードについて
+                                アプリダウンロードについてaaa
                             </h4>
                             <hr>
                             <div class="[ display-flex  [ flex-column  flex-row-large ] ]">
@@ -110,7 +110,7 @@ export default {
 
     },
     mounted: function(){
-        document.title = "マイページaaa | MoneyBoard"
+        document.title = "マイページ | MoneyBoard"
     },
     computed: {
         ...mapState({
