@@ -118,8 +118,6 @@ export default {
                 return state.auth.company;
             },
             license: function (state) {
-                console.log('state');
-                console.log(state);
                 return state.auth.license;
             }
         }),
