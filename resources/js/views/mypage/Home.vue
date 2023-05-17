@@ -26,7 +26,7 @@
                             <span class="font-weight-bold  display-none-large  padding-left--4">{{ license ? license.license_available_total : "" }}</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
                                 {{ license ? license.license_available_total : "" }}</span>
-                            件/{{ license ? license.license_total : "" }}件（残り/使用企業数上限111）
+                            件/{{ license ? license.license_total : "" }}件（残り/使用企業数上限）
                         </h5>
                     </div>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
