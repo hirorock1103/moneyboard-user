@@ -110,7 +110,7 @@ export default {
 
     },
     mounted: function(){
-        document.title = "マイページ | MoneyBoard"
+        document.title = "マイページaaa | MoneyBoard"
     },
     computed: {
         ...mapState({
