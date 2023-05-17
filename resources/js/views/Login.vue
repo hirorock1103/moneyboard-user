@@ -17,7 +17,7 @@
                                     for="email_address"
                                     class="form-label">
                                     <span class="[ icon  solid ] fa-envelope  padding-right--8  text-accent"></span>
-                                    メールアドレスあああ
+                                    メールアドレス
                                 </label>
                                 <input
                                     type="email"
