@@ -23,7 +23,6 @@
                         </h2>
 
                         <h5 class="margin-bottom--16">
-                            <!-- 契約状態：{{if(company.use_status==1) "利用中"}} -->
                             <span class="font-weight-bold  display-none-large  padding-left--4">{{ license ? license.license_available_total : "" }}</span>
                             <span class="h2  [ display-none  display-inline-block-large ]  [ padding-left--8  padding-right--4 ]">
                                 {{ license ? license.license_available_total : "" }}</span>
@@ -119,6 +118,8 @@ export default {
                 return state.auth.company;
             },
             license: function (state) {
+                console.log('state');
+                console.log(state);
                 return state.auth.license;
             }
         }),
