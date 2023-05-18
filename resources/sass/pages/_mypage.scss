@@ -113,3 +113,18 @@
 .noside_main{
     width:100% !important;
 }
+
+.mypage__main.company {
+  .app-password-wrap {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .showpass-btn-wrap {
+      width: 30px;
+      text-align: center;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+}
