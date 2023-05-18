@@ -79,16 +79,15 @@
                                 </thead>
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
-                                        {{ item.user_name === null ? item.user_name = "除外中" : "" }}
+                                        {{ item.user_name === null ? item.user_name = "未設定" : "" }}
                                         <td>{{ item.client_name }}</td>
-                                        <td v-if="item.user_del === null && item.user_name === '除外中'" v-bind:class="{'alert-danger': item.user_name === null}" style="color:red;">{{ item.user_name }}</td>
+                                        <td v-if="item.user_del === null && item.user_name === '未設定'" v-bind:class="{'alert-danger': item.user_name === null}" style="color:red;">{{ item.user_name }}</td>
                                         <td v-else-if="item.user_del === null" v-bind:class="{'alert-danger': item.user_name === null}">{{ item.user_name }}</td>
                                         <td v-else>{{ item.user_name }}<span class="alert-danger">(削除)</span></td>
-
                                         <th class="text-center">
                                             <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
                                             <button v-else class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">復旧</button>
-                                            <button v-if="item.user_name !== '除外中'" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
+                                            <button v-if="item.user_name !== '未設定'" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
                                             <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外</button>
                                         </th>
                                     </tr>
@@ -203,6 +202,8 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_user" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
+                print('response');
+                print(response);
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
@@ -223,8 +224,6 @@ export default {
                     }else{
                         this.pagenation.next_page = this.pagenation.current_page + 1;
                     }
-
-
                 }else{
                     this.$router.push({name: 'logoff'})
                 }
