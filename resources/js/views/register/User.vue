@@ -42,7 +42,7 @@
                                         id="post_number"
                                         class="form-input"
                                         v-model="getUser.post_number"
-                                        @input="searchAddress"
+                                        @input="searchAddress();v$.getUser.post_number.$touch()"
                                         v-bind:class="[ v$.getUser.post_number.$error ? 'form-error' : null ]">
                                 </span>
                                 <!-- <button type="button" class="[ btn btn--small btn--accent ]" @click="searchAddress">住所自動入力</button> -->
@@ -814,6 +814,7 @@ export default {
         },
         searchAddress() {
             const zipCode = this.getUser.post_number;
+            if (this.getUser.post_number.length != 7) { return; }
             axios.get(`https://api.zipaddress.net/?zipcode=${zipCode}`, {adapter: jsonpAdapter}).then(rs => {
                 const response = rs.data
                 console.log(response);
