@@ -14,7 +14,7 @@ use App\Http\Middleware\BasicAuthMiddleware;
 */
 
 
-if ($_SERVER['HTTP_HOST'] === "money-board-user.amb-dev.com") {
+if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === "money-board-user.amb-dev.com") {
     Route::get('/{any}', function () {
         return view('app');
     })->where('any', '.*');
