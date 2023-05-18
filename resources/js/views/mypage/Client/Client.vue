@@ -202,8 +202,8 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_user" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
-                print('response');
-                print(response.data);
+                console.log('response');
+                console.log(response.data);
 
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
