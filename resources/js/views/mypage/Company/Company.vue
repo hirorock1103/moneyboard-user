@@ -1,7 +1,7 @@
 <template>
     <div class="display-flex">
         <SideMenu />
-        <main class="mypage__main">
+        <main class="mypage__main company">
             <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
                 <div class="container">
                     <div class="
@@ -45,7 +45,16 @@
                                                 アプリ パスワード
                                             </th>
                                             <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                {{ getCompany ? getCompany.plain_password : ""}}
+                                                <div class="app-password-wrap">
+                                                    <div class="app-password">
+                                                        <span v-if="showpass">{{ getCompany ? getCompany.plain_password : ""}}</span>
+                                                        <span v-else>******</span>
+                                                    </div>
+                                                    <div class="showpass-btn-wrap" @click="showpass=!showpass">
+                                                        <i class="fas fa-eye-slash" v-if="showpass"></i>
+                                                        <i class="fas fa-eye" v-else></i>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>                                        
                                         <tr>
@@ -121,7 +130,8 @@ export default {
     },
     data() {
         return {
-            message: ""
+            message: "",
+            showpass: false
         };
     },
     mounted: function(){
