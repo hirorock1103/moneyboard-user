@@ -103,7 +103,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <p class="text-right">データ使用数は合計//{{available_licenses_total}}社まで</p> -->
                         </div>
                     </article>
                 </div>
@@ -165,16 +164,11 @@ export default {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         formatDate: dateStr => dayjs(dateStr).format('YYYY/MM/DD'),
         async fetchItems(page) {
-
             this.loadingStatus = true;
-
             var user = this.$store.state.auth.user;
-
             let url = process.env.MIX_VUE_APP_API_URL + "com/user/index?company_code=" + user.company_code + "&page=" + page;
             try {
                 const response = await axios.get(url);
-//                console.log(response.data.error_code);
-
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                     console.log(this.items);
