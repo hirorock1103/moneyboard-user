@@ -231,7 +231,7 @@ async GetCardInfo(){
                                     'ご確認お願いいたします。',
                                 ],
                                 currentStep: Number(4),
-                                // redirectPage: 'login'
+                                redirectPage: 'toLogin'
                             }
                         }
                     )
