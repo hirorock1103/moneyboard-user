@@ -87,8 +87,8 @@
                                         <th class="text-center">
                                             <button v-if="item.user_name!== null" class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">変更</button>
                                             <button v-else class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.id, item.client_name, item.user_id, item.client_code)">復旧</button>
-                                            <button v-if="item.user_name !== '未設定'" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
-                                            <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外</button>
+                                            <button v-if="item.user_name !== '未設定' && item.license_id !== null" class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">ライセンスから除外</button>
+                                            <button v-else disabled class="[ btn  btn--small  btn--outline ]" >ライセンスから除外1</button>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -202,9 +202,6 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_user" + "?page=" + page;
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
-                console.log('response1');
-                console.log(response.data);
-
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
                     this.user_list = response.data.data.user_list;
@@ -279,9 +276,6 @@ export default {
 
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
-                console.log('response2');
-                console.log(response.data);
-
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
 
