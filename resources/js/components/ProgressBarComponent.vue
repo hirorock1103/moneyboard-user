@@ -77,7 +77,9 @@ export default {
     },
 
     beforeMount(){
-        this.updateSteps ()
+        if (this.currentStep !== null) {
+            this.updateSteps();
+        }
     },
 }
 </script>
