@@ -163,7 +163,7 @@
                                 </div>
 
                                 <div class="text-center">
-                                    <button type="button" class="[ btn  btn--accent ]" v-on:click="openModal(item)">確認</button>
+                                    <button type="button" class="[ btn  btn--accent ]" :disabled="!is_changed" v-on:click="openModal(item)">確認</button>
                                 </div>
 
 
@@ -297,7 +297,10 @@ export default {
     data: function() {
         return {
             nextPlans: [],
+            nowPlans: [],
             postItem: "",
+            showContent: false,
+            is_changed: false,
         }
     },
     validations() {
@@ -323,6 +326,7 @@ export default {
     mounted: function() {
         document.title = "プラン変更/追加企業数の増減 | MoneyBoard"
         this.nextMonthPlans();
+        this.nowPlans = JSON.parse(JSON.stringify(this.plans));
     },
     components: {
         SideMenu,
@@ -345,16 +349,36 @@ export default {
             this.plans.cost_plan = value;
             this.plans.data_plan = data;
             this.plans.cost_total = this.plans.cost_plan + this.plans.cost_add;
+
+            this.checkIsChanged();
         },
         changeData() {
             if(this.plans.additional_licenses !== ''){
                 this.plans.additional_licenses = Number(this.plans.additional_licenses);
             }
+            // TODO::単価が現在固定値なので可変にする場合、検討が必要
             this.plans.cost_add = this.plans.additional_licenses * 1100;
             this.plans.cost_total = this.plans.cost_plan + this.plans.cost_add;
 
-            this.v$.plans.additional_licenses.$touch();
+            this.checkIsChanged();
 
+            this.v$.plans.additional_licenses.$touch();
+        },
+        checkIsChanged() {
+            let check_add_license_count = {
+                before: 0,
+                after: 0,
+            }
+            if(this.nowPlans.additional_licenses !== ''){
+                check_add_license_count.before = Number(this.nowPlans.additional_licenses);
+            }
+            if(this.plans.additional_licenses !== ''){
+                check_add_license_count.after = Number(this.plans.additional_licenses);
+            }
+            this.is_changed = (
+                this.nowPlans.plan_id != this.plans.plan_id ||
+                check_add_license_count.before != check_add_license_count.after
+            );
         },
         openModal: function(item){
             this.v$.$touch();
@@ -414,13 +438,14 @@ export default {
                     this.plans.cost_add = this.nextPlans.add_unit_price * this.nextPlans.add_license_count;
                 }else{ //ない場合
 
-                    this.plans.plan_id = getContract.plan_id;
-                    this.plans.additional_licenses = getContract.add_license_count;
+                    this.plans.plan_id = this.getContract.plan_id;
+                    this.plans.additional_licenses = this.getContract.add_license_count;
 
-                    this.plans.cost_total = getContract.price;
-                    this.plans.cost_plan = getContract.plan_price;
-                    this.plans.data_plan = getContract.license_count;
-                    this.plans.cost_add = getContract.add_unit_price * getContract.add_license_count;
+                    this.plans.cost_total = this.getContract.price;
+                    this.plans.cost_plan = this.getContract.plan_price;
+                    this.plans.data_plan = this.getContract.license_count;
+                    // TODO::単価が現在固定値なので可変にする場合、検討が必要
+                    this.plans.cost_add = 1100 * this.getContract.add_license_count;
                 }
 
             } catch (e){
@@ -429,10 +454,7 @@ export default {
                 setTimeout(() => {this.message = false;}, 2000);
             }
         },
-
-
     },
-
 }
 </script>
 
