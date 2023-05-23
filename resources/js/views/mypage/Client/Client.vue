@@ -248,8 +248,9 @@ export default {
             try {
                 // const response = await axios.post(url, {id: id});
                 // this.message = response.data.message
-                setTimeout(() => {this.message = false;}, 2000);
+                this.message = 'aaa';
                 this.fetchItems();
+                setTimeout(() => {this.message = false;}, 2000);
             } catch (e){
                 console.log(e);
                 this.message = e
