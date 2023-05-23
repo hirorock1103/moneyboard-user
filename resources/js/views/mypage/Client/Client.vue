@@ -80,6 +80,7 @@
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
                                         {{ item.user_name === null ? item.user_name = "未設定" : "" }}
+                                        <td>{{ item }}</td>
                                         <td>{{ item.client_name }}</td>
                                         <td v-if="item.user_del === null && item.user_name === '未設定'" v-bind:class="{'alert-danger': item.user_name === null}" style="color:red;">{{ item.user_name }}</td>
                                         <td v-else-if="item.user_del === null" v-bind:class="{'alert-danger': item.user_name === null}">{{ item.user_name }}</td>
@@ -109,18 +110,20 @@
                                             <tr>
                                                 <th>会社名</th>
                                                 <th>担当者</th>
+                                                <th>あああ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{postItem.client_name}}</td>
+                                                <td>{{postItem.user_name}}</td>
                                                 <td>{{postItem}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                         <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
-                                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行{{ postItem.id }}</button>
+                                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行</button>
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +252,6 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/delete";
             try {
                 const response = await axios.post(url, {id: id});
-                console.log(response);
                 this.message = response.data.message
                 setTimeout(() => {this.message = false;}, 2000);
                 this.fetchItems();
