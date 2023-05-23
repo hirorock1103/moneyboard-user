@@ -114,13 +114,13 @@
                                         <tbody>
                                             <tr>
                                                 <td>{{postItem.client_name}}</td>
-                                                <td>{{postItem.user_name}}</td>
+                                                <td>{{postItem}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="text-center [ padding--24  padding-large--48 ] bg-white">
                                         <button class="[ btn  btn--small  btn--accent ] margin-right--16" style="background-color:gray !important;" v-on:click="closeModal">中止</button>
-                                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行</button>
+                                        <button class="[ btn  btn--small  btn--outline ]" v-on:click="deleteItem(postItem.id)">実行{{ postItem.id }}</button>
                                     </div>
                                 </div>
                             </div>
