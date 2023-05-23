@@ -246,7 +246,7 @@ export default {
         async deleteItem(id) {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/delete";
             try {
-                const response = await axios.post(url, {id: id});
+                // const response = await axios.post(url, {id: id});
                 this.message = response.data.message
                 setTimeout(() => {this.message = false;}, 2000);
                 this.fetchItems();
