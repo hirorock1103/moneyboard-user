@@ -49,6 +49,10 @@
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
                     </div>
+                    <!-- <div class="text-center" v-if="message"> -->
+                    <div class="text-center">
+                        <p class="text-success">aaa</p>
+                    </div>
                     <article class="">
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <div v-if="search_params.sort_key"> 【並べ替え】　{{ search_params.sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ search_params.sort_asc ? '昇順' : '降順'}}</div>
@@ -246,11 +250,11 @@ export default {
         async deleteItem(id) {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/delete";
             try {
-                // const response = await axios.post(url, {id: id});
-                // this.message = response.data.message
-                this.message = 'aaa';
-                this.fetchItems();
+                const response = await axios.post(url, {id: id});
+                this.message = response.data.message
+                console.log(response.data);
                 setTimeout(() => {this.message = false;}, 2000);
+                this.fetchItems();
             } catch (e){
                 console.log(e);
                 this.message = e
