@@ -80,7 +80,6 @@
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
                                         {{ item.user_name === null ? item.user_name = "未設定" : "" }}
-                                        <td>{{ item }}</td>
                                         <td>{{ item.client_name }}</td>
                                         <td v-if="item.user_del === null && item.user_name === '未設定'" v-bind:class="{'alert-danger': item.user_name === null}" style="color:red;">{{ item.user_name }}</td>
                                         <td v-else-if="item.user_del === null" v-bind:class="{'alert-danger': item.user_name === null}">{{ item.user_name }}</td>
@@ -110,14 +109,12 @@
                                             <tr>
                                                 <th>会社名</th>
                                                 <th>担当者</th>
-                                                <th>あああ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>{{postItem.client_name}}</td>
                                                 <td>{{postItem.user_name}}</td>
-                                                <td>{{postItem}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -247,8 +244,6 @@ export default {
             this.showContent = false
         },
         async deleteItem(id) {
-            console.log('deleteItem');
-            console.log(id);
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/delete";
             try {
                 const response = await axios.post(url, {id: id});
