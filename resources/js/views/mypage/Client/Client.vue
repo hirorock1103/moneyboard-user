@@ -257,7 +257,9 @@ export default {
             }
         },
         async getItem(id, client_name, user_id, client_code) {
+                console.log('getItem');
                 let items = {id:id, client_name:client_name, user_id:user_id, client_code:client_code}
+                console.log(items);
                 this.resetTemps();
                 this.updateTemps(items);
                 this.$router.push({name: 'mypage-client_edit'})
