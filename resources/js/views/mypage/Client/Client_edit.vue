@@ -73,7 +73,7 @@ export default {
         return {
             items: {},
             message: "",
-            selectedItem: this.user_id,
+            selectedItem: this.getTemps.user_id,
         };
     },
     created: function() {
