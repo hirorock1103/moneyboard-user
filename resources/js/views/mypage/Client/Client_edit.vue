@@ -32,8 +32,9 @@
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者名
-                                                    {{ this.getTemps.user_id }}
-                                                    {{ this.getTemps.user_name }}
+                                                    {{ getTemps }}
+                                                    {{ getTemps.user_id }}
+                                                    {{ getTemps.user_name }}
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <select v-model="selectedItem" class="form-input">
