@@ -33,14 +33,11 @@
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者名
                                                     {{ getTemps }}
-                                                    {{ getTemps.user_id }}
-                                                    {{ getTemps.user_name }}
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <select v-model="selectedItem" class="form-input">
                                                         <option v-for="item in items" :key="item._id" :value="item.id">
-                                                            {{item.user_id}}
-                                                            {{item.user_cpde}}
+                                                            {{item}}
                                                             {{item.user_name}}
                                                         </option>
                                                     </select>
