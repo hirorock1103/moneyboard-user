@@ -46,6 +46,9 @@
                                 </div>
                             </div>
                         </article>
+                        <div class="text-center" v-if="message">
+                            <p class="text-danger">{{ message }}</p>
+                        </div>
                         <div class="text-center">
                             <router-link to="/mypage/company/client/rep"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確認" />
@@ -106,19 +109,22 @@ export default {
                 return value.id == this.selectedItem
             })
             console.log('chk');
-            console.log(obj);
             console.log(this.getTemps);
             console.log(result);
-            // ToDo:ひとまず選択されてなければメッセージ表示
-            // var valDatas = {
-            //     id: this.getTemps.id,
-            //     user_id: this.getTemps.user_id,
-            //     client_code:this.getTemps.client_code,
-            //     client_name: this.getTemps.client_name,
-            //     user_code: result[0].user_code,
-            //     user_name:result[0].user_name,
-            //     company_code: this.$store.state.auth.user.company_code,
-            //     }
+            if (!result.length) {
+                this.message = '担当者は必須項目です。'
+                setTimeout(() => {this.message = false;}, 2000);
+            }
+            console.log('aaa');
+            var valDatas = {
+                id: this.getTemps.id,
+                user_id: this.getTemps.user_id,
+                client_code:this.getTemps.client_code,
+                client_name: this.getTemps.client_name,
+                user_code: result[0].user_code,
+                user_name:result[0].user_name,
+                company_code: this.$store.state.auth.user.company_code,
+                }
             // try {
             //     const response = await axios.post(url, valDatas);
             //     if(response.data.status=="NG"){
