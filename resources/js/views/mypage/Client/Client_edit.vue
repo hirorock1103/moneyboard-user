@@ -73,7 +73,7 @@ export default {
         return {
             items: {},
             message: "",
-            selectedItem: this.getTemps.user_id,
+            selectedItem: null,
         };
     },
     created: function() {
@@ -85,6 +85,16 @@ export default {
     computed: {
         getTemps() {
             return this.$store.getters['auth/temps']
+        },
+    },
+    watch: {
+        getTemps: {
+            immediate: true,
+            handler(newVal) {
+                if (newVal) {
+                    this.selectedItem = newVal.user_id;
+                }
+            },
         },
     },
     methods: {
