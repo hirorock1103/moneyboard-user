@@ -32,12 +32,10 @@
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者名
-                                                    {{ getTemps }}
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <select v-model="selectedItem" class="form-input">
-                                                        <option v-for="item in items" :key="item._id" :value="item.id">
-                                                            {{item}}
+                                                        <option v-for="item in items" :key="item._id" :value="item.id" :selected="item.id === getTemps.user_id">
                                                             {{item.user_name}}
                                                         </option>
                                                     </select>
