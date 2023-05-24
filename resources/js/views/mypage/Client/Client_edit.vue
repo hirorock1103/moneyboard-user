@@ -37,6 +37,9 @@
                                                     <select v-model="selectedItem" class="form-input">
                                                         <option v-for="item in items" :key="item._id" :value="item.id" :selected="item.id == getTemps.user_id">
                                                             {{item.user_name}}
+                                                            {{ item.id }}
+                                                            {{ getTemps.user_id }}
+                                                            {{ item.id == getTemps.user_id }}
                                                         </option>
                                                     </select>
                                                 </td>
