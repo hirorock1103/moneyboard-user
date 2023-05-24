@@ -34,8 +34,8 @@
                                                     担当者名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    <select v-model="selectedItem" class="form-input">
-                                                        <option v-for="item in items" :key="item._id" :value="item.id">
+                                                    <select class="form-input">
+                                                        <option v-for="item in items" :key="item._id" :value="item.id" :selected="item.id == getTemps.user_id">
                                                             {{item.user_name}}
                                                             {{ item.id === getTemps.user_id }}
                                                         </option>
@@ -74,7 +74,7 @@ export default {
         return {
             items: {},
             message: "",
-            selectedItem: this.getTemps.user_id,
+            selectedItem: this.user_id,
         };
     },
     created: function() {
