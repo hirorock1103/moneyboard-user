@@ -114,8 +114,6 @@ export default {
         async validateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep-validate";
             const obj = this.items
-            console.log(this.selectedItem);
-            console.log(this.getTemps.user_id);
             const result = obj.filter((value) => {
                 return value.id == this.selectedItem
             })
