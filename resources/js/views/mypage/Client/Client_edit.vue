@@ -105,31 +105,35 @@ export default {
             const result = obj.filter((value) => {
                 return value.id == this.selectedItem
             })
+            console.log('chk');
+            console.log(obj);
+            console.log(this.getTemps);
+            console.log(result);
             // ToDo:ひとまず選択されてなければメッセージ表示
-            var valDatas = {
-                id: this.getTemps.id,
-                user_id: this.getTemps.user_id,
-                client_code:this.getTemps.client_code,
-                client_name: this.getTemps.client_name,
-                user_code: result[0].user_code,
-                user_name:result[0].user_name,
-                company_code: this.$store.state.auth.user.company_code,
-                }
-            try {
-                const response = await axios.post(url, valDatas);
-                if(response.data.status=="NG"){
-                    console.log(response);
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
-                } else {
-                    this.updateTemps(valDatas);
-                    this.$router.push({name: 'mypage-client_confirm'})
-                }
-            } catch (e){
-                console.log(e);
-                this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
-            }
+            // var valDatas = {
+            //     id: this.getTemps.id,
+            //     user_id: this.getTemps.user_id,
+            //     client_code:this.getTemps.client_code,
+            //     client_name: this.getTemps.client_name,
+            //     user_code: result[0].user_code,
+            //     user_name:result[0].user_name,
+            //     company_code: this.$store.state.auth.user.company_code,
+            //     }
+            // try {
+            //     const response = await axios.post(url, valDatas);
+            //     if(response.data.status=="NG"){
+            //         console.log(response);
+            //         this.message = response.data.message
+            //         setTimeout(() => {this.message = false;}, 2000);
+            //     } else {
+            //         this.updateTemps(valDatas);
+            //         this.$router.push({name: 'mypage-client_confirm'})
+            //     }
+            // } catch (e){
+            //     console.log(e);
+            //     this.message = e
+            //     setTimeout(() => {this.message = false;}, 2000);
+            // }
         }
     }
 }
