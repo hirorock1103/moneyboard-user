@@ -32,10 +32,14 @@
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者名
+                                                    {{ this.getTemps.user_id }}
+                                                    {{ this.getTemps.user_name }}
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <select v-model="selectedItem" class="form-input">
                                                         <option v-for="item in items" :key="item._id" :value="item.id">
+                                                            {{item.user_id}}
+                                                            {{item.user_cpde}}
                                                             {{item.user_name}}
                                                         </option>
                                                     </select>
@@ -100,7 +104,6 @@ export default {
                 this.message = e;
                 setTimeout(() => {this.message = false;}, 2000);
             }
-
         },
         async validateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep-validate";
@@ -108,15 +111,11 @@ export default {
             const result = obj.filter((value) => {
                 return value.id == this.selectedItem
             })
-            console.log('chk');
-            console.log(this.getTemps);
-            console.log(result);
             if (!result.length) {
                 this.message = '担当者は必須項目です。'
                 setTimeout(() => {this.message = false;}, 2000);
                 return;
             }
-            console.log('aaa');
             var valDatas = {
                 id: this.getTemps.id,
                 user_id: this.getTemps.user_id,
@@ -126,26 +125,24 @@ export default {
                 user_name:result[0].user_name,
                 company_code: this.$store.state.auth.user.company_code,
                 }
-            // try {
-            //     const response = await axios.post(url, valDatas);
-            //     if(response.data.status=="NG"){
-            //         console.log(response);
-            //         this.message = response.data.message
-            //         setTimeout(() => {this.message = false;}, 2000);
-            //     } else {
-            //         this.updateTemps(valDatas);
-            //         this.$router.push({name: 'mypage-client_confirm'})
-            //     }
-            // } catch (e){
-            //     console.log(e);
-            //     this.message = e
-            //     setTimeout(() => {this.message = false;}, 2000);
-            // }
+            try {
+                const response = await axios.post(url, valDatas);
+                if(response.data.status=="NG"){
+                    console.log(response);
+                    this.message = response.data.message
+                    setTimeout(() => {this.message = false;}, 2000);
+                } else {
+                    this.updateTemps(valDatas);
+                    this.$router.push({name: 'mypage-client_confirm'})
+                }
+            } catch (e){
+                console.log(e);
+                this.message = e
+                setTimeout(() => {this.message = false;}, 2000);
+            }
         }
     }
 }
-
-// ToDo:選択されている担当者の反映
 </script>
 
 <style lang="scss" scoped>
