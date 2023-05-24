@@ -114,6 +114,7 @@ export default {
             if (!result.length) {
                 this.message = '担当者は必須項目です。'
                 setTimeout(() => {this.message = false;}, 2000);
+                return;
             }
             console.log('aaa');
             var valDatas = {
