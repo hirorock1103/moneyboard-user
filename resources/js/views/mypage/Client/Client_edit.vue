@@ -34,10 +34,9 @@
                                                     担当者名
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
-                                                    <select class="form-input">
-                                                        <option v-for="item in items" :key="item._id" :value="item.id" :selected="item.id == getTemps.user_id">
+                                                    <select v-model="selectedItem" class="form-input">
+                                                        <option v-for="item in items" :key="item._id" :value="item.id">
                                                             {{item.user_name}}
-                                                            {{ item.id === getTemps.user_id }}
                                                         </option>
                                                     </select>
                                                 </td>
@@ -105,6 +104,7 @@ export default {
         async validateItem() {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep-validate";
             const obj = this.items
+            console.log(this.selectedItem);
             const result = obj.filter((value) => {
                 return value.id == this.selectedItem
             })
