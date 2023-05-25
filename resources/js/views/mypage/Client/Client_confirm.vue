@@ -86,9 +86,7 @@ export default {
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep";
             try {
                 const response = await axios.post(url, this.getTemps);
-                console.log(response);
                 if(response.data.status=="NG"){
-                    console.log(response);
                     this.message = response.data.message
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
