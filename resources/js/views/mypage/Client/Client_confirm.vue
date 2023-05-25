@@ -82,6 +82,7 @@ export default {
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async Store() {
+            console.log('Store');
             console.log(this.getTemps);
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep";
             // try {
