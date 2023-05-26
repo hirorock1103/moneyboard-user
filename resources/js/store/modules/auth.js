@@ -318,6 +318,14 @@ const actions = {
         context.commit('setApiStatus', false)
         context.commit('error/setCode', response.data.status, { root: true })
     },
+    async clearAuth (context) {
+        context.commit('setApiStatus', true)
+        context.commit('setUser', null)
+        context.commit('setCompany', null)
+        context.commit('setCard', null)
+        context.commit('setContract', null)
+        localStorage.removeItem('authToken');
+    },
     async sendResetLinkRequest(context, data) {
         context.commit('setApiStatus', null);
         context.commit('setLoadingStatus', true);

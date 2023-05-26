@@ -65,11 +65,14 @@ import Inquiry_new from "./views/mypage/Inquiry/Inquiry_new.vue";
 import Inquiry_show from "./views/mypage/Inquiry/Inquiry_show.vue";
 import Inquiry_add from "./views/mypage/Inquiry/Inquiry_add.vue";
 import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
-//
-import SystemError from "./views/errors/System.vue";
-import NotFound from "./views/errors/NotFound.vue";
+// 
 import Terms from "./views/terms/Home.vue";
 import Privacy from "./views/privacy/Home.vue";
+// エラー画面
+import SystemError from "./views/errors/System.vue";
+import NotFound from "./views/errors/NotFound.vue";
+import Unauthorized from "./views/errors/Unauthorized.vue";
+
 
 const guest = (to, from, next) => {
   if (!localStorage.getItem("authToken")) {
@@ -83,7 +86,7 @@ const auth = (to, from, next) => {
   if (localStorage.getItem("authToken")) {
     return next();
   } else {
-    return next("/logoff");
+    return next("/401");
   }
 };
 
@@ -437,6 +440,11 @@ const routes = [
   {
     path: "/500",
     component: SystemError,
+  },
+  // 接続権限なし、セッション切れなど
+  {
+    path: "/401",
+    component: Unauthorized,
   },
   {
     path: "/:catchAll(.*)",

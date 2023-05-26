@@ -10,7 +10,7 @@ axios_instance.interceptors.request.use(config => {
 })
 
 axios_instance.interceptors.response.use(function (response) {
-    if(response.data.message==='Unauthorized'){
+    if(localStorage.getItem('authToken') && response.data.message==='Unauthorized'){
 
         // console.log('認証失敗(axios)！！');
         // トークンを削除
@@ -20,9 +20,10 @@ axios_instance.interceptors.response.use(function (response) {
         // ログイン画面へ
         // ToDo:メッセージ投げる
         // this.$router.push('/login')
+        location.href='/401';
     }
     return response; // 成功時の処理
-    }, function (error) { // 失敗時の処理
+}, function (error) { // 失敗時の処理
     switch (error.response?.status) {
         case 401: // HTTPステータスに応じて処理
         case 403:
