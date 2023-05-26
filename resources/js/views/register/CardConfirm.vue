@@ -36,21 +36,21 @@
                                 <label for="number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     番号
                                 </label>
-                                <span class="form-column">**** **** **** {{ getCard.number }}</span>
+                                <span class="form-column form-input" readonly>**** **** **** {{ getCard.number }}</span>
                             </div>
 
                             <div class="form-row">
                                 <label for="valid_year" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     有効期限
                                 </label>
-                                <span class="form-column">{{ getCard.valid_month }} / {{ getCard.valid_year }}</span>
+                                <span class="form-column form-input" readonly>{{ getCard.valid_month }} / {{ getCard.valid_year }}</span>
                             </div>
 
                             <div class="form-row">
                                 <label for="security_code" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     セキュリティコード
                                 </label>
-                                <span class="form-column">***</span>
+                                <span class="form-column form-input" readonly>***</span>
                             </div>
 
                             <div class="form-row">
@@ -158,8 +158,8 @@ async GetCardInfo(){
         let valid_year = response.data.card.exp_year;
         let number = response.data.card.last4;
 
-        this.getCard.valid_month = valid_month;
-        this.getCard.valid_year = valid_year;
+        this.getCard.valid_month = ('00'+valid_month).slice(-2);
+        this.getCard.valid_year = (''+valid_year).slice(-2);
         this.getCard.number = number;
 
         if(response.status!="200" || card_id == null){
@@ -224,6 +224,7 @@ async GetCardInfo(){
                         {
                             name: 'register-completion',
                             params: {
+                                type: 'register',
                                 title: '申込完了',
                                 message: [
                                     'ご登録ありがとうございます。',

@@ -34,6 +34,7 @@
                                     <div id="card-number" class="form-input"></div>
                                 </span>
                             </div>
+                            <div id="card-number-error" style="display:none;" class="form-text  text-danger [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"></div>
                             <div class="form-row">
                                 <label for="card-expiry" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     有効期限
@@ -41,8 +42,8 @@
                                 <span class="form-column">
                                     <div id="card-expiry" class="form-input"></div>
                                 </span>
-
                             </div>
+                            <div id="card-expiry-error" style="display:none;" class="form-text  text-danger [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"></div>
                             <div class="form-row">
                                 <label for="card-cvc" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                     セキュリティーコード
@@ -51,6 +52,7 @@
                                     <div id="card-cvc" class="form-input"></div>
                                 </span>
                             </div>
+                            <div id="card-cvc-error" style="display:none;" class="form-text  text-danger [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"></div>
                             <span class="form-column">
                                 <input
                                     type="hidden"
@@ -76,8 +78,13 @@
                                         v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
                                 </span>
                             </div>
+                            <div
+                                class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+                                v-if="v$.getCard.name.$error">
+                                {{ v$.getCard.name.$errors[0].$message }}
+                            </div>
 
-                            <div id="card-error" style="color:red;text-align:center;margin-bottom:10px;"></div>
+                            <div id="card-error" class="form-text  text-danger padding-left-large--24" style="display:none;"></div>
 
                             <p style="text-align:center">
                             <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
@@ -127,8 +134,8 @@ export default {
     },
 
     async mounted() {
-      this.stripe = window.Stripe(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY)
-      const elements = this.stripe.elements()
+        this.stripe = window.Stripe(process.env.MIX_VUE_APP_STRIPE_PUBLIC_KEY)
+        const elements = this.stripe.elements()
 
         const elementStyles = {
             base: {
@@ -140,7 +147,7 @@ export default {
                 fontSize: '15px',
 
                 '::placeholder': {
-                color: '#CFD7E0',
+                    color: '#CFD7E0',
                 }
             },
             invalid: {
@@ -152,20 +159,29 @@ export default {
             style: elementStyles,
             placeholder: ''
         });
+        this.cardNumber.addEventListener('change', ({error}) => {
+            this.displayCardError(error, 'card-number');
+        });
 
         this.cardExpiry = elements.create("cardExpiry", {
             style: elementStyles,
             placeholder: ' 月 / 年'
+        });
+        this.cardExpiry.addEventListener('change', ({error}) => {
+            this.displayCardError(error, 'card-expiry');
         });
 
         this.cardCvc = elements.create("cardCvc", {
             style: elementStyles,
             placeholder: ''
         });
+        this.cardCvc.addEventListener('change', ({error}) => {
+            this.displayCardError(error, 'card-cvc');
+        });
 
-    this.cardNumber.mount('#card-number');
-    this.cardExpiry.mount('#card-expiry');
-    this.cardCvc.mount('#card-cvc');
+        this.cardNumber.mount('#card-number');
+        this.cardExpiry.mount('#card-expiry');
+        this.cardCvc.mount('#card-cvc');
 
     },
 
@@ -226,17 +242,34 @@ export default {
             )
         },
 
+        displayCardError(error, targetId) {
+            let inputDiv = document.getElementById(targetId);
+            let errorDiv = document.getElementById(targetId+'-error');
+            if (error) {
+                inputDiv.classList.add("form-error");
+                errorDiv.style.display = "block";
+                errorDiv.textContent = error.message;
+            } else {
+                inputDiv.classList.remove("form-error");
+                errorDiv.style.display = "none";
+                errorDiv.textContent = '';
+            }
+        },
+
         async createToken () {
 
             this.loadingStatus = true;
 
             const { token, error } = await this.stripe.createToken(this.cardNumber);
+            this.v$.$touch();
             if (error) {
                 this.loadingStatus = false;
+                console.log(error);
                 // handle error here
                 document.getElementById('card-error').innerHTML = error.message;
                 return;
             }
+            if (this.v$.$error) return;
 
             //作成したトークンを保存
             //CardField-numberの中のinputの値
