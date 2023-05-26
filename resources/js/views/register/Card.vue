@@ -264,7 +264,6 @@ export default {
             this.v$.$touch();
             if (error) {
                 this.loadingStatus = false;
-                console.log(error);
                 // handle error here
                 document.getElementById('card-error').innerHTML = error.message;
                 return;

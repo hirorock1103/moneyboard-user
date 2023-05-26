@@ -38,6 +38,7 @@
                                         <div id="card-number" class="form-input"></div>
                                     </span>
                                 </div>
+                                <div id="card-number-error" style="display:none;" class="form-text  text-danger [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"></div>
                                 <div class="form-row">
                                     <label for="card-expiry" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                         有効期限
@@ -47,6 +48,7 @@
                                     </span>
 
                                 </div>
+                                <div id="card-expiry-error" style="display:none;" class="form-text  text-danger [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"></div>
                                 <div class="form-row">
                                     <label for="card-cvc" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                         セキュリティーコード
@@ -55,7 +57,7 @@
                                         <div id="card-cvc" class="form-input"></div>
                                     </span>
                                 </div>
-
+                                <div id="card-cvc-error" style="display:none;" class="form-text  text-danger [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"></div>
                                 <div class="form-row">
                                     <label for="name" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
                                         名義
@@ -71,8 +73,13 @@
                                         v-bind:class="[ v$.getCard.name.$error ? 'form-error' : null ]">
                                     </span>
                                 </div>
+                                <div
+                                    class="form-text  text-danger  [ margin-bottom--24  margin-left-large--164 ]  padding-left-large--48"
+                                    v-if="v$.getCard.name.$error">
+                                    {{ v$.getCard.name.$errors[0].$message }}
+                                </div>
 
-                                <div id="card-error" style="color:red;text-align:center;margin-bottom:10px;"></div>
+                                <div id="card-error" style="color:red;text-align:center;margin-bottom:10px;display:none;"></div>
 
                                 <p style="text-align:center">
                                     <router-link to="/mypage/card"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
@@ -95,6 +102,7 @@
 <script>
 import useVuelidate from '@vuelidate/core';
 import { required, minLength, maxLength, sameAs, helpers } from '@vuelidate/validators';
+import containsAlphaSpace from '../../../customValidators/containsAlphaSpace';
 import axios from '../../../src/plugins/axios.js';
 import SideMenu from '../../../components/SideMenuComponent.vue';
 import { mapActions } from 'vuex';
@@ -136,7 +144,7 @@ export default {
                 fontSize: '15px',
 
                 '::placeholder': {
-                color: '#CFD7E0',
+                    color: '#CFD7E0',
                 }
             },
             invalid: {
@@ -148,20 +156,29 @@ export default {
             style: elementStyles,
             placeholder: ''
         });
+        this.cardNumber.addEventListener('change', ({error}) => {
+            this.displayCardError(error, 'card-number');
+        });
 
         this.cardExpiry = elements.create("cardExpiry", {
             style: elementStyles,
             placeholder: ' 月 / 年'
+        });
+        this.cardExpiry.addEventListener('change', ({error}) => {
+            this.displayCardError(error, 'card-expiry');
         });
 
         this.cardCvc = elements.create("cardCvc", {
             style: elementStyles,
             placeholder: ''
         });
+        this.cardExpiry.addEventListener('change', ({error}) => {
+            this.displayCardError(error, 'card-cvc');
+        });
 
-    this.cardNumber.mount('#card-number');
-    this.cardExpiry.mount('#card-expiry');
-    this.cardCvc.mount('#card-cvc');
+        this.cardNumber.mount('#card-number');
+        this.cardExpiry.mount('#card-expiry');
+        this.cardCvc.mount('#card-cvc');
 
     },
 
@@ -177,6 +194,14 @@ export default {
                 security_code: {
                 },
                 name: {
+                    required: helpers.withMessage(
+                        '名義を入力してください',
+                        required
+                    ),
+                    containsAlphaSpace: helpers.withMessage(
+                        '大文字半角アルファベット 姓名の間にスペースを入力してください',
+                        containsAlphaSpace
+                    ),
                 },
                 stripe_token: {
                 },
@@ -187,24 +212,40 @@ export default {
         ...mapActions('auth', ['updateCompany']),
 
         async createToken () {
-           const { token, error } = await this.stripe.createToken(this.cardNumber);
-           if (error) {
-             // handle error here
-             document.getElementById('card-error').innerHTML = error.message;
-             return;
-           }
+            const { token, error } = await this.stripe.createToken(this.cardNumber);
+            this.v$.$touch();
+            if (error) {
+                // handle error here
+                document.getElementById('card-error').innerHTML = error.message;
+                return;
+            }
+            if (this.v$.$error) return;
 
 
-           //作成したトークンを保存
-           //CardField-numberの中のinputの値
-           let test = document.getElementsByClassName('CardField-number');
+            //作成したトークンを保存
+            //CardField-numberの中のinputの値
+            let test = document.getElementsByClassName('CardField-number');
 
-           this.getCard.stripe_token = token.id;
+            this.getCard.stripe_token = token.id;
 
-           //クレカ確認画面に遷移
-           this.$router.push({name: 'mypage-card_confirm'})
+            //クレカ確認画面に遷移
+            this.$router.push({name: 'mypage-card_confirm'})
 
          },
+
+        displayCardError(error, targetId) {
+            let inputDiv = document.getElementById(targetId);
+            let errorDiv = document.getElementById(targetId+'-error');
+            if (error) {
+                inputDiv.classList.add("form-error");
+                errorDiv.style.display = "block";
+                errorDiv.textContent = error.message;
+            } else {
+                inputDiv.classList.remove("form-error");
+                errorDiv.style.display = "none";
+                errorDiv.textContent = '';
+            }
+        },
     }
 }
 

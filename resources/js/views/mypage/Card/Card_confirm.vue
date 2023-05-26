@@ -248,8 +248,8 @@ export default {
                 let valid_year = response.data.card.exp_year;
                 let number = response.data.card.last4;
 
-                this.getCard.valid_month = valid_month;
-                this.getCard.valid_year = valid_year;
+                this.getCard.valid_month = ('00'+valid_month).slice(-2);
+                this.getCard.valid_year = (''+valid_year).slice(-2);
                 this.getCard.number = number;
 
                 if(response.status!="200"){

@@ -168,8 +168,8 @@ export default {
                         let valid_year = response.data.exp_year;
                         let number = response.data.last4;
 
-                        this.getCard.valid_month = valid_month;
-                        this.getCard.valid_year = valid_year;
+                        this.getCard.valid_month = ('00'+valid_month).slice(-2);
+                        this.getCard.valid_year = (''+valid_year).slice(-2);
                         this.getCard.number = number;
                     }
                 }
