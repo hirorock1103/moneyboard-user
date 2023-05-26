@@ -161,6 +161,7 @@ export default {
                         {
                             name: 'request-completion',
                             params: {
+                                type: 'passreq-success',
                                 title: 'パスワード設定完了',
                                 message: [
                                     'パスワードの設定が完了いたしました。',
@@ -174,6 +175,7 @@ export default {
                         {
                             name: 'request-completion',
                             params: {
+                                type: 'passreq-failed',
                                 title: 'パスワード設定失敗',
                                 message: [
                                     'パスワードの設定が失敗しました。申し訳ございませんが最初からやり直してください。',

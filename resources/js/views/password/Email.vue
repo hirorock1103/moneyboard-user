@@ -146,6 +146,7 @@ export default {
                         {
                             name: 'request-completion',
                             params: {
+                                type: 'passreq',
                                 title: 'メール送信完了',
                                 message: [
                                     'メールが送信されました。メールのURLからパスワードの再設定をお願いします。',

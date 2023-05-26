@@ -26,6 +26,7 @@ import Button from '../components/ButtonComponent.vue';
 export default {
     name: 'completion',
     props: {
+        type: String,
         title: String,
         message: {
             type: Array,
@@ -41,6 +42,11 @@ export default {
     components: {
         Button,
         ProgressBar
-    }
+    },
+    mounted() {
+        if (this.type === "register") {
+            localStorage.removeItem('registerToken');
+        }
+    },
 }
 </script>

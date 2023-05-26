@@ -332,6 +332,7 @@ export default {
                         {
                             name: 'signup-completion',
                             params: {
+                                type: 'signup',
                                 title: 'メール送信完了',
                                 message: [
                                     'メールが送信されました。メールのURLから登録手続きをお願いします。',
