@@ -82,8 +82,27 @@ const guest = (to, from, next) => {
   }
 };
 
-const auth = (to, from, next) => {
+const auth = async (to, from, next) => {
   if (localStorage.getItem("authToken")) {
+    if (localStorage.getItem('expierAt')) {
+        let now = new Date();
+        let expier_at = new Date(localStorage.getItem('expierAt'));
+        if (now < expier_at) { // 有効期限内であればリフレッシュ
+            await axios.post(process.env.MIX_VUE_APP_API_URL + "com/refresh",[], {'headers':{'Authorization':'Bearer ' + localStorage.getItem('authToken')}})
+            .then((response) => {
+                if (response.data.status === 'OK') {
+                    localStorage.setItem('authToken', response.data.data.access_token);
+                    localStorage.setItem('expierAt', response.data.data.expier_at);
+                }
+            }).catch((error) => {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('expierAt');
+                return next("/401");
+            });
+        } else {
+          return next("/401");
+        }
+    }
     return next();
   } else {
     return next("/401");
