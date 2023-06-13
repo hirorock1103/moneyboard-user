@@ -552,7 +552,7 @@
                     </article>
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
                         <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
-                        <p v-show="this.$message" class="text-danger">{{ this.$message }}</p>
+                        <p v-show="errMsg" class="text-danger">{{ errMsg }}</p>
                         <button type="submit" class="btn  btn--accent">確認画面</button>
                     </div>
                 </form>
@@ -586,6 +586,7 @@ export default {
             currentStep: 0,
             recommendator: null,
             recommendation: null,
+            errMsg: null,
         }
     },
     validations() {
@@ -850,6 +851,7 @@ export default {
             } catch (e){
                 console.log(e);
                 this.message = e
+                this.errMsg = e
             }
         }
     },
