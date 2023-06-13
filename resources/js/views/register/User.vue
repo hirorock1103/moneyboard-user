@@ -552,6 +552,7 @@
                     </article>
                     <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
                         <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
+                        <p class="text-danger">あああ</p>
                         <p class="text-danger">{{ errMsg }}</p>
                         <button type="submit" class="btn  btn--accent">確認画面</button>
                     </div>
