@@ -554,6 +554,7 @@
                         <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
                         <p class="text-danger">あああ</p>
                         <p class="text-danger">{{ errMsg }}</p>
+                        <p class="text-danger">{{ message.data.message }}</p>
                         <button type="submit" class="btn  btn--accent">確認画面</button>
                     </div>
                 </form>
