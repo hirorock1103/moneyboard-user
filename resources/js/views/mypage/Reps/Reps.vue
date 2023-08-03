@@ -59,7 +59,7 @@
                                         <td class="text-center">{{ item.use_license_count ?? 0 }}社</td>
                                         <td class="text-center">{{ formatDate(item.updated_at) }}</td>
                                         <th class="text-center">
-                                            <button class="[ btn  btn--small  btn--accent ] margin-right--16" v-on:click="getItem(item.user_code, item.use_license_count ?? 0, available_licenses_total)">変更</button>
+                                            <button class="[ btn  btn--small  btn--accent ] [ margin-bottom--16 margin-bottom-large--0 margin-right-large--16 ]" v-on:click="getItem(item.user_code, item.use_license_count ?? 0, available_licenses_total)">変更</button>
                                             <button class="[ btn  btn--small  btn--outline ]" v-on:click="openModal(item)">削除</button>
                                         </th>
                                     </tr>

@@ -133,7 +133,7 @@
                                 </h4>
                             </div>
 
-                            <div class="text-center">
+                            <div class="text-center [ margin-top-medium--0 margin-top--24 ]">
                                 <router-link to="/mypage/company/plan_edit"  class="[ btn  btn--accent ]">変更</router-link>
                             </div>
 
