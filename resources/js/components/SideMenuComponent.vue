@@ -152,6 +152,13 @@ export default {
                         title: 'パスワード変更',
                         active: false
                     },
+                    {
+                        id: 12,
+                        url: '/mypage/company/app_password',
+                        icon: 'fa-key',
+                        title: 'アプリパスワード変更',
+                        active: false
+                    },
                     // {
                     //     id: 9,
                     //     url: '/mypage/opinion',

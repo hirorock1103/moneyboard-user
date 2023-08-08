@@ -106,6 +106,14 @@
                         </router-link>
                     </li>
 
+                    <li class="menu__link" v-on:click="MenuClose()">
+                        <router-link to="/mypage/company/app_password">
+                            <span class="menu__icon  [ icon  solid  fa-key ]"></span>
+                            <span>アプリパスワード変更<br>
+                            </span>
+                        </router-link>
+                    </li>
+
                 </ul>
 
                 <ul v-if="company" class="menu__list--bottom">
