@@ -56,6 +56,9 @@ import Email_complete from "./views/mypage/Email/Email_complete.vue";
 // パスワードの変更
 import Password from "./views/mypage/Password/Password.vue";
 import Password_confirm from "./views/mypage/Password/Password_confirm.vue";
+// アプリパスワードの変更
+import App_Password from "./views/mypage/AppPassword/Password.vue";
+import App_Password_confirm from "./views/mypage/AppPassword/Password_confirm.vue";
 // ご意見・ご要望
 import Opinion from "./views/mypage/Opinion/Opinion.vue";
 import Opinion_done from "./views/mypage/Opinion/Opinion_done.vue";
@@ -363,6 +366,20 @@ const routes = [
     path: "/mypage/company/password_confirm",
     component: Password_confirm,
     name: "mypage-password_confirm",
+    beforeEnter: auth,
+  },
+  // アプリパスワードの変更
+  {
+    path: "/mypage/company/app_password",
+    component: App_Password,
+    name: "mypage-apppassword",
+    beforeEnter: auth,
+  },
+  // アプリパスワードの変更 確認
+  {
+    path: "/mypage/company/app_password_confirm",
+    component: App_Password_confirm,
+    name: "mypage-apppassword_confirm",
     beforeEnter: auth,
   },
   // ご意見・ご要望
