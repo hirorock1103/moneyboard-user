@@ -37,7 +37,12 @@
                                                     パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
+                                                    <template v-if="typeof getTemps.password == 'undefined' || getTemps.password.length == 0">
+                                                    変更なし
+                                                    </template>
+                                                    <template v-else>
                                                     {{getTemps.password.replace( /./g, '*' )}}
+                                                    </template>
                                                 </td>
                                             </tr>
                                         </tbody>
