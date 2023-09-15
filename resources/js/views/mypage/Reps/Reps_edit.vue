@@ -145,10 +145,6 @@ export default {
                     ),
                 },
                 password: {
-                    required: helpers.withMessage(
-                        'パスワードを入力してください',
-                        required
-                    ),
                     minLength: helpers.withMessage(
                         '8文字以上を入力してください',
                         minLength(8)

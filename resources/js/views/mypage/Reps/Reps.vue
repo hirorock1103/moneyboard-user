@@ -171,7 +171,7 @@ export default {
                 const response = await axios.get(url);
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {
                     this.items = response.data.data.data_list.data;
-                    console.log(this.items);
+                    // console.log(this.items);
 
                     this.available_licenses_total = response.data.data.available_licenses_total[user.id];
                     this.resetTemps();
