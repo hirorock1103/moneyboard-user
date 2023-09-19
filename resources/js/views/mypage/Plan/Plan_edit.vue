@@ -162,7 +162,7 @@
                                     </table>
                                 </div>
 
-                                <div class="text-center">
+                                <div class="text-center [ margin-top-medium--0 margin-top--24 ]">
                                     <button type="button" class="[ btn  btn--accent ]" :disabled="!is_changed" v-on:click="openModal(item)">確認</button>
                                 </div>
 
@@ -269,7 +269,7 @@
                             </div>
                         </article>
 
-                        <div class="text-center">
+                        <div class="text-center [ margin-bottom-medium--0 margin-bottom--24 ]">
                             <router-link to="/mypage/company/plan"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                         </div>
 

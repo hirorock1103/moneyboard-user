@@ -147,8 +147,8 @@
                         <div class="text-center">
                             <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
                         </div>
-                        <div class="text-center">
-                            <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                        <div class="text-center [ margin-bottom-medium--0 margin-bottom--48 ]">
+                            <router-link to="/mypage/company"  class="[ btn  btn--outline ] [ margin-right--24  margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確認" />
                         </div>
                     </form>

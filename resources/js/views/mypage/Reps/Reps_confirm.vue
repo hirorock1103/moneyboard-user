@@ -45,8 +45,8 @@
                                 </div>
                             </div>
                         </article>
-                        <div class="text-center">
-                            <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
+                        <div class="text-center [ margin-bottom-medium--0 margin-bottom--48 ]">
+                            <router-link to="/mypage/company/reps-list_create"  class="[ btn  btn--outline ] [ margin-right--24  margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
                             <input type="submit" class="[ btn  btn--accent ]" value="確定"/>
                         </div>
                     </form>

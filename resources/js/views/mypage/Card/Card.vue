@@ -73,7 +73,7 @@
                         </div>
                     </article>
 
-                    <div class="text-center">
+                    <div class="text-center [ margin-bottom-medium--0 margin-bottom--48 ]">
                         <router-link :to="{name: 'mypage-card_edit'}" class="[ btn  btn--accent ]">変更</router-link>
                     </div>
                 </div>
