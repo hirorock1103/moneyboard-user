@@ -141,7 +141,13 @@ export default {
                 per_page: 0,
             },
             loadingStatus:true,
+            prevRoute: null
         };
+    },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            vm.prevRoute = from
+        })
     },
     computed: {
         getCompany() {
@@ -202,7 +208,13 @@ export default {
                 this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
-
+            if(this.$route.query.a == 1 && this.prevRoute.path == "/mypage/company/reps-list_edit_confirm"){
+                this.message="担当者情報を変更しました";
+                setTimeout(() => {this.message = false;}, 2000);
+            }else if(this.$route.query.a == 2 && this.prevRoute.path == "/mypage/company/reps-list_confirm"){
+                this.message="担当者情報を新規登録しました";
+                setTimeout(() => {this.message = false;}, 2000);
+            }
             this.loadingStatus = false;
 
         },

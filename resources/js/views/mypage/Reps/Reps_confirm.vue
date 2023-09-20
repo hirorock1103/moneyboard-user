@@ -92,7 +92,7 @@ export default {
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     this.resetTemps();
-                    this.$router.push({name: 'mypage-reps'})
+                    this.$router.push({name: 'mypage-reps',query: {a: 2}})
                 }
             } catch (e){
                 console.log(e);
