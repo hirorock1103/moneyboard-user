@@ -90,6 +90,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
 
+
 export default {
     components: {
         SideMenu,
@@ -178,10 +179,10 @@ export default {
                 console.log(e);
                 this.message = e
             }
-
+            if(this.$route.query.a == 1){
+                this.message="クレジットカード情報を変更しました";
+            }
             this.loadingStatus = false;
-
-
         },
 
 
