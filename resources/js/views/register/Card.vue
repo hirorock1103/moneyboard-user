@@ -272,8 +272,8 @@ export default {
             }
             if (this.v$.$error) {
                 this.loadingStatus = false;
-                console.log("this.getCard.name");
-                console.log(this.getCard.name);
+                //console.log("this.getCard.name");
+                //console.log(this.getCard.name);
                 return;
             }
             //作成したトークンを保存
