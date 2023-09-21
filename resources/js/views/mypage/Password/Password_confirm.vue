@@ -10,7 +10,7 @@
                             パスワード変更完了
                         </h2>
                     </div>
-                    <div class="[ padding--24  padding-large--48 ]  bg-white">
+                    <div class="[ padding--24  padding-large--48 ]  bg-white" style="margin-bottom: 100%;">
                         新しいパスワードに変更しました。
                     </div>
                 </div>
