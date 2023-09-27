@@ -151,6 +151,7 @@ export default {
             message: null,
             showContent: false,
             postItem: "",
+            prevRoute: null,
             pagenation: {
                 prev_page: 0,
                 next_page: 0,
@@ -165,8 +166,13 @@ export default {
                 user_name: '',
                 sort_key: '',
                 sort_asc: true,
-   },
+            },
         };
+    },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            vm.prevRoute = from
+        })
     },
     computed: {
         getCompany() {
@@ -190,7 +196,6 @@ export default {
     },
     mounted: function(){
         document.title = "登録企業一覧 | MoneyBoard"
-
     },
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
@@ -222,7 +227,7 @@ export default {
                         this.pagenation.next_page = this.pagenation.current_page + 1;
                     }
                 }else{
-                    this.$router.push({name: 'logoff'})
+                    this.$router.push({name: 'logoff'});
                 }
 
             } catch (e){
@@ -232,7 +237,10 @@ export default {
                 this.loadingStatus = false;
                 setTimeout(() => {this.message = false;}, 2000);
             }
-
+            if(this.$route.query.a == 1 && this.prevRoute.path == "/mypage/company/client/rep_confirm"){
+                this.message="登録企業の担当者を変更しました";
+                setTimeout(() => {this.message = false;}, 2000);
+            }
             this.loadingStatus = false;
 
         },
@@ -273,7 +281,6 @@ export default {
 
             this.resetTemps();
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/index_user" + "?page=" + page;
-
             try {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 1, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 if (typeof response.data.error_code === 'undefined' || response.data.error_code === 'null' || response.data.error_code === '') {

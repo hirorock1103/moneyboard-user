@@ -12,6 +12,7 @@
                     </div>
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
                         以下の内容で登録します
+                        <p v-if=no_licence style="color:red;">{{no_licence}}</p>
                     </div>
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
@@ -69,6 +70,7 @@ export default {
         return {
             items: {},
             message: "",
+            no_licence: "",
         };
     },
     mounted: function(){
@@ -82,7 +84,7 @@ export default {
     methods: {
         ...mapActions('auth', ['updateTemps', 'resetTemps']),
         async Store() {
-            console.log('Store');
+            //console.log('Store');
             let url = process.env.MIX_VUE_APP_API_URL + "com/client/update_rep";
             try {
                 const response = await axios.post(url, this.getTemps);
@@ -91,8 +93,13 @@ export default {
                     setTimeout(() => {this.message = false;}, 2000);
                 } else {
                     this.resetTemps();
-                    this.$router.push({name: 'mypage-client'})
+                    this.$router.push({name: 'mypage-client',query: {a: 1}})
                 }
+                if(response.data.errors.no_licence){
+                    this.no_licence = response.data.errors.no_licence;
+                    setTimeout(() => {this.no_licence = false;}, 2000);
+                }
+                console.log(response.data);
             } catch (e){
                 console.log(e);
                 this.message = e
