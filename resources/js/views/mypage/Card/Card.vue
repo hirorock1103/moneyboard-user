@@ -90,6 +90,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
 
+
 export default {
     components: {
         SideMenu,
@@ -99,7 +100,13 @@ export default {
         return {
             message: "",
             loadingStatus:true,
+            prevRoute: null
         };
+    },
+    beforeRouteEnter(to, from, next) {
+        next(vm => {
+            vm.prevRoute = from
+        })
     },
     mounted: function(){
         document.title = "カード情報 | MoneyBoard"
@@ -178,10 +185,11 @@ export default {
                 console.log(e);
                 this.message = e
             }
-
+            if(this.$route.query.a == 1 && this.prevRoute.path == "/mypage/card_confirm"){
+                this.message="クレジットカード情報を変更しました";
+                setTimeout(() => {this.message = false;}, 2000);
+            }
             this.loadingStatus = false;
-
-
         },
 
 

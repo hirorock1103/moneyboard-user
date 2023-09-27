@@ -217,7 +217,9 @@ export default {
             return this.$store.getters['auth/card']
         },
     },
-
+    created(){
+        this.getCard.name="";
+    },
     methods: {
         ...mapActions('auth', ['updateCard']),
 
@@ -268,8 +270,12 @@ export default {
                 document.getElementById('card-error').innerHTML = error.message;
                 return;
             }
-            if (this.v$.$error) return;
-
+            if (this.v$.$error) {
+                this.loadingStatus = false;
+                //console.log("this.getCard.name");
+                //console.log(this.getCard.name);
+                return;
+            }
             //作成したトークンを保存
             //CardField-numberの中のinputの値
             let test = document.getElementsByClassName('CardField-number');
@@ -279,7 +285,7 @@ export default {
             //クレカ確認画面に遷移
             this.$router.push({name: 'register-card-confirm'})
 
-         },
+        },
 
 
     }

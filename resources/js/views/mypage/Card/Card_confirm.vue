@@ -203,7 +203,7 @@ export default {
                                 setTimeout(() => {this.message = false;}, 2000);
                             } else{
                                 this.resetTemps();
-                                this.$router.push({name: 'mypage-card'})
+                                this.$router.push({name: 'mypage-card',query: {a: 1}})
                             }
                         }
 
