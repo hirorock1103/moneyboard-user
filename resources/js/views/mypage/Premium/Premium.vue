@@ -30,8 +30,18 @@
                                     <tr>
                                         <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
                                         <td><input v-model="search_params.client_name" class="form-input" placeholder=""></td>
+                                        <!--
                                         <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
                                         <td><input v-model="search_params.user_name" class="form-input" placeholder=""></td>
+                                        -->
+                                        <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
+                                        <td>
+                                            <select v-model="search_params.user_name" class="form-input">
+                                                <option v-for="user in user_list">
+                                                    {{user.user_name}}
+                                                </option>
+                                            </select>
+                                        </td>
                                     </tr>
                                 </table>
                                 <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ] margin-right--16">検索</button>
@@ -211,6 +221,7 @@ export default {
     data() {
         return {
             items: [],
+            user_list: [],
             showContent: false,
             blur_flg : 1,
             sort_key: "",
@@ -303,6 +314,7 @@ export default {
                 const response = await axios.post(url, {company_id: this.$store.state.auth.user.id, type: 2, user_name: this.search_params.user_name, client_name: this.search_params.client_name, sort_key: this.search_params.sort_key, sort_asc: this.search_params.sort_asc});
                 console.log(response);
                 this.items = response.data.data.data_list.data;
+                this.user_list = response.data.data.user_list;
 
                 //スタンダードの場合
                if(this.$store.state.auth.contract.plan_id === 1){
