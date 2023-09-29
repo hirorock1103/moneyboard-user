@@ -172,7 +172,7 @@ export default {
             style: elementStyles,
             placeholder: ''
         });
-        this.cardExpiry.addEventListener('change', ({error}) => {
+        this.cardCvc.addEventListener('change', ({error}) => {
             this.displayCardError(error, 'card-cvc');
         });
 
