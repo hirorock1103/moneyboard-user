@@ -94,7 +94,7 @@
                         <div class="text-center">
                             <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center margin-bottom--16">
                             <input type="submit" class="[ btn  btn--accent ]" value="変更"/>
                         </div>
                     </form>
