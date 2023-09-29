@@ -109,7 +109,6 @@ export default {
     watch: {
         message: function () {
             if(this.message == "Unauthorized"){
-                console.log("リダイレクト");
                 this.$router.push({ name: 'logoff' });
             }
         }
