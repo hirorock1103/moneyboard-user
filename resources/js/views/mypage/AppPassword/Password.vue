@@ -106,6 +106,14 @@ export default {
             message: ""
         };
     },
+    watch: {
+        message: function () {
+            if(this.message == "Unauthorized"){
+                console.log("リダイレクト");
+                this.$router.push({ name: 'logoff' });
+            }
+        }
+    },
     computed: {
         getCompany() {
             return this.$store.getters['auth/company']
