@@ -72,7 +72,7 @@
                         <div class="text-center">
                             <p v-show="v$.$error" class="text-danger">入力に誤りがあります</p>
                         </div>
-                        <div class="text-center">
+                        <div class="text-center margin-bottom--16">
                             <input type="submit" class="[ btn  btn--accent ]" value="変更"/>
                         </div>
                     </form>
@@ -84,7 +84,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core';
-import { required, minLength, maxLength, sameAs, helpers, email } from '@vuelidate/validators';
+import { required, minLength, maxLength, sameAs, helpers, email, alphaNum } from '@vuelidate/validators';
 import containsNumber from '../../../customValidators/containsNumber';
 import containsUppercase from '../../../customValidators/containsUppercase';
 import containsLowercase from '../../../customValidators/containsLowercase';
@@ -130,6 +130,10 @@ export default {
                         'パスワードを入力してください',
                         required
                     ),
+                    //alphaNum: helpers.withMessage(
+                    //    '英数字で入力してください',
+                    //    alphaNum
+                    //),
                     minLength: helpers.withMessage(
                         '8文字以上を入力してください',
                         minLength(8)
