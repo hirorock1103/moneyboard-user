@@ -28,11 +28,10 @@
 
             <div class="footer__copyright">
                 <span class="display-block  padding-bottom--16">[ 運営会社 ]</span>
-                <a href="https://ppfpart.co.jp/" target="_blank" rel="noopener noreferrer" class="font-weight-bold">株式会社PPFパートナーズ</a>
+                <a href="" target="_blank" rel="noopener noreferrer" class="font-weight-bold">株式会社マネーボード</a>
                 <address class="margin-top--16">
-                〒530-0041<br>
-                大阪府大阪市北区天神橋1丁目7番17号 イケガミノースハウス4階<br>
-                <a href="tel:0663146685">TEL : 06-6314-6685</a><br>
+                〒574-0042<br>
+                大阪府大東市大野１丁目５番９号<br>
                 </address>
             </div>
 

@@ -58,10 +58,10 @@
 
             <div class="about-operating-company">
                 [ 運営会社 ]<br>
-                <div class="company-name">株式会社PPFパートナーズ</div>
-                〒530-0041<br>
-                大阪府大阪市北区天神橋1丁目7番17号 イケガミノースハウス4階<br>
-                TEL : 06-6314-6685<br>
+                <div class="company-name">株式会社マネーボード</div>
+                〒574-0042<br>
+                大阪府大東市大野１丁目５番９号<br>
+                
             </div>
 
         </footer>

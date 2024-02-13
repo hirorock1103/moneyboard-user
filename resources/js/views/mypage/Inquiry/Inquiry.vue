@@ -124,7 +124,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="[ display-table-row  display-table-cell-large ]">
-                                                運営元　　株式会社PPFパートナーズ
+                                                運営元　　株式会社マネーボード
                                             </td>
                                         </tr>
                                         <tr>
