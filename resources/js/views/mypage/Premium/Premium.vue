@@ -75,12 +75,18 @@
                                 <button v-if="pagenation.current_page!==pagenation.last_page" style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.last_page)">最後</button>
                                 <button v-else disabled style="margin:5px" class="[ btn  btn--small  btn--outline ]" v-on:click="clientSearch(pagenation.last_page)">最後</button>
                             </div>
-
+                            
+                            <div class="table_box">
                             <table class="table--bordered table-scrollable" style="white-space: nowrap;overflow-y: hidden;max-height: none;">
                                 <thead>
+                                    <!-- 108px 83.141 119.016 60 -->
                                     <tr>
-                                        <th colspan="2"></th>
-                                        <th colspan="3"></th>
+                                        <th colspan="1" class="sticky" style="left:0px;background:#EEE;"></th><!-- 企業名 -->
+                                        <th colspan="1" class="sticky" style="left:168px;background:#EEE;"></th><!-- 更新日時 -->
+                                        <th colspan="1" class="sticky" style="left:304px;background:#EEE;"></th><!-- 法人番号 -->
+                                        <th colspan="1" class="sticky" style="left:476px;background:#EEE;"></th><!-- 担当者 -->
+                                        <th colspan="1" class=""></th><!-- 業種 -->
+                                        <th colspan="1" class=""></th><!-- 決算月 -->
                                         <th colspan="2">会社規模</th>
                                         <th></th>
                                         <th colspan="2">企業情報</th>
@@ -89,16 +95,17 @@
                                         <th></th>
                                     </tr>
                                     <tr>
-                                        <th @click="sortBy('client_name')" :class="addClass('client_name')" class="text-left padding-left--12">企業名
+                                        <th @click="sortBy('client_name')" :class="addClass('client_name')" class="text-left padding-left--12 sticky" style="left:0px;background:#EEE;border:none;text-align: center !important;">企業名
                                         </th>
-                                        <th @click="sortBy('updated_at')" :class="addClass('updated_at')" class="text-left padding-left--12">更新日時
+                                        <th @click="sortBy('updated_at')" :class="addClass('updated_at')" class="text-left padding-left--12 sticky" style="left:168px;background:#EEE;border:none;text-align: center !important;">更新日時
                                         </th>
-                                        <th @click="sortBy('corporate_number')" :class="addClass('corporate_number')" class="text-left padding-left--12 padding-right--12">法人番号
+                                        <th @click="sortBy('corporate_number')" :class="addClass('corporate_number')" class="text-left padding-left--12 padding-right--12 sticky" style="left:304px;background:#EEE;border:none;text-align: center !important;">法人番号
                                         </th>
-                                        <th @click="sortBy('user_name')" :class="addClass('user_name')" class="text-left padding-left--12 padding-right--12">担当者
+                                        <th @click="sortBy('user_name')" :class="addClass('user_name')" class="text-left padding-left--12 padding-right--12 sticky" style="left:476px;background:#EEE;border:none;text-align: center !important;">担当者
                                         </th>
                                         <th @click="sortBy('business_type')" :class="addClass('business_type')" class="text-left padding-left--12 padding-right--12">業種
                                         </th>
+                                        <th class="text-left padding-left--12 padding-right--12">決算月</th>
                                         <th @click="sortBy('anualsales')" :class="addClass('anualsales')" class="text-left padding-left--12">年商（単位：万円）
                                         </th>
                                         <th @click="sortBy('capital')" :class="addClass('capital')" class="text-left padding-left--12">資本金（単位：万円）
@@ -130,33 +137,13 @@
                                     </tr>
                                 </thead>
                                 <tbody v-if="items.length" v-bind:class="{'blur': blur_flg!==2, '': blur_flg==2}" oncopy="return false">
-                                    <!-- <tr>
-                                        <td>株式会社サンプルカンパニー{{blur_flg}}</td>
-                                        <td>0000/00/00　00:00</td>
-                                        <td>12345678910</td>
-                                        <td>田中太郎</td>
-                                        <td>飲食業</td>
-                                        <td>3,500</td>
-                                        <td>3,500</td>
-                                        <td>大阪府大阪市北区天神橋1-1-1</td>
-                                        <td>60</td>
-                                        <td>60</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>500</td>
-                                        <td>A</td>
-                                        <td>A</td>
-                                        <td>A</td>
-                                        <td></td>
-                                    </tr> -->
                                     <tr v-for="item in items" :key="item._id">
-                                        <td>{{ item.client_name }}</td>
-                                        <td>{{ formatDate(item.updated_at) }}</td>
-                                        <td>{{ item.corporate_number }}</td>
-                                        <td>{{ item.user_name }}</td>
+                                        <td class="sticky" style="left:0px;background:white;">{{ item.client_name }}</td>
+                                        <td class="sticky" style="left:168px;background:white;">{{ formatDate(item.updated_at) }}</td>
+                                        <td class="sticky" style="left:304px;background:white;">{{ item.corporate_number }}</td>
+                                        <td class="sticky" style="left:476px;background:white;">{{ item.user_name }}</td>
                                         <td>{{ business_type_list[item.business_type] }}</td>
+                                        <td>{{  }}</td>
                                         <td>{{ item.anualsales }}</td>
                                         <td>{{ item.capital }}</td>
                                         <td>{{ item.interview_place }}</td>
@@ -179,6 +166,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </article>
                     <div id="overlay" v-show="showContent">
@@ -478,3 +466,45 @@ export default {
 @import 'resources/sass/vendors/_media.scss';
 @import 'resources/sass/pages/_mypage.scss';
 </style>
+<style>
+.table_box {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.table_box table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+}
+
+.table_box tr{
+    border-left:none;
+    border-right:none;
+}
+
+.table_box th,
+.table_box td {
+    vertical-align: middle;
+    border: 1px solid #DDD;
+    white-space: nowrap;
+}
+
+.table_box .sticky {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0;
+    min-width:120px;
+    max-width:200px;
+    border:none !important;
+}
+
+.table_box .sticky::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1 !important;
+}</style>
