@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ mix('/css/main.css') }}" rel="stylesheet">
 
-    <script src="https://js.stripe.com/v3"></script>
+    <!-- <script src="https://js.stripe.com/v3"></script> -->
 
 </head>
 <body>

@@ -28,6 +28,8 @@
         "@vuelidate/validators": "^2.0.0-alpha.19",
         "axios-jsonp": "^1.0.4",
         "dayjs": "^1.10.8",
+        "encoding-japanese": "^2.0.0",
+        "file-saver": "^2.0.5",
         "vue-loading-overlay": "4.0",
         "vue-router": "^4.0.10",
         "vuex": "^4.0.2",
