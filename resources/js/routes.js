@@ -68,11 +68,14 @@ import Inquiry_new from "./views/mypage/Inquiry/Inquiry_new.vue";
 import Inquiry_show from "./views/mypage/Inquiry/Inquiry_show.vue";
 import Inquiry_add from "./views/mypage/Inquiry/Inquiry_add.vue";
 import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
-//
-import SystemError from "./views/errors/System.vue";
-import NotFound from "./views/errors/NotFound.vue";
+// 
 import Terms from "./views/terms/Home.vue";
 import Privacy from "./views/privacy/Home.vue";
+// エラー画面
+import SystemError from "./views/errors/System.vue";
+import NotFound from "./views/errors/NotFound.vue";
+import Unauthorized from "./views/errors/Unauthorized.vue";
+
 
 const guest = (to, from, next) => {
   if (!localStorage.getItem("authToken")) {
@@ -82,11 +85,30 @@ const guest = (to, from, next) => {
   }
 };
 
-const auth = (to, from, next) => {
+const auth = async (to, from, next) => {
   if (localStorage.getItem("authToken")) {
+    if (localStorage.getItem('expierAt')) {
+        let now = new Date();
+        let expier_at = new Date(localStorage.getItem('expierAt'));
+        if (now < expier_at) { // 有効期限内であればリフレッシュ
+            await axios.post(process.env.MIX_VUE_APP_API_URL + "com/refresh",[], {'headers':{'Authorization':'Bearer ' + localStorage.getItem('authToken')}})
+            .then((response) => {
+                if (response.data.status === 'OK') {
+                    localStorage.setItem('authToken', response.data.data.access_token);
+                    localStorage.setItem('expierAt', response.data.data.expier_at);
+                }
+            }).catch((error) => {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('expierAt');
+                return next("/401");
+            });
+        } else {
+          return next("/401");
+        }
+    }
     return next();
   } else {
-    return next("/logoff");
+    return next("/401");
   }
 };
 
@@ -454,6 +476,11 @@ const routes = [
   {
     path: "/500",
     component: SystemError,
+  },
+  // 接続権限なし、セッション切れなど
+  {
+    path: "/401",
+    component: Unauthorized,
   },
   {
     path: "/:catchAll(.*)",

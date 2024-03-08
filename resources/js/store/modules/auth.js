@@ -267,6 +267,7 @@ const actions = {
 
         if (response.data.status === 'OK') {
             localStorage.setItem('authToken', response.data.data.access_token);
+            localStorage.setItem('expierAt', response.data.data.expier_at);
             const data = await axios.post(
                 process.env.MIX_VUE_APP_API_URL + "com/me"
             );
@@ -312,11 +313,20 @@ const actions = {
             context.commit('setCard', null)
             context.commit('setContract', null)
             localStorage.removeItem('authToken');
+            localStorage.removeItem('expierAt');
             return false
         }
 
         context.commit('setApiStatus', false)
         context.commit('error/setCode', response.data.status, { root: true })
+    },
+    async clearAuth (context) {
+        context.commit('setApiStatus', true)
+        context.commit('setUser', null)
+        context.commit('setCompany', null)
+        context.commit('setCard', null)
+        context.commit('setContract', null)
+        localStorage.removeItem('authToken');
     },
     async sendResetLinkRequest(context, data) {
         context.commit('setApiStatus', null);
