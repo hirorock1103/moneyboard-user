@@ -21,24 +21,20 @@
                         プレミアムプラン（顧客情報管理）
                     </h2>
                 </div>
+                <!-- take_dev -->
+                <!-- <p v-if="show" id="open_close" @click="toggle">ー</p>
+                <p v-else id="open_close" @click="toggle">＋</p> -->
+
                 <form
+                    v-show="show"
                     v-if="blur_flg === 2"
                     v-on:submit.prevent="clientSearch(1)"
-                    style="margin-bottom: 50px"
+                    style="margin-bottom: 10px"
                 >
                     <article
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] ]"
                     >
                         <div class="padding--16 bg-white">
-                            <button
-                                type="button"
-                                style="margin: 5px; float: right"
-                                class="[ btn btn--small btn--accent ] margin-right--16"
-                                v-on:click="output_csv"
-                            >
-                                CSV出力
-                            </button>
-
                             <div class="[ padding--16 ] bg-white display-flex">
                                 <h4>
                                     <span
@@ -84,7 +80,7 @@
                                     <th style="padding: 0 5px 0 20px">
                                         <label>決算月</label>
                                     </th>
-                                    <td>
+                                    <td style="font-size: 16px !important">
                                         <span
                                             style="
                                                 margin: 0 5px;
@@ -111,21 +107,25 @@
                                 </tr>
                             </table>
 
-                            <div class="[ padding--16 ] bg-white display-flex">
+                            <!-- <div
+                                class="[ padding--16 ] bg-white display-flex"
+                                style="padding-top: 0px !important"
+                            >
                                 <h4 class="">
                                     <span
                                         class="[ icon solid ] fa-sort padding-right--12 text-accent"
                                     ></span>
                                     並び順
                                 </h4>
-                            </div>
+                            </div> -->
+
                             <table>
-                                <tr>
+                                <tr style="color: darkblue; font-size: 16px">
                                     <th style="padding: 0 5px 0 20px">
-                                        <label>第1</label>
+                                        <label>並び順：第1</label>
                                     </th>
                                     <td
-                                        class="[ display-table-row display-table-cell-large ] padding-bottom--16"
+                                        class="[ display-table-row display-table-cell-large ]"
                                     >
                                         <select
                                             v-model="search_params.sort01_key"
@@ -172,7 +172,7 @@
                                         <label>第2</label>
                                     </th>
                                     <td
-                                        class="[ display-table-row display-table-cell-large ] padding-bottom--16"
+                                        class="[ display-table-row display-table-cell-large ]"
                                     >
                                         <select
                                             v-model="search_params.sort02_key"
@@ -220,7 +220,7 @@
                                         <label>第3</label>
                                     </th>
                                     <td
-                                        class="[ display-table-row display-table-cell-large ] padding-bottom--16"
+                                        class="[ display-table-row display-table-cell-large ]"
                                     >
                                         <select
                                             v-model="search_params.sort03_key"
@@ -265,21 +265,29 @@
                                     </td>
                                 </tr>
                             </table>
-
                             <button
-                                style="margin: 20px 0 0 0"
+                                style="margin: 0 0 0 0"
                                 type="submit"
                                 class="[ btn btn--small btn--accent ] margin-right--16"
                             >
                                 検索
                             </button>
                             <button
-                                style="margin: 20px 0 0 0"
+                                style="margin: 0 0 0 0"
                                 type="button"
                                 @click="clear()"
-                                class="[ btn btn--small btn--accent ]"
+                                class="[ btn btn--small btn--accent ] margin-right--16"
                             >
                                 クリア
+                            </button>
+
+                            <button
+                                type="button"
+                                style="margin: 5px"
+                                class="[ btn btn--small btn--outline ] margin-left--16"
+                                v-on:click="output_csv"
+                            >
+                                CSV出力
                             </button>
                         </div>
                     </article>
@@ -309,14 +317,17 @@
                         class="[ margin-left-medium--48 margin-left-large--48 ] [ margin-right-medium--48 margin-right-large--48 ] bg-white"
                     >
                         <div v-if="pagenation.total > pagenation.per_page">
-                            <p style="font-size: 14px">
-                                <span style="font-size: 20px">{{
-                                    pagenation.current_page
-                                }}</span
+                            <!-- <p style="font-size: 14px;"> -->
+                            <span style="font-size: 20px">{{
+                                pagenation.current_page
+                            }}</span
+                            ><span style="font-size: 14px"
                                 >ページ目／{{
                                     pagenation.last_page
-                                }}ページ（合計：{{ pagenation.total }}件）
-                            </p>
+                                }}ページ（合計：{{ pagenation.total }}件）</span
+                            >
+                            <!-- </p> -->
+
                             <button
                                 v-if="pagenation.current_page !== 1"
                                 style="margin: 5px"
@@ -403,6 +414,17 @@
                                 '': blur_flg == 2,
                             }"
                         >
+                            <!-- take_dev -->
+                            <!-- <p
+                                v-if="sticky"
+                                id="toggle_sticky"
+                                @click="toggle_sticky"
+                            >
+                                固定解除
+                            </p>
+                            <p v-else id="toggle_sticky" @click="toggle_sticky">
+                                列固定
+                            </p> -->
                             <table
                                 oncopy="return false"
                                 class="table--bordered table-scrollable"
@@ -417,20 +439,40 @@
                                         <!-- 並び順①〜担当者 -->
                                         <th
                                             colspan="5"
-                                            class="sticky"
+                                            class="stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 0px;
+                                                text-align: left;
                                                 background: #ddd;
                                                 min-width: 480px;
                                                 max-width: 480px;
                                             "
-                                        ></th>
+                                        >
+                                            <!-- take_dev -->
+                                            <!-- <span
+                                                style="margin: 5px"
+                                                class="clearOrder"
+                                                v-on:click="clearOrder(1)"
+                                            >
+                                                並び①クリア</span
+                                            >
+                                            <span
+                                                style="margin: 5px"
+                                                class="clearOrder"
+                                                v-on:click="clearOrder(2)"
+                                            >
+                                                並び②クリア</span
+                                            > -->
+                                        </th>
 
                                         <!-- 更新日時 -->
                                         <th colspan="1"></th>
 
                                         <!-- 最新の取込決済期 -->
-                                        <th colspan="1" class=""></th>
+                                        <th colspan="1"></th>
 
                                         <!-- 資金繰り -->
                                         <th colspan="2">
@@ -485,44 +527,47 @@
                                     </tr>
                                     <tr>
                                         <th
-                                            class="padding-left--12 sticky"
-                                            style="
-                                                left: 0px;
-                                                background: #ddd;
-                                                border: none !important;
-                                                text-align: center !important;
-                                                min-width: 80px;
-                                                max-width: 80px;
-                                            "
+                                            v-on:click="changeOrder(1)"
+                                            :class="{
+                                                isActive:
+                                                    search_params.is_no1_on,
+                                                sticky: sticky,
+                                            }"
+                                            class="padding-left--12 stickyeee order_column order_no1"
                                         >
                                             並び①
                                         </th>
                                         <th
-                                            class="padding-left--12 sticky"
-                                            style="
-                                                left: 80px;
-                                                background: #ddd;
-                                                border: none !important;
-                                                text-align: center !important;
-                                                min-width: 80px;
-                                                max-width: 80px;
-                                            "
+                                            v-on:click="changeOrder(2)"
+                                            :class="{
+                                                isActive:
+                                                    search_params.is_no2_on,
+                                                sticky: sticky,
+                                            }"
+                                            class="padding-left--12 stickyeee order_column order_no2"
                                         >
                                             並び②
                                         </th>
                                         <th
-                                            class="padding-left--12 sticky"
+                                            class="padding-left--12 stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 160px;
                                                 background: #ddd;
                                                 border: none !important;
                                                 text-align: center !important;
+                                                color: rgba(0, 0, 0, 70%);
                                             "
                                         >
                                             企業名
                                         </th>
                                         <th
-                                            class="padding-left--12 padding-right--12 sticky"
+                                            class="padding-left--12 padding-right--12 stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 320px;
                                                 background: #ddd;
@@ -530,18 +575,23 @@
                                                 text-align: center !important;
                                                 min-width: 80px;
                                                 max-width: 80px;
+                                                color: rgba(0, 0, 0, 70%);
                                             "
                                         >
                                             決算月
                                         </th>
                                         <th
-                                            class="padding-left--12 padding-right--12 sticky"
+                                            class="padding-left--12 padding-right--12 stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 400px;
                                                 background: #ddd;
                                                 text-align: center !important;
                                                 min-width: 160px;
                                                 max-width: 160px;
+                                                color: rgba(0, 0, 0, 70%);
                                             "
                                         >
                                             担当者
@@ -656,7 +706,10 @@
                                     <tr v-for="item in items" :key="item._id">
                                         <td
                                             v-if="!item.updated_at"
-                                            class="sticky"
+                                            class="stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 0px;
                                                 background: #eee;
@@ -666,7 +719,10 @@
                                         ></td>
                                         <td
                                             v-else
-                                            class="sticky"
+                                            class="stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 0px;
                                                 background: #eee;
@@ -795,7 +851,10 @@
                                         </td>
                                         <td
                                             v-if="!item.updated_at"
-                                            class="sticky"
+                                            class="stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 80px;
                                                 background: #eee;
@@ -806,7 +865,10 @@
                                         ></td>
                                         <td
                                             v-else
-                                            class="sticky"
+                                            class="stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 80px;
                                                 background: #eee;
@@ -918,7 +980,10 @@
                                         </td>
 
                                         <td
-                                            class="sticky item-string"
+                                            class="stickyeee item-string"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 160px;
                                                 background: #eee;
@@ -927,7 +992,10 @@
                                             {{ truncate(item.client_name, 7) }}
                                         </td>
                                         <td
-                                            class="sticky"
+                                            class="stickyeee"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 320px;
                                                 background: #eee;
@@ -942,7 +1010,10 @@
                                             }}
                                         </td>
                                         <td
-                                            class="sticky item-string"
+                                            class="stickyeee item-string"
+                                            :class="{
+                                                sticky: sticky,
+                                            }"
                                             style="
                                                 left: 400px;
                                                 background: #eee;
@@ -980,6 +1051,7 @@
 
                                         <!-- 資金繰り -->
                                         <td>
+                                            <!-- 余剰金目安 -->
                                             {{
                                                 item.surplus_guideline != null
                                                     ? Number(
@@ -989,11 +1061,13 @@
                                             }}円
                                         </td>
                                         <td>
+                                            <!-- 資金効率性指標 -->
                                             {{ item.fund_efficiency_index }}
                                         </td>
 
                                         <!-- 金融機関融資（定期、逓減型） -->
                                         <td>
+                                            <!-- 金融機関借入残 -->
                                             {{
                                                 item.other_debt != null
                                                     ? Number(
@@ -1004,6 +1078,13 @@
                                         </td>
                                         <td>
                                             <!-- {{ 年商 }}  -->
+                                            {{
+                                                item.anualsales != null
+                                                    ? Number(
+                                                          item.anualsales
+                                                      ).toLocaleString()
+                                                    : 0
+                                            }}円
                                         </td>
 
                                         <!-- 年齢・人数（医療保険、福利厚生） -->
@@ -1015,6 +1096,7 @@
 
                                         <!-- 代表者（就業不能） -->
                                         <td>
+                                            <!-- 役員報酬 -->
                                             {{
                                                 item.directors_fee != null
                                                     ? Number(
@@ -1024,6 +1106,7 @@
                                             }}円
                                         </td>
                                         <td>
+                                            <!-- 代表者借入残 -->
                                             {{
                                                 item.rep_debt != null
                                                     ? Number(
@@ -1035,30 +1118,32 @@
 
                                         <!-- 相続対策（一時払い終身） -->
                                         <td>
-                                            <!-- {{ 代表者債権債務 }} -->
+                                            <!-- {{ 代表者債権債務（rep_receivable_debt） }} -->
                                             {{
-                                                item.total_net_assets != null
+                                                item.rep_receivable_debt != null
                                                     ? Number(
-                                                          item.total_net_assets
+                                                          item.rep_receivable_debt
                                                       ).toLocaleString()
                                                     : 0
                                             }}円
                                         </td>
                                         <td>
+                                            <!-- {{ 純資産の額 }} -->
                                             {{
-                                                item.total_net_assets != null
+                                                item.in_house_3_1_net_assets !=
+                                                null
                                                     ? Number(
-                                                          item.total_net_assets
+                                                          item.in_house_3_1_net_assets
                                                       ).toLocaleString()
                                                     : 0
                                             }}円
                                         </td>
                                         <td>
-                                            <!-- {{ 計 }} -->
+                                            <!-- {{ 計（total_inheritance） }} -->
                                             {{
-                                                item.total_net_assets != null
+                                                item.total_inheritance != null
                                                     ? Number(
-                                                          item.total_net_assets
+                                                          item.total_inheritance
                                                       ).toLocaleString()
                                                     : 0
                                             }}円
@@ -1073,6 +1158,7 @@
                                         </td>
 
                                         <td>
+                                            <!-- 業種 -->
                                             {{
                                                 business_type_list[
                                                     item.business_type
@@ -1080,9 +1166,11 @@
                                             }}
                                         </td>
                                         <td>
+                                            <!-- 法人番号 -->
                                             {{ item.corporate_number }}
                                         </td>
                                         <td>
+                                            <!-- 年商 -->
                                             {{
                                                 item.anualsales != null
                                                     ? Number(
@@ -1092,6 +1180,7 @@
                                             }}円
                                         </td>
                                         <td>
+                                            <!-- 資本金 -->
                                             {{
                                                 item.capital != null
                                                     ? Number(
@@ -1228,7 +1317,7 @@ export default {
                 { key: "directors_fee", name: "役員報酬" }, //summary_reports
                 { key: "rep_debt", name: "代表者借入残" }, //summary_reports
                 { key: "rep_receivable_debt", name: "代表者債権債務" }, //summary_reports
-                { key: "total_net_assets", name: "純資産の額" }, //summary_reports
+                { key: "in_house_3_1_net_assets", name: "純資産の額" }, //client_graph_data
                 { key: "total_inheritance", name: "計" }, //summary_reports
 
                 { key: "important_index", name: "重要指標" }, //company_clients
@@ -1278,7 +1367,11 @@ export default {
                 sort01: true,
                 sort02: true,
                 sort03: true,
+                is_no1_on: true,
+                is_no2_on: true,
             },
+            show: true, //検索項目の表示・非表示切替
+            sticky: true, //一覧項目の列固定・解除切替
         };
     },
     computed: {
@@ -1310,10 +1403,69 @@ export default {
         document.title = "プレミアムプラン | MoneyBoard";
     },
     methods: {
+        //検索項目の表示・非表示切替
+        toggle: function () {
+            this.show = !this.show;
+        },
+        //一覧の列固定・解除の切替
+        toggle_sticky: function () {
+            this.sticky = !this.sticky;
+        },
+        //並び①並び②列の各カラムの設定をクリアする
+        clearOrder(no) {
+            //take_dev
+            if (window.confirm("並びの設定をクリアしますか？")) {
+                // OKが選択された時の処理
+                this.clearSort(no);
+            }
+        },
+        //並び①並び②列の各カラムの設定をクリアする
+        async clearSort(no) {
+            this.loadingStatus = true;
+
+            let url = process.env.MIX_VUE_APP_API_URL + "app/client/clear_sort";
+            try {
+                const response = await axios.post(url, {
+                    no: no,
+                });
+                console.log(response);
+            } catch (e) {
+                console.log(e);
+                this.message = e;
+                this.loadingStatus = false;
+                setTimeout(() => {
+                    this.message = false;
+                }, 2000);
+            }
+            this.$router.go({
+                path: this.$router.currentRoute.path,
+                force: true,
+            });
+
+            this.loadingStatus = false;
+        },
+        //並び①並び②の有効・無効の切替
+        changeOrder(no) {
+            //take_dev
+            // if (no === 1) {
+            //     this.search_params.is_no1_on = !this.search_params.is_no1_on;
+            // } else {
+            //     this.search_params.is_no2_on = !this.search_params.is_no2_on;
+            // }
+            // this.clientSearch(1);
+            // this.$router.go({
+            //     path: this.$router.currentRoute.path,
+            //     force: true,
+            // });
+        },
+
+        //並び①並び②列の各カラムの値を更新
         selectChangeOrder(no, id, event) {
+            //take_dev
             this.changeSort(no, id, event.target.value);
         },
 
+        //並び①並び②列の各カラムの値を更新
         async changeSort(no, id, val) {
             this.loadingStatus = true;
 
@@ -1356,6 +1508,7 @@ export default {
             this.showContent = false;
         },
         output_csv: function () {
+            //take_dev
             this.outputCsv();
         },
 
@@ -1521,6 +1674,17 @@ export default {
                 "?page=" +
                 page;
             try {
+                //take_dev
+                // this.search_params = {
+                //     term_month: ["0"],
+                //     sort01_key: { key: "", name: "なし" },
+                //     sort02_key: { key: "", name: "なし" },
+                //     sort03_key: { key: "", name: "なし" },
+                //     sort01: true,
+                //     sort02: true,
+                //     sort03: true,
+                // };
+
                 const response = await axios.post(url, {
                     company_id: this.$store.state.auth.user.id,
                     type: 2,
@@ -1603,9 +1767,12 @@ export default {
                 sort01: true,
                 sort02: true,
                 sort03: true,
+                is_no1_on: true,
+                is_no2_on: true,
             };
 
             this.clientSearch(1);
+            // take_dev
             // if (!localStorage.getItem("authToken")) {
             //     this.$router.push({ name: "logoff" });
             // }
@@ -1657,12 +1824,14 @@ export default {
     padding: 5px;
 }
 
-.table_box th.sticky,
-.table_box td.sticky {
+.table_box th.stickyeee,
+.table_box td.stickyeee {
     border: none;
+    min-width: 160px;
+    max-width: 160px;
 }
 
-.table_box th.sticky {
+.table_box th.stickyeee {
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
@@ -1695,5 +1864,80 @@ label {
 }
 .table_box .item-string {
     text-align: left;
+}
+.isActive {
+    /* take_dev */
+    /* color: #4e4e4e !important; */
+    color: rgba(0, 0, 0, 70%) !important;
+}
+/* .isActive:after {
+    content: "↓";
+    color: blue;
+    font-weight: 900;
+} */
+span.clearOrder:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.order_column {
+    /* take_dev */
+    color: lightgray;
+    background: #ddd;
+    border: none !important;
+    text-align: center !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+}
+.order_column:hover {
+    cursor: pointer;
+}
+.order_no1 {
+    left: 0px;
+}
+.order_no2 {
+    left: 80px !important;
+}
+
+#open_close {
+    line-height: 20px;
+    margin-bottom: 0px;
+    margin-left: 25px;
+    width: 20px;
+    float: left;
+    text-align: center !important;
+    border: 1px solid black;
+    background: black;
+    color: white;
+}
+#open_close:hover {
+    cursor: pointer;
+}
+#toggle_sticky {
+    line-height: 20px;
+    margin-bottom: 0px;
+    width: 60px;
+    font-size: 12px;
+    text-align: center !important;
+    border: 1px solid black;
+    background: black;
+    color: white;
+}
+#toggle_sticky:hover {
+    cursor: pointer;
+}
+
+span.clearOrder {
+    color: red;
+    font-size: 10px;
+    font-weight: normal;
+    display: inline-block;
+    width: 80px;
+}
+
+/*　画面サイズが760px以下の場合、ここから　*/
+@media screen and (max-width: 760px) {
+    #open_close {
+        margin-left: 0px;
+    }
 }
 </style>
