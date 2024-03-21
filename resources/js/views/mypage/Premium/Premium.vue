@@ -415,7 +415,7 @@
                             }"
                         >
                             <!-- take_dev -->
-                            <!-- <p
+                            <p
                                 v-if="sticky"
                                 id="toggle_sticky"
                                 @click="toggle_sticky"
@@ -424,7 +424,7 @@
                             </p>
                             <p v-else id="toggle_sticky" @click="toggle_sticky">
                                 列固定
-                            </p> -->
+                            </p>
                             <table
                                 oncopy="return false"
                                 class="table--bordered table-scrollable"
@@ -452,7 +452,7 @@
                                             "
                                         >
                                             <!-- take_dev -->
-                                            <!-- <span
+                                            <span
                                                 style="margin: 5px"
                                                 class="clearOrder"
                                                 v-on:click="clearOrder(1)"
@@ -465,7 +465,7 @@
                                                 v-on:click="clearOrder(2)"
                                             >
                                                 並び②クリア</span
-                                            > -->
+                                            >
                                         </th>
 
                                         <!-- 更新日時 -->
@@ -1461,7 +1461,6 @@ export default {
 
         //並び①並び②列の各カラムの値を更新
         selectChangeOrder(no, id, event) {
-            //take_dev
             this.changeSort(no, id, event.target.value);
         },
 
@@ -1508,7 +1507,6 @@ export default {
             this.showContent = false;
         },
         output_csv: function () {
-            //take_dev
             this.outputCsv();
         },
 
@@ -1667,24 +1665,12 @@ export default {
 
             this.loadingStatus = true;
 
-            // this.resetTemps();
             let url =
                 process.env.MIX_VUE_APP_API_URL +
                 "com/client/index_prem" +
                 "?page=" +
                 page;
             try {
-                //take_dev
-                // this.search_params = {
-                //     term_month: ["0"],
-                //     sort01_key: { key: "", name: "なし" },
-                //     sort02_key: { key: "", name: "なし" },
-                //     sort03_key: { key: "", name: "なし" },
-                //     sort01: true,
-                //     sort02: true,
-                //     sort03: true,
-                // };
-
                 const response = await axios.post(url, {
                     company_id: this.$store.state.auth.user.id,
                     type: 2,
@@ -1772,15 +1758,15 @@ export default {
             };
 
             this.clientSearch(1);
-            // take_dev
-            // if (!localStorage.getItem("authToken")) {
-            //     this.$router.push({ name: "logoff" });
-            // }
 
-            // sessionStorage.setItem(
-            //     "premium-search-params",
-            //     JSON.stringify(this.search_params)
-            // );
+            if (!localStorage.getItem("authToken")) {
+                this.$router.push({ name: "logoff" });
+            }
+
+            sessionStorage.setItem(
+                "premium-search-params",
+                JSON.stringify(this.search_params)
+            );
         },
     },
 };
@@ -1866,8 +1852,6 @@ label {
     text-align: left;
 }
 .isActive {
-    /* take_dev */
-    /* color: #4e4e4e !important; */
     color: rgba(0, 0, 0, 70%) !important;
 }
 /* .isActive:after {
@@ -1880,7 +1864,6 @@ span.clearOrder:hover {
     text-decoration: underline;
 }
 .order_column {
-    /* take_dev */
     color: lightgray;
     background: #ddd;
     border: none !important;
@@ -1888,9 +1871,9 @@ span.clearOrder:hover {
     min-width: 80px !important;
     max-width: 80px !important;
 }
-.order_column:hover {
+/* .order_column:hover {
     cursor: pointer;
-}
+} */
 .order_no1 {
     left: 0px;
 }
