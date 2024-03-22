@@ -1414,7 +1414,11 @@ export default {
         //並び①並び②列の各カラムの設定をクリアする
         clearOrder(no) {
             //take_dev
-            if (window.confirm("並びの設定をクリアしますか？")) {
+            if (
+                window.confirm(
+                    "並びの設定が全てクリアされます。本当にクリアしますか？"
+                )
+            ) {
                 // OKが選択された時の処理
                 this.clearSort(no);
             }
