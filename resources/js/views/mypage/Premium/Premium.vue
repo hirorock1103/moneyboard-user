@@ -1432,7 +1432,7 @@ export default {
                 const response = await axios.post(url, {
                     no: no,
                 });
-                console.log(response);
+                // console.log(response);
             } catch (e) {
                 console.log(e);
                 this.message = e;
@@ -1480,7 +1480,7 @@ export default {
                     id: id,
                     val: val,
                 });
-                console.log(response);
+                // console.log(response);
             } catch (e) {
                 console.log(e);
                 this.message = e;
@@ -1527,7 +1527,7 @@ export default {
                     client_name: this.search_params.client_name,
                     search_params: this.search_params,
                 });
-                console.log(response);
+                // console.log(response);
 
                 if (response.status === 200) {
                     const unicodeList = Encoding.stringToCode(response.data);
@@ -1592,7 +1592,7 @@ export default {
                     client_name: this.search_params.client_name,
                     search_params: this.search_params,
                 });
-                console.log(response);
+                // console.log(response);
                 this.items = response.data.data.data_list.data;
                 this.user_list = response.data.data.user_list;
 
@@ -1682,7 +1682,7 @@ export default {
                     client_name: this.search_params.client_name,
                     search_params: this.search_params,
                 });
-                console.log(response);
+                // console.log(response);
                 this.items = response.data.data.data_list.data;
                 this.user_list = response.data.data.user_list;
 
