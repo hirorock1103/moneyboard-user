@@ -27,7 +27,11 @@ export default {
                 // console.log(val)
                 if (val === INTERNAL_SERVER_ERROR) {
                     this.$router.push('/500')
-                } else if (val === UNAUTHORIZED || val === 'NG') {
+                } else if (val === UNAUTHORIZED) {
+                    this.$router.push('/401')
+                } else if (val === NOT_FOUND) {
+                    this.$router.push('/not-found')
+                } else if (val === 'NG') {
                     // console.log('認証失敗(App.vue)！！');
                     // トークンを削除
                     localStorage.removeItem('authToken')
@@ -40,8 +44,6 @@ export default {
                     this.$store.commit('auth/setApiStatus', false)
                     // ログイン画面へ
                     this.$router.push('/login')
-                } else if (val === NOT_FOUND) {
-                    this.$router.push('/not-found')
                 }
             },
             immediate: true
