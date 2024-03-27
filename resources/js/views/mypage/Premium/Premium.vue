@@ -1555,9 +1555,13 @@ export default {
                         min.toString() +
                         sec.toString() +
                         "_premium.csv";
-                    let blob = new Blob([shiftJisString], {
-                        type: "text/csv;charset=utf8",
-                    });
+
+                    const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
+
+                    let blob = new Blob([bom, shiftJisString], {
+                            type: "text/csv;charset=utf8",
+                        });
+
                     saveAs(blob, fileName);
                     alert("CSVを出力しました");
                 } else {
