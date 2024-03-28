@@ -1089,7 +1089,7 @@
                                                           item.anualsales
                                                       ).toLocaleString()
                                                     : 0
-                                            }}
+                                            }}%
                                         </td>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
