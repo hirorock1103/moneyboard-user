@@ -1082,14 +1082,14 @@
                                             }}千円
                                         </td>
                                         <td>
-                                            <!-- {{ 年商 }}  -->
+                                            <!-- {{ 年商比 }}  -->
                                             {{
                                                 item.anualsales != null
                                                     ? Number(
                                                           item.anualsales
                                                       ).toLocaleString()
                                                     : 0
-                                            }}千円
+                                            }}
                                         </td>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
