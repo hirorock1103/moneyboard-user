@@ -1084,9 +1084,9 @@
                                         <td>
                                             <!-- {{ 年商比 }}  -->
                                             {{
-                                                item.anualsales != null
+                                                item.annual_sales_ratio != null
                                                     ? Number(
-                                                          item.anualsales
+                                                          item.annual_sales_ratio
                                                       ).toLocaleString()
                                                     : 0
                                             }}%
@@ -1177,9 +1177,9 @@
                                         <td>
                                             <!-- 年商 -->
                                             {{
-                                                item.anualsales != null
+                                                item.annual_sales_ratio != null
                                                     ? Number(
-                                                          item.anualsales
+                                                          item.annual_sales_ratio
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
