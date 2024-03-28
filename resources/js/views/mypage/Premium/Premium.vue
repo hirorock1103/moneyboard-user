@@ -12,7 +12,7 @@
         <SideMenu />
         <main class="mypage__main">
             <section
-                class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
+                class="[ padding-top--24  ] margin-bottom-large--48"
             >
                 <div
                     class="[ display-flex justify-content-between-large align-items-baseline [ flex-column flex-row-large ] ] [ padding-left--16 padding-right-16 padding-medium--0 ] [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] margin-bottom--24 ] border-bottom"
@@ -29,12 +29,12 @@
                     v-show="show"
                     v-if="blur_flg === 2"
                     v-on:submit.prevent="clientSearch(1)"
-                    style="margin-bottom: 10px"
+                    style="margin-bottom: 10px;font-size:16px"
                 >
                     <article
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] ]"
                     >
-                        <div class="padding--16 bg-white">
+                        <div class="bg-white">
                             <div class="[ padding--16 ] bg-white display-flex">
                                 <h4>
                                     <span
@@ -42,7 +42,34 @@
                                     ></span>
                                     検索
                                 </h4>
+                                <div id="button">
+                                    <button
+                                        style="margin: 0 0 0 0"
+                                        type="submit"
+                                        class="[ btn btn--small btn--accent ] margin-right--16"
+                                    >
+                                        検索
+                                    </button>
+                                    <button
+                                        style="margin: 0 0 0 0"
+                                        type="button"
+                                        @click="clear()"
+                                        class="[ btn btn--small btn--accent ] margin-right--16"
+                                    >
+                                        クリア
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        style="margin: 5px"
+                                        class="[ btn btn--small btn--outline ] margin-left--16"
+                                        v-on:click="output_csv"
+                                    >
+                                        CSV出力
+                                    </button>
+                                </div>
                             </div>
+
                             <table>
                                 <tr>
                                     <th style="padding: 0 5px 0 20px">
@@ -118,7 +145,6 @@
                                     並び順
                                 </h4>
                             </div> -->
-
                             <table>
                                 <tr style="color: darkblue; font-size: 16px">
                                     <th style="padding: 0 5px 0 20px">
@@ -265,30 +291,6 @@
                                     </td>
                                 </tr>
                             </table>
-                            <button
-                                style="margin: 0 0 0 0"
-                                type="submit"
-                                class="[ btn btn--small btn--accent ] margin-right--16"
-                            >
-                                検索
-                            </button>
-                            <button
-                                style="margin: 0 0 0 0"
-                                type="button"
-                                @click="clear()"
-                                class="[ btn btn--small btn--accent ] margin-right--16"
-                            >
-                                クリア
-                            </button>
-
-                            <button
-                                type="button"
-                                style="margin: 5px"
-                                class="[ btn btn--small btn--outline ] margin-left--16"
-                                v-on:click="output_csv"
-                            >
-                                CSV出力
-                            </button>
                         </div>
                     </article>
                 </form>
@@ -476,30 +478,30 @@
 
                                         <!-- 資金繰り -->
                                         <th colspan="2">
-                                            資金繰り（変額、養老、定期付き終身）
+                                            資金繰り(変額、養老、定期付き終身)
                                         </th>
 
-                                        <!-- 金融機関融資（定期、逓減型） -->
+                                        <!-- 金融機関融資(定期、逓減型) -->
                                         <th colspan="2">
-                                            金融機関融資（定期、逓減型）
+                                            金融機関融資(定期、逓減型)
                                         </th>
 
-                                        <!-- 年齢・人数（医療保険、福利厚生） -->
+                                        <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <th colspan="3">
-                                            年齢・人数（医療保険、福利厚生）
+                                            年齢・人数(医療保険、福利厚生)
                                         </th>
 
-                                        <!-- 代表者（就業不能） -->
-                                        <th colspan="2">代表者（就業不能）</th>
+                                        <!-- 代表者(就業不能) -->
+                                        <th colspan="2">代表者(就業不能)</th>
 
-                                        <!-- 相続対策（一時払い終身） -->
+                                        <!-- 相続対策(一時払い終身) -->
                                         <th colspan="3">
-                                            相続対策（一時払い終身）
+                                            相続対策(一時払い終身)
                                         </th>
 
                                         <!-- 指標-->
                                         <th colspan="4">
-                                            指標（5段階評価：平均値3）
+                                            指標(5段階評価：平均値3)
                                         </th>
 
                                         <!-- 業種 -->
@@ -514,13 +516,13 @@
                                         <!-- 資本金 -->
                                         <th colspan="1" class=""></th>
 
-                                        <!-- 面談場所 -->
-                                        <th></th>
-
                                         <!-- 成約可能性-->
                                         <th colspan="3">
-                                            成約の可能性（「A：可能性大」~「E：厳しい」）
+                                            成約の可能性(「A：可能性大」~「E：厳しい」)
                                         </th>
+
+                                        <!-- 面談場所 -->
+                                        <th></th>
 
                                         <!-- コメント-->
                                         <th></th>
@@ -613,15 +615,15 @@
                                             資金効率性指標
                                         </th>
 
-                                        <!-- 金融機関融資（定期、逓減型） -->
+                                        <!-- 金融機関融資(定期、逓減型) -->
                                         <th class="padding-left--12">
                                             金融機関借入残
                                         </th>
                                         <th class="padding-left--12">
-                                            年商比（融資上限50%）
+                                            年商比(融資上限50%)
                                         </th>
 
-                                        <!-- 年齢・人数（医療保険、福利厚生） -->
+                                        <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <th class="padding-left--12">
                                             代表者年齢
                                         </th>
@@ -632,7 +634,7 @@
                                             従業員数
                                         </th>
 
-                                        <!-- 代表者（就業不能） -->
+                                        <!-- 代表者(就業不能) -->
                                         <th class="padding-left--12">
                                             役員報酬
                                         </th>
@@ -640,7 +642,7 @@
                                             代表者借入残
                                         </th>
 
-                                        <!-- 相続対策（一時払い終身） -->
+                                        <!-- 相続対策(一時払い終身) -->
                                         <th class="padding-left--12">
                                             代表者債権債務
                                         </th>
@@ -674,20 +676,23 @@
                                             法人番号
                                         </th>
                                         <th class="padding-left--12">
-                                            年商（単位：万円）
+                                            年商
                                         </th>
                                         <th class="padding-left--12">
-                                            資本金（単位：万円）
+                                            資本金
                                         </th>
+
+                                        <th class="padding-left--12">今回</th>
+                                        <th class="padding-left--12">前回</th>
+                                        <th class="padding-left--12">前々回</th>
+
                                         <th
                                             class="padding-left--12 padding-right--12"
                                         >
                                             面談場所
                                         </th>
 
-                                        <th class="padding-left--12">今回</th>
-                                        <th class="padding-left--12">前回</th>
-                                        <th class="padding-left--12">前々回</th>
+
                                         <th
                                             class="padding-left--12 padding-right--12"
                                         >
@@ -1058,14 +1063,14 @@
                                                           item.surplus_guideline
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
                                         <td>
                                             <!-- 資金効率性指標 -->
                                             {{ item.fund_efficiency_index }}
                                         </td>
 
-                                        <!-- 金融機関融資（定期、逓減型） -->
+                                        <!-- 金融機関融資(定期、逓減型) -->
                                         <td>
                                             <!-- 金融機関借入残 -->
                                             {{
@@ -1074,7 +1079,7 @@
                                                           item.other_debt
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
                                         <td>
                                             <!-- {{ 年商 }}  -->
@@ -1084,17 +1089,17 @@
                                                           item.anualsales
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
 
-                                        <!-- 年齢・人数（医療保険、福利厚生） -->
+                                        <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <td>{{ item.ceo_age }}歳</td>
                                         <td>{{ item.average_age }}歳</td>
                                         <td>
                                             {{ item.number_of_employees }}人
                                         </td>
 
-                                        <!-- 代表者（就業不能） -->
+                                        <!-- 代表者(就業不能) -->
                                         <td>
                                             <!-- 役員報酬 -->
                                             {{
@@ -1103,7 +1108,7 @@
                                                           item.directors_fee
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
                                         <td>
                                             <!-- 代表者借入残 -->
@@ -1113,19 +1118,19 @@
                                                           item.rep_debt
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
 
-                                        <!-- 相続対策（一時払い終身） -->
+                                        <!-- 相続対策(一時払い終身) -->
                                         <td>
-                                            <!-- {{ 代表者債権債務（rep_receivable_debt） }} -->
+                                            <!-- {{ 代表者債権債務(rep_receivable_debt) }} -->
                                             {{
                                                 item.rep_receivable_debt != null
                                                     ? Number(
                                                           item.rep_receivable_debt
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
                                         <td>
                                             <!-- {{ 純資産の額 }} -->
@@ -1136,17 +1141,17 @@
                                                           item.in_house_3_1_net_assets
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
                                         <td>
-                                            <!-- {{ 計（total_inheritance） }} -->
+                                            <!-- {{ 計(total_inheritance) }} -->
                                             {{
                                                 item.total_inheritance != null
                                                     ? Number(
                                                           item.total_inheritance
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
 
                                         <!-- 指標-->
@@ -1177,7 +1182,7 @@
                                                           item.anualsales
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
                                         <td>
                                             <!-- 資本金 -->
@@ -1187,9 +1192,8 @@
                                                           item.capital
                                                       ).toLocaleString()
                                                     : 0
-                                            }}円
+                                            }}千円
                                         </td>
-                                        <td>{{ item.interview_place }}</td>
 
                                         <td>
                                             {{ item.close_possibility_now }}
@@ -1202,6 +1206,7 @@
                                         <td>
                                             {{ item.close_possibility_befpre }}
                                         </td>
+                                        <td>{{ item.interview_place }}</td>
                                         <td>{{ item.comment }}</td>
                                     </tr>
                                 </tbody>
@@ -1329,14 +1334,14 @@ export default {
                 { key: "anualsales", name: "年商" }, //company_clients
                 { key: "capital", name: "資本金" }, //company_clients
                 { key: "interview_place", name: "面談場所" }, //company_clients
-                { key: "close_possibility_now", name: "成約の可能性（今回）" }, //company_clients
+                { key: "close_possibility_now", name: "成約の可能性(今回)" }, //company_clients
                 {
                     key: "close_possibility_previous",
-                    name: "成約の可能性（前回）",
+                    name: "成約の可能性(前回)",
                 },
                 {
                     key: "close_possibility_befpre",
-                    name: "成約の可能性（前々回）",
+                    name: "成約の可能性(前々回)",
                 },
             ],
 
@@ -1808,13 +1813,13 @@ export default {
     vertical-align: middle;
     border: 1px solid #ddd;
     white-space: nowrap;
-    font-size: 16px;
+    font-size: 14px;
 }
 .table_box td {
     border: 1px solid #ddd;
 }
 .table_box th {
-    font-weight: bold;
+    /* font-weight: bold; */
     padding: 5px;
 }
 
@@ -1855,6 +1860,7 @@ label {
 
 .table_box td {
     text-align: right;
+    padding:5px;
 }
 .table_box .item-string {
     text-align: left;
@@ -1909,12 +1915,14 @@ span.clearOrder:hover {
     width: 60px;
     font-size: 12px;
     text-align: center !important;
-    border: 1px solid black;
-    background: black;
+    border: 1px solid #2FBCED;
+    background: #2FBCED;
     color: white;
 }
 #toggle_sticky:hover {
     cursor: pointer;
+    background-color: rgba(47, 188, 237, 0.8);
+    color: #FFFFFF;
 }
 
 span.clearOrder {
@@ -1925,10 +1933,28 @@ span.clearOrder {
     width: 80px;
 }
 
+#button{
+position: absolute;
+right: 45px;
+top: 200px;
+}
+
+/*　画面サイズが990px以下の場合、ここから　*/
+@media screen and (max-width: 990px) {
+    #button{
+        right: 70px;
+        top: 185px;
+    }
+}
+
 /*　画面サイズが760px以下の場合、ここから　*/
 @media screen and (max-width: 760px) {
     #open_close {
         margin-left: 0px;
+    }
+    #button{
+        right: 20px;
+        top: 165px;
     }
 }
 </style>
