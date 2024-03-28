@@ -328,7 +328,7 @@
             <div class="container">
                 <h2 class="text-center  heading-primary">決済方法</h2>
                 <p class="text-center  margin-bottom-large--48">クレジットカード<br>
-                    （月末に翌月分を支払う前払い）</p>
+                    （月初に先月分を支払う後払い）</p>
                 <div class="[ hp-container  hp-container--width-lg ]  [ flex-container-center  flex-column ]">
                     <div class="hp-container  hp-row--custom-margin  [ flex-container-center  justify-content-between ]">
                         <div class="hp-width--33  [ flex-container-center  flex-column ]">
