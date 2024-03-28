@@ -243,18 +243,17 @@
                                     <input
                                         type="radio"
                                         role="radio"
-                                        aria-checked="true"
-                                        id="payment-type-1"
+                                        aria-checked="false"
+                                        id="payment-type-3"
                                         class="form-radio"
                                         name="payment-group"
-                                        value="1"
+                                        value="3"
                                         v-model="getUser.payment_type"
-                                        checked
                                     />
                                     <label
                                         class="form-radio-label"
-                                        for="payment-type-1"
-                                        >クレジットカード</label
+                                        for="payment-type-3"
+                                        >口座振替</label
                                     >
                                 </span>
                                 <span class="form-column">
@@ -274,23 +273,28 @@
                                         >銀行振込</label
                                     >
                                 </span>
+
                                 <span class="form-column">
                                     <input
                                         type="radio"
                                         role="radio"
-                                        aria-checked="false"
-                                        id="payment-type-3"
+                                        aria-checked="true"
+                                        id="payment-type-1"
                                         class="form-radio"
                                         name="payment-group"
-                                        value="3"
+                                        value="1"
                                         v-model="getUser.payment_type"
+                                        checked
                                     />
                                     <label
                                         class="form-radio-label"
-                                        for="payment-type-3"
-                                        >口座振替</label
+                                        for="payment-type-1"
+                                        >クレジットカード</label
                                     >
                                 </span>
+
+
+
                             </div>
                         </div>
                     </article>

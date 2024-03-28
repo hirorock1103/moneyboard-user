@@ -102,7 +102,7 @@ export default {
                         id: 12,
                         url: '/mypage/card',
                         icon: 'fa-credit-card',
-                        title: 'カード情報',
+                        title: '支払情報',
                         subtitle: '',
                         active: false
                     },
