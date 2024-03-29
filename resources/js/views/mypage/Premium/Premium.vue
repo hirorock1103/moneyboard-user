@@ -1823,8 +1823,8 @@ export default {
 
 .table_box th span {
     text-align: center;
-    font-size: 10px;
-    line-height: 10px;
+    font-size: 11px;
+    line-height: 11px;
 }
 
 .table_box th.stickyeee,
