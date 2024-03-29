@@ -20,6 +20,7 @@ const state = {
         plan_id: '',
         updated_at: '',
         user_type: '',
+        payment_type: 3,
     },
     card: {
         number: '',
@@ -144,6 +145,7 @@ const actions = {
             plan_id: '',
             updated_at: '',
             user_type: '',
+            payment_type: 3,
         }
         const card_initial =  {
             number: '',

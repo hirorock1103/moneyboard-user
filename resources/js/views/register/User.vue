@@ -284,7 +284,6 @@
                                         name="payment-group"
                                         value="1"
                                         v-model="getUser.payment_type"
-                                        checked
                                     />
                                     <label
                                         class="form-radio-label"
