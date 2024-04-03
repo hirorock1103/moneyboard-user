@@ -11,9 +11,7 @@
 
         <SideMenu />
         <main class="mypage__main">
-            <section
-                class="[ padding-top--24  ] margin-bottom-large--48"
-            >
+            <section class="[ padding-top--24 ] margin-bottom-large--48">
                 <div
                     class="[ display-flex justify-content-between-large align-items-baseline [ flex-column flex-row-large ] ] [ padding-left--16 padding-right-16 padding-medium--0 ] [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] margin-bottom--24 ] border-bottom"
                 >
@@ -29,7 +27,7 @@
                     v-show="show"
                     v-if="blur_flg === 2"
                     v-on:submit.prevent="clientSearch(1)"
-                    style="margin-bottom: 10px;font-size:16px"
+                    style="margin-bottom: 10px; font-size: 16px"
                 >
                     <article
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] ]"
@@ -455,14 +453,12 @@
                                         >
                                             <!-- take_dev -->
                                             <span
-                                                style="margin: 5px"
                                                 class="clearOrder"
                                                 v-on:click="clearOrder(1)"
                                             >
                                                 並び①クリア</span
                                             >
                                             <span
-                                                style="margin: 5px"
                                                 class="clearOrder"
                                                 v-on:click="clearOrder(2)"
                                             >
@@ -478,30 +474,32 @@
 
                                         <!-- 資金繰り -->
                                         <th colspan="2">
-                                            資金繰り(変額、養老、定期付き終身)
+                                            資金繰り<br />(<span>変額、養老、定期付き終身</span>)
                                         </th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
                                         <th colspan="2">
-                                            金融機関融資(定期、逓減型)
+                                            金融機関融資<br />(<span>定期、逓減型</span>)
                                         </th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <th colspan="3">
-                                            年齢・人数(医療保険、福利厚生)
+                                            年齢・人数<br />(<span>医療保険、福利厚生</span>)
                                         </th>
 
                                         <!-- 代表者(就業不能) -->
-                                        <th colspan="2">代表者(就業不能)</th>
+                                        <th colspan="2">
+                                            代表者<br />(<span>就業不能</span>)
+                                        </th>
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <th colspan="3">
-                                            相続対策(一時払い終身)
+                                            相続対策<br />(<span>一時払い終身</span>)
                                         </th>
 
                                         <!-- 指標-->
                                         <th colspan="4">
-                                            指標(5段階評価：平均値3)
+                                            指標<br />(<span>5段階評価：平均値3</span>)
                                         </th>
 
                                         <!-- 業種 -->
@@ -518,7 +516,7 @@
 
                                         <!-- 成約可能性-->
                                         <th colspan="3">
-                                            成約の可能性(「A：可能性大」~「E：厳しい」)
+                                            成約の可能性<br />(<span>「A：可能性大」~「E：厳しい」</span>)
                                         </th>
 
                                         <!-- 面談場所 -->
@@ -604,7 +602,7 @@
 
                                         <!-- 最新の取込決済期 -->
                                         <th class="padding-left--12">
-                                            最新の取込決済期
+                                            最新の<br />取込決済期
                                         </th>
 
                                         <!-- 資金繰り -->
@@ -612,15 +610,15 @@
                                             余剰金目安
                                         </th>
                                         <th class="padding-left--12">
-                                            資金効率性指標
+                                            資金効率性<br />指標
                                         </th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
                                         <th class="padding-left--12">
-                                            金融機関借入残
+                                            金融機関<br />借入残
                                         </th>
                                         <th class="padding-left--12">
-                                            年商比(融資上限50%)
+                                            年商比<br />(融資上限50%)
                                         </th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
@@ -628,7 +626,7 @@
                                             代表者年齢
                                         </th>
                                         <th class="padding-left--12">
-                                            従業員平均年齢
+                                            従業員<br />平均年齢
                                         </th>
                                         <th class="padding-left--12">
                                             従業員数
@@ -639,12 +637,12 @@
                                             役員報酬
                                         </th>
                                         <th class="padding-left--12">
-                                            代表者借入残
+                                            代表者<br />借入残
                                         </th>
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <th class="padding-left--12">
-                                            代表者債権債務
+                                            代表者<br />債権債務
                                         </th>
                                         <th class="padding-left--12">
                                             純資産の額
@@ -662,7 +660,7 @@
                                             収益性指標
                                         </th>
                                         <th class="padding-left--12">
-                                            資金効率性指標
+                                            資金効率性<br />指標
                                         </th>
 
                                         <th
@@ -675,12 +673,8 @@
                                         >
                                             法人番号
                                         </th>
-                                        <th class="padding-left--12">
-                                            年商
-                                        </th>
-                                        <th class="padding-left--12">
-                                            資本金
-                                        </th>
+                                        <th class="padding-left--12">年商</th>
+                                        <th class="padding-left--12">資本金</th>
 
                                         <th class="padding-left--12">今回</th>
                                         <th class="padding-left--12">前回</th>
@@ -691,7 +685,6 @@
                                         >
                                             面談場所
                                         </th>
-
 
                                         <th
                                             class="padding-left--12 padding-right--12"
@@ -1206,8 +1199,12 @@
                                         <td>
                                             {{ item.close_possibility_befpre }}
                                         </td>
-                                        <td>{{ item.interview_place }}</td>
-                                        <td>{{ item.comment }}</td>
+                                        <td class="item-string">
+                                            {{ item.interview_place }}
+                                        </td>
+                                        <td class="item-string">
+                                            {{ item.comment }}
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <tbody v-else>
@@ -1564,8 +1561,8 @@ export default {
                     const bom = new Uint8Array([0xef, 0xbb, 0xbf]);
 
                     let blob = new Blob([bom, shiftJisString], {
-                            type: "text/csv;charset=utf8",
-                        });
+                        type: "text/csv;charset=utf8",
+                    });
 
                     saveAs(blob, fileName);
                     alert("CSVを出力しました");
@@ -1814,6 +1811,7 @@ export default {
     border: 1px solid #ddd;
     white-space: nowrap;
     font-size: 14px;
+    line-height: 16px;
 }
 .table_box td {
     border: 1px solid #ddd;
@@ -1821,6 +1819,12 @@ export default {
 .table_box th {
     /* font-weight: bold; */
     padding: 5px;
+}
+
+.table_box th span {
+    text-align: center;
+    font-size: 11px;
+    line-height: 11px;
 }
 
 .table_box th.stickyeee,
@@ -1860,7 +1864,7 @@ label {
 
 .table_box td {
     text-align: right;
-    padding:5px;
+    padding: 5px;
 }
 .table_box .item-string {
     text-align: left;
@@ -1915,14 +1919,14 @@ span.clearOrder:hover {
     width: 60px;
     font-size: 12px;
     text-align: center !important;
-    border: 1px solid #2FBCED;
-    background: #2FBCED;
+    border: 1px solid #2fbced;
+    background: #2fbced;
     color: white;
 }
 #toggle_sticky:hover {
     cursor: pointer;
     background-color: rgba(47, 188, 237, 0.8);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 span.clearOrder {
@@ -1933,15 +1937,16 @@ span.clearOrder {
     width: 80px;
 }
 
-#button{
-position: absolute;
-right: 45px;
-top: 200px;
+#button {
+    position: absolute;
+    left: 500px;
+    top: 200px;
 }
 
 /*　画面サイズが990px以下の場合、ここから　*/
 @media screen and (max-width: 990px) {
-    #button{
+    #button {
+        left: auto;
         right: 70px;
         top: 185px;
     }
@@ -1952,7 +1957,8 @@ top: 200px;
     #open_close {
         margin-left: 0px;
     }
-    #button{
+    #button {
+        left: auto;
         right: 20px;
         top: 165px;
     }
