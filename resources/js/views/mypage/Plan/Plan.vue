@@ -10,7 +10,7 @@
         />
 
         <SideMenu />
-        <main class="mypage__main">
+        <main id="plan" class="mypage__main">
             <section
                 class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
             >
@@ -204,7 +204,7 @@
                                     font-size: 14px;
                                 "
                             >
-                                {{ today }}日のため変更はできません<br />
+                                変更期間対象外（本日{{ today }}日のため）<br />
                                 ※変更は毎月1日〜10日までに実施してください
                             </div>
                             <div
@@ -216,10 +216,19 @@
                                     class="[ btn btn--accent ]"
                                     >変更</router-link
                                 >
+                                <p
+                                    style="
+                                        margin-top: 10px;
+                                        color: red;
+                                        font-size: 14px;
+                                    "
+                                >
+                                    毎月1日〜10日まで変更可能<br />※11日以降は変更できません
+                                </p>
                             </div>
                         </div>
                     </article>
-                    <article class="">
+                    <article class="plan_list">
                         <div class="[ padding--24 padding-large--48 ] bg-white">
                             <table class="table table--bordered">
                                 <thead>
@@ -231,17 +240,23 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>システム利用料金</td>
+                                        <td>システム利用料金(税込)</td>
                                         <td>55,000円/月</td>
                                         <td>132,000円/月</td>
                                     </tr>
                                     <tr>
-                                        <td>自社データ5期の比較</td>
-                                        <td>〇</td>
-                                        <td>〇</td>
+                                        <td>登録企業数</td>
+                                        <td>60社</td>
+                                        <td>120社</td>
                                     </tr>
                                     <tr>
-                                        <td>他社データ比較</td>
+                                        <td>企業数の追加料金(税込)</td>
+                                        <td>1,100円/社</td>
+                                        <td>1,100円/社</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>自社データ比較</td>
                                         <td>〇</td>
                                         <td>〇</td>
                                     </tr>
@@ -251,29 +266,24 @@
                                         <td>〇</td>
                                     </tr>
                                     <tr>
-                                        <td>顧客管理ツール</td>
+                                        <td>他社データ比較</td>
+                                        <td>〇</td>
+                                        <td>〇</td>
+                                    </tr>
+                                    <tr>
+                                        <td>端末顧客管理ツール</td>
+                                        <td>〇</td>
+                                        <td>〇</td>
+                                    </tr>
+                                    <tr>
+                                        <td>WEB顧客管理ツール</td>
                                         <td>―</td>
                                         <td>〇</td>
                                     </tr>
                                     <tr>
-                                        <td>使用できる企業数</td>
-                                        <td>60社</td>
-                                        <td>120社</td>
-                                    </tr>
-                                    <tr>
-                                        <td>企業数の追加(1社あたり)</td>
-                                        <td>1,100円/月</td>
-                                        <td>1,100円/月</td>
-                                    </tr>
-                                    <tr>
-                                        <td>アプリ登録台数</td>
-                                        <td>無制限</td>
-                                        <td>無制限</td>
-                                    </tr>
-                                    <tr>
-                                        <td>担当者登録数</td>
-                                        <td>無制限</td>
-                                        <td>無制限</td>
+                                        <td>必要なもの</td>
+                                        <td>iPad・ネット環境</td>
+                                        <td>iPad・PC・ネット環境</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -431,4 +441,12 @@ export default {
 @import "resources/sass/abstracts/_variables.scss";
 @import "resources/sass/vendors/_media.scss";
 @import "resources/sass/pages/_mypage.scss";
+</style>
+<style>
+#plan .plan_list tr th {
+    text-align: center;
+}
+#plan .plan_list tr td {
+    text-align: center;
+}
 </style>

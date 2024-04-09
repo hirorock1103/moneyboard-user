@@ -4,6 +4,15 @@
             class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
         >
             <div class="container">
+                <loading
+                    v-model:active="loadingStatus"
+                    :can-cancel="false"
+                    :is-full-page="false"
+                    :color="'#2FBCED'"
+                    :height="90"
+                    :width="100"
+                />
+
                 <h2 class="text-center heading-primary">登録内容のご確認</h2>
                 <form @submit.prevent="submit">
                     <ProgressBar :current-step="currentStep" />
@@ -394,11 +403,14 @@
 <script>
 import { mapActions } from "vuex";
 import ProgressBar from "../../components/ProgressBarComponent.vue";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
     name: "register-user-confirm",
     components: {
         ProgressBar,
+        Loading,
     },
     data() {
         return {
@@ -406,6 +418,7 @@ export default {
             planName: "",
             currentStep: 1,
             paymentName: "",
+            loadingStatus: false,
         };
     },
     computed: {
