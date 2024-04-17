@@ -456,7 +456,7 @@ export default {
                     this.paymentName = "口座振替";
                     break;
                 default:
-                    this.paymentName = "未選択です。戻って選択してください。";
+                    this.paymentName = "口座振替";
                     break;
             }
         },
