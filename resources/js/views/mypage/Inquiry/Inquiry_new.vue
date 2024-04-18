@@ -76,6 +76,9 @@
                                                         <option value="4">
                                                             その他
                                                         </option>
+                                                        <option value="5">
+                                                            使用料の請求について
+                                                        </option>
                                                     </select>
                                                     <div
                                                         class="form-text  text-danger text-center [ margin-bottom--24   ]  "

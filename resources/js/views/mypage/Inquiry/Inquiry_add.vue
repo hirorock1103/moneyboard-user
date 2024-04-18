@@ -62,6 +62,7 @@
                                                 <td v-if="temps.type == 2" class="[ display-table-row  display-table-cell-large ] ">使い方について</td>
                                                 <td v-if="temps.type == 3" class="[ display-table-row  display-table-cell-large ] ">ご意見・ご要望</td>
                                                 <td v-if="temps.type == 4" class="[ display-table-row  display-table-cell-large ] ">その他</td>
+                                                <td v-if="temps.type == 5" class="[ display-table-row  display-table-cell-large ] ">使用料の請求について</td>
                                             </tr>
                                             <tr>
                                                 <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
