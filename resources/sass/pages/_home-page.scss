@@ -8,80 +8,78 @@
  */
 
 .hp-jumbotron {
-    background-image: url('/images/home_page/jumbotron/top_bg_small.png');
+    background-image: url("/images/home_page/jumbotron/top_bg_small.png");
     background-repeat: no-repeat;
-    background-size:   cover;
+    background-size: cover;
     position: relative;
-    width:    100%;
+    width: 100%;
 
-    @include media('>=medium') {
-        background-image: url('/images/home_page/jumbotron/top_bg_medium.png');
+    @include media(">=medium") {
+        background-image: url("/images/home_page/jumbotron/top_bg_medium.png");
     }
 
-    @include media('>=large') {
-        background-image: url('/images/home_page/jumbotron/top_bg.png');
+    @include media(">=large") {
+        background-image: url("/images/home_page/jumbotron/top_bg.png");
     }
 }
 
+.hp-jumbotron__content {
+    margin: auto;
+    padding: 0 16px;
+    height: 100%;
+    width: 100%;
+}
 
-    .hp-jumbotron__content {
-        margin:  auto;
-        padding: 0 16px;
-        height: 100%;
-        width:  100%;
+.hp-jumbotron__content-textbox {
+    align-self: center;
+    position: relative;
+    padding: 26px 15px 0;
+
+    &:before,
+    &:after {
+        background-size: contain;
+        content: "";
+        position: absolute;
+        height: 47px;
+        width: 46px;
     }
 
+    &:before {
+        background: url("/images/home_page/svg/top_jumbotron_bg_left.svg")
+            no-repeat top;
+        left: 1em;
+        top: 1em;
+    }
 
-        .hp-jumbotron__content-textbox {
-            align-self: center;
-            position: relative;
-            padding: 26px 15px 0;
+    &:after {
+        background: url("/images/home_page/svg/top_jumbotron_bg_right.svg")
+            no-repeat top;
+        bottom: 1em;
+        right: 1em;
+    }
 
-            &:before,
-            &:after {
-                background-size: contain;
-                content: "";
-                position: absolute;
-                height:   47px;
-                width:    46px;
-            }
+    @include media(">=large") {
+        padding: 48px 48px 21px;
+        max-width: 628px;
+    }
+}
 
-            &:before {
-                background: url('/images/home_page/svg/top_jumbotron_bg_left.svg') no-repeat top;
-                left: 1em;
-                top:  1em;
-            }
+.hp-jumbotron__content-imgbox {
+    background-image: url("/images/index/app_image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 576px;
 
-            &:after {
-                background: url('/images/home_page/svg/top_jumbotron_bg_right.svg') no-repeat top;
-                bottom: 1em;
-                right:  1em;
-            }
+    @include media(">=large") {
+        flex: 1;
+        max-width: 922px;
+        width: calc(900 / 1920 * 100vw);
+    }
 
-            @include media('>=large') {
-                padding:   48px 48px 21px;
-                max-width: 628px;
-            }
-        }
-
-
-        .hp-jumbotron__content-imgbox {
-            background-image:  url('/images/index/app_image.png');
-            background-repeat: no-repeat;
-            background-size:   cover;
-            max-width: 576px;
-
-            @include media('>=large') {
-                flex: 1;
-                max-width: 922px;
-                width:     calc(900 / 1920 * 100vw);
-            }
-
-            @include media('>=xlarge') {
-                width: calc(995 / 1920 * 100vw);
-            }
-        }
-
+    @include media(">=xlarge") {
+        width: calc(995 / 1920 * 100vw);
+    }
+}
 
 /**
  * ホームページのヘディングスタイル。 `.hp-jumbotron--*` でスタイルを追加してください。
@@ -91,24 +89,26 @@
 .hp-heading__small {
     font-size: 14px;
 
-    @include media('>=large') { font-size: 18px; }
+    @include media(">=large") {
+        font-size: 18px;
+    }
 
     &:before,
     &:after {
         background-size: contain;
         content: "";
         display: inline-block;
-        height:  11px;
-        width:   11px;
+        height: 11px;
+        width: 11px;
     }
 
     &:before {
-        background: url('/images/home_page/svg/stroke-left.svg') no-repeat top;
+        background: url("/images/home_page/svg/stroke-left.svg") no-repeat top;
         margin-right: 1em;
     }
 
     &:after {
-        background: url('/images/home_page/svg/stroke-right.svg') no-repeat top;
+        background: url("/images/home_page/svg/stroke-right.svg") no-repeat top;
         margin-left: 1em;
     }
 }
@@ -116,16 +116,19 @@
 .hp-heading__mid {
     font-size: 18px;
 
-    @include media('>=large') { font-size: 28px; }
+    @include media(">=large") {
+        font-size: 28px;
+    }
 }
 
 .hp-heading__big {
-
     img {
         height: 28px;
-        width:  auto;
+        width: auto;
 
-        @include media('>=large') { height: 54px; }
+        @include media(">=large") {
+            height: 54px;
+        }
     }
 }
 
@@ -134,11 +137,12 @@
  */
 
 .hp-heading__pointed {
-    background: url('/images/home_page/svg/point.svg') no-repeat;
+    background: url("/images/home_page/svg/point.svg") no-repeat;
 
-    img { height: 1.2em; }
+    img {
+        height: 1.2em;
+    }
 }
-
 
 /**
  * 右側整列されているPointヘディング。`.hp-heading__pointed`の延長
@@ -149,24 +153,24 @@
     padding: 45px 0 0 26px;
 }
 
-
 /**
  * 中央整列されているPointヘディング。`.hp-heading__pointed`の延長
  */
 
 .hp-heading__pointed--center {
     background-position: 11% 75%;
-    background-size:     25%;
+    background-size: 25%;
     padding: 52px 52px 0;
 
-    img { margin-bottom: -4px; }
+    img {
+        margin-bottom: -4px;
+    }
 
-    @include media('>=large') {
+    @include media(">=large") {
         background-position: 8% 43%;
         background-size: auto;
     }
 }
-
 
 /**
  * ホームページのセクションスタイル。 `.hp-section--*` でスタイルを追加してください。
@@ -176,11 +180,14 @@
 .hp-section {
     padding: 50px 18px;
 
-    @include media('>=medium') { padding: 50px 38px; }
+    @include media(">=medium") {
+        padding: 50px 38px;
+    }
 
-    @include media('>=large') { padding: 130px 0; }
+    @include media(">=large") {
+        padding: 130px 0;
+    }
 }
-
 
 /**
  * ホームページのカードスタイル。 `.hp-card--*` でスタイルを追加してください。
@@ -192,11 +199,9 @@
     width: 100%;
 }
 
-
 .hp-card--flex {
     display: flex;
 }
-
 
 .hp-card--padded {
     padding: 16px 16px 0;
@@ -207,45 +212,42 @@
         }
     }
 
-    @include media('>=large') {
+    @include media(">=large") {
         padding: 52px;
     }
 }
 
-
-
 .hp-card--tab {
     margin-bottom: 1rem;
-    padding:       18px 15px;
+    padding: 18px 15px;
 
-    @include media('>=large') {
-        align-items:    center;
+    @include media(">=large") {
+        align-items: center;
         flex-direction: column;
-        text-align:     center;
-        margin-bottom:  2rem;
-        padding:        36px 13px;
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 36px 13px;
     }
 }
 
-    .hp-card--tab__icon {
-        display: block;
-        margin-right: 1em;
+.hp-card--tab__icon {
+    display: block;
+    margin-right: 1em;
 
-        @include media('>=large') {
-            font-size: 26px;
-            margin-right: 0;
-            order: 2;
-        }
+    @include media(">=large") {
+        font-size: 26px;
+        margin-right: 0;
+        order: 2;
     }
+}
 
-    .hp-card--tab__text {
-        margin-bottom: 0;
+.hp-card--tab__text {
+    margin-bottom: 0;
 
-        @include media('>=large') {
-            margin-bottom: 1.5em;
-        }
+    @include media(">=large") {
+        margin-bottom: 1.5em;
     }
-
+}
 
 .hp-card--img-top {
     padding-top: 25px;
@@ -261,7 +263,7 @@
     line-height: 1.4;
     overflow: hidden;
 
-    @include media('>=medium') {
+    @include media(">=medium") {
         flex-direction: row;
         max-width: 100%;
 
@@ -271,59 +273,56 @@
     }
 }
 
+.hp-card--img-side__meta {
+    height: 200px;
+    position: relative;
 
-    .hp-card--img-side__meta {
-        height:   200px;
-        position: relative;
-
-        @include media('>=medium') {
-            flex-basis: 40%;
-            height: auto;
-        }
+    @include media(">=medium") {
+        flex-basis: 40%;
+        height: auto;
     }
+}
 
-    .hp-card--img-side__photo {
-        background-position: center;
-        background-size:     cover;
-        position: absolute;
-        bottom: 0;
-        left:   0;
-        right:  0;
-        top:    0;
+.hp-card--img-side__photo {
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.hp-card--img-side__text {
+    position: relative;
+
+    @include media(">=medium") {
+        flex-basis: 60%;
     }
+}
 
-    .hp-card--img-side__text {
-        position: relative;
+.hp-card--img-side__text--padding-large {
+    padding: 27px 15px 0;
 
-        @include media('>=medium') {
-            flex-basis: 60%;
-        }
+    @include media(">=medium") {
+        padding: 52px 52px 25px;
     }
+}
 
-        .hp-card--img-side__text--padding-large {
-            padding: 27px 15px 0;
+.hp-card--img-side__text--padding-small {
+    padding: 27px 0 0;
+    z-index: 1;
 
-            @include media('>=medium') {
-                padding: 52px 52px 25px;
+    @include media(">=large") {
+        padding: 11px 0 0 52px;
+
+        li {
+            &:last-child {
+                margin-bottom: 0;
             }
         }
-
-        .hp-card--img-side__text--padding-small {
-            padding: 27px 0 0;
-            z-index: 1;
-
-            @include media('>=large') {
-                padding: 11px 0 0 52px;
-
-                li {
-
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-        }
-
+    }
+}
 
 /**
  * ホームページのテキストスタイル。 `.hp-text--*` でスタイルを追加してください。
@@ -337,45 +336,43 @@
     &:after {
         content: "";
         position: absolute;
-        bottom:  0;
-        left:   -1%;
-        height:  10px;
-        width:   102%;
+        bottom: 0;
+        left: -1%;
+        height: 10px;
+        width: 102%;
         z-index: -1;
     }
 
-    @include media('>=large') {
-
-        &:after { height:  13px; }
+    @include media(">=large") {
+        &:after {
+            height: 13px;
+        }
     }
 }
 
-
 .hp-text-underlined--grey {
-
-    &:after { background: map-get($home-colors, 'text-bg-grey'); }
+    &:after {
+        background: map-get($home-colors, "text-bg-grey");
+    }
 }
-
 
 .hp-text-underlined--yellow {
-
-    &:after { background: map-get($home-colors, 'text-bg-yellow'); }
+    &:after {
+        background: map-get($home-colors, "text-bg-yellow");
+    }
 }
-
 
 .hp-text-ordinal-number {
-    color: map-get($home-colors, 'ordinal-number');
+    color: map-get($home-colors, "ordinal-number");
     font-family: Montserrat, sans-serif;
-    font-style:  italic;
+    font-style: italic;
 }
-
 
 .hp-text-center {
     align-self: center;
-    font-size:  16px;
+    font-size: 16px;
     white-space: nowrap;
 }
-
 
 /**
  * ホームページのリストスタイル。 `.hp-list--*` でスタイルを追加してください。
@@ -384,7 +381,7 @@
 
 .hp-list-counted {
     font-family: Montserrat, sans-serif;
-    list-style:  none;
+    list-style: none;
     counter-reset: decimal-italic-counter;
     padding-left: 0;
 
@@ -395,8 +392,8 @@
 
         &:before {
             content: counter(decimal-italic-counter, decimal-leading-zero);
-            color: map-get($home-colors, 'ordinal-number');
-            font-style:  italic;
+            color: map-get($home-colors, "ordinal-number");
+            font-style: italic;
             font-weight: bold;
             position: absolute;
             left: 0;
@@ -413,7 +410,6 @@
     }
 }
 
-
 .hp-list-imaged {
     padding-left: 28px;
     position: relative;
@@ -423,94 +419,93 @@
         content: "";
         position: absolute;
         height: 18px;
-        width:  18px;
+        width: 18px;
         z-index: -1;
 
-        background: url('/images/home_page/svg/laugh-regular.svg') no-repeat top;
+        background: url("/images/home_page/svg/laugh-regular.svg") no-repeat top;
         left: 2px;
-        top:  2px;
+        top: 2px;
     }
 
-    @include media('>=large') {
+    @include media(">=large") {
         padding-left: 65px;
         font-size: 18px;
 
         &:before {
-            background: url('/images/home_page/svg/smile_face_good.svg') no-repeat top;
+            background: url("/images/home_page/svg/smile_face_good.svg")
+                no-repeat top;
             height: 55px;
-            width:  54px;
-            top:   -12px;
+            width: 54px;
+            top: -12px;
         }
     }
 }
-
 
 /**
  * ホームページのコンテナースタイル。 `.hp-container--*` でスタイルを追加してください。
  * class.
  */
 
-.hp-container { width: 100%; }
+.hp-container {
+    width: 100%;
+}
 
 .hp-container--center {
     margin: 0 auto;
 
-    @include media('>=medium') {
+    @include media(">=medium") {
         width: calc((749.86 / 1920) * 100vw);
     }
 }
 
-
 .hp-container--flex {
-    flex-direction:  column;
+    flex-direction: column;
     justify-content: space-between;
     padding: 0 10px;
 
-    @include media('>=large') {
+    @include media(">=large") {
         flex-direction: row;
     }
 }
-
 
 .hp-container--bg {
     position: relative;
     z-index: 1;
 
-    @include media('>=large') {
-
+    @include media(">=large") {
         &:before,
         &:after {
             background-size: contain;
             content: "";
             position: absolute;
             height: 86px;
-            width:  85px;
+            width: 85px;
             z-index: -1;
         }
 
         &:before {
-            background: url('/images/home_page/section_bg_left.png') no-repeat top;
+            background: url("/images/home_page/section_bg_left.png") no-repeat
+                top;
             left: -2.5em;
-            top:  -2.2em;
+            top: -2.2em;
         }
 
         &:after {
-            background: url('/images/home_page/section_bg_right.png') no-repeat top;
+            background: url("/images/home_page/section_bg_right.png") no-repeat
+                top;
             bottom: -2.2em;
-            right:  -2.2em;
+            right: -2.2em;
         }
     }
 }
-
 
 .hp-container--width-lg {
     margin: auto;
 
-    @include media('>=large') {
+    @include media(">=large") {
         width: calc((1100 / 1920) * 100vw);
     }
 }
-
 
 /**
  * ホームページの行スタイル。 `.hp-row--*` でスタイルを追加してください。
@@ -523,12 +518,11 @@
     &:not(:last-child) {
         margin-bottom: 24px;
 
-        @include media('>=large') {
+        @include media(">=large") {
             margin-bottom: 48px;
         }
     }
 }
-
 
 /**
  * ホームページのiframeスタイル。 `.hp-iframe--*` でスタイルを追加してください。
@@ -536,24 +530,23 @@
  */
 
 .hp-iframe {
-    border:　2px solid $border-color;
-    -webkit-overflow-scrolling:touch;
+    border: 2px solid $border-color;
+    -webkit-overflow-scrolling: touch;
     overflow: auto;
     position: relative;
     padding-top: 56.25%;
-    width:       100%;
+    width: 100%;
 
     iframe {
-        border:   none;
-        display:  block;
+        border: none;
+        display: block;
         position: absolute;
-        left:     0;
-        top:      0;
-        height:   100%;
-        width:    100%;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
     }
 }
-
 
 /**
  * ホームページの表スタイル。 `.hp-table--*` でスタイルを追加してください。
@@ -561,7 +554,6 @@
  */
 
 .hp-table--image {
-
     th {
         width: 33%;
     }
@@ -573,22 +565,21 @@
     span {
         background-color: $gray-4;
         font-size: 14px;
-        display:   block;
-        padding:   9px 48px;
-        height:    62px;
+        display: block;
+        padding: 9px 48px;
+        height: 62px;
     }
 }
 
-
 .hp-table--blue {
-    border: 2px solid map-get($home-colors, 'table-border');
+    border: 2px solid map-get($home-colors, "table-border");
     width: 100%;
 
     &:not(:last-child) {
         margin-bottom: 40px;
     }
 
-    @include media('>=large') {
+    @include media(">=large") {
         width: calc(650 / 1920 * 100vw);
 
         &:not(:last-child) {
@@ -597,89 +588,92 @@
     }
 }
 
-    .hp-table--blue__header {
-        background-color: map-get($home-colors, 'table-bg');
-        color: $color-white;
-        align-self: center;
-        text-align: center;
-        padding: 11px;
-        width:   100%;
+.hp-table--blue__header {
+    background-color: map-get($home-colors, "table-bg");
+    color: $color-white;
+    align-self: center;
+    text-align: center;
+    padding: 11px;
+    width: 100%;
 
-        h2 {
-            font-size:   16px;
-            font-weight: $weight-normal;
-            margin: 0;
-        }
+    h2 {
+        font-size: 16px;
+        font-weight: $weight-normal;
+        margin: 0;
+    }
+}
+
+.hp-table--blue__row {
+    display: table;
+    padding: 20px 0;
+    margin: 0 20px;
+    height: auto;
+    width: calc(100% - 40px);
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $border-color;
     }
 
-    .hp-table--blue__row {
-        display: table;
-        padding: 20px 0;
-        margin:  0 20px;
-        height:  auto;
-        width:  calc(100% - 40px);
+    .label,
+    .span {
+        display: table-cell;
+        vertical-align: middle;
+    }
 
-        &:not(:last-child) {
-            border-bottom: 1px solid $border-color;
-        }
+    .label {
+        font-size: 15px;
+        position: relative;
+        padding-right: 10px;
+        width: 50%;
+    }
 
+    .span {
+        font-size: 16px;
+        font-weight: $weight-bold;
+        text-align: center;
+        width: 50%;
+    }
+
+    @include media(">=large") {
         .label,
         .span {
-            display:        table-cell;
-            vertical-align: middle;
-        }
-
-        .label {
-            font-size:     15px;
-            position: relative;
-            padding-right: 10px;
-            width:         70%;
-        }
-
-        .span {
-            font-size:   16px;
-            font-weight: $weight-bold;
-            text-align:  center;
-            width:       30%;
-        }
-
-        @include media('>=large') {
-
-            .label,
-            .span {
-                font-size: 18px;
-            }
-
+            font-size: 18px;
         }
     }
+}
 
-    .hp-table--blue__row--big {
-        padding: 30px 0 26px;
+.hp-table--blue__row--big {
+    padding: 30px 0 26px;
 
+    h3 {
+        font-size: 16px;
+        font-weight: $weight-normal;
+        margin-bottom: 0;
+    }
+
+    @include media(">=large") {
         h3 {
-            font-size:     16px;
-            font-weight:   $weight-normal;
-            margin-bottom: 0;
-        }
-
-        @include media('>=large') {
-
-            h3 { font-size: 18px; }
+            font-size: 18px;
         }
     }
+}
 
-        .td-title--big { font-size: 2em; }
+.td-title--big {
+    font-size: 2em;
+}
 
-        .td-title__price { font-weight: 700; }
-
+.td-title__price {
+    font-weight: 700;
+}
 
 /**
  * ホームページの幅スタイル。 `.hp-width--*` でスタイルを追加してください。
  * class.
  */
 
-.hp-width--33 { width: 33%; }
-
+.hp-width--33 {
+    width: 33%;
+}
 
 /**
  * ホームページの画像スタイル。 `.hp-img--*` でスタイルを追加してください。
@@ -689,10 +683,10 @@
 .hp-img--center {
     align-self: center;
     margin-bottom: 12px;
-    height:        40px;
-    width:         auto;
+    height: 40px;
+    width: auto;
 
-    @include media('>=large') {
+    @include media(">=large") {
         height: calc(50 / 1920 * 100vw);
     }
 }
