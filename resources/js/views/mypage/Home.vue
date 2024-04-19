@@ -128,9 +128,17 @@
                                                 }}
                                             </th>
                                             <td
-                                                class="[ display-table-row display-table-cell-large ] padding-bottom--16"
+                                                class="[ display-table-row display-table-cell-large ] padding-bottom--16 padding-left--12"
                                             >
-                                                &nbsp;{{ item.notice }}
+                                                <!-- &nbsp;{{ item.notice }} -->
+                                                <p
+                                                    style="margin-bottom: 0px"
+                                                    v-for="str of item.notice.split(
+                                                        '\n'
+                                                    )"
+                                                >
+                                                    {{ str }}
+                                                </p>
                                             </td>
                                         </tr>
                                     </tbody>
