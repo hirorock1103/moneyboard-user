@@ -200,6 +200,7 @@
                             >戻る</router-link
                         >
                         <router-link
+                            v-if="topic.status === 0"
                             :to="{
                                 name: 'mypage-inquiry_add',
                                 params: { id: topic_id, type: topic.type },
