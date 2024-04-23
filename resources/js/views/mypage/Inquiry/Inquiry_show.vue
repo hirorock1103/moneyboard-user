@@ -161,14 +161,21 @@
                             <table class="table table--bordered">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <!-- <th>ID</th> -->
+                                        <th>送信日</th>
                                         <th>送信者</th>
                                         <th style="width: 700px">本文</th>
                                     </tr>
                                 </thead>
                                 <tbody v-if="items.length">
                                     <tr v-for="item in items" :key="item._id">
-                                        <td>{{ item.id }}</td>
+                                        <!-- <td>{{ item.id }}</td> -->
+                                        <td>
+                                            {{
+                                                item.created_at.substring(0, 10)
+                                            }}
+                                        </td>
+
                                         <td v-if="item.attribute === 0">
                                             お客様
                                         </td>
