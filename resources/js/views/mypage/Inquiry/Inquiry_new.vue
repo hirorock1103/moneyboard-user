@@ -77,7 +77,7 @@
                                                             その他
                                                         </option>
                                                         <!-- <option value="5">
-                                                            使用料の請求について
+                                                            利用料のご請求について
                                                         </option> -->
                                                     </select>
                                                     <div
