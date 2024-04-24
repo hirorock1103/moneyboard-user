@@ -1,14 +1,22 @@
 <template>
     <main>
-        <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
+        <section
+            class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
+        >
             <div class="container">
-                <h2 class="text-center  heading-primary"> {{ title }}</h2>
+                <h2 class="text-center heading-primary">{{ title }}</h2>
                 <ProgressBar v-show="currentStep" :current-step="currentStep" />
-                <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
-                    <p class="margin-bottom--88  [ padding-right--16  padding-left--16 ]">
+                <div
+                    class="text-center [ [ margin-top--48 margin-top-large--80 ] [ margin-bottom--48 margin-bottom-large--140 ] ]"
+                >
+                    <p
+                        class="margin-bottom--88 [ padding-right--16 padding-left--16 ]"
+                    >
                         <span v-for="(msg, index) in message">
                             {{ msg }}
-                            <br v-if="index != Object.keys(message).length - 1">
+                            <br
+                                v-if="index != Object.keys(message).length - 1"
+                            />
                         </span>
                     </p>
                     <Button :type="redirectPage" />
@@ -20,33 +28,38 @@
 
 <script>
 // ToDo:エラーの解消→<span v-for="(msg, index) in message">
-import ProgressBar from '../components/ProgressBarComponent.vue';
-import Button from '../components/ButtonComponent.vue';
+import ProgressBar from "../components/ProgressBarComponent.vue";
+import Button from "../components/ButtonComponent.vue";
 
 export default {
-    name: 'completion',
+    name: "completion",
     props: {
         type: String,
         title: String,
         message: {
             type: Array,
-            required: true
+            required: true,
         },
         redirectPage: String,
         currentStep: {
             type: Number,
             required: false,
-            default: null
+            default: null,
         },
     },
     components: {
         Button,
-        ProgressBar
+        ProgressBar,
     },
     mounted() {
         if (this.type === "register") {
-            localStorage.removeItem('registerToken');
+            localStorage.removeItem("registerToken");
+        }
+        if (typeof this.title === "undefined") {
+            this.$router.push({
+                name: "login",
+            });
         }
     },
-}
+};
 </script>
