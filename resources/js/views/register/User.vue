@@ -527,7 +527,7 @@
                                     >
                                 </span>
                             </div>
-                            <div class="form-row margin-bottom--48">
+                            <div class="form-row margin-bottom--14">
                                 <label
                                     for="additional-licenses"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
@@ -545,6 +545,17 @@
                                         v-model="getUser.additional_licenses"
                                     />
                                     <span>社</span>
+                                </span>
+                            </div>
+                            <div class="form-row margin-bottom--48">
+                                <label
+                                    for="additional-licenses"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
+                                    使用できる企業数
+                                </label>
+                                <span class="form-column">
+                                    <span>{{ useCompanyAmount }}社</span>
                                 </span>
                             </div>
                             <h4>
@@ -1067,8 +1078,11 @@ export default {
         totalAmount() {
             return this.planAmount + this.getUser.additional_licenses * 1100;
         },
+        useCompanyAmount() {
+            return Number(this.companyAmount) + Number(this.getUser.additional_licenses);
+        },
         companyAmount() {
-            return this.planAmount == 55000 ? "60" : "120";
+            return this.planAmount == 55000 ? 60 : 120;
         },
         addLicensesAmount() {
             return this.getUser.additional_licenses * 1100;
