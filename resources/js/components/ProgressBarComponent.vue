@@ -48,7 +48,7 @@ export default {
                 },
                 {
                     id: 4,
-                    text: "確認",
+                    text: "クレジット情報確認",
                     icon: "fa-spell-check",
                     done: false,
                     current: false,
