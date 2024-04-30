@@ -696,7 +696,7 @@
                             </h4>
                             <hr />
                             <div class="form-row">
-                                <span class="form-column">
+                                <span class="[ form-column form-column--130 ] [ display-table-row display-table-cell-medium ]">
                                     <input
                                         type="radio"
                                         role="radio"
@@ -704,53 +704,35 @@
                                         tabindex="-1"
                                         id="motivation-one"
                                         class="form-radio"
-                                        value="弊社営業担当"
+                                        value="営業担当者"
                                         v-model="getUser.motivated_by"
                                     />
                                     <label
                                         class="form-radio-label"
                                         for="motivation-one"
-                                        >弊社営業担当</label
+                                        >営業担当者</label
                                     >
                                 </span>
-                                <span class="form-column">
+                                <label
+                                    for="person_in_charge_name"
+                                    class="[ [ form-column form-column--100 ] form-label--inline-medium ] [ display-table-row display-table-cell-medium ]"
+                                >
+                                    担当者名
+                                </label>
+                                <span
+                                    class="form-column display-table-cell-medium [ margin-top--8 margin-top-medium--0 ]"
+                                >
                                     <input
-                                        type="radio"
-                                        role="radio"
-                                        aria-checked="false"
-                                        tabindex="-1"
-                                        id="motivation-two"
-                                        class="form-radio"
-                                        value="インターネット検索"
-                                        v-model="getUser.motivated_by"
+                                        type="text"
+                                        id="person_in_charge_name"
+                                        class="form-input"
+                                        v-model="person_in_chargeName"
                                     />
-                                    <label
-                                        class="form-radio-label"
-                                        for="motivation-two"
-                                        >インターネット検索</label
-                                    >
-                                </span>
-                                <span class="form-column">
-                                    <input
-                                        type="radio"
-                                        role="radio"
-                                        aria-checked="false"
-                                        tabindex="-1"
-                                        id="motivation-three"
-                                        class="form-radio"
-                                        value="リーフレット"
-                                        v-model="getUser.motivated_by"
-                                    />
-                                    <label
-                                        class="form-radio-label"
-                                        for="motivation-three"
-                                        >リーフレット</label
-                                    >
                                 </span>
                             </div>
                             <div class="form-row">
                                 <span
-                                    class="[ form-column form-column--100 ] [ display-table-row display-table-cell-medium ]"
+                                    class="[ form-column form-column--130 ] [ display-table-row display-table-cell-medium ]"
                                 >
                                     <input
                                         type="radio"
@@ -783,6 +765,44 @@
                                         class="form-input"
                                         v-model="recommendatorName"
                                     />
+                                </span>
+                            </div>
+                            <div class="form-row">
+                                <span class="form-column">
+                                    <input
+                                        type="radio"
+                                        role="radio"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                        id="motivation-two"
+                                        class="form-radio"
+                                        value="インターネット検索"
+                                        v-model="getUser.motivated_by"
+                                    />
+                                    <label
+                                        class="form-radio-label"
+                                        for="motivation-two"
+                                        >インターネット検索</label
+                                    >
+                                </span>
+                            </div>
+                            <div class="form-row">
+                                <span class="form-column">
+                                    <input
+                                        type="radio"
+                                        role="radio"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                        id="motivation-three"
+                                        class="form-radio"
+                                        value="リーフレット"
+                                        v-model="getUser.motivated_by"
+                                    />
+                                    <label
+                                        class="form-radio-label"
+                                        for="motivation-three"
+                                        >リーフレット</label
+                                    >
                                 </span>
                             </div>
                             <div class="form-row">
@@ -873,6 +893,7 @@ export default {
         return {
             planAmount: null,
             currentStep: 0,
+            person_in_charge: null,
             recommendator: null,
             recommendation: null,
             message: "",
@@ -1071,6 +1092,14 @@ export default {
                 this.recommendation = value;
             },
         },
+        person_in_chargeName: {
+            get() {
+                return this.person_in_charge;
+            },
+            set(value) {
+                this.person_in_charge = value;
+            },
+        },
         getMailAddress() {
             this.getUser.email_address = this.$route.params.email;
         },
@@ -1099,6 +1128,11 @@ export default {
                 this.recommendation !== null
             ) {
                 this.getUser.motivated_by = "その他:" + this.recommendation;
+            } else if (
+                this.getUser.motivated_by == "営業担当者" &&
+                this.person_in_charge !== null
+            ) {
+                this.getUser.motivated_by = "営業担当者:" + this.person_in_charge;
             }
         },
         setMotivation() {
@@ -1108,6 +1142,9 @@ export default {
             } else if (this.getUser.motivated_by.indexOf("その他:") !== -1) {
                 this.recommendation = this.getUser.motivated_by.substring(4);
                 this.getUser.motivated_by = "その他";
+            } else if (this.getUser.motivated_by.indexOf("営業担当者:") !== -1) {
+                this.person_in_charge = this.getUser.motivated_by.substring(6);
+                this.getUser.motivated_by = "営業担当者";
             }
         },
         changePlan(value) {
