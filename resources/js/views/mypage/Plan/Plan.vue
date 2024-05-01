@@ -38,23 +38,35 @@
                             <div
                                 class="table-scrollable padding-right--8 padding-bottom--24"
                             >
-                                <table class="table width-80">
+                                <table class="table width-70">
                                     <tbody>
                                         <tr>
                                             <th class="">プラン名</th>
                                             <td class="padding-bottom--16">
                                                 {{ plans.name }}
-                                                (使用できる企業数：{{
-                                                    plans.data_plan
-                                                }}社)
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="">追加企業数</th>
+                                            <th class="">登録可能企業数</th>
                                             <td class="padding-bottom--16">
-                                                {{
-                                                    plans.additional_licenses
-                                                }}社
+                                                {{ plans.name }}
+                                            </td>
+                                            <td class="padding-bottom--16 text-left nowrap">
+                                                {{ plans.data_plan }}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class=""></th>
+                                            <td class="nowrap">追加企業数</td>
+                                            <td class="padding-bottom--16 text-left nowrap">
+                                                {{ plans.additional_licenses }}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class=""></th>
+                                            <td class="nowrap">計</td>
+                                            <td class="padding-bottom--16 text-left nowrap">
+                                                {{ Number(plans.data_plan) + Number(plans.additional_licenses) }}社
                                             </td>
                                         </tr>
                                     </tbody>
