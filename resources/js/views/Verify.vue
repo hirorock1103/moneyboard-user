@@ -50,7 +50,6 @@ export default {
         this.sendVerifyRequest(this.$route.query.token).then(() => {
             this.resetTemps();
             this.updateTemps(this.$route.query.email);
-            console.log(this.apiStatus);
             if (this.apiStatus) {
                 this.$router.push({ name: "register-user" });
             } else {
