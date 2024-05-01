@@ -49,12 +49,17 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
-                                                        type="password"
+                                                        :type="showPassword ? 'text' : 'password'"
                                                         id="password"
                                                         class="form-input  margin-top--8  form-control"
                                                         v-model="item.password"
                                                         @input="v$.item.password.$touch"
                                                         v-bind:class="[ v$.item.password.$error ? 'form-error' : null ]"/>
+                                                    <span class="input-icon">
+                                                        <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                        @click="showPassword = !showPassword"
+                                                        class="password-icon"></span>
+                                                    </span>
                                                     <div
                                                         class="form-text  text-danger  text-center"
                                                         v-if="v$.item.password.$error">
@@ -121,7 +126,8 @@ export default {
     data() {
         return {
             item: {},
-            message: ""
+            message: "",
+            showPassword: false,
         };
     },
     validations() {
