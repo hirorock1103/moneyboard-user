@@ -21,7 +21,7 @@
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
                                 <h4>
                                     <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
-                                    新しいパスワードの設定
+                                    マイページ ログインパスワードの変更
                                 </h4>
                                 <hr>
                                 <div class="table-scrollable  padding-right--8">

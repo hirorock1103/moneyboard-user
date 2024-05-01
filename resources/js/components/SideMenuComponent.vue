@@ -149,7 +149,7 @@ export default {
                         id: 8,
                         url: '/mypage/company/password',
                         icon: 'fa-key',
-                        title: 'パスワード変更',
+                        title: 'マイページ パスワード変更',
                         active: false
                     },
                     {
