@@ -192,20 +192,18 @@
                             </h4>
                             <hr />
                             <div class="form-row">
-                                <label
-                                    for="password"
-                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                >
+                                <label for="password" class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]">
                                     パスワード
                                 </label>
-                                <span class="form-column">
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        class="form-input"
-                                        v-model="getUser.password"
-                                        readonly
-                                    />
+                                <span class="form-column form-input-flex">
+                                    <input :type="showPassword ? 'text' : 'password'"
+                                           id="password"
+                                           class="form-input"
+                                           v-model="getUser.password"
+                                           readonly>
+                                    <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                       @click="showPassword = !showPassword"
+                                       class="password-icon"></i>
                                 </span>
                             </div>
                         </div>
@@ -222,20 +220,18 @@
                             </h4>
                             <hr />
                             <div class="form-row">
-                                <label
-                                    for="app_password"
-                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                >
-                                    パスワード
+                                <label for="app_password" class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]">
+                                    アプリログイン　パスワード
                                 </label>
-                                <span class="form-column">
-                                    <input
-                                        type="password"
-                                        id="app_password"
-                                        class="form-input"
-                                        v-model="getUser.app_password"
-                                        readonly
-                                    />
+                                <span class="form-column form-input-flex">
+                                    <input :type="showAppPassword ? 'text' : 'password'"
+                                           id="app_password"
+                                           class="form-input"
+                                           v-model="getUser.app_password"
+                                           readonly>
+                                    <i :class="showAppPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                       @click="showAppPassword = !showAppPassword"
+                                       class="password-icon"></i>
                                 </span>
                             </div>
                         </div>
@@ -419,6 +415,8 @@ export default {
             currentStep: 1,
             paymentName: "",
             loadingStatus: false,
+            showPassword: false,
+            showAppPassword: false,
         };
     },
     computed: {
