@@ -126,7 +126,7 @@ export default {
                         id: 5,
                         url: '/mypage/company/plan',
                         icon: 'fa-list',
-                        title: 'ご利用プラン',
+                        title: 'ご利用プラン・プラン変更',
                         subtitle: '',
                         active: false
                     },

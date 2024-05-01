@@ -21,7 +21,7 @@
                         <h2
                             class="[ margin-bottom--4 margin-bottom-large--16 ]"
                         >
-                            ご利用プラン
+                            ご利用プラン・プラン変更
                         </h2>
                         <h5 class="margin-bottom--16">価格はすべて税込表記</h5>
                     </div>
@@ -344,7 +344,7 @@ export default {
     mounted: function () {
         this.fetchItems();
         this.nextMonthPlans();
-        document.title = "ご利用プラン | MoneyBoard";
+        document.title = "ご利用プラン・プラン変更 | MoneyBoard";
     },
 
     methods: {
