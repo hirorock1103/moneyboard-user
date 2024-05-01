@@ -227,7 +227,7 @@
                                             <th
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                問い合わせ窓口TEL　06-6314-6685
+                                                問い合わせ窓口TEL
                                             </th>
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
@@ -248,7 +248,7 @@
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                住　所　　大阪府大阪市北区天神橋1丁目7番17号　イケガミノースハウス4階
+                                                住　所　　大阪府大東市大野１丁目５番９号
                                             </td>
                                         </tr>
                                     </tbody>
