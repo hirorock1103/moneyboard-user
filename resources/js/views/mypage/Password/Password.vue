@@ -33,11 +33,16 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
-                                                    type="password"
+                                                    :type="showPassword ? 'text' : 'password'"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password_new"
                                                         @input="v$.item.password_new.$touch"
                                                         v-bind:class="[ v$.item.password_new.$error ? 'form-error' : null ]"/>
+                                                    <span class="input-icon">
+                                                        <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                        @click="showPassword = !showPassword"
+                                                        class="password-icon"></span>
+                                                    </span>
                                                     <div
                                                         class="form-text  text-danger  text-center"
                                                         v-if="v$.item.password_new.$error">
@@ -77,11 +82,16 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]">
                                                     <input
-                                                    type="password"
+                                                    :type="showCurrentPassword ? 'text' : 'password'"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password"
                                                         @input="v$.item.password.$touch"
                                                         v-bind:class="[ v$.item.password.$error ? 'form-error' : null ]"/>
+                                                    <span class="input-icon">
+                                                        <span :class="showCurrentPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                        @click="showCurrentPassword = !showCurrentPassword"
+                                                        class="password-icon"></span>
+                                                    </span>
                                                     <div
                                                         class="form-text  text-danger  text-center"
                                                         v-if="v$.item.password.$error">
@@ -128,7 +138,9 @@ export default {
     data() {
         return {
             item: {},
-            message: ""
+            message: "",
+            showPassword: false,
+            showCurrentPassword: false,
         };
     },
     computed: {
