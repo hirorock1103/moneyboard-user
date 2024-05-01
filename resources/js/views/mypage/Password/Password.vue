@@ -157,7 +157,7 @@ export default {
         }
     },
     mounted: function(){
-        document.title = "パスワード変更 | MoneyBoard"
+        document.title = "マイページ パスワード変更 | MoneyBoard"
     },
     validations() {
         return {

@@ -101,7 +101,7 @@
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/company/password">
                             <span class="menu__icon  [ icon  solid  fa-key ]"></span>
-                            <span>パスワード変更<br>
+                            <span>マイページ パスワード変更<br>
                             </span>
                         </router-link>
                     </li>
