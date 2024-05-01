@@ -210,16 +210,18 @@
 
                             <div
                                 v-if="today > 10"
-                                style="
-                                    text-align: center;
+                                style="margin-left: 58px;"
+                            >
+                                <div style="
+                                    text-align: left;
                                     color: red;
                                     font-size: 14px;
-                                "
-                            >
-                                変更対象外（本日{{
-                                    today
-                                }}日のため変更できません）<br />
-                                ※変更は毎月1日〜10日までに実施してください
+                                ">
+                                    ※変更対象外（本日{{
+                                        today
+                                    }}日のため変更できません）<br />
+                                    変更期間 1日から10日まで
+                                </div>
                             </div>
                             <div
                                 v-else
