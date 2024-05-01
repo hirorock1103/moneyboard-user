@@ -46,6 +46,11 @@
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     パスワード
+                                                    <div style="margin-top: 5px;">
+                                                        <small>
+                                                            (設定パスワードの条件)
+                                                        </small>
+                                                    </div>
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
