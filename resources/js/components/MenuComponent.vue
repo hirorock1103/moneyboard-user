@@ -77,7 +77,7 @@
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/company/plan">
                             <span class="menu__icon  [ icon  solid  fa-list ]"></span>
-                            <span>ご利用プラン</span>
+                            <span>ご利用プラン・プラン変更</span>
                         </router-link>
                     </li>
 
@@ -101,7 +101,7 @@
                     <li class="menu__link" v-on:click="MenuClose()">
                         <router-link to="/mypage/company/password">
                             <span class="menu__icon  [ icon  solid  fa-key ]"></span>
-                            <span>パスワード変更<br>
+                            <span>マイページ パスワード変更<br>
                             </span>
                         </router-link>
                     </li>

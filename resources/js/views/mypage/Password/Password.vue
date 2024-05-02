@@ -21,7 +21,7 @@
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
                                 <h4>
                                     <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
-                                    新しいパスワードの設定
+                                    マイページ ログインパスワードの変更
                                 </h4>
                                 <hr>
                                 <div class="table-scrollable  padding-right--8">
@@ -33,16 +33,34 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
-                                                    type="password"
+                                                    :type="showPassword ? 'text' : 'password'"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password_new"
                                                         @input="v$.item.password_new.$touch"
                                                         v-bind:class="[ v$.item.password_new.$error ? 'form-error' : null ]"/>
+                                                    <span class="input-icon">
+                                                        <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                        @click="showPassword = !showPassword"
+                                                        class="password-icon"></span>
+                                                    </span>
                                                     <div
                                                         class="form-text  text-danger  text-center"
                                                         v-if="v$.item.password_new.$error">
                                                         {{ v$.item.password_new.$errors[0].$message }}
                                                     </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
+                                                </th>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        class="form-input"
+                                                        style="border: none; font-size: 12px; background-color: white;"
+                                                        value="10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）"
+                                                        disabled
+                                                    />
                                                 </td>
                                             </tr>
                                             <tr>
@@ -74,11 +92,16 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]">
                                                     <input
-                                                    type="password"
+                                                    :type="showCurrentPassword ? 'text' : 'password'"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password"
                                                         @input="v$.item.password.$touch"
                                                         v-bind:class="[ v$.item.password.$error ? 'form-error' : null ]"/>
+                                                    <span class="input-icon">
+                                                        <span :class="showCurrentPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                        @click="showCurrentPassword = !showCurrentPassword"
+                                                        class="password-icon"></span>
+                                                    </span>
                                                     <div
                                                         class="form-text  text-danger  text-center"
                                                         v-if="v$.item.password.$error">
@@ -125,7 +148,9 @@ export default {
     data() {
         return {
             item: {},
-            message: ""
+            message: "",
+            showPassword: false,
+            showCurrentPassword: false,
         };
     },
     computed: {
@@ -142,7 +167,7 @@ export default {
         }
     },
     mounted: function(){
-        document.title = "パスワード変更 | MoneyBoard"
+        document.title = "マイページ パスワード変更 | MoneyBoard"
     },
     validations() {
         return {

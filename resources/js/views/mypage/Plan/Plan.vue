@@ -21,7 +21,7 @@
                         <h2
                             class="[ margin-bottom--4 margin-bottom-large--16 ]"
                         >
-                            ご利用プラン
+                            ご利用プラン・プラン変更
                         </h2>
                         <h5 class="margin-bottom--16">価格はすべて税込表記</h5>
                     </div>
@@ -38,23 +38,35 @@
                             <div
                                 class="table-scrollable padding-right--8 padding-bottom--24"
                             >
-                                <table class="table width-80">
+                                <table class="table width-70">
                                     <tbody>
                                         <tr>
                                             <th class="">プラン名</th>
                                             <td class="padding-bottom--16">
                                                 {{ plans.name }}
-                                                (使用できる企業数：{{
-                                                    plans.data_plan
-                                                }}社)
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="">追加企業数</th>
+                                            <th class="">登録可能企業数</th>
                                             <td class="padding-bottom--16">
-                                                {{
-                                                    plans.additional_licenses
-                                                }}社
+                                                {{ plans.name }}
+                                            </td>
+                                            <td class="padding-bottom--16 text-left nowrap">
+                                                {{ plans.data_plan }}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class=""></th>
+                                            <td class="nowrap">追加企業数</td>
+                                            <td class="padding-bottom--16 text-left nowrap">
+                                                {{ plans.additional_licenses }}社
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class=""></th>
+                                            <td class="nowrap">計</td>
+                                            <td class="padding-bottom--16 text-left nowrap">
+                                                {{ Number(plans.data_plan) + Number(plans.additional_licenses) }}社
                                             </td>
                                         </tr>
                                     </tbody>
@@ -198,16 +210,18 @@
 
                             <div
                                 v-if="today > 10"
-                                style="
-                                    text-align: center;
+                                style="margin-left: 58px;"
+                            >
+                                <div style="
+                                    text-align: left;
                                     color: red;
                                     font-size: 14px;
-                                "
-                            >
-                                変更対象外（本日{{
-                                    today
-                                }}日のため変更できません）<br />
-                                ※変更は毎月1日〜10日までに実施してください
+                                ">
+                                    ※変更対象外（本日{{
+                                        today
+                                    }}日のため変更できません）<br />
+                                    変更期間 1日から10日まで
+                                </div>
                             </div>
                             <div
                                 v-else
@@ -344,7 +358,7 @@ export default {
     mounted: function () {
         this.fetchItems();
         this.nextMonthPlans();
-        document.title = "ご利用プラン | MoneyBoard";
+        document.title = "ご利用プラン・プラン変更 | MoneyBoard";
     },
 
     methods: {

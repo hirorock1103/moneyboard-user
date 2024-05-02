@@ -126,7 +126,7 @@ export default {
                         id: 5,
                         url: '/mypage/company/plan',
                         icon: 'fa-list',
-                        title: 'ご利用プラン',
+                        title: 'ご利用プラン・プラン変更',
                         subtitle: '',
                         active: false
                     },
@@ -149,7 +149,7 @@ export default {
                         id: 8,
                         url: '/mypage/company/password',
                         icon: 'fa-key',
-                        title: 'パスワード変更',
+                        title: 'マイページ パスワード変更',
                         active: false
                     },
                     {

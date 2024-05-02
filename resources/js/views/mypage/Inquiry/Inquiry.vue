@@ -227,7 +227,7 @@
                                             <th
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                問い合わせ窓口TEL　06-6314-6685
+                                                問い合わせ窓口TEL
                                             </th>
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
@@ -248,7 +248,7 @@
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                住　所　　大阪府大阪市北区天神橋1丁目7番17号　イケガミノースハウス4階
+                                                住　所　　大阪府大東市大野１丁目５番９号
                                             </td>
                                         </tr>
                                     </tbody>
@@ -336,7 +336,9 @@ export default {
                     response.data.error_code === "null" ||
                     response.data.error_code === ""
                 ) {
-                    this.items = response.data.data.data_list.data;
+                    let items = response.data.data.data_list.data; 
+                    items = this.moveSpecialTypesToFront(items);
+                    this.items = items;
 
                     //ページネーション情報の設定
                     this.pagenation.per_page =
@@ -376,6 +378,13 @@ export default {
 
             this.loadingStatus = false;
         },
+        moveSpecialTypesToFront(items) {
+            const fixedItems = items.filter(item => item.type === 5 || item.type === 6); // 固定のタイプ(5,6)を取得する
+            const otherItems = items.filter(item => item.type !== 5 && item.type !== 6); // それ以外のタイプを取得する
+            // 固定のタイプを前にして全アイテムを結合
+            let combinedArray = fixedItems.concat(otherItems);
+            return combinedArray;
+        }, 
     },
 };
 </script>

@@ -340,3 +340,15 @@ input[type="checkbox"]:checked::after {
     cursor: pointer;
     font-size: 16px;
 }
+
+.form-text-password {
+    height: 38px; /* パスワード入力フィールドと同じ高さに調整 */
+    line-height: 38px; /* 垂直方向の配置を中央揃えにする */
+}
+
+.input-icon {
+    position: relative;
+    float: right;
+    margin-top: -32px;
+    margin-right: 20px
+}
