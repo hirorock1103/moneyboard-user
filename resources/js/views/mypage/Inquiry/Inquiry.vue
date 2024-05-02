@@ -336,7 +336,9 @@ export default {
                     response.data.error_code === "null" ||
                     response.data.error_code === ""
                 ) {
-                    this.items = response.data.data.data_list.data;
+                    let items = response.data.data.data_list.data; 
+                    items = this.moveSpecialTypesToFront(items);
+                    this.items = items;
 
                     //ページネーション情報の設定
                     this.pagenation.per_page =
@@ -376,6 +378,13 @@ export default {
 
             this.loadingStatus = false;
         },
+        moveSpecialTypesToFront(items) {
+            const fixedItems = items.filter(item => item.type === 5 || item.type === 6); // 固定のタイプ(5,6)を取得する
+            const otherItems = items.filter(item => item.type !== 5 && item.type !== 6); // それ以外のタイプを取得する
+            // 固定のタイプを前にして全アイテムを結合
+            let combinedArray = fixedItems.concat(otherItems);
+            return combinedArray;
+        }, 
     },
 };
 </script>
