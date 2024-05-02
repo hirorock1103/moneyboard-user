@@ -19,10 +19,13 @@
                     <form v-on:submit.prevent="Store">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <h4>
+                                <h4 style="margin-bottom: 16px;">
                                     <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
                                     マイページ ログインパスワードの変更
                                 </h4>
+                                <small>
+                                    10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
+                                </small>
                                 <hr>
                                 <div class="table-scrollable  padding-right--8">
                                     <table class="table">
@@ -48,19 +51,6 @@
                                                         v-if="v$.item.password_new.$error">
                                                         {{ v$.item.password_new.$errors[0].$message }}
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
-                                                </th>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        class="form-input"
-                                                        style="border: none; font-size: 12px; background-color: white;"
-                                                        value="10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）"
-                                                        disabled
-                                                    />
                                                 </td>
                                             </tr>
                                             <tr>
