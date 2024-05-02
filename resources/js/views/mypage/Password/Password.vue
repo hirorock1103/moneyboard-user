@@ -48,9 +48,19 @@
                                                         v-if="v$.item.password_new.$error">
                                                         {{ v$.item.password_new.$errors[0].$message }}
                                                     </div>
-                                                    <div class="form-text form-text-password">
-                                                        10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
-                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
+                                                </th>
+                                                <td>
+                                                    <input
+                                                        type="text"
+                                                        class="form-input"
+                                                        style="border: none; font-size: 12px; background-color: white;"
+                                                        value="10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）"
+                                                        disabled
+                                                    />
                                                 </td>
                                             </tr>
                                             <tr>
