@@ -20,9 +20,14 @@
                                     <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
                                     担当者情報
                                 </h4>
-                                <small>
-                                    8文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
-                                </small>
+                                <div style="display: flex;">
+                                    <h5 style="margin-bottom: 4px;">
+                                        ※1　
+                                    </h5>
+                                    <h5 style="text-decoration:underline; margin-bottom: 4px;">
+                                        8文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
+                                    </h5>
+                                </div>
                                 <hr>
                                 <div class="table  padding-right--8">
                                     <table class="table">
@@ -48,7 +53,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
-                                                    パスワード
+                                                    パスワード ※1
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
