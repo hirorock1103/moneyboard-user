@@ -16,10 +16,18 @@
                     <form v-on:submit.prevent="validateItem">
                         <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
                             <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <h4>
+                                <h4 style="margin-bottom: 16px;">
                                     <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
                                     担当者情報
                                 </h4>
+                                <div style="display: flex;">
+                                    <h5 style="margin-bottom: 4px;">
+                                        ※1　
+                                    </h5>
+                                    <h5 style="text-decoration:underline; margin-bottom: 4px;">
+                                        8文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
+                                    </h5>
+                                </div>
                                 <hr>
                                 <div class="table  padding-right--8">
                                     <table class="table">
@@ -45,12 +53,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
-                                                    パスワード
-                                                    <div style="margin-top: 5px;">
-                                                        <small>
-                                                            (設定パスワードの条件)
-                                                        </small>
-                                                    </div>
+                                                    パスワード ※1
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
