@@ -127,7 +127,7 @@
                                         class="[ btn btn--link ]"
                                         href="company/plan"
                                         >ご利用プラン</a
-                                    >ご利用プランで確認できます。
+                                    >で確認できます。
                                 </p>
                             </div>
                             <div v-else-if="getCompany.payment_type == 2">
@@ -155,7 +155,7 @@
                                         class="[ btn btn--link ]"
                                         href="company/plan"
                                         >ご利用プラン</a
-                                    >ご利用プランで確認できます。
+                                    >で確認できます。
                                 </p>
                             </div>
                             <div v-else>
@@ -184,7 +184,7 @@
                                         class="[ btn btn--link ]"
                                         href="company/plan"
                                         >ご利用プラン</a
-                                    >ご利用プランで確認できます。
+                                    >で確認できます。
                                 </p>
                                 <p>
                                     ※利用開始の直後は表示が口座振替となっていても、口座振替の手続きに時間を要するため振込みとなります。
