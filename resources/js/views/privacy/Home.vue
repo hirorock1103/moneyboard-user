@@ -110,7 +110,7 @@
                                         <br>
                                         住所：574-0042 大阪府大東市大野1丁目5番9号<br>
                                         社名：株式会社マネーボード<br>
-                                        Eメールアドレス：<br>
+                                        Eメールアドレス：info@moneyboard.tech<br>
                                     </small>
                                 </div>
                             </div>

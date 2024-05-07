@@ -227,7 +227,7 @@
                                             <th
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                問い合わせ窓口TEL
+                                                問い合わせ窓口TEL　06-7777-0464
                                             </th>
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
