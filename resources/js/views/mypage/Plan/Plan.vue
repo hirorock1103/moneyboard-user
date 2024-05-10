@@ -42,7 +42,7 @@
                                     <tbody>
                                         <tr>
                                             <th class="">プラン名</th>
-                                            <td class="padding-bottom--16">
+                                            <td style="padding-bottom: 46px;">
                                                 {{ plans.name }}
                                             </td>
                                         </tr>
