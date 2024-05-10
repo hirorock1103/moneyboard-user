@@ -22,7 +22,7 @@
                                 </h4>
                                 <div style="display: flex;">
                                     <h5 style="margin-bottom: 4px;">
-                                        ※1　
+                                        ※　
                                     </h5>
                                     <h5 style="text-decoration:underline; margin-bottom: 4px;">
                                         8文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
@@ -61,7 +61,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="[ display-table-row  display-table-cell-large ]">
-                                                    パスワード ※1
+                                                    パスワード　※
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ]  padding-bottom--16">
                                                     <input
