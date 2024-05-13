@@ -59,11 +59,16 @@
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
                                                     <input
-                                                    type="password"
+                                                    :type="confirmationPassword ? 'text' : 'password'"
                                                     class="form-input  margin-top--8"
                                                     v-model="item.password_confirm"
                                                         @input="v$.item.password_confirm.$touch"
                                                         v-bind:class="[ v$.item.password_confirm.$error ? 'form-error' : null ]"/>
+                                                    <span class="input-icon">
+                                                        <span :class="confirmationPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                        @click="confirmationPassword = !confirmationPassword"
+                                                        class="password-icon"></span>
+                                                    </span>
                                                     <div
                                                         class="form-text  text-danger  text-center"
                                                         v-if="v$.item.password_confirm.$error">
@@ -141,6 +146,7 @@ export default {
             message: "",
             showPassword: false,
             showCurrentPassword: false,
+            confirmationPassword: false,
         };
     },
     computed: {

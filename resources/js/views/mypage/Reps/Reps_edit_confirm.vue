@@ -28,7 +28,7 @@
                                                 <th class="[ display-table-row  display-table-cell-large ]">
                                                     担当者名
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ] ">
+                                                <td class="[ display-table-row  display-table-cell-large ] " style="padding-left: 18px;">
                                                     {{getTemps.user_name}}
                                                 </td>
                                             </tr>
@@ -37,12 +37,16 @@
                                                     パスワード
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <template v-if="typeof getTemps.password == 'undefined' || getTemps.password.length == 0">
-                                                    変更なし
-                                                    </template>
-                                                    <template v-else>
-                                                    {{getTemps.password.replace( /./g, '*' )}}
-                                                    </template>
+                                                    <span class="form-column form-input-flex">
+                                                        <input :type="showAppPassword ? 'text' : 'password'"
+                                                               id="password"
+                                                               class="form-input"
+                                                               v-model="getTemps.password"
+                                                               readonly>
+                                                        <i :class="showAppPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                                           @click="showAppPassword = !showAppPassword"
+                                                           class="password-icon"></i>
+                                                    </span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -75,7 +79,8 @@ export default {
     data() {
         return {
             item: {},
-            message: ""
+            message: "",
+            showAppPassword: false,
         };
     },
     mounted: function(){
