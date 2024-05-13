@@ -121,6 +121,9 @@ const mutations = {
     setChangeFlg(state, changeflg) {
         state.changeflg = changeflg;
     },
+    setStripeID(state, stripe_id) {
+        state.stripe_id = stripe_id;
+    },
 };
 
 const actions = {

@@ -192,18 +192,31 @@
                             </h4>
                             <hr />
                             <div class="form-row">
-                                <label for="password" class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]">
+                                <label
+                                    for="password"
+                                    class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]"
+                                >
                                     パスワード
                                 </label>
                                 <span class="form-column form-input-flex">
-                                    <input :type="showPassword ? 'text' : 'password'"
-                                           id="password"
-                                           class="form-input"
-                                           v-model="getUser.password"
-                                           readonly>
-                                    <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
-                                       @click="showPassword = !showPassword"
-                                       class="password-icon"></i>
+                                    <input
+                                        :type="
+                                            showPassword ? 'text' : 'password'
+                                        "
+                                        id="password"
+                                        class="form-input"
+                                        v-model="getUser.password"
+                                        readonly
+                                    />
+                                    <i
+                                        :class="
+                                            showPassword
+                                                ? 'fas fa-eye-slash'
+                                                : 'fas fa-eye'
+                                        "
+                                        @click="showPassword = !showPassword"
+                                        class="password-icon"
+                                    ></i>
                                 </span>
                             </div>
                         </div>
@@ -220,18 +233,35 @@
                             </h4>
                             <hr />
                             <div class="form-row">
-                                <label for="app_password" class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]">
+                                <label
+                                    for="app_password"
+                                    class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]"
+                                >
                                     アプリログイン　パスワード
                                 </label>
                                 <span class="form-column form-input-flex">
-                                    <input :type="showAppPassword ? 'text' : 'password'"
-                                           id="app_password"
-                                           class="form-input"
-                                           v-model="getUser.app_password"
-                                           readonly>
-                                    <i :class="showAppPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
-                                       @click="showAppPassword = !showAppPassword"
-                                       class="password-icon"></i>
+                                    <input
+                                        :type="
+                                            showAppPassword
+                                                ? 'text'
+                                                : 'password'
+                                        "
+                                        id="app_password"
+                                        class="form-input"
+                                        v-model="getUser.app_password"
+                                        readonly
+                                    />
+                                    <i
+                                        :class="
+                                            showAppPassword
+                                                ? 'fas fa-eye-slash'
+                                                : 'fas fa-eye'
+                                        "
+                                        @click="
+                                            showAppPassword = !showAppPassword
+                                        "
+                                        class="password-icon"
+                                    ></i>
                                 </span>
                             </div>
                         </div>
@@ -400,6 +430,12 @@
                             >
                             <span v-else>上記内容で申し込みます</span>
                         </button>
+                        <p class="text-danger" v-if="this.message">
+                            登録に失敗しました。<br />
+                            申し訳ございませんが、ブラウザを閉じ、メールのリンクからもう1度申込お願いします。<br />
+                            お手数おかけし申し訳ございません。<br />
+                            （{{ this.message }}）
+                        </p>
                     </div>
                 </form>
             </div>
@@ -435,7 +471,10 @@ export default {
             return this.planAmount + this.getUser.additional_licenses * 1100;
         },
         useCompanyAmount() {
-            return Number(this.companyAmount) + Number(this.getUser.additional_licenses);
+            return (
+                Number(this.companyAmount) +
+                Number(this.getUser.additional_licenses)
+            );
         },
         companyAmount() {
             return this.planAmount == 55000 ? "60" : "120";
@@ -501,29 +540,30 @@ export default {
 
                     // // 企業情報レコード追加
                     let response2 = await axios.post(url, datas);
+                    console.log(response2);
                     if (response2.data.status == "NG") {
                         this.message = response2.data.message;
 
                         this.loadingStatus = false;
-                        setTimeout(() => {
-                            this.message = false;
-                        }, 2000);
+                        // setTimeout(() => {
+                        //     this.message = false;
+                        // }, 2000);
+                    } else {
+                        this.$router.push({
+                            name: "register-completion",
+                            params: {
+                                type: "register",
+                                title: "申込完了",
+                                message: [
+                                    "ご登録ありがとうございます。",
+                                    "登録されたメールアドレスに「お申し込み内容」を送信いたしました。",
+                                    "ご確認お願いいたします。",
+                                ],
+                                currentStep: Number(4),
+                                redirectPage: "toLogin",
+                            },
+                        });
                     }
-
-                    this.$router.push({
-                        name: "register-completion",
-                        params: {
-                            type: "register",
-                            title: "申込完了",
-                            message: [
-                                "ご登録ありがとうございます。",
-                                "登録されたメールアドレスに「お申し込み内容」を送信いたしました。",
-                                "ご確認お願いいたします。",
-                            ],
-                            currentStep: Number(4),
-                            redirectPage: "toLogin",
-                        },
-                    });
 
                     this.loadingStatus = false;
                 }

@@ -1,5 +1,13 @@
 <template>
     <div class="display-flex">
+        <loading
+            v-model:active="loadingStatus"
+            :can-cancel="false"
+            :is-full-page="false"
+            :color="'#2FBCED'"
+            :height="90"
+            :width="100"
+        />
         <SideMenu />
         <main class="mypage__main">
             <section
@@ -139,16 +147,19 @@
 <script>
 import axios from "../../../src/plugins/axios.js";
 import axios2 from "../../../src/plugins/axios2.js";
+import Loading from "vue-loading-overlay";
 import SideMenu from "../../../components/SideMenuComponent.vue";
 import { mapActions } from "vuex";
 
 export default {
     components: {
         SideMenu,
+        Loading,
     },
     data() {
         return {
             message: "",
+            loadingStatus: false,
         };
     },
 
@@ -171,6 +182,7 @@ export default {
 
         // クレカ変更処理（カードID取得、クレカ削除、クレカ登録、顧客更新）
         async changeCard() {
+            this.loadingStatus = true;
             let stripe_id = this.getCompany.stripe_id;
             let stripe_token = this.getCard.stripe_token;
             const headers = {
@@ -178,29 +190,33 @@ export default {
                     "Bearer " + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
                 "Content-Type": "application/x-www-form-urlencoded",
             };
-
             //カードIDの取得
             let url = process.env.MIX_VUE_STRIPE_API_URL + "/" + stripe_id;
-
             try {
-                let response = await axios2.get(url, { headers: headers });
-                let card_id = response.data.default_source;
+                let response = null;
+                let card_id = null;
+                if (stripe_id) {
+                    response = await axios2.get(url, { headers: headers });
+                    card_id = response.data.default_source;
+                }
 
-                if (response.status != "200" || card_id == null) {
+                if (
+                    response == null ||
+                    response.status != "200" ||
+                    card_id == null
+                ) {
                     //カード情報がない場合は作成する
-
                     //カード作成
-                    let url =
-                        process.env.MIX_VUE_STRIPE_API_URL +
-                        "/" +
-                        stripe_id +
-                        "/sources";
+                    let url = process.env.MIX_VUE_STRIPE_API_URL;
+
                     let params = new URLSearchParams();
-                    params.append("source", stripe_token);
+                    params.append("name", this.getCard.name);
+                    params.append("source", this.getCard.stripe_token);
 
                     let response = await axios2.post(url, params, {
                         headers: headers,
                     });
+
                     if (response.status != "200") {
                         if (typeof response.data.message === "undefined") {
                             this.message =
@@ -212,27 +228,43 @@ export default {
                             this.message = false;
                             this.$router.push({ name: "mypage-card" });
                         }, 2000);
-                    } else {
-                        //顧客名義の更新
-                        let url =
-                            process.env.MIX_VUE_STRIPE_API_URL +
-                            "/" +
-                            stripe_id;
-                        let params = new URLSearchParams();
-                        params.append("name", this.getCard.name);
+                    }
 
-                        let response = await axios2.post(url, params, {
-                            headers: headers,
-                        });
-                        if (response.status != "200") {
-                            this.message = response.data.message;
-                            setTimeout(() => {
-                                this.message = false;
-                            }, 2000);
-                        } else {
-                            this.resetTemps();
-                            this.$router.push({ name: "mypage-card" });
-                        }
+                    //companyテーブルにstripe_idを登録する
+                    let url2 =
+                        process.env.MIX_VUE_APP_API_URL +
+                        "adm/company/stripe_id_change";
+                    let params2 = new URLSearchParams();
+                    params2.append(
+                        "company_code",
+                        this.getCompany.company_code
+                    );
+                    params2.append("stripe_id", response.data.id);
+                    this.$store.commit("auth/setStripeID", response.data.id);
+
+                    const headers2 = {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("authToken"),
+                    };
+
+                    const response2 = await axios.post(url2, params2, {
+                        headers: headers2,
+                    });
+
+                    if (response2.statusText == "NG") {
+                        this.loadingStatus = false;
+                        this.message = response2.status;
+                        setTimeout(() => {
+                            this.message = false;
+                        }, 2000);
+                    } else {
+                        setTimeout(() => {
+                            this.message = false;
+                            this.$router.push({
+                                name: "mypage-card",
+                                query: { a: 0 },
+                            });
+                        }, 2000);
                     }
                 } else {
                     //カード作成
@@ -248,7 +280,7 @@ export default {
                         headers: headers,
                     });
                     if (response.status != "200") {
-                        console.log(response);
+                        this.loadingStatus = false;
                         if (typeof response.data.message === "undefined") {
                             this.message =
                                 "更新に失敗しました。申し訳ございませんが、別のクレジットカードを登録してください";
@@ -335,8 +367,6 @@ export default {
 
             try {
                 let response = await axios2.get(url, { headers: headers });
-                // console.log('---response---');
-                // console.log(response);
                 let valid_month = response.data.card.exp_month;
                 let valid_year = response.data.card.exp_year;
                 let number = response.data.card.last4;
@@ -346,7 +376,6 @@ export default {
                 this.getCard.number = number;
 
                 if (response.status != "200") {
-                    console.log(response);
                     this.message = response.data.message;
                     setTimeout(() => {
                         this.message = false;

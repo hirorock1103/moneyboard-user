@@ -109,7 +109,10 @@
 
                                 <p>
                                     <br />
-                                    お客様のお支払方法は、<span style="font-weight: bold">クレジットカード決済</span>となっております。<br />
+                                    お客様のお支払方法は、<span
+                                        style="font-weight: bold"
+                                        >クレジットカード決済</span
+                                    >となっております。<br />
                                     <br />
                                     当月の10日23時59分59秒のご利用プランの利用料がご請求金額（翌月1日決済）です。<br />
                                     前日までにクレジットカードの有効期限の確認をお願いいします。<br />
@@ -132,7 +135,10 @@
                             </div>
                             <div v-else-if="getCompany.payment_type == 2">
                                 <p>
-                                    お客様のお支払方法は、<span style="font-weight: bold">銀行振込</span>となっております。
+                                    お客様のお支払方法は、<span
+                                        style="font-weight: bold"
+                                        >銀行振込</span
+                                    >となっております。
                                 </p>
                                 <p>
                                     当月の10日23時59分59秒のご利用プランの利用料がご請求金額（当月末日が振込期限）です。
@@ -160,7 +166,10 @@
                             </div>
                             <div v-else>
                                 <p>
-                                    お客様のお支払方法は、<span style="font-weight: bold">口座振替</span>となっております。
+                                    お客様のお支払方法は、<span
+                                        style="font-weight: bold"
+                                        >口座振替</span
+                                    >となっております。
                                 </p>
                                 <p>
                                     当月の10日23時59分59秒のご利用プランの利用料がご請求金額（当月27日口座振替）です。
@@ -298,7 +307,8 @@ export default {
                     let response = await axios2.get(url, { headers: headers });
 
                     if (response.status != "200" || card_id == null) {
-                        this.message = response.data.message;
+                        // this.message = response.data.message;
+                        this.message = "クレジットカード情報が取得できません";
 
                         this.loadingStatus = false;
                         setTimeout(() => {
@@ -318,13 +328,20 @@ export default {
                 }
             } catch (e) {
                 console.log(e);
-                this.message = e;
+                // this.message = e;
+                this.message = "クレジットカード情報が取得できません";
             }
+            if (this.$route.query.a == 1) {
+                this.message = "クレジットカード情報を変更しました";
+            } else if (this.$route.query.a == 0) {
+                this.message = "クレジットカード情報を追加しました";
+            }
+
             if (
                 this.$route.query.a == 1 &&
                 this.prevRoute.path == "/mypage/card_confirm"
             ) {
-                this.message = "クレジットカード情報を変更しました";
+                this.message = "クレジットカード情報を更新しました";
                 setTimeout(() => {
                     this.message = false;
                 }, 2000);

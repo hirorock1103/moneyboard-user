@@ -1,60 +1,82 @@
 <template>
-
     <main>
-
-        <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
-
+        <section
+            class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
+        >
             <div class="container">
+                <loading
+                    v-model:active="loadingStatus"
+                    :can-cancel="false"
+                    :is-full-page="false"
+                    :color="'#2FBCED'"
+                    :height="90"
+                    :width="100"
+                />
 
-                <loading v-model:active="loadingStatus"
-                        :can-cancel="false"
-                        :is-full-page="false"
-                        :color="'#2FBCED'"
-                        :height="90"
-                        :width="100" />
-
-                <h2 class="text-center  heading-primary">登録内容のご確認</h2>
+                <h2 class="text-center heading-primary">登録内容のご確認</h2>
 
                 <form @submit.prevent="register">
-
                     <ProgressBar :current-step="currentStep" />
 
-                    <p class="text-center  margin-bottom--48">登録内容をご確認ください</p>
+                    <p class="text-center margin-bottom--48">
+                        登録内容をご確認ください
+                    </p>
 
-                    <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
-
-                        <div class="padding--24  bg-white">
-
+                    <article
+                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
+                    >
+                        <div class="padding--24 bg-white">
                             <h4>
-                                <span class="[ icon  regular ] fa-credit-card  padding-right--12  text-accent"></span>
+                                <span
+                                    class="[ icon regular ] fa-credit-card padding-right--12 text-accent"
+                                ></span>
                                 クレジットカード情報
                             </h4>
 
-                            <hr>
+                            <hr />
 
                             <div class="form-row">
-                                <label for="number" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label
+                                    for="number"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
                                     番号
                                 </label>
-                                <span class="form-column form-input" readonly>**** **** **** {{ getCard.number }}</span>
+                                <span class="form-column form-input" readonly
+                                    >**** **** **** {{ getCard.number }}</span
+                                >
                             </div>
 
                             <div class="form-row">
-                                <label for="valid_year" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label
+                                    for="valid_year"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
                                     有効期限
                                 </label>
-                                <span class="form-column form-input" readonly>{{ getCard.valid_month }} / {{ getCard.valid_year }}</span>
+                                <span class="form-column form-input" readonly
+                                    >{{ getCard.valid_month }} /
+                                    {{ getCard.valid_year }}</span
+                                >
                             </div>
 
                             <div class="form-row">
-                                <label for="security_code" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label
+                                    for="security_code"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
                                     セキュリティコード
                                 </label>
-                                <span class="form-column form-input" readonly>***</span>
+                                <span class="form-column form-input" readonly
+                                    >***</span
+                                >
                             </div>
 
                             <div class="form-row">
-                                <label for="stripe_token" class="[ form-column  form-column--200 ]  [ form-label  form-label--inline-medium ]">
+                                <label
+                                    for="stripe_token"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
                                     名義
                                 </label>
 
@@ -64,7 +86,8 @@
                                         id="name"
                                         class="form-input"
                                         v-model="getCard.name"
-                                        readonly>
+                                        readonly
+                                    />
                                 </span>
                             </div>
                         </div>
@@ -74,186 +97,207 @@
                         <p class="text-danger">{{ this.stripe_msg }}</p>
                     </div>
 
-
                     <div class="text-center">
-
                         <input
                             type="checkbox"
                             id="confirm-checkbox"
                             class="form-checkbox"
-                            v-model="checkbox.confirmed">
-                        <label class="form-checkbox-label" for="confirm-checkbox">上記内容で申し込みます</label>
-
+                            v-model="checkbox.confirmed"
+                        />
+                        <label
+                            class="form-checkbox-label"
+                            for="confirm-checkbox"
+                            >上記内容で申し込みます</label
+                        >
+                        <p class="text-danger" v-if="this.last_message">
+                            登録に失敗しました。<br />
+                            申し訳ございませんが、ブラウザを閉じ、メールのリンクからもう1度申込お願いします。<br />
+                            お手数おかけし申し訳ございません。<br />
+                            （{{ this.last_message }}）
+                        </p>
                     </div>
 
-                    <div class="text-center  [ [ margin-top--48  margin-top-large--80 ]  [ margin-bottom--48  margin-bottom-large--140 ] ]">
-                        <button @click="goBack()" class="[ btn  btn--gray ]  margin-right--24">戻る</button>
-                        <button type="submit" class="[ btn  btn--accent ]" v-bind:disabled="checkbox.confirmed == false">申し込み</button>
-                        <br><p style="margin-top: 20px;">※戻った場合はクレジットカード情報はクリアされます</p>
+                    <div
+                        class="text-center [ [ margin-top--48 margin-top-large--80 ] [ margin-bottom--48 margin-bottom-large--140 ] ]"
+                    >
+                        <button
+                            @click="goBack()"
+                            class="[ btn btn--gray ] margin-right--24"
+                        >
+                            戻る
+                        </button>
+                        <button
+                            type="submit"
+                            class="[ btn btn--accent ]"
+                            v-bind:disabled="checkbox.confirmed == false"
+                        >
+                            申し込み
+                        </button>
+                        <br />
+                        <p style="margin-top: 20px">
+                            ※戻った場合はクレジットカード情報はクリアされます
+                        </p>
                     </div>
-
-
                 </form>
-
             </div>
-
         </section>
-
     </main>
-
 </template>
 
 <script>
-import ProgressBar from '../../components/ProgressBarComponent.vue';
-import Loading from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/vue-loading.css';
+import ProgressBar from "../../components/ProgressBarComponent.vue";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 export default {
-    name: 'register-card-confirm',
+    name: "register-card-confirm",
     components: {
         ProgressBar,
-        Loading
+        Loading,
     },
 
-    data () {
+    data() {
         return {
             currentStep: 3,
             checkbox: {
                 confirmed: false,
             },
-            stripe_msg:"",
-            loadingStatus:false,
-        }
+            stripe_msg: "",
+            loadingStatus: false,
+        };
     },
-    created: function() {
+    created: function () {
         this.GetCardInfo();
     },
     computed: {
         getCard() {
-            return this.$store.getters['auth/card']
+            return this.$store.getters["auth/card"];
         },
         getUser() {
-            return this.$store.getters['auth/user']
+            return this.$store.getters["auth/user"];
         },
     },
 
     methods: {
-//        ...mapActions('auth', ['registerUserInfo']),
+        //        ...mapActions('auth', ['registerUserInfo']),
 
-async GetCardInfo(){
+        async GetCardInfo() {
+            let token = this.getCard.stripe_token;
 
-    let token = this.getCard.stripe_token;
+            //カード情報の取得
+            let url = "https://api.stripe.com/v1/tokens/" + token;
+            const headers = {
+                Authorization:
+                    "Bearer " + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                "Content-Type": "application/x-www-form-urlencoded",
+            };
 
-    //カード情報の取得
-    let url = "https://api.stripe.com/v1/tokens/" + token;
-    const headers = {
-        'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
+            try {
+                let response = await axios.get(url, { headers: headers });
+                console.log(response);
+                let valid_month = response.data.card.exp_month;
+                let valid_year = response.data.card.exp_year;
+                let number = response.data.card.last4;
 
-    try {
-        let response = await axios.get(url, {headers: headers});
-        console.log(response);
-        let valid_month = response.data.card.exp_month;
-        let valid_year = response.data.card.exp_year;
-        let number = response.data.card.last4;
+                this.getCard.valid_month = ("00" + valid_month).slice(-2);
+                this.getCard.valid_year = ("" + valid_year).slice(-2);
+                this.getCard.number = number;
 
-        this.getCard.valid_month = ('00'+valid_month).slice(-2);
-        this.getCard.valid_year = (''+valid_year).slice(-2);
-        this.getCard.number = number;
-
-        if(response.status!="200" || card_id == null){
-            console.log(response);
-            this.message = response.data.message
-            setTimeout(() => {this.message = false;}, 2000);
-        }else{
-        }
-
-    } catch (e){
-        console.log(e);
-        this.message = e
-    }
-
-},
+                if (response.status != "200" || card_id == null) {
+                    console.log(response);
+                    this.message = response.data.message;
+                    setTimeout(() => {
+                        this.message = false;
+                    }, 2000);
+                } else {
+                }
+            } catch (e) {
+                console.log(e);
+                this.message = e;
+            }
+        },
 
         async register() {
             this.loadingStatus = true;
             // 企業情報レコード追加準備
             let url2 = process.env.MIX_VUE_APP_API_URL + "com/register";
-            const datas = {...this.getUser, register_token: localStorage.getItem('registerToken')}
+            const datas = {
+                ...this.getUser,
+                register_token: localStorage.getItem("registerToken"),
+            };
             delete datas.company_code;
             delete datas.user_type;
             delete datas.email_address;
 
             let url = process.env.MIX_VUE_STRIPE_API_URL;
             const headers = {
-                'Authorization' :'Bearer ' + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
+                Authorization:
+                    "Bearer " + process.env.MIX_VUE_APP_STRIPE_PRIVATE_KEY,
+                "Content-Type": "application/x-www-form-urlencoded",
+            };
 
             let params = new URLSearchParams();
-            params.append('name', this.getCard.name);
-            params.append('source', this.getCard.stripe_token);
+            params.append("name", this.getCard.name);
+            params.append("source", this.getCard.stripe_token);
 
             try {
-                let response = await axios.post(url, params, {headers: headers});
+                let response = await axios.post(url, params, {
+                    headers: headers,
+                });
 
-                if(response.status!="200"){
-
-                    if(typeof response.data.message === 'undefined'){
-                        this.stripe_msg = "クレジットカードの登録に失敗しました。戻って別のクレジットカードを登録してください";
-                    }else{
+                if (response.status != "200") {
+                    if (typeof response.data.message === "undefined") {
+                        this.stripe_msg =
+                            "クレジットカードの登録に失敗しました。戻って別のクレジットカードを登録してください";
+                    } else {
                         this.stripe_msg = response.data.message;
                     }
 
                     this.loadingStatus = false;
-                    setTimeout(() => {this.stripe_msg = false;}, 2000);
-                } else{
-
+                    setTimeout(() => {
+                        this.stripe_msg = false;
+                    }, 2000);
+                } else {
                     datas.stripe_id = response.data.id;
                     // // 企業情報レコード追加
                     let response2 = await axios.post(url2, datas);
-                    if(response2.data.status=="NG"){
-                        this.message = response2.data.message
+                    if (response2.data.status == "NG") {
+                        this.last_message = response2.data.message;
 
                         this.loadingStatus = false;
-                        setTimeout(() => {this.message = false;}, 2000);
-                    }
-
-                    this.$router.push(
-                        {
-                            name: 'register-completion',
+                        // setTimeout(() => {
+                        //     this.last_message = false;
+                        // }, 2000);
+                    } else {
+                        this.$router.push({
+                            name: "register-completion",
                             params: {
-                                type: 'register',
-                                title: '申込完了',
+                                type: "register",
+                                title: "申込完了",
                                 message: [
-                                    'ご登録ありがとうございます。',
-                                    '登録されたメールアドレスに「お申し込み内容」を送信いたしました。',
-                                    'ご確認お願いいたします。',
+                                    "ご登録ありがとうございます。",
+                                    "登録されたメールアドレスに「お申し込み内容」を送信いたしました。",
+                                    "ご確認お願いいたします。",
                                 ],
                                 currentStep: Number(4),
-                                redirectPage: 'toLogin'
-                            }
-                        }
-                    )
+                                redirectPage: "toLogin",
+                            },
+                        });
+                    }
                 }
-            } catch (e){
+            } catch (e) {
                 console.log(e);
-                this.message = e
+                this.message = e;
             }
 
             this.loadingStatus = false;
-
         },
 
         goBack() {
-            this.$router.push(
-                {
-                    name: 'register-card',
-                }
-            )
+            this.$router.push({
+                name: "register-card",
+            });
         },
-    }
-
-}
+    },
+};
 </script>
