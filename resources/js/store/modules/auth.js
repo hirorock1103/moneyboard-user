@@ -67,6 +67,9 @@ const mutations = {
     setUserEmail(state, email_address) {
         state.user.email_address = email_address;
     },
+    setMobileNumber(state, mobile_number) {
+        state.user.mobile_number = mobile_number;
+    },
     setAddress(state, address) {
         state.user.address = address;
     },
