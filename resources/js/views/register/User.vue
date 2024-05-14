@@ -3,7 +3,16 @@
         <section
             class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
         >
-            <div class="container">
+            <div v-if="message_top" class="container">
+                <h2 class="text-center heading-primary">新規登録</h2>
+                <div
+                    class="text-center"
+                    style="margin-top: 100px; margin-bottom: 300px"
+                >
+                    <p class="text-danger">{{ message_top }}</p>
+                </div>
+            </div>
+            <div v-else class="container">
                 <h2 class="text-center heading-primary">新規登録</h2>
                 <form @submit.prevent="register">
                     <ProgressBar :current-step="currentStep" />
@@ -707,7 +716,9 @@
                             </h4>
                             <hr />
                             <div class="form-row">
-                                <span class="[ form-column form-column--130 ] [ display-table-row display-table-cell-medium ]">
+                                <span
+                                    class="[ form-column form-column--130 ] [ display-table-row display-table-cell-medium ]"
+                                >
                                     <input
                                         type="radio"
                                         role="radio"
@@ -908,6 +919,7 @@ export default {
             recommendator: null,
             recommendation: null,
             message: "",
+            message_top: "",
         };
     },
     validations() {
@@ -1079,7 +1091,10 @@ export default {
             return this.planAmount + this.getUser.additional_licenses * 1100;
         },
         useCompanyAmount() {
-            return Number(this.companyAmount) + Number(this.getUser.additional_licenses);
+            return (
+                Number(this.companyAmount) +
+                Number(this.getUser.additional_licenses)
+            );
         },
         companyAmount() {
             return this.planAmount == 55000 ? 60 : 120;
@@ -1146,7 +1161,8 @@ export default {
                 this.getUser.motivated_by == "営業担当者" &&
                 this.person_in_charge !== null
             ) {
-                this.getUser.motivated_by = "営業担当者:" + this.person_in_charge;
+                this.getUser.motivated_by =
+                    "営業担当者:" + this.person_in_charge;
             }
         },
         setMotivation() {
@@ -1156,7 +1172,9 @@ export default {
             } else if (this.getUser.motivated_by.indexOf("その他:") !== -1) {
                 this.recommendation = this.getUser.motivated_by.substring(4);
                 this.getUser.motivated_by = "その他";
-            } else if (this.getUser.motivated_by.indexOf("営業担当者:") !== -1) {
+            } else if (
+                this.getUser.motivated_by.indexOf("営業担当者:") !== -1
+            ) {
                 this.person_in_charge = this.getUser.motivated_by.substring(6);
                 this.getUser.motivated_by = "営業担当者";
             }
@@ -1217,6 +1235,39 @@ export default {
                 }, 2000);
             }
         },
+        async getEMailToken() {
+            this.loadingStatus = true;
+
+            var email = this.$store.state.auth.temps;
+            let url = process.env.MIX_VUE_APP_API_URL + "com/get-email-verify";
+            try {
+                //                const response = await axios.get(url);
+                const response = await axios.get(url, {
+                    params: {
+                        email: email,
+                    },
+                });
+                console.log(response.data.data.register_token);
+                console.log(localStorage.getItem("registerToken"));
+                if (
+                    response.data.data.register_token !==
+                    localStorage.getItem("registerToken")
+                ) {
+                    this.message_top =
+                        "認証に失敗しました。申し訳ございませんが、もう1度メールのリンクからアクセスしてください。";
+                }
+            } catch (e) {
+                console.log(e);
+                this.message = e;
+
+                this.loadingStatus = false;
+                setTimeout(() => {
+                    this.message = false;
+                }, 2000);
+            }
+
+            this.loadingStatus = false;
+        },
     },
     beforeMount() {
         this.setPlan();
@@ -1225,6 +1276,7 @@ export default {
 
     mounted: function () {
         document.title = "新規登録 | MoneyBoard";
+        this.getEMailToken();
     },
 };
 </script>
