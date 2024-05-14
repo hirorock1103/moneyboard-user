@@ -331,7 +331,7 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="showPassword ? 'text' : 'password'"
                                         id="password"
                                         class="form-input"
                                         v-model="getUser.password"
@@ -342,6 +342,11 @@
                                                 : null,
                                         ]"
                                     />
+                                    <span class="input-icon">
+                                        <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                        @click="showPassword = !showPassword"
+                                        class="password-icon"></span>
+                                    </span>
                                 </span>
                             </div>
                             <div
@@ -359,7 +364,7 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="confirmationPassword ? 'text' : 'password'"
                                         id="password-confirm"
                                         class="form-input"
                                         v-model="getUser.password_confirm"
@@ -372,6 +377,11 @@
                                                 : null,
                                         ]"
                                     />
+                                    <span class="input-icon">
+                                        <span :class="confirmationPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                        @click="confirmationPassword = !confirmationPassword"
+                                        class="password-icon"></span>
+                                    </span>
                                 </span>
                             </div>
                             <div
@@ -413,7 +423,7 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="showAppPassword ? 'text' : 'password'"
                                         id="app-password"
                                         class="form-input"
                                         v-model="getUser.app_password"
@@ -424,6 +434,11 @@
                                                 : null,
                                         ]"
                                     />
+                                    <span class="input-icon">
+                                        <span :class="showAppPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                        @click="showAppPassword = !showAppPassword"
+                                        class="password-icon"></span>
+                                    </span>
                                 </span>
                             </div>
                             <div
@@ -443,7 +458,7 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="confirmationAppPassword ? 'text' : 'password'"
                                         id="app-password-confirm"
                                         class="form-input"
                                         v-model="getUser.app_password_confirm"
@@ -458,6 +473,11 @@
                                                 : null,
                                         ]"
                                     />
+                                    <span class="input-icon">
+                                        <span :class="confirmationAppPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                        @click="confirmationAppPassword = !confirmationAppPassword"
+                                        class="password-icon"></span>
+                                    </span>
                                 </span>
                             </div>
                             <div
@@ -920,6 +940,10 @@ export default {
             recommendation: null,
             message: "",
             message_top: "",
+            showPassword: false,
+            showAppPassword: false,
+            confirmationPassword: false,
+            confirmationAppPassword: false,
         };
     },
     validations() {
