@@ -995,6 +995,7 @@ export default {
             showAppPassword: false,
             confirmationPassword: false,
             confirmationAppPassword: false,
+            update_cnt: 0,
         };
     },
     validations() {
@@ -1355,7 +1356,10 @@ export default {
         this.getEMailToken();
     },
     updated: function () {
-        this.getEMailToken();
+        if (this.update_cnt < 10) {
+            this.getEMailToken();
+            this.update_cnt++;
+        }
     },
 };
 </script>
