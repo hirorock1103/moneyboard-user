@@ -1320,7 +1320,9 @@ export default {
                         email: email,
                     },
                 });
+                console.log("DB:");
                 console.log(response.data.data.register_token);
+                console.log("localStorage:");
                 console.log(localStorage.getItem("registerToken"));
                 if (
                     response.data.data.register_token !==
