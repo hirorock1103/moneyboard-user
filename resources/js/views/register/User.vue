@@ -9,7 +9,9 @@
                     class="text-center"
                     style="margin-top: 100px; margin-bottom: 300px"
                 >
-                    <p class="text-danger">{{ message_top }}</p>
+                    <p class="text-danger">
+                        認証に失敗しました<br /><br />申し訳ございませんが、再度メールのリンクから申込みをしてください
+                    </p>
                 </div>
             </div>
             <div v-else class="container">
@@ -1328,8 +1330,7 @@ export default {
                     response.data.data.register_token !==
                     localStorage.getItem("registerToken")
                 ) {
-                    this.message_top =
-                        "認証に失敗しました。申し訳ございませんが、もう1度メールのリンクからアクセスしてください。";
+                    this.message_top = "認証失敗";
                 }
             } catch (e) {
                 console.log(e);
