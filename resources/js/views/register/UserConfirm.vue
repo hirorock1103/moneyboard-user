@@ -93,7 +93,7 @@
                                         type="tel"
                                         id="phone_number"
                                         class="form-input"
-                                        autocomplete="tel"
+                                        autocomplete="off"
                                         v-model="getUser.phone_number"
                                         readonly
                                     />
@@ -128,7 +128,7 @@
                                         type="tel"
                                         id="mobile_number"
                                         class="form-input"
-                                        autocomplete="tel"
+                                        autocomplete="off"
                                         v-model="getUser.mobile_number"
                                         readonly
                                     />
