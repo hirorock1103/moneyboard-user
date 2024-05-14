@@ -132,7 +132,6 @@
                                         type="tel"
                                         id="phone-number"
                                         class="form-input"
-                                        autocomplete="tel"
                                         v-model="getUser.phone_number"
                                         @input="v$.getUser.phone_number.$touch"
                                         v-bind:class="[
@@ -191,7 +190,6 @@
                                         type="tel"
                                         id="mobile-number"
                                         class="form-input"
-                                        autocomplete="tel"
                                         v-model="getUser.mobile_number"
                                         @input="v$.getUser.mobile_number.$touch"
                                         v-bind:class="[
