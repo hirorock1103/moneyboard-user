@@ -1277,6 +1277,7 @@ export default {
     mounted: function () {
         document.title = "新規登録 | MoneyBoard";
         this.getEMailToken();
+        this.$store.commit("auth/setMobilePhone", "");
     },
 };
 </script>
