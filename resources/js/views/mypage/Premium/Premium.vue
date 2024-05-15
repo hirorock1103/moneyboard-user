@@ -1221,6 +1221,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div v-else-if="blur_flg === 1">顧客情報管理画面はプレミアムプランのみの表示となります</div>
                         <div v-else>プレミアムプラン情報はありません</div>
                     </div>
                 </article>
