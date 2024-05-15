@@ -36,7 +36,8 @@
                                 現在のプラン
                             </h3>
                             <div
-                                class="table-scrollable padding-right--8 padding-bottom--24"
+                                class="table-scrollable padding-right--8"
+                                style="padding-bottom: 48px;"
                             >
                                 <table class="table width-70">
                                     <tbody>
@@ -220,7 +221,7 @@
                                     ※変更対象外（本日{{
                                         today
                                     }}日のため変更できません）<br />
-                                    変更期間 1日から10日まで
+                                    　変更期間 1日から10日まで
                                 </div>
                             </div>
                             <div
