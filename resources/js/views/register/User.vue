@@ -64,8 +64,10 @@
                                 <label
                                     for="post_number"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                    style="line-height: 20px;"
                                 >
-                                    郵便番号
+                                    郵便番号<br />
+                                    <small>(ハイフン不要)</small>
                                 </label>
                                 <span class="form-column">
                                     <input
@@ -124,8 +126,10 @@
                                 <label
                                     for="phone-number"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                    style="line-height: 20px;"
                                 >
-                                    電話番号
+                                    電話番号<br />
+                                    <small>(ハイフン不要)</small>
                                 </label>
                                 <span class="form-column">
                                     <input
@@ -183,8 +187,10 @@
                                 <label
                                     for="mobile-number"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                    style="line-height: 20px;"
                                 >
-                                    携帯番号
+                                    携帯番号<br />
+                                    <small>(ハイフン不要)</small>
                                 </label>
                                 <span class="form-column">
                                     <input
@@ -316,7 +322,7 @@
                                     <span
                                         class="[ icon solid ] fa-key padding-right--12 text-accent"
                                     ></span>
-                                    パスワードの設定
+                                    マイページログイン　パスワードの設定
                                 </h4>
                                 <h5 class="margin-bottom--16 padding-left--24">
                                     10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）
