@@ -313,6 +313,173 @@
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
                     >
                         <div class="padding--24 bg-white">
+                            <h4>
+                                <span class="padding-right--12 vertical-middle">
+                                    <img src="/images/common/money-icon.svg" />
+                                </span>
+                                料金について
+                                <small
+                                    class="float-right-large font-weight-normal display-block padding-left--24"
+                                    >価格はすべて税込表記</small
+                                >
+                            </h4>
+                            <hr />
+                            <div
+                                class="form-row"
+                                role="radio-group"
+                                aria-labelledby="plan-radio-group"
+                            >
+                                <label
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
+                                    プラン選択
+                                </label>
+                                <span class="form-column">
+                                    <input
+                                        type="radio"
+                                        role="radio"
+                                        aria-checked="true"
+                                        tabindex="0"
+                                        id="plan-id-0"
+                                        class="form-radio"
+                                        name="radio-group"
+                                        value="1"
+                                        v-model="getUser.plan_id"
+                                        @change="changePlan(55000)"
+                                        checked
+                                    />
+                                    <label
+                                        class="form-radio-label"
+                                        for="plan-id-0"
+                                        >スタンダードプラン</label
+                                    >
+                                </span>
+                                <span class="form-column">
+                                    <input
+                                        type="radio"
+                                        role="radio"
+                                        aria-checked="false"
+                                        tabindex="-1"
+                                        id="plan-id-1"
+                                        class="form-radio"
+                                        name="radio-group"
+                                        value="2"
+                                        v-model="getUser.plan_id"
+                                        @change="changePlan(132000)"
+                                    />
+                                    <label
+                                        class="form-radio-label"
+                                        for="plan-id-1"
+                                        >プレミアムプラン</label
+                                    >
+                                </span>
+                            </div>
+                            <div class="form-row margin-bottom--14">
+                                <label
+                                    for="additional-licenses"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
+                                    企業データの追加
+                                </label>
+                                <span class="form-column">
+                                    <input
+                                        type="number"
+                                        min="0"
+                                        max="120"
+                                        oninput="validity.valid||(value='');"
+                                        id="additional-licenses"
+                                        class="[ form-input form-input--short ]"
+                                        v-model="getUser.additional_licenses"
+                                    />
+                                    <span>社</span>
+                                </span>
+                            </div>
+                            <div class="form-row margin-bottom--48">
+                                <label
+                                    for="additional-licenses"
+                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
+                                >
+                                    使用できる企業数
+                                </label>
+                                <span class="form-column">
+                                    <span>{{ useCompanyAmount }}社</span>
+                                </span>
+                            </div>
+                            <h4>
+                                月額料金は
+                                <span
+                                    class="h2 [ text-accent text-kerning-small ] [ padding-right--4 padding-left--4 ]"
+                                    >{{ $filters.addComma(totalAmount) }}</span
+                                >
+                                円です
+                            </h4>
+                            <hr />
+                            <table class="table table-fixed">
+                                <tbody>
+                                    <tr class="display-none-large">
+                                        <th>内訳</th>
+                                        <td></td>
+                                        <td
+                                            class="[ display-none display-table-cell-medium ]"
+                                        ></td>
+                                    </tr>
+                                    <tr>
+                                        <th
+                                            class="[ display-none display-table-cell-large ]"
+                                        >
+                                            内訳
+                                        </th>
+                                        <td>基本料金</td>
+                                        <td style="text-align: right">
+                                            {{
+                                                $filters.addComma(planAmount)
+                                            }}円
+                                        </td>
+                                        <td
+                                            class="[ display-none display-table-cell-large ]"
+                                        >
+                                            （システム使用料と登録データ{{
+                                                companyAmount
+                                            }}社分）
+                                        </td>
+                                        <td
+                                            class="[ display-none display-table-cell-medium display-none-large ]"
+                                        ></td>
+                                    </tr>
+                                    <tr class="display-none-large">
+                                        <td colspan="2">
+                                            （システム使用料と登録データ{{
+                                                companyAmount
+                                            }}社分）
+                                        </td>
+                                        <td
+                                            class="[ display-none display-table-cell-medium ]"
+                                        ></td>
+                                    </tr>
+                                    <tr v-if="getUser.additional_licenses > 0">
+                                        <th
+                                            class="[ display-none display-table-cell-large ]"
+                                        ></th>
+                                        <td>追加利用料金</td>
+                                        <td style="text-align: right">
+                                            {{
+                                                $filters.addComma(
+                                                    addLicensesAmount
+                                                )
+                                            }}円
+                                        </td>
+                                        <td
+                                            class="[ display-none display-table-cell-medium ]"
+                                        ></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                    <article
+                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
+                    >
+                        <div class="padding--24 bg-white">
                             <div
                                 class="[ display-flex justify-content-between-large align-items-baseline [ flex-column flex-row-large ] ] margin-bottom--24 border-bottom"
                             >
@@ -544,173 +711,6 @@
                                         .$message
                                 }}
                             </div>
-                        </div>
-                    </article>
-                    <article
-                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
-                    >
-                        <div class="padding--24 bg-white">
-                            <h4>
-                                <span class="padding-right--12 vertical-middle">
-                                    <img src="/images/common/money-icon.svg" />
-                                </span>
-                                料金について
-                                <small
-                                    class="float-right-large font-weight-normal display-block padding-left--24"
-                                    >価格はすべて税込表記</small
-                                >
-                            </h4>
-                            <hr />
-                            <div
-                                class="form-row"
-                                role="radio-group"
-                                aria-labelledby="plan-radio-group"
-                            >
-                                <label
-                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                >
-                                    プラン選択
-                                </label>
-                                <span class="form-column">
-                                    <input
-                                        type="radio"
-                                        role="radio"
-                                        aria-checked="true"
-                                        tabindex="0"
-                                        id="plan-id-0"
-                                        class="form-radio"
-                                        name="radio-group"
-                                        value="1"
-                                        v-model="getUser.plan_id"
-                                        @change="changePlan(55000)"
-                                        checked
-                                    />
-                                    <label
-                                        class="form-radio-label"
-                                        for="plan-id-0"
-                                        >スタンダードプラン</label
-                                    >
-                                </span>
-                                <span class="form-column">
-                                    <input
-                                        type="radio"
-                                        role="radio"
-                                        aria-checked="false"
-                                        tabindex="-1"
-                                        id="plan-id-1"
-                                        class="form-radio"
-                                        name="radio-group"
-                                        value="2"
-                                        v-model="getUser.plan_id"
-                                        @change="changePlan(132000)"
-                                    />
-                                    <label
-                                        class="form-radio-label"
-                                        for="plan-id-1"
-                                        >プレミアムプラン</label
-                                    >
-                                </span>
-                            </div>
-                            <div class="form-row margin-bottom--14">
-                                <label
-                                    for="additional-licenses"
-                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                >
-                                    企業データの追加
-                                </label>
-                                <span class="form-column">
-                                    <input
-                                        type="number"
-                                        min="0"
-                                        max="120"
-                                        oninput="validity.valid||(value='');"
-                                        id="additional-licenses"
-                                        class="[ form-input form-input--short ]"
-                                        v-model="getUser.additional_licenses"
-                                    />
-                                    <span>社</span>
-                                </span>
-                            </div>
-                            <div class="form-row margin-bottom--48">
-                                <label
-                                    for="additional-licenses"
-                                    class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                >
-                                    使用できる企業数
-                                </label>
-                                <span class="form-column">
-                                    <span>{{ useCompanyAmount }}社</span>
-                                </span>
-                            </div>
-                            <h4>
-                                月額料金は
-                                <span
-                                    class="h2 [ text-accent text-kerning-small ] [ padding-right--4 padding-left--4 ]"
-                                    >{{ $filters.addComma(totalAmount) }}</span
-                                >
-                                円です
-                            </h4>
-                            <hr />
-                            <table class="table table-fixed">
-                                <tbody>
-                                    <tr class="display-none-large">
-                                        <th>内訳</th>
-                                        <td></td>
-                                        <td
-                                            class="[ display-none display-table-cell-medium ]"
-                                        ></td>
-                                    </tr>
-                                    <tr>
-                                        <th
-                                            class="[ display-none display-table-cell-large ]"
-                                        >
-                                            内訳
-                                        </th>
-                                        <td>基本料金</td>
-                                        <td style="text-align: right">
-                                            {{
-                                                $filters.addComma(planAmount)
-                                            }}円
-                                        </td>
-                                        <td
-                                            class="[ display-none display-table-cell-large ]"
-                                        >
-                                            （システム使用料と登録データ{{
-                                                companyAmount
-                                            }}社分）
-                                        </td>
-                                        <td
-                                            class="[ display-none display-table-cell-medium display-none-large ]"
-                                        ></td>
-                                    </tr>
-                                    <tr class="display-none-large">
-                                        <td colspan="2">
-                                            （システム使用料と登録データ{{
-                                                companyAmount
-                                            }}社分）
-                                        </td>
-                                        <td
-                                            class="[ display-none display-table-cell-medium ]"
-                                        ></td>
-                                    </tr>
-                                    <tr v-if="getUser.additional_licenses > 0">
-                                        <th
-                                            class="[ display-none display-table-cell-large ]"
-                                        ></th>
-                                        <td>追加利用料金</td>
-                                        <td style="text-align: right">
-                                            {{
-                                                $filters.addComma(
-                                                    addLicensesAmount
-                                                )
-                                            }}円
-                                        </td>
-                                        <td
-                                            class="[ display-none display-table-cell-medium ]"
-                                        ></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </article>
                     <article
