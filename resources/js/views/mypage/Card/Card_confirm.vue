@@ -233,7 +233,7 @@ export default {
                     //companyテーブルにstripe_idを登録する
                     let url2 =
                         process.env.MIX_VUE_APP_API_URL +
-                        "adm/company/stripe_id_change";
+                        "app/company/stripe_id_change";
                     let params2 = new URLSearchParams();
                     params2.append(
                         "company_code",
