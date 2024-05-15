@@ -1042,8 +1042,8 @@ export default {
                         required
                     ),
                     maxLength: helpers.withMessage(
-                        "10文字以下で入力してください",
-                        maxLength(10)
+                        "11文字以下で入力してください",
+                        maxLength(11)
                     ),
                     decimal: helpers.withMessage(
                         "半角数字で入力してください",
