@@ -185,93 +185,6 @@
                     >
                         <div class="padding--24 bg-white">
                             <h4>
-                                <span
-                                    class="[ icon solid ] fa-key padding-right--12 text-accent"
-                                ></span>
-                                パスワード
-                            </h4>
-                            <hr />
-                            <div class="form-row">
-                                <label
-                                    for="password"
-                                    class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]"
-                                >
-                                    パスワード
-                                </label>
-                                <span class="form-column form-input-flex">
-                                    <input
-                                        :type="
-                                            showPassword ? 'text' : 'password'
-                                        "
-                                        id="password"
-                                        class="form-input"
-                                        v-model="getUser.password"
-                                        readonly
-                                    />
-                                    <i
-                                        :class="
-                                            showPassword
-                                                ? 'fas fa-eye-slash'
-                                                : 'fas fa-eye'
-                                        "
-                                        @click="showPassword = !showPassword"
-                                        class="password-icon"
-                                    ></i>
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                    <article
-                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
-                    >
-                        <div class="padding--24 bg-white">
-                            <h4>
-                                <span
-                                    class="[ icon solid ] fa-key padding-right--12 text-accent"
-                                ></span>
-                                アプリログイン　パスワード
-                            </h4>
-                            <hr />
-                            <div class="form-row">
-                                <label
-                                    for="app_password"
-                                    class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]"
-                                >
-                                    アプリログイン　パスワード
-                                </label>
-                                <span class="form-column form-input-flex">
-                                    <input
-                                        :type="
-                                            showAppPassword
-                                                ? 'text'
-                                                : 'password'
-                                        "
-                                        id="app_password"
-                                        class="form-input"
-                                        v-model="getUser.app_password"
-                                        readonly
-                                    />
-                                    <i
-                                        :class="
-                                            showAppPassword
-                                                ? 'fas fa-eye-slash'
-                                                : 'fas fa-eye'
-                                        "
-                                        @click="
-                                            showAppPassword = !showAppPassword
-                                        "
-                                        class="password-icon"
-                                    ></i>
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- {{ this.$store.state.auth }} -->
-                    <article
-                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
-                    >
-                        <div class="padding--24 bg-white">
-                            <h4>
                                 <span class="padding-right--12 vertical-middle">
                                     <img src="/images/common/money-icon.svg" />
                                 </span>
@@ -390,6 +303,93 @@
                             </table>
                         </div>
                     </article>
+                    <article
+                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
+                    >
+                        <div class="padding--24 bg-white">
+                            <h4>
+                                <span
+                                    class="[ icon solid ] fa-key padding-right--12 text-accent"
+                                ></span>
+                                マイページログイン　パスワード
+                            </h4>
+                            <hr />
+                            <div class="form-row">
+                                <label
+                                    for="password"
+                                    class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]"
+                                >
+                                    パスワード
+                                </label>
+                                <span class="form-column form-input-flex">
+                                    <input
+                                        :type="
+                                            showPassword ? 'text' : 'password'
+                                        "
+                                        id="password"
+                                        class="form-input"
+                                        v-model="getUser.password"
+                                        readonly
+                                    />
+                                    <i
+                                        :class="
+                                            showPassword
+                                                ? 'fas fa-eye-slash'
+                                                : 'fas fa-eye'
+                                        "
+                                        @click="showPassword = !showPassword"
+                                        class="password-icon"
+                                    ></i>
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                    <article
+                        class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
+                    >
+                        <div class="padding--24 bg-white">
+                            <h4>
+                                <span
+                                    class="[ icon solid ] fa-key padding-right--12 text-accent"
+                                ></span>
+                                アプリログイン　パスワード
+                            </h4>
+                            <hr />
+                            <div class="form-row">
+                                <label
+                                    for="app_password"
+                                    class="[ form-column form-column--300 ] [ form-label form-label--inline-medium ]"
+                                >
+                                    アプリログイン　パスワード
+                                </label>
+                                <span class="form-column form-input-flex">
+                                    <input
+                                        :type="
+                                            showAppPassword
+                                                ? 'text'
+                                                : 'password'
+                                        "
+                                        id="app_password"
+                                        class="form-input"
+                                        v-model="getUser.app_password"
+                                        readonly
+                                    />
+                                    <i
+                                        :class="
+                                            showAppPassword
+                                                ? 'fas fa-eye-slash'
+                                                : 'fas fa-eye'
+                                        "
+                                        @click="
+                                            showAppPassword = !showAppPassword
+                                        "
+                                        class="password-icon"
+                                    ></i>
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- {{ this.$store.state.auth }} -->
                     <article
                         class="padding--16 bg-gray [ margin-left-medium--48 margin-right-medium--48 ]"
                         v-if="getUser.motivated_by"
@@ -555,9 +555,9 @@ export default {
                                 type: "register",
                                 title: "申込完了",
                                 message: [
-                                    "ご登録ありがとうございます。",
-                                    "登録されたメールアドレスに「お申し込み内容」を送信いたしました。",
-                                    "ご確認お願いいたします。",
+                                    "ご登録ありがとうございます",
+                                    "登録されたメールアドレスに「お申し込み内容」を送信いたしました",
+                                    "ご確認お願いいたします",
                                 ],
                                 currentStep: Number(4),
                                 redirectPage: "toLogin",

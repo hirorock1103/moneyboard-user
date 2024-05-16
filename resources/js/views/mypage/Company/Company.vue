@@ -38,7 +38,7 @@
                                 基本情報
                             </h4>
                             <hr />
-                            <div class="table-scrollable padding-right--8">
+                            <div class="company-table-scrollable padding-right--8">
                                 <table class="table">
                                     <tbody>
                                         <tr>

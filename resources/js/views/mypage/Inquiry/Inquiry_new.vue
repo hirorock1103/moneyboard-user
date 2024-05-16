@@ -92,7 +92,7 @@
                                                     本文
                                                 </th>
                                                 <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <textarea class="form-textarea margin-top--8" v-model="item.inquiry_contents" placeholder="こちらにお問い合わせ内容を入力してください。"
+                                                    <textarea class="form-textarea margin-top--8" v-model="item.inquiry_contents" placeholder="こちらにお問い合わせ内容を入力してください"
                                                     @input="v$.item.inquiry_contents.$touch"
                                                     v-bind:class="[ v$.item.inquiry_contents.$error ? 'form-error' : null ]">
                                                     </textarea>

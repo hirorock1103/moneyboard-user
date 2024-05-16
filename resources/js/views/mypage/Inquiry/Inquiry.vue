@@ -176,19 +176,23 @@
                                     </tr>
                                 </thead>
                                 <tbody v-if="items.length">
-                                    <tr v-for="item in items" :key="item._id">
+                                    <tr 
+                                        v-for="item in items"
+                                        :key="item._id"
+                                        :class="{ 'fixed-record-background': item.type === 5 || item.type === 6 }"
+                                    >
                                         <!-- <td>{{ item.id }}</td> -->
-                                        <td>{{ type[item.type] }}</td>
+                                        <td class="nowrap">{{ type[item.type] }}</td>
                                         <td v-if="item.body.length > 6">
                                             {{ item.body.substr(0, 6) }}...
                                         </td>
                                         <td v-else>{{ item.body }}</td>
                                         <td v-if="item.attribute === 0">
-                                            {{ item.company_name }}
+                                            お客様
                                         </td>
                                         <td v-else>運営</td>
                                         <td>{{ item.delivery_time }}</td>
-                                        <td>{{ status[item.status] }}</td>
+                                        <td class="nowrap">{{ status[item.status] }}</td>
                                         <td>
                                             <router-link
                                                 :to="{
@@ -241,14 +245,14 @@
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                運営元　　株式会社マネーボード
+                                                　運営元　　株式会社マネーボード
                                             </td>
                                         </tr>
                                         <tr>
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                住　所　　大阪府大東市大野１丁目５番９号
+                                                　住　所　　大阪府大東市大野１丁目５番９号
                                             </td>
                                         </tr>
                                     </tbody>

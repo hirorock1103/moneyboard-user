@@ -176,3 +176,9 @@
     }
   }
 }
+
+// 登録情報画面用のテーブルスクロールバー
+.company-table-scrollable {
+  max-height: 470px;
+  @extend .table-scrollable;
+}
