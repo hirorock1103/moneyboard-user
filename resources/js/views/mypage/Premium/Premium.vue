@@ -597,7 +597,7 @@
                                             担当者
                                         </th>
                                         <th class="padding-left--12">
-                                            更新日時
+                                            更新日
                                         </th>
 
                                         <!-- 最新の取込決済期 -->
@@ -642,7 +642,7 @@
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <th class="padding-left--12">
-                                            代表者<br />債権債務
+                                            代表者の債務
                                         </th>
                                         <th class="padding-left--12">
                                             純資産の額
@@ -651,16 +651,16 @@
 
                                         <!-- 指標-->
                                         <th class="padding-left--12">
-                                            重要指標
+                                            重要
                                         </th>
                                         <th class="padding-left--12">
-                                            安全性指標
+                                            安全
                                         </th>
                                         <th class="padding-left--12">
-                                            収益性指標
+                                            収益性
                                         </th>
                                         <th class="padding-left--12">
-                                            資金効率性<br />指標
+                                            資金効率性
                                         </th>
 
                                         <th
