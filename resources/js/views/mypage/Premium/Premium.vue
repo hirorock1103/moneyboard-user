@@ -1324,12 +1324,12 @@ export default {
                 { key: "total_inheritance", name: "計" }, //summary_reports
 
                 { key: "important_index", name: "重要指標" }, //company_clients
-                { key: "bankruptcy_risk", name: "安全性指標" }, //company_clients
-                { key: "earning_power", name: "収益性指標" }, //company_clients
-                { key: "money_efficiency", name: "資金効率性指標" }, //company_clients
+                { key: "bankruptcy_risk", name: "安全性指標" }, //client_graph_data
+                { key: "earning_power", name: "収益性指標" }, //client_graph_data
+                { key: "money_efficiency", name: "資金効率性指標" }, //client_graph_data
                 { key: "business_type", name: "業種" }, //company_clients
                 { key: "corporate_number", name: "法人番号" }, //company_clients
-                { key: "sales_amount", name: "年商" }, //company_clients
+                { key: "sales_amount", name: "年商" }, //summary_reports
                 { key: "capital", name: "資本金" }, //company_clients
                 { key: "interview_place", name: "面談場所" }, //company_clients
                 { key: "close_possibility_now", name: "成約の可能性(今回)" }, //company_clients
