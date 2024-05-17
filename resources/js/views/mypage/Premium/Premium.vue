@@ -597,7 +597,7 @@
                                             担当者
                                         </th>
                                         <th class="padding-left--12">
-                                            更新日時
+                                            更新日
                                         </th>
 
                                         <!-- 最新の取込決済期 -->
@@ -642,7 +642,7 @@
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <th class="padding-left--12">
-                                            代表者<br />債権債務
+                                            代表者の債務
                                         </th>
                                         <th class="padding-left--12">
                                             純資産の額
@@ -651,16 +651,16 @@
 
                                         <!-- 指標-->
                                         <th class="padding-left--12">
-                                            重要指標
+                                            重要
                                         </th>
                                         <th class="padding-left--12">
-                                            安全性指標
+                                            安全
                                         </th>
                                         <th class="padding-left--12">
-                                            収益性指標
+                                            収益性
                                         </th>
                                         <th class="padding-left--12">
-                                            資金効率性<br />指標
+                                            資金効率性
                                         </th>
 
                                         <th
@@ -1149,10 +1149,10 @@
 
                                         <!-- 指標-->
                                         <td>{{ item.important_index }}</td>
-                                        <td>{{ item.safety_index }}</td>
-                                        <td>{{ item.profit_index }}</td>
+                                        <td>{{ item.bankruptcy_risk }}</td>
+                                        <td>{{ item.earning_power }}</td>
                                         <td>
-                                            {{ item.fund_efficiency_index }}
+                                            {{ item.money_efficiency }}
                                         </td>
 
                                         <td>
@@ -1170,9 +1170,9 @@
                                         <td>
                                             <!-- 年商 -->
                                             {{
-                                                item.annual_sales_ratio != null
+                                                item.sales_amount != null
                                                     ? Number(
-                                                          item.annual_sales_ratio
+                                                          item.sales_amount
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
@@ -1324,12 +1324,12 @@ export default {
                 { key: "total_inheritance", name: "計" }, //summary_reports
 
                 { key: "important_index", name: "重要指標" }, //company_clients
-                { key: "safety_index", name: "安全性指標" }, //company_clients
-                { key: "profit_index", name: "収益性指標" }, //company_clients
-                { key: "fund_efficiency_index", name: "資金効率性指標" }, //company_clients
+                { key: "bankruptcy_risk", name: "安全性指標" }, //client_graph_data
+                { key: "earning_power", name: "収益性指標" }, //client_graph_data
+                { key: "money_efficiency", name: "資金効率性指標" }, //client_graph_data
                 { key: "business_type", name: "業種" }, //company_clients
                 { key: "corporate_number", name: "法人番号" }, //company_clients
-                { key: "anualsales", name: "年商" }, //company_clients
+                { key: "sales_amount", name: "年商" }, //summary_reports
                 { key: "capital", name: "資本金" }, //company_clients
                 { key: "interview_place", name: "面談場所" }, //company_clients
                 { key: "close_possibility_now", name: "成約の可能性(今回)" }, //company_clients
