@@ -16,7 +16,7 @@
                             <h4>
                                 <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
                                 パスワードの設定
-                                <small class="float-right-large  font-weight-normal  display-block  padding-left--24">10文字以上（半角アルファベット大文字、小文字、半角数字の3種類を組み合わせ）</small>
+                                <small class="float-right-large  font-weight-normal  display-block  padding-left--24">10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）</small>
                             </h4>
                             <hr>
                             <div class="form-row">
@@ -25,12 +25,17 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="showPassword ? 'text' : 'password'"
                                         id="password"
                                         class="form-input"
                                         v-model="password"
                                         @input="v$.password.$touch"
                                         v-bind:class="[ v$.password.$error ? 'form-error' : null ]">
+                                        <span class="input-icon">
+                                            <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                            @click="showPassword = !showPassword"
+                                            class="password-icon"></span>
+                                        </span>
                                 </span>
                             </div>
                             <div
@@ -49,12 +54,17 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="confirmationPassword ? 'text' : 'password'"
                                         id="password_confirmation"
                                         class="form-input"
                                         v-model="password_confirmation"
                                         @input="v$.password_confirmation.$touch"
                                         v-bind:class="[ v$.password_confirmation.$error ? 'form-error' : null ]">
+                                        <span class="input-icon">
+                                            <span :class="confirmationPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                            @click="confirmationPassword = !confirmationPassword"
+                                            class="password-icon"></span>
+                                        </span>
                                 </span>
                             </div>
                             <div
@@ -101,6 +111,8 @@ export default {
             },
             password: '',
             password_confirmation: '',
+            showPassword: false,
+            confirmationPassword: false,
         }
     },
     validations() {
@@ -164,7 +176,7 @@ export default {
                                 type: 'passreq-success',
                                 title: 'パスワード設定完了',
                                 message: [
-                                    'パスワードの設定が完了いたしました。',
+                                    'パスワードの設定が完了いたしました',
                                 ],
                                 redirectPage: 'login'
                             }

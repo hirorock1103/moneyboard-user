@@ -64,19 +64,26 @@
                                     ></span>
                                     パスワード
                                 </label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    class="form-input margin-top--8"
-                                    v-model="loginForm.password"
-                                    @input="v$.loginForm.password.$touch"
-                                    v-bind:class="[
-                                        v$.loginForm.password.$error
-                                            ? 'form-error  margin-bottom--12'
-                                            : 'margin-bottom--24',
-                                    ]"
-                                />
+                                <span style="position: relative;">
+                                    <input
+                                        :type="showPassword ? 'text' : 'password'"
+                                        name="password"
+                                        id="password"
+                                        class="form-input margin-top--8"
+                                        v-model="loginForm.password"
+                                        @input="v$.loginForm.password.$touch"
+                                        v-bind:class="[
+                                            v$.loginForm.password.$error
+                                                ? 'form-error  margin-bottom--12'
+                                                : 'margin-bottom--24',
+                                        ]"
+                                    />
+                                    <span style="position: absolute; top: 55%; left: 83%;">
+                                        <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                        @click="showPassword = !showPassword"
+                                        class="password-icon"></span>
+                                    </span>
+                                </span>
                                 <div
                                     class="form-text text-danger"
                                     v-if="v$.loginForm.password.$error"
@@ -136,6 +143,7 @@ export default {
                 email_address: "",
                 password: "",
             },
+            showPassword: false,
         };
     },
     validations() {
