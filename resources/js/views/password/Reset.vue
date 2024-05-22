@@ -16,7 +16,7 @@
                             <h4>
                                 <span class="[ icon  solid ] fa-key  padding-right--12  text-accent"></span>
                                 パスワードの設定
-                                <small class="float-right-large  font-weight-normal  display-block  padding-left--24">10文字以上（半角アルファベット大文字、小文字、半角数字の3種類を組み合わせ）</small>
+                                <small class="float-right-large  font-weight-normal  display-block  padding-left--24">10文字以上（半角のアルファベット大文字、小文字、数字の3種類の組み合わせ）</small>
                             </h4>
                             <hr>
                             <div class="form-row">
