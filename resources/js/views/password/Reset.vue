@@ -25,12 +25,17 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="showPassword ? 'text' : 'password'"
                                         id="password"
                                         class="form-input"
                                         v-model="password"
                                         @input="v$.password.$touch"
                                         v-bind:class="[ v$.password.$error ? 'form-error' : null ]">
+                                        <span class="input-icon">
+                                            <span :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                            @click="showPassword = !showPassword"
+                                            class="password-icon"></span>
+                                        </span>
                                 </span>
                             </div>
                             <div
@@ -49,12 +54,17 @@
                                 </label>
                                 <span class="form-column">
                                     <input
-                                        type="password"
+                                        :type="confirmationPassword ? 'text' : 'password'"
                                         id="password_confirmation"
                                         class="form-input"
                                         v-model="password_confirmation"
                                         @input="v$.password_confirmation.$touch"
                                         v-bind:class="[ v$.password_confirmation.$error ? 'form-error' : null ]">
+                                        <span class="input-icon">
+                                            <span :class="confirmationPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+                                            @click="confirmationPassword = !confirmationPassword"
+                                            class="password-icon"></span>
+                                        </span>
                                 </span>
                             </div>
                             <div
@@ -101,6 +111,8 @@ export default {
             },
             password: '',
             password_confirmation: '',
+            showPassword: false,
+            confirmationPassword: false,
         }
     },
     validations() {
