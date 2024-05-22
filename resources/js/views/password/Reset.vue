@@ -176,7 +176,7 @@ export default {
                                 type: 'passreq-success',
                                 title: 'パスワード設定完了',
                                 message: [
-                                    'パスワードの設定が完了いたしました。',
+                                    'パスワードの設定が完了いたしました',
                                 ],
                                 redirectPage: 'login'
                             }
