@@ -23,7 +23,7 @@
                         <span
                             v-else-if="company && company.use_status == 99"
                             style="color: red; font-size: 18px"
-                            >強制利用停止中(2ヶ月以上支払いがございません)</span
+                            >強制利用停止中（2ヶ月以上支払いがございません）</span
                         >
                         <span v-else>ログインエラー</span>
                     </small>
