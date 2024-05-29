@@ -194,7 +194,6 @@ export default {
 
             try {
                 let response = await axios.get(url, { headers: headers });
-                console.log(response);
                 let valid_month = response.data.card.exp_month;
                 let valid_year = response.data.card.exp_year;
                 let number = response.data.card.last4;
@@ -204,7 +203,6 @@ export default {
                 this.getCard.number = number;
 
                 if (response.status != "200" || card_id == null) {
-                    console.log(response);
                     this.message = response.data.message;
                     setTimeout(() => {
                         this.message = false;

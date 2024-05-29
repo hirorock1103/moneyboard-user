@@ -66,7 +66,7 @@
                                 <label
                                     for="post_number"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                    style="line-height: 20px;"
+                                    style="line-height: 20px"
                                 >
                                     郵便番号<br />
                                     <small>(ハイフン不要)</small>
@@ -128,7 +128,7 @@
                                 <label
                                     for="phone-number"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                    style="line-height: 20px;"
+                                    style="line-height: 20px"
                                 >
                                     電話番号<br />
                                     <small>(ハイフン不要)</small>
@@ -189,7 +189,7 @@
                                 <label
                                     for="mobile-number"
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
-                                    style="line-height: 20px;"
+                                    style="line-height: 20px"
                                 >
                                     携帯番号<br />
                                     <small>(ハイフン不要)</small>
@@ -1275,7 +1275,6 @@ export default {
                 })
                 .then((rs) => {
                     const response = rs.data;
-                    console.log(response);
                     if (response.code === 400 || response.code === 404) {
                         this.$store.commit("auth/setAddress", "");
                     } else {
@@ -1301,7 +1300,6 @@ export default {
                 delete datas.user_type;
                 let response = await axios.post(url, datas);
                 if (response.data.status == "NG") {
-                    console.log(response);
                     this.message = response.data.message;
                     setTimeout(() => {
                         this.message = false;
@@ -1329,10 +1327,6 @@ export default {
                         email: email,
                     },
                 });
-                console.log("DB:");
-                console.log(response.data.data.register_token);
-                console.log("localStorage:");
-                console.log(localStorage.getItem("registerToken"));
                 if (
                     response.data.data.register_token !==
                     localStorage.getItem("registerToken")

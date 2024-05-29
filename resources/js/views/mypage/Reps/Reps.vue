@@ -450,7 +450,6 @@ export default {
             const response = await axios.post(url, { user_code: user_code });
 
             if (response.data.status == "NG") {
-                console.log(response.data);
                 this.message = response.data.errors.undefined_user;
                 setTimeout(() => {
                     this.message = false;

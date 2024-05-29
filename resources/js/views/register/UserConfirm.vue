@@ -540,7 +540,6 @@ export default {
 
                     // // 企業情報レコード追加
                     let response2 = await axios.post(url, datas);
-                    console.log(response2);
                     if (response2.data.status == "NG") {
                         this.message = response2.data.message;
 

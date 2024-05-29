@@ -77,7 +77,7 @@
                                                         @input="
                                                             v$.getTemps
                                                                 .user_name
-                                                                .$touch
+                                                                .$touch;
                                                         "
                                                         v-bind:class="[
                                                             v$.getTemps
@@ -126,7 +126,7 @@
                                                         "
                                                         @input="
                                                             v$.getTemps.password
-                                                                .$touch
+                                                                .$touch;
                                                         "
                                                         v-bind:class="[
                                                             v$.getTemps.password
@@ -311,7 +311,6 @@ export default {
                 };
                 const response = await axios.post(url, this.getTemps);
                 if (response.data.status == "NG") {
-                    console.log(response);
                     this.message = response.data.message;
                     setTimeout(() => {
                         this.message = false;
