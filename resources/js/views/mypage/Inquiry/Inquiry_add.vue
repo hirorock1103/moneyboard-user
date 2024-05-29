@@ -2,82 +2,176 @@
     <div class="display-flex">
         <SideMenu />
         <main class="mypage__main">
-            <section class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48">
+            <section
+                class="[ padding-top--24 padding-top-large--48 ] margin-bottom-large--48"
+            >
                 <div class="container">
-                    <div class="
-                    [ display-flex  justify-content-between-large  align-items-baseline  [ flex-column  flex-row-large ] ]  [ padding-left--16  padding-right-16  padding-medium--0 ]  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] margin-bottom--24 ]  border-bottom">
-                        <h2 class="[ margin-bottom--4  margin-bottom-large--16 ]">
+                    <div
+                        class="[ display-flex justify-content-between-large align-items-baseline [ flex-column flex-row-large ] ] [ padding-left--16 padding-right-16 padding-medium--0 ] [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] margin-bottom--24 ] border-bottom"
+                    >
+                        <h2
+                            class="[ margin-bottom--4 margin-bottom-large--16 ]"
+                        >
                             お問い合わせ/返信
                         </h2>
                     </div>
 
                     <form @submit.prevent="Reply">
-                        <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ]  [ margin-bottom--48  margin-bottom-large--88 ] ]">
-                            <div class="[ padding--24  padding-large--48 ]  bg-white">
-                                <div class="display-flex justify-content-between-large">
+                        <article
+                            class="padding--16 bg-gray [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] [ margin-bottom--48 margin-bottom-large--88 ] ]"
+                        >
+                            <div
+                                class="[ padding--24 padding-large--48 ] bg-white"
+                            >
+                                <div
+                                    class="display-flex justify-content-between-large"
+                                >
                                     <h4>
-                                        <span class="[ icon  solid ] fa-pencil-alt  padding-right--12  text-accent"></span>
+                                        <span
+                                            class="[ icon solid ] fa-pencil-alt padding-right--12 text-accent"
+                                        ></span>
                                         お問い合わせ
                                     </h4>
                                     <h5 class="margin-bottom--16">
                                         全ての項目をご記入ください
                                     </h5>
                                 </div>
-                                <hr>
+                                <hr />
                                 <div class="padding-right--8">
                                     <table class="table">
                                         <tbody>
                                             <tr>
-                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
+                                                <th
+                                                    class="vertical-middle [ display-table-row display-table-cell-large ]"
+                                                >
                                                     会社名
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ]">
+                                                <td
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
                                                     <input
-                                                    type="text"
-                                                    id="company_name"
-                                                    class="form-input"
-                                                    v-model="company.company_name"
-                                                    readonly/>
+                                                        type="text"
+                                                        id="company_name"
+                                                        class="form-input"
+                                                        v-model="
+                                                            company.company_name
+                                                        "
+                                                        readonly
+                                                    />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
+                                                <th
+                                                    class="vertical-middle [ display-table-row display-table-cell-large ]"
+                                                >
                                                     名前
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ]">
+                                                <td
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
                                                     <input
-                                                    type="text"
-                                                    name="inquiry_rep"
-                                                    class="form-input"
-                                                    v-model="company.company_rep"
-                                                    readonly/>
+                                                        type="text"
+                                                        name="inquiry_rep"
+                                                        class="form-input"
+                                                        v-model="
+                                                            company.company_rep
+                                                        "
+                                                        readonly
+                                                    />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="vertical-middle [ display-table-row  display-table-cell-large ]">
+                                                <th
+                                                    class="vertical-middle [ display-table-row display-table-cell-large ]"
+                                                >
                                                     お問い合わせ種別
                                                 </th>
-                                                <td v-if="temps.type == 0" class="[ display-table-row  display-table-cell-large ] ">料金について</td>
-                                                <td v-if="temps.type == 1" class="[ display-table-row  display-table-cell-large ] ">プランについて</td>
-                                                <td v-if="temps.type == 2" class="[ display-table-row  display-table-cell-large ] ">使い方について</td>
-                                                <td v-if="temps.type == 3" class="[ display-table-row  display-table-cell-large ] ">ご意見・ご要望</td>
-                                                <td v-if="temps.type == 4" class="[ display-table-row  display-table-cell-large ] ">その他</td>
-                                                <td v-if="temps.type == 5" class="[ display-table-row  display-table-cell-large ] ">利用料のご請求について</td>
-                                                <td v-if="temps.type == 6" class="[ display-table-row  display-table-cell-large ] ">運営からのご連絡</td>
+                                                <td
+                                                    v-if="temps.type == 0"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    料金について
+                                                </td>
+                                                <td
+                                                    v-if="temps.type == 1"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    プランについて
+                                                </td>
+                                                <td
+                                                    v-if="temps.type == 2"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    使い方について
+                                                </td>
+                                                <td
+                                                    v-if="temps.type == 3"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    ご意見・ご要望
+                                                </td>
+                                                <td
+                                                    v-if="temps.type == 4"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    その他
+                                                </td>
+                                                <td
+                                                    v-if="temps.type == 5"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    利用料のご請求について
+                                                </td>
+                                                <td
+                                                    v-if="temps.type == 6"
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    運営からのご連絡
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <th class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row  display-table-cell-large ]">
+                                                <th
+                                                    class="vertical-top [ padding-top--16 padding-top-large--24 ][ display-table-row display-table-cell-large ]"
+                                                >
                                                     本文
                                                 </th>
-                                                <td class="[ display-table-row  display-table-cell-large ] ">
-                                                    <textarea class="form-textarea margin-top--8" v-model="item.inquiry_contents" placeholder="こちらにお問い合わせ内容を入力してください"
-                                                    @input="v$.item.inquiry_contents.$touch"
-                                                    v-bind:class="[ v$.item.inquiry_contents.$error ? 'form-error' : null ]">
+                                                <td
+                                                    class="[ display-table-row display-table-cell-large ]"
+                                                >
+                                                    <textarea
+                                                        class="form-textarea margin-top--8"
+                                                        v-model="
+                                                            item.inquiry_contents
+                                                        "
+                                                        placeholder="こちらにお問い合わせ内容を入力してください"
+                                                        @input="
+                                                            v$.item
+                                                                .inquiry_contents
+                                                                .$touch
+                                                        "
+                                                        v-bind:class="[
+                                                            v$.item
+                                                                .inquiry_contents
+                                                                .$error
+                                                                ? 'form-error'
+                                                                : null,
+                                                        ]"
+                                                    >
                                                     </textarea>
                                                     <div
-                                                        class="form-text  text-danger text-center [ margin-bottom--24   ]  "
-                                                        v-if="v$.item.inquiry_contents.$error">
-                                                        {{ v$.item.inquiry_contents.$errors[0].$message }}
+                                                        class="form-text text-danger text-center [ margin-bottom--24 ]"
+                                                        v-if="
+                                                            v$.item
+                                                                .inquiry_contents
+                                                                .$error
+                                                        "
+                                                    >
+                                                        {{
+                                                            v$.item
+                                                                .inquiry_contents
+                                                                .$errors[0]
+                                                                .$message
+                                                        }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -86,12 +180,28 @@
                                 </div>
                             </div>
                         </article>
-                        <div class="message text-center margin-top--48" v-if="message">
+                        <div
+                            class="message text-center margin-top--48"
+                            v-if="message"
+                        >
                             <p class="alert alert-danger">{{ message }}</p>
                         </div>
-                        <div class="text-center margin-bottom--48  margin-bottom-large--88">
-                            <router-link :to="{name: 'mypage-inquiry_show', params: { id: temps.id }}"  class="[ btn  btn--outline ] [ margin-right-medium--24  margin-right-large--24 ]">戻る</router-link>
-                            <input type="submit" class="[ btn  btn--accent ]" value="送信"/>
+                        <div
+                            class="text-center margin-bottom--48 margin-bottom-large--88"
+                        >
+                            <router-link
+                                :to="{
+                                    name: 'mypage-inquiry_show',
+                                    params: { id: temps.id },
+                                }"
+                                class="[ btn btn--outline ] [ margin-right-medium--24 margin-right-large--24 ]"
+                                >戻る</router-link
+                            >
+                            <input
+                                type="submit"
+                                class="[ btn btn--accent ]"
+                                value="送信"
+                            />
                         </div>
                     </form>
                 </div>
@@ -101,17 +211,16 @@
 </template>
 
 <script>
-import useVuelidate from '@vuelidate/core';
-import { required, maxLength, helpers } from '@vuelidate/validators';
-import axios from '../../../src/plugins/axios.js'
-import { mapState } from 'vuex';
-import SideMenu from '../../../components/SideMenuComponent.vue';
-import { mapActions } from 'vuex';
+import useVuelidate from "@vuelidate/core";
+import { required, maxLength, helpers } from "@vuelidate/validators";
+import axios from "../../../src/plugins/axios.js";
+import { mapState } from "vuex";
+import SideMenu from "../../../components/SideMenuComponent.vue";
+import { mapActions } from "vuex";
 
 export default {
     components: {
         SideMenu,
-
     },
     setup() {
         return { v$: useVuelidate() };
@@ -131,12 +240,12 @@ export default {
             item: {
                 inquiry_contents: {
                     required: helpers.withMessage(
-                        'お問い合わせを入力してください',
+                        "お問い合わせを入力してください",
                         required
                     ),
-                }
-            }
-        }
+                },
+            },
+        };
     },
     computed: {
         ...mapState({
@@ -146,59 +255,61 @@ export default {
             temps: function (state) {
                 return state.auth.temps;
             },
-        })
+        }),
     },
 
-    mounted: function(){
-        document.title = "お問い合わせ/返信 | MoneyBoard"
+    mounted: function () {
+        document.title = "お問い合わせ/返信 | MoneyBoard";
     },
-     created: function() {
+    created: function () {
         this.setTemps();
-        console.log(this.temps);
     },
 
     methods: {
-        ...mapActions('auth', ['updateTemps', 'resetTemps']),
-        setTemps: function(){
-            console.log('this.$route.params');
-            console.log(Object.keys(this.$route.params).length);
-            if(Object.keys(this.$route.params).length !== 0) {
+        ...mapActions("auth", ["updateTemps", "resetTemps"]),
+        setTemps: function () {
+            if (Object.keys(this.$route.params).length !== 0) {
                 this.updateTemps(this.$route.params);
             }
         },
-        async Reply(){
+        async Reply() {
             this.v$.$touch();
             if (this.v$.$error) return;
             let url = process.env.MIX_VUE_APP_API_URL + "com/inquiry/reply";
             this.topic_id = this.$route.params.id;
 
             try {
-
                 const response = await axios.post(url, {
                     topic_id: this.temps.id,
                     body: this.item.inquiry_contents,
-                    user_id: this.$store.state.auth.user.id,//this.company.company_id,
+                    user_id: this.$store.state.auth.user.id, //this.company.company_id,
                     attribute: 0,
                 });
-                // console.log(response);
-                if(response.data.status=="NG"){
-                    this.message = response.data.message
-                    setTimeout(() => {this.message = false;}, 2000);
+                if (response.data.status == "NG") {
+                    this.message = response.data.message;
+                    setTimeout(() => {
+                        this.message = false;
+                    }, 2000);
                 } else {
-                    this.$router.push({name: 'mypage-inquiry_show', params: { id: this.temps.id }})
+                    this.$router.push({
+                        name: "mypage-inquiry_show",
+                        params: { id: this.temps.id },
+                    });
                 }
-            } catch (e){
+            } catch (e) {
                 console.log(e);
-                this.message = e
-                setTimeout(() => {this.message = false;}, 2000);
+                this.message = e;
+                setTimeout(() => {
+                    this.message = false;
+                }, 2000);
             }
-        }
+        },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import 'resources/sass/abstracts/_variables.scss';
-@import 'resources/sass/vendors/_media.scss';
-@import 'resources/sass/pages/_mypage.scss';
+@import "resources/sass/abstracts/_variables.scss";
+@import "resources/sass/vendors/_media.scss";
+@import "resources/sass/pages/_mypage.scss";
 </style>

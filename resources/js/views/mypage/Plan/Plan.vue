@@ -37,13 +37,13 @@
                             </h3>
                             <div
                                 class="table-scrollable padding-right--8"
-                                style="padding-bottom: 48px;"
+                                style="padding-bottom: 48px"
                             >
                                 <table class="table width-70">
                                     <tbody>
                                         <tr>
                                             <th class="">プラン名</th>
-                                            <td style="padding-bottom: 46px;">
+                                            <td style="padding-bottom: 46px">
                                                 {{ plans.name }}
                                             </td>
                                         </tr>
@@ -52,22 +52,35 @@
                                             <td class="padding-bottom--16">
                                                 {{ plans.name }}
                                             </td>
-                                            <td class="padding-bottom--16 text-left nowrap">
+                                            <td
+                                                class="padding-bottom--16 text-left nowrap"
+                                            >
                                                 {{ plans.data_plan }}社
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class=""></th>
                                             <td class="nowrap">追加企業数</td>
-                                            <td class="padding-bottom--16 text-left nowrap">
-                                                {{ plans.additional_licenses }}社
+                                            <td
+                                                class="padding-bottom--16 text-left nowrap"
+                                            >
+                                                {{
+                                                    plans.additional_licenses
+                                                }}社
                                             </td>
                                         </tr>
                                         <tr>
                                             <th class=""></th>
                                             <td class="nowrap">計</td>
-                                            <td class="padding-bottom--16 text-left nowrap">
-                                                {{ Number(plans.data_plan) + Number(plans.additional_licenses) }}社
+                                            <td
+                                                class="padding-bottom--16 text-left nowrap"
+                                            >
+                                                {{
+                                                    Number(plans.data_plan) +
+                                                    Number(
+                                                        plans.additional_licenses
+                                                    )
+                                                }}社
                                             </td>
                                         </tr>
                                     </tbody>
@@ -209,15 +222,14 @@
                                 </h4>
                             </div>
 
-                            <div
-                                v-if="today > 10"
-                                style="margin-left: 58px;"
-                            >
-                                <div style="
-                                    text-align: left;
-                                    color: red;
-                                    font-size: 14px;
-                                ">
+                            <div v-if="today > 10" style="margin-left: 58px">
+                                <div
+                                    style="
+                                        text-align: left;
+                                        color: red;
+                                        font-size: 14px;
+                                    "
+                                >
                                     ※変更対象外（本日{{
                                         today
                                     }}日のため変更できません）<br />
@@ -371,9 +383,6 @@ export default {
                 const response = await axios.post(url);
                 this.items = response.data;
                 var company = this.$store.state.auth.company;
-                // console.log(this.$store.state.auth.company);
-                // console.log(this.$store.state.auth.license);
-                // console.log(this.items);
                 this.plans = {
                     company_code: this.$store.state.auth.company.company_code,
                     plan_id: this.$store.state.auth.contract.plan_id,
@@ -403,7 +412,6 @@ export default {
                         this.$store.state.auth.contract.add_license_count *
                         1100,
                 };
-                // console.log(this.plans);
                 this.$store.state.auth.plans = this.plans;
             } catch (e) {
                 console.log(e);
@@ -432,12 +440,8 @@ export default {
                         company_code: company_code,
                     },
                 });
-                // console.log(response);
                 this.nextPlans =
                     response.data.data.change_contract_requests ?? "NULL";
-                // console.log('---nextPlans---');
-                // console.log(this.nextPlans);
-                // this.$store.state.auth.plans = this.plans;
             } catch (e) {
                 console.log(e);
                 this.message = e;

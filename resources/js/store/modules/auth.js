@@ -181,10 +181,7 @@ const actions = {
 
         context.commit("setApiStatus", false);
         context.commit("setLoadingStatus", false);
-        // if (response.status === UNPROCESSABLE_ENTITY) {
         if (response.data.status === "NG") {
-            // context.commit('setSignupErrorMessages', response.data.message)
-            console.log(response.data);
             context.commit(
                 "setSignupErrorMessages",
                 "既に登録されているメールアドレスです"
@@ -204,7 +201,6 @@ const actions = {
         if (response.data.status === "OK") {
             context.commit("setApiStatus", true);
             context.commit("setLoadingStatus", false);
-            // context.commit('setUserEmail', response.data.email_address);
             localStorage.setItem(
                 "registerToken",
                 response.data.data.register_token
@@ -238,7 +234,6 @@ const actions = {
         context.commit("setApiStatus", false);
         context.commit("setLoadingStatus", false);
         if (response.data.status === "NG") {
-            console.log(response.data);
             context.commit(
                 "setVerifyErrorMessages",
                 "メールの認証に失敗しました。"
@@ -279,15 +274,12 @@ const actions = {
             stripe_token: "",
         };
 
-        // console.log(1,response);
-
         if (response.data.status === "OK") {
             localStorage.setItem("authToken", response.data.data.access_token);
             localStorage.setItem("expierAt", response.data.data.expier_at);
             const data = await axios.post(
                 process.env.MIX_VUE_APP_API_URL + "com/me"
             );
-            //console.log(2,data);
             context.commit("setApiStatus", true);
             context.commit("setLoadingStatus", false);
             context.commit("setUser", data.data.data.me);
@@ -296,16 +288,11 @@ const actions = {
             context.commit("setContract", data.data.data.contract);
             context.commit("setCard", card_initial);
 
-            // localStorage.setItem('authToken', response.data.token);
-            // console.log(3,context);
-            // console.log(4,localStorage);
-            // console.log(5,state);
             return false;
         }
 
         context.commit("setApiStatus", false);
         context.commit("setLoadingStatus", false);
-        // 何の処理か？
         // if (response.status === UNPROCESSABLE_ENTITY) {
         //     context.commit('setLoginErrorMessages', response.data)
         // } else {
@@ -354,7 +341,6 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + "com/reset/password/verify",
             data
         );
-        // console.log(response);
         if (response.status === OK) {
             context.commit("setApiStatus", true);
             context.commit("setLoadingStatus", false);
@@ -377,11 +363,6 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + "com/reset/password/do",
             data
         );
-
-        console.log("--data--");
-        console.log(data);
-        console.log("--response--");
-        console.log(response);
 
         if (response.data.status === "OK") {
             context.commit("setApiStatus", true);
@@ -438,7 +419,6 @@ const actions = {
         const data = await axios.post(
             process.env.MIX_VUE_APP_API_URL + "com/me"
         );
-        // console.log('data',data);
         context.commit("setApiStatus", true);
         context.commit("setLoadingStatus", false);
         context.commit("setUser", data.data.data.me);

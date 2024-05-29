@@ -278,16 +278,12 @@ export default {
                 "?page=" +
                 page;
             this.topic_id = this.$route.params.id;
-            // console.log('this.topic_id');
-            // console.log(this.topic_id);
             try {
                 const response = await axios.get(url, {
                     params: {
                         id: this.topic_id,
                     },
                 });
-                // console.log(response);
-                // console.log(page);
 
                 if (
                     typeof response.data.error_code === "undefined" ||

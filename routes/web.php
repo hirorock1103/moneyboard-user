@@ -23,9 +23,3 @@ if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === "money-board-user.
         return view('app');
     })->where('any', '.*')->middleware('basicauth');
 }
-
-// Route::group(['middleware' => 'basicauth'], function () {
-//     Route::get('/{any}', function () {
-//         return view('app');
-//     })->where('any', '.*')->middleware('basicauth');
-// });

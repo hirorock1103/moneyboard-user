@@ -596,9 +596,7 @@
                                         >
                                             担当者
                                         </th>
-                                        <th class="padding-left--12">
-                                            更新日
-                                        </th>
+                                        <th class="padding-left--12">更新日</th>
 
                                         <!-- 最新の取込決済期 -->
                                         <th class="padding-left--12">
@@ -650,15 +648,9 @@
                                         <th class="padding-left--12">計</th>
 
                                         <!-- 指標-->
-                                        <th class="padding-left--12">
-                                            重要
-                                        </th>
-                                        <th class="padding-left--12">
-                                            安全
-                                        </th>
-                                        <th class="padding-left--12">
-                                            収益性
-                                        </th>
+                                        <th class="padding-left--12">重要</th>
+                                        <th class="padding-left--12">安全</th>
+                                        <th class="padding-left--12">収益性</th>
                                         <th class="padding-left--12">
                                             資金効率性
                                         </th>
@@ -1221,7 +1213,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div v-else-if="blur_flg === 1">顧客情報管理画面はプレミアムプランのみの表示となります</div>
+                        <div v-else-if="blur_flg === 1">
+                            顧客情報管理画面はプレミアムプランのみの表示となります
+                        </div>
                         <div v-else>プレミアムプラン情報はありません</div>
                     </div>
                 </article>
@@ -1435,7 +1429,6 @@ export default {
                 const response = await axios.post(url, {
                     no: no,
                 });
-                // console.log(response);
             } catch (e) {
                 console.log(e);
                 this.message = e;
@@ -1483,7 +1476,6 @@ export default {
                     id: id,
                     val: val,
                 });
-                // console.log(response);
             } catch (e) {
                 console.log(e);
                 this.message = e;
@@ -1530,7 +1522,6 @@ export default {
                     client_name: this.search_params.client_name,
                     search_params: this.search_params,
                 });
-                // console.log(response);
 
                 if (response.status === 200) {
                     const unicodeList = Encoding.stringToCode(response.data);
@@ -1599,7 +1590,6 @@ export default {
                     client_name: this.search_params.client_name,
                     search_params: this.search_params,
                 });
-                // console.log(response);
                 this.items = response.data.data.data_list.data;
                 this.user_list = response.data.data.user_list;
 
@@ -1689,7 +1679,6 @@ export default {
                     client_name: this.search_params.client_name,
                     search_params: this.search_params,
                 });
-                // console.log(response);
                 this.items = response.data.data.data_list.data;
                 this.user_list = response.data.data.user_list;
 

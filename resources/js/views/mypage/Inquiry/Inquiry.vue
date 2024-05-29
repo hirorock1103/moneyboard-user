@@ -176,13 +176,19 @@
                                     </tr>
                                 </thead>
                                 <tbody v-if="items.length">
-                                    <tr 
+                                    <tr
                                         v-for="item in items"
                                         :key="item._id"
-                                        :class="{ 'fixed-record-background': item.type === 5 || item.type === 6 }"
+                                        :class="{
+                                            'fixed-record-background':
+                                                item.type === 5 ||
+                                                item.type === 6,
+                                        }"
                                     >
                                         <!-- <td>{{ item.id }}</td> -->
-                                        <td class="nowrap">{{ type[item.type] }}</td>
+                                        <td class="nowrap">
+                                            {{ type[item.type] }}
+                                        </td>
                                         <td v-if="item.body.length > 6">
                                             {{ item.body.substr(0, 6) }}...
                                         </td>
@@ -192,7 +198,9 @@
                                         </td>
                                         <td v-else>運営</td>
                                         <td>{{ item.delivery_time }}</td>
-                                        <td class="nowrap">{{ status[item.status] }}</td>
+                                        <td class="nowrap">
+                                            {{ status[item.status] }}
+                                        </td>
                                         <td>
                                             <router-link
                                                 :to="{
@@ -322,8 +330,6 @@ export default {
                 "com/inquiry/index" +
                 "?page=" +
                 page;
-            // console.log('this.$store.state.auth.user.id');
-            // console.log(this.$store.state.auth.user.id);
             try {
                 const response = await axios.get(url, {
                     params: {
@@ -332,15 +338,12 @@ export default {
                     },
                 });
 
-                // console.log('response');
-                // console.log(response);
-
                 if (
                     typeof response.data.error_code === "undefined" ||
                     response.data.error_code === "null" ||
                     response.data.error_code === ""
                 ) {
-                    let items = response.data.data.data_list.data; 
+                    let items = response.data.data.data_list.data;
                     items = this.moveSpecialTypesToFront(items);
                     this.items = items;
 
@@ -383,12 +386,16 @@ export default {
             this.loadingStatus = false;
         },
         moveSpecialTypesToFront(items) {
-            const fixedItems = items.filter(item => item.type === 5 || item.type === 6); // 固定のタイプ(5,6)を取得する
-            const otherItems = items.filter(item => item.type !== 5 && item.type !== 6); // それ以外のタイプを取得する
+            const fixedItems = items.filter(
+                (item) => item.type === 5 || item.type === 6
+            ); // 固定のタイプ(5,6)を取得する
+            const otherItems = items.filter(
+                (item) => item.type !== 5 && item.type !== 6
+            ); // それ以外のタイプを取得する
             // 固定のタイプを前にして全アイテムを結合
             let combinedArray = fixedItems.concat(otherItems);
             return combinedArray;
-        }, 
+        },
     },
 };
 </script>

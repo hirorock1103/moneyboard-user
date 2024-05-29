@@ -612,7 +612,6 @@ export default {
                         company_code: company_code,
                     },
                 });
-                //                console.log(response);
                 this.nextPlans =
                     response.data.data.change_contract_requests ?? "NULL";
 
