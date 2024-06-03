@@ -424,7 +424,8 @@ export default {
                                 type: 'signup',
                                 title: 'メール送信完了',
                                 message: [
-                                    'メールが送信されました。メールのURLから登録手続きをお願いします。',
+                                    'メールが送信されました',
+                                    'メールのURLから登録手続きをお願いします',
                                 ],
                                 redirectPage: 'home'
                             }
