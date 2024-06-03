@@ -989,6 +989,7 @@
                                             style="
                                                 left: 320px;
                                                 background: #eee;
+                                                text-align: center;
                                                 min-width: 80px;
                                                 max-width: 80px;
                                             "
