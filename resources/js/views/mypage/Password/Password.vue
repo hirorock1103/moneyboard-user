@@ -11,7 +11,7 @@
                         </h2>
                     </div>
                     <div class="[ padding--24  padding-large--48 ]  bg-white">
-                        パスワードの再設定をして下さい
+                        パスワードの再設定をしてください
                     </div>
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
