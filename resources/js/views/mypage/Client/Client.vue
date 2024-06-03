@@ -53,7 +53,7 @@
                         <div class="[ padding--24  padding-large--48 ]  bg-white">
                             <div v-if="search_params.sort_key"> 【並べ替え】　{{ search_params.sort_key === 'client_name' ? '企業名' : '担当者名'   }}: {{ search_params.sort_asc ? '昇順' : '降順'}}</div>
                             <div v-else> 【並べ替え】　指定なし</div>
-                            <span style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。※担当者が「未設定」の会社は、利用停止中です。再開するには、変更ボタンを押し、担当者を選択してください。</small></span>
+                            <span style="color:red;"><small>※各項目をクリックすると昇順・降順でソート可能です。<br>※担当者が「未設定」の会社は、利用停止中です。再開するには、変更ボタンを押し、担当者を選択してください。</small></span>
 
                             <div v-if="pagenation.total > pagenation.per_page">
                                 <p style="font-size:14px"><span style="font-size:20px">{{pagenation.current_page}}</span>ページ目／{{pagenation.last_page}}ページ（合計：{{pagenation.total}}件）</p>
