@@ -979,7 +979,7 @@
                                                 background: #eee;
                                             "
                                         >
-                                            {{ truncate(item.client_name, 7) }}
+                                            {{ truncate(item.client_name, 10) }}
                                         </td>
                                         <td
                                             class="stickyeee"
