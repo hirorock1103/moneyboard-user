@@ -10,7 +10,7 @@
                         :color="'#2FBCED'"
                         :height="90"
                         :width="100" />
-                    <p class="text-center  margin-bottom--48">新しく設定するパスワードを入力して下さい</p>
+                    <p class="text-center  margin-bottom--48">新しく設定するパスワードを入力してください</p>
                     <article class="padding--16  bg-gray  [ [ margin-left-medium--48  margin-right-medium--48  ]   [ margin-bottom--48  margin-bottom-large--80 ] ]">
                         <div class="padding--24  bg-white">
                             <h4>
@@ -190,7 +190,8 @@ export default {
                                 type: 'passreq-failed',
                                 title: 'パスワード設定失敗',
                                 message: [
-                                    'パスワードの設定が失敗しました。申し訳ございませんが最初からやり直してください。',
+                                    'パスワードの設定が失敗しました',
+                                    '申し訳ございませんが最初からやり直してください',
                                 ],
                                 redirectPage: 'login'
                             }
