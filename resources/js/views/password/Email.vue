@@ -141,7 +141,8 @@ export default {
                                 type: 'passreq',
                                 title: 'メール送信完了',
                                 message: [
-                                    'メールが送信されました。メールのURLからパスワードの再設定をお願いします。',
+                                    'メールが送信されました',
+                                    'メールのURLからパスワードの再設定をお願いします',
                                 ],
                                 redirectPage: 'home'
                             }
