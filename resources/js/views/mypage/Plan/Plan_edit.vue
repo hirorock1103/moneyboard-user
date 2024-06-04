@@ -76,11 +76,9 @@
                             <div
                                 class="[ padding--24 padding-large--48 ] bg-white"
                             >
-                                <h4 style="color: fuchsia">変更</h4>
                                 <p
                                     style="
                                         margin-bottom: 0;
-                                        font-weight: bold;
                                         color: red;
                                         font-size: 14px;
                                     "
@@ -90,7 +88,6 @@
                                 <p
                                     style="
                                         margin-bottom: 0;
-                                        font-weight: bold;
                                         color: red;
                                         font-size: 14px;
                                     "
