@@ -1109,11 +1109,11 @@
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <td>
-                                            <!-- {{ 代表者債権債務(rep_receivable_debt) }} -->
+                                            <!-- {{ 代表者の債務(in_house_4_1_assets_debt_defference) }} -->
                                             {{
-                                                item.rep_receivable_debt != null
+                                                item.in_house_4_1_assets_debt_defference != null
                                                     ? Number(
-                                                          item.rep_receivable_debt
+                                                          item.in_house_4_1_assets_debt_defference
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
@@ -1130,11 +1130,11 @@
                                             }}千円
                                         </td>
                                         <td>
-                                            <!-- {{ 計(total_inheritance) }} -->
+                                            <!-- {{ 計(代表者の債務＋純資産の額) }} -->
                                             {{
-                                                item.total_inheritance != null
+                                                item.in_house_4_1_assets_debt_defference + item.in_house_3_1_net_assets != null
                                                     ? Number(
-                                                          item.total_inheritance
+                                                        item.in_house_4_1_assets_debt_defference + item.in_house_3_1_net_assets
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
