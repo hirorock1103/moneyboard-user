@@ -1314,7 +1314,7 @@ export default {
 
                 { key: "directors_fee", name: "役員報酬" }, //summary_reports
                 { key: "rep_debt", name: "代表者借入残" }, //summary_reports
-                { key: "rep_receivable_debt", name: "代表者債権債務" }, //summary_reports
+                { key: "in_house_4_1_assets_debt_defference", name: "代表者の債務" }, //client_graph_data
                 { key: "in_house_3_1_net_assets", name: "純資産の額" }, //client_graph_data
                 { key: "total_inheritance", name: "計" }, //summary_reports
 
