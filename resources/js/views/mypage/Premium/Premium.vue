@@ -1109,11 +1109,11 @@
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <td>
-                                            <!-- {{ 代表者債権債務(rep_receivable_debt) }} -->
+                                            <!-- {{ 代表者の債務(in_house_4_1_assets_debt_defference) }} -->
                                             {{
-                                                item.rep_receivable_debt != null
+                                                item.in_house_4_1_assets_debt_defference != null
                                                     ? Number(
-                                                          item.rep_receivable_debt
+                                                          item.in_house_4_1_assets_debt_defference
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
@@ -1134,7 +1134,7 @@
                                             {{
                                                 item.total_inheritance != null
                                                     ? Number(
-                                                          item.total_inheritance
+                                                        item.total_inheritance
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
@@ -1314,7 +1314,7 @@ export default {
 
                 { key: "directors_fee", name: "役員報酬" }, //summary_reports
                 { key: "rep_debt", name: "代表者借入残" }, //summary_reports
-                { key: "rep_receivable_debt", name: "代表者債権債務" }, //summary_reports
+                { key: "in_house_4_1_assets_debt_defference", name: "代表者の債務" }, //client_graph_data
                 { key: "in_house_3_1_net_assets", name: "純資産の額" }, //client_graph_data
                 { key: "total_inheritance", name: "計" }, //summary_reports
 
