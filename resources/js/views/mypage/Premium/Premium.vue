@@ -1130,11 +1130,11 @@
                                             }}千円
                                         </td>
                                         <td>
-                                            <!-- {{ 計(代表者の債務＋純資産の額) }} -->
+                                            <!-- {{ 計(total_inheritance) }} -->
                                             {{
-                                                item.in_house_4_1_assets_debt_defference + item.in_house_3_1_net_assets != null
+                                                item.total_inheritance != null
                                                     ? Number(
-                                                        item.in_house_4_1_assets_debt_defference + item.in_house_3_1_net_assets
+                                                        item.total_inheritance
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
