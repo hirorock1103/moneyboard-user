@@ -13,13 +13,6 @@ use App\Http\Middleware\BasicAuthMiddleware;
 |
 */
 
-
-if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === "money-board-user.amb-dev.com") {
-    Route::get('/{any}', function () {
-        return view('app');
-    })->where('any', '.*');
-} else {
-    Route::get('/{any}', function () {
-        return view('app');
-    })->where('any', '.*')->middleware('basicauth');
-}
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*')->middleware('basicauth');
