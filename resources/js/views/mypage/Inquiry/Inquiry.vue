@@ -31,35 +31,6 @@
                             >新規お問い合わせ</router-link
                         >
                     </div>
-                    <!--
-                    <form v-on:submit.prevent="clientSearch()">
-                        <article class="padding--16 bg-gray  [ [ margin-left-medium--48  margin-left-large--24 ] [ margin-right-medium--48  margin-right-large--24 ] ]">
-                            <div class="padding--16 bg-white">
-                                <div class="[ padding--16 ]  bg-white  display-flex">
-                                    <h4 class="" style="width:10%;">
-                                        <span class="[ icon  solid ] fa-search  padding-right--12  text-accent"></span>
-                                        検索
-                                    </h4>
-                                </div>
-                                <table>
-                                    <tr>
-                                        <th style="padding: 0 5px 0 20px;"><label>企業名</label></th>
-                                        <td><input v-model="client_name" class="form-input" placeholder="会社名を入力"></td>
-                                        <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
-                                        <td>
-                                            <select v-model="user_name" class="form-input">
-                                                <option v-for="user in user_list">
-                                                    {{user.user_name}}
-                                                </option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <button style="margin:20px 0 0 0" type="submit" class="[ btn  btn--small btn--accent ]">検索</button>
-                            </div>
-                        </article>
-                    </form>
-                    -->
                     <div class="text-center" v-if="message">
                         <p class="text-danger">{{ message }}</p>
                     </div>

@@ -19,9 +19,6 @@
                         プレミアムプラン（顧客情報管理）
                     </h2>
                 </div>
-                <!-- take_dev -->
-                <!-- <p v-if="show" id="open_close" @click="toggle">ー</p>
-                <p v-else id="open_close" @click="toggle">＋</p> -->
 
                 <form
                     v-show="show"
@@ -80,10 +77,6 @@
                                             placeholder=""
                                         />
                                     </td>
-                                    <!--
-                                        <th style="padding: 0 5px 0 20px;"><label>担当者名</label></th>
-                                        <td><input v-model="search_params.user_name" class="form-input" placeholder=""></td>
-                                        -->
                                     <th style="padding: 0 5px 0 20px">
                                         <label>担当者名</label>
                                     </th>
@@ -132,17 +125,6 @@
                                 </tr>
                             </table>
 
-                            <!-- <div
-                                class="[ padding--16 ] bg-white display-flex"
-                                style="padding-top: 0px !important"
-                            >
-                                <h4 class="">
-                                    <span
-                                        class="[ icon solid ] fa-sort padding-right--12 text-accent"
-                                    ></span>
-                                    並び順
-                                </h4>
-                            </div> -->
                             <table>
                                 <tr style="color: darkblue; font-size: 16px">
                                     <th style="padding: 0 5px 0 20px">
@@ -292,32 +274,12 @@
                         </div>
                     </article>
                 </form>
-                <!-- <h4 class="padding-left--48 margin-bottom--24 margin-top--48">
-                    <span
-                        class="[ icon solid ] fa-building padding-right--12 text-accent"
-                    ></span>
-                    ライセンスを割り当てている企業情報一覧
-                </h4> -->
-                <!-- <div v-if="blur_flg === 2" class="margin-bottom--24">
-                    <div class="padding-left--48" v-if="search_params.sort_key">
-                        【並べ替え】　{{ sort_index[search_params.sort_key] }}:
-                        {{ search_params.sort_asc ? "昇順" : "降順" }}
-                    </div>
-                    <div class="padding-left--48" v-else>
-                        【並べ替え】　指定なし
-                    </div>
-                    <span class="padding-left--48" style="color: red"
-                        ><small
-                            >※各項目をクリックすると昇順・降順でソート可能です。</small
-                        ></span
-                    >
-                </div> -->
+
                 <article class="">
                     <div
                         class="[ margin-left-medium--48 margin-left-large--48 ] [ margin-right-medium--48 margin-right-large--48 ] bg-white"
                     >
                         <div v-if="pagenation.total > pagenation.per_page">
-                            <!-- <p style="font-size: 14px;"> -->
                             <span style="font-size: 20px">{{
                                 pagenation.current_page
                             }}</span
@@ -326,7 +288,6 @@
                                     pagenation.last_page
                                 }}ページ（合計：{{ pagenation.total }}件）</span
                             >
-                            <!-- </p> -->
 
                             <button
                                 v-if="pagenation.current_page !== 1"
@@ -414,7 +375,6 @@
                                 '': blur_flg == 2,
                             }"
                         >
-                            <!-- take_dev -->
                             <p
                                 v-if="sticky"
                                 id="toggle_sticky"
@@ -451,7 +411,6 @@
                                                 max-width: 480px;
                                             "
                                         >
-                                            <!-- take_dev -->
                                             <span
                                                 class="clearOrder"
                                                 v-on:click="clearOrder(1)"
@@ -1111,7 +1070,8 @@
                                         <td>
                                             <!-- {{ 代表者の債務(in_house_4_1_assets_debt_defference) }} -->
                                             {{
-                                                item.in_house_4_1_assets_debt_defference != null
+                                                item.in_house_4_1_assets_debt_defference !=
+                                                null
                                                     ? Number(
                                                           item.in_house_4_1_assets_debt_defference
                                                       ).toLocaleString()
@@ -1134,7 +1094,7 @@
                                             {{
                                                 item.total_inheritance != null
                                                     ? Number(
-                                                        item.total_inheritance
+                                                          item.total_inheritance
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
@@ -1314,7 +1274,10 @@ export default {
 
                 { key: "directors_fee", name: "役員報酬" }, //summary_reports
                 { key: "rep_debt", name: "代表者借入残" }, //summary_reports
-                { key: "in_house_4_1_assets_debt_defference", name: "代表者の債務" }, //client_graph_data
+                {
+                    key: "in_house_4_1_assets_debt_defference",
+                    name: "代表者の債務",
+                }, //client_graph_data
                 { key: "in_house_3_1_net_assets", name: "純資産の額" }, //client_graph_data
                 { key: "total_inheritance", name: "計" }, //summary_reports
 
@@ -1411,7 +1374,6 @@ export default {
         },
         //並び①並び②列の各カラムの設定をクリアする
         clearOrder(no) {
-            //take_dev
             if (
                 window.confirm(
                     "並びの設定が全てクリアされます。本当にクリアしますか？"
@@ -1447,7 +1409,6 @@ export default {
         },
         //並び①並び②の有効・無効の切替
         changeOrder(no) {
-            //take_dev
             // if (no === 1) {
             //     this.search_params.is_no1_on = !this.search_params.is_no1_on;
             // } else {

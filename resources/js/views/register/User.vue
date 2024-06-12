@@ -232,7 +232,6 @@
                     <article
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-right-medium--48 ] [ margin-bottom--48 margin-bottom-large--80 ] ]"
                     >
-                        <!-- <article class="padding--16  bg-gray  [ margin-left-medium--48  margin-right-medium--48 ]"> -->
                         <div
                             class="padding--24 bg-white"
                             role="radiogroup"
