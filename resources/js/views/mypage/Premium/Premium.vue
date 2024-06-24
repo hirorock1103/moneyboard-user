@@ -1199,9 +1199,10 @@
                             </p>
                             <p>
                                 プレミアムプランに変更をご希望の方は
-                                <router-link to="/mypage/company/plan_edit"
+                                <router-link to="/mypage/company/plan"
                                     >こちら</router-link
                                 >
+                                <br />毎月1日〜10日まで変更可能<br />※11日以降は変更できません
                             </p>
                         </div>
                         <div class="text-center padding--12 bg-white">
