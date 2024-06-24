@@ -1201,7 +1201,7 @@
                                 プレミアムプランに変更をご希望の方は
                                 <router-link
                                     style="text-decoration: underline"
-                                    to="/mypage/company/plan"
+                                    to="/mypage/inquiry"
                                     >こちら</router-link
                                 >
                                 <br />※毎月1日〜10日まで変更可能
