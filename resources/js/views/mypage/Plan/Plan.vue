@@ -264,7 +264,13 @@
                         data-v-73f06a0c=""
                         style="font-size: 16px"
                     >
-                        ※解約を希望される方は、「お問い合わせ」より解約希望日をお知らせください
+                        ※解約を希望される方は、「
+                        <router-link
+                            style="text-decoration: underline"
+                            to="/mypage/company/plan"
+                            >お問い合わせ</router-link
+                        >
+                        」より解約希望日をお知らせください
                     </p>
 
                     <article class="plan_list">
