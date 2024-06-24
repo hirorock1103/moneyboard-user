@@ -267,7 +267,7 @@
                         ※解約を希望される方は、「
                         <router-link
                             style="text-decoration: underline"
-                            to="/mypage/company/plan"
+                            to="/mypage/inquiry"
                             >お問い合わせ</router-link
                         >
                         」より解約希望日をお知らせください
