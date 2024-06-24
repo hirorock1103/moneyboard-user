@@ -259,13 +259,13 @@
                         </div>
                     </article>
 
-                    <article
+                    <p
                         class="[ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] [ margin-bottom--24 margin-bottom-large--24 ] ]"
                         data-v-73f06a0c=""
-                        style=""
+                        style="font-size: 16px"
                     >
                         ※解約を希望される方は、「お問い合わせ」より解約希望日をお知らせください
-                    </article>
+                    </p>
 
                     <article class="plan_list">
                         <div class="[ padding--24 padding-large--48 ] bg-white">
