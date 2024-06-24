@@ -27,6 +27,7 @@
                     </div>
                     <article
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] [ margin-bottom--24 margin-bottom-large--24 ] ]"
+                        style="margin-bottom: 0 !important"
                     >
                         <div class="[ padding--24 padding-large--48 ] bg-white">
                             <h3>
@@ -257,6 +258,15 @@
                             </div>
                         </div>
                     </article>
+
+                    <article
+                        class="[ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] [ margin-bottom--24 margin-bottom-large--24 ] ]"
+                        data-v-73f06a0c=""
+                        style=""
+                    >
+                        ※解約を希望される方は、「お問い合わせ」より解約希望日をお知らせください
+                    </article>
+
                     <article class="plan_list">
                         <div class="[ padding--24 padding-large--48 ] bg-white">
                             <table class="table table--bordered">
