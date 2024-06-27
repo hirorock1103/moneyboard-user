@@ -15,4 +15,5 @@ use App\Http\Middleware\BasicAuthMiddleware;
 
 Route::get('/{any}', function () {
     return view('app');
-})->where('any', '.*')->middleware('basicauth');
+// })->where('any', '.*')->middleware('basicauth');
+})->where('any', '.*');
