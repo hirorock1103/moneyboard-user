@@ -567,7 +567,7 @@
                                             余剰金目安
                                         </th>
                                         <th class="padding-left--12">
-                                            資金効率性<br />指標
+                                            現金預金
                                         </th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
@@ -1011,8 +1011,8 @@
                                             }}千円
                                         </td>
                                         <td>
-                                            <!-- 資金効率性指標 -->
-                                            {{ item.fund_efficiency_index }}
+                                            <!-- 現金預金 -->
+                                            {{ item.cash_depositcash_deposit }}
                                         </td>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
@@ -1266,7 +1266,7 @@ export default {
                 { key: "updated_at", name: "更新日時" }, //company_clients
                 { key: "term_year", name: "最新の取込決済期" }, //client_graph_data
                 { key: "surplus_guideline", name: "余剰金目安" }, //client_graph_data
-                { key: "fund_efficiency_index", name: "資金効率性指標" }, //client_graph_data
+                { key: "cash_depositcash_deposit", name: "現金預金" }, //summary_reports
 
                 { key: "other_debt", name: "金融機関借入残" }, //summary_reports
                 { key: "annual_sales_ratio", name: "年商比" }, //summary_reports
