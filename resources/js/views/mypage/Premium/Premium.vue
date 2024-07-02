@@ -1012,7 +1012,13 @@
                                         </td>
                                         <td>
                                             <!-- 現金預金 -->
-                                            {{ item.cash_depositcash_deposit }}
+                                            {{ 
+                                                item.cash_depositcash_deposit != null
+                                                    ? Number(
+                                                        item.cash_depositcash_deposit
+                                                    ).toLocaleString()
+                                                    : 0
+                                            }}千円
                                         </td>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
