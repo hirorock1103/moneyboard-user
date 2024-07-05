@@ -121,14 +121,14 @@
 
                                 <p>
                                     ご請求額は、毎月20日までに
-                                    <a class="[ btn btn--link ]" href="inquiry"
+                                    <a class="btn--link" href="inquiry"
                                         >「お問い合わせ一覧」</a
                                     >
                                     の利用料のご請求についてでお知らせします
                                 </p>
                                 <p>
                                     現在の月額料金は、<a
-                                        class="[ btn btn--link ]"
+                                        class="btn--link"
                                         href="company/plan"
                                         >ご利用プラン</a
                                     >で確認できます
@@ -152,14 +152,14 @@
                                 </p>
                                 <p>
                                     ご請求額は、毎月20日までに
-                                    <a class="[ btn btn--link ]" href="inquiry"
+                                    <a class="btn--link" href="inquiry"
                                         >「お問い合わせ一覧」</a
                                     >
                                     の利用料のご請求についてでお知らせします
                                 </p>
                                 <p>
                                     現在の月額料金は、<a
-                                        class="[ btn btn--link ]"
+                                        class="btn--link"
                                         href="company/plan"
                                         >ご利用プラン</a
                                     >で確認できます
@@ -184,21 +184,21 @@
 
                                 <p>
                                     ご請求額は、毎月20日までに
-                                    <a class="[ btn btn--link ]" href="inquiry"
+                                    <a class="btn--link" href="inquiry"
                                         >「お問い合わせ一覧」</a
                                     >
                                     の利用料のご請求についてでお知らせします
                                 </p>
                                 <p>
                                     現在の月額料金は、<a
-                                        class="[ btn btn--link ]"
+                                        class="btn--link"
                                         href="company/plan"
                                         >ご利用プラン</a
                                     >で確認できます
                                 </p>
                                 <p>
                                     ※利用開始の直後は表示が口座振替となっていても、口座振替の手続きに時間を要するため振込みとなります
-                                    <a class="[ btn btn--link ]" href="inquiry"
+                                    <a class="btn--link" href="inquiry"
                                         >「お問い合わせ一覧」</a
                                     >の利用料のご請求についてをご確認ください
                                 </p>
