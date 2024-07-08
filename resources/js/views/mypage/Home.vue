@@ -86,7 +86,7 @@
                                 >
                                     <source
                                         media="(min-width:992px)"
-                                        srcset="images/mypage/qr_code.png"
+                                        srcset="images/mypage/qr_code.jpg"
                                     />
                                     <img
                                         src="images/mypage/qr_code_sm.jpg"
