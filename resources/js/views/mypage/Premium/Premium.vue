@@ -458,7 +458,7 @@
 
                                         <!-- 指標-->
                                         <th colspan="4">
-                                            指標<br />(<span>5段階評価：平均値3</span>)
+                                            指標<br />(<span>優秀5、改善1</span>)
                                         </th>
 
                                         <!-- 業種 -->
@@ -492,7 +492,7 @@
                                                     search_params.is_no1_on,
                                                 sticky: sticky,
                                             }"
-                                            class="padding-left--12 stickyeee order_column order_no1"
+                                            class="stickyeee order_column order_no1"
                                         >
                                             並び①
                                         </th>
@@ -503,12 +503,12 @@
                                                     search_params.is_no2_on,
                                                 sticky: sticky,
                                             }"
-                                            class="padding-left--12 stickyeee order_column order_no2"
+                                            class="stickyeee order_column order_no2"
                                         >
                                             並び②
                                         </th>
                                         <th
-                                            class="padding-left--12 stickyeee"
+                                            class="stickyeee"
                                             :class="{
                                                 sticky: sticky,
                                             }"
@@ -523,7 +523,7 @@
                                             企業名
                                         </th>
                                         <th
-                                            class="padding-left--12 padding-right--12 stickyeee"
+                                            class="stickyeee"
                                             :class="{
                                                 sticky: sticky,
                                             }"
@@ -540,7 +540,7 @@
                                             決算月
                                         </th>
                                         <th
-                                            class="padding-left--12 padding-right--12 stickyeee"
+                                            class="stickyeee"
                                             :class="{
                                                 sticky: sticky,
                                             }"
@@ -555,93 +555,55 @@
                                         >
                                             担当者
                                         </th>
-                                        <th class="padding-left--12">更新日</th>
+                                        <th class="">更新日</th>
 
                                         <!-- 最新の取込決済期 -->
-                                        <th class="padding-left--12">
-                                            最新の<br />取込決済期
-                                        </th>
+                                        <th class="">最新の<br />取込決済期</th>
 
                                         <!-- 資金繰り -->
-                                        <th class="padding-left--12">
-                                            余剰金目安
-                                        </th>
-                                        <th class="padding-left--12">
-                                            現金預金
-                                        </th>
+                                        <th class="">余剰金目安</th>
+                                        <th class="">現金預金</th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
-                                        <th class="padding-left--12">
-                                            金融機関<br />借入残
-                                        </th>
-                                        <th class="padding-left--12">
+                                        <th class="">金融機関<br />借入残</th>
+                                        <th class="">
                                             年商比<br />(<span>融資上限50%</span>)
                                         </th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
-                                        <th class="padding-left--12">
-                                            代表者年齢
-                                        </th>
-                                        <th class="padding-left--12">
-                                            従業員<br />平均年齢
-                                        </th>
-                                        <th class="padding-left--12">
-                                            従業員数
-                                        </th>
+                                        <th class="">代表者年齢</th>
+                                        <th class="">従業員<br />平均年齢</th>
+                                        <th class="">従業員数</th>
 
                                         <!-- 代表者(就業不能) -->
-                                        <th class="padding-left--12">
-                                            役員報酬
-                                        </th>
-                                        <th class="padding-left--12">
-                                            代表者<br />借入残
-                                        </th>
+                                        <th class="">役員報酬</th>
+                                        <th class="">代表者<br />借入残</th>
 
                                         <!-- 相続対策(一時払い終身) -->
-                                        <th class="padding-left--12">
-                                            代表者の債務
+                                        <th class="">代表者の債務</th>
+                                        <th class="">
+                                            純資産の額<br />(<span>100％所有時</span>)
                                         </th>
-                                        <th class="padding-left--12">
-                                            純資産の額
-                                        </th>
-                                        <th class="padding-left--12">計</th>
+                                        <th class="">計</th>
 
                                         <!-- 指標-->
-                                        <th class="padding-left--12">重要</th>
-                                        <th class="padding-left--12">安全</th>
-                                        <th class="padding-left--12">収益性</th>
-                                        <th class="padding-left--12">
-                                            資金効率性
-                                        </th>
+                                        <th class="">重要</th>
+                                        <th class="">安全</th>
+                                        <th class="">収益性</th>
+                                        <th class="">資金<br />効率性</th>
 
-                                        <th
-                                            class="padding-left--12 padding-right--12"
-                                        >
-                                            業種
-                                        </th>
-                                        <th
-                                            class="padding-left--12 padding-right--12"
-                                        >
-                                            法人番号
-                                        </th>
-                                        <th class="padding-left--12">年商</th>
-                                        <th class="padding-left--12">資本金</th>
+                                        <th class=" ">業種</th>
+                                        <th class=" ">法人番号</th>
+                                        <th class="">年商</th>
+                                        <th class="">資本金</th>
 
-                                        <th class="padding-left--12">今回</th>
-                                        <th class="padding-left--12">前回</th>
-                                        <th class="padding-left--12">前々回</th>
+                                        <th class="">今回</th>
+                                        <th class="">前回</th>
+                                        <th class="">前々回</th>
 
-                                        <th
-                                            class="padding-left--12 padding-right--12"
-                                        >
-                                            面談場所
-                                        </th>
+                                        <th class=" ">面談場所</th>
 
-                                        <th
-                                            class="padding-left--12 padding-right--12"
-                                        >
-                                            コメント
-                                        </th>
+                                        <th class=" ">コメント</th>
                                     </tr>
                                 </thead>
                                 <tbody
@@ -1012,11 +974,12 @@
                                         </td>
                                         <td>
                                             <!-- 現金預金 -->
-                                            {{ 
-                                                item.cash_depositcash_deposit != null
+                                            {{
+                                                item.cash_depositcash_deposit !=
+                                                null
                                                     ? Number(
-                                                        item.cash_depositcash_deposit
-                                                    ).toLocaleString()
+                                                          item.cash_depositcash_deposit
+                                                      ).toLocaleString()
                                                     : 0
                                             }}千円
                                         </td>
