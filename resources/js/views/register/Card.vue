@@ -135,7 +135,7 @@
 
                             <div
                                 id="card-error"
-                                class="form-text text-danger padding-left-large--24"
+                                class="form-text text-danger padding-bottom-large--24"
                             ></div>
 
                             <p style="text-align: center">
