@@ -52,7 +52,7 @@
                                             <th>利用料金</th>
                                             <td>
                                                 詳しくは<a
-                                                    href="/"
+                                                    href="/#lp_price"
                                                     class="btn--link"
                                                     >こちら</a
                                                 >の「利用料金」をご確認ください
@@ -63,7 +63,7 @@
                                             <td>
                                                 口座振替・銀行振込・クレジットカードとなります<br />
                                                 詳しくは<a
-                                                    href="/"
+                                                    href="/#lp_payment"
                                                     class="btn--link"
                                                     >こちら</a
                                                 >の「決済方法」をご確認ください

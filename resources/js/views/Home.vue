@@ -537,6 +537,7 @@
             </div>
         </section>
         <section
+            id="lp_price"
             class="hp-section [ [ padding-left-large--24 padding-left-xlarge--0 ] [ padding-right-large--24 padding-right-xlarge--0 ] ]"
         >
             <div class="container">
@@ -657,6 +658,7 @@
             </div>
         </section>
         <section
+            id="lp_payment"
             class="hp-section bg-gray [ [ padding-left-large--24 padding-left-xlarge--0 ] [ padding-right-large--24 padding-right-xlarge--0 ] ]"
         >
             <div class="container">
