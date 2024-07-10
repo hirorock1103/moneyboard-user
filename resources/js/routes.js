@@ -68,436 +68,456 @@ import Inquiry_new from "./views/mypage/Inquiry/Inquiry_new.vue";
 import Inquiry_show from "./views/mypage/Inquiry/Inquiry_show.vue";
 import Inquiry_add from "./views/mypage/Inquiry/Inquiry_add.vue";
 import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
-// 
+//
 import Terms from "./views/terms/Home.vue";
 import Privacy from "./views/privacy/Home.vue";
+import Tokutei from "./views/tokutei/Home.vue";
 // エラー画面
 import SystemError from "./views/errors/System.vue";
 import NotFound from "./views/errors/NotFound.vue";
 import Unauthorized from "./views/errors/Unauthorized.vue";
 
-
 const guest = (to, from, next) => {
-  if (!localStorage.getItem("authToken")) {
-    return next();
-  } else {
-    return next("/");
-  }
+    if (!localStorage.getItem("authToken")) {
+        return next();
+    } else {
+        return next("/");
+    }
 };
 
 const auth = async (to, from, next) => {
-  if (localStorage.getItem("authToken")) {
-    if (localStorage.getItem('expierAt')) {
-        let now = new Date();
-        let expier_at = new Date(localStorage.getItem('expierAt'));
-        if (now < expier_at) { // 有効期限内であればリフレッシュ
-            await axios.post(process.env.MIX_VUE_APP_API_URL + "com/refresh",[], {'headers':{'Authorization':'Bearer ' + localStorage.getItem('authToken')}})
-            .then((response) => {
-                if (response.data.status === 'OK') {
-                    localStorage.setItem('authToken', response.data.data.access_token);
-                    localStorage.setItem('expierAt', response.data.data.expier_at);
-                }
-            }).catch((error) => {
-                localStorage.removeItem('authToken');
-                localStorage.removeItem('expierAt');
+    if (localStorage.getItem("authToken")) {
+        if (localStorage.getItem("expierAt")) {
+            let now = new Date();
+            let expier_at = new Date(localStorage.getItem("expierAt"));
+            if (now < expier_at) {
+                // 有効期限内であればリフレッシュ
+                await axios
+                    .post(process.env.MIX_VUE_APP_API_URL + "com/refresh", [], {
+                        headers: {
+                            Authorization:
+                                "Bearer " + localStorage.getItem("authToken"),
+                        },
+                    })
+                    .then((response) => {
+                        if (response.data.status === "OK") {
+                            localStorage.setItem(
+                                "authToken",
+                                response.data.data.access_token
+                            );
+                            localStorage.setItem(
+                                "expierAt",
+                                response.data.data.expier_at
+                            );
+                        }
+                    })
+                    .catch((error) => {
+                        localStorage.removeItem("authToken");
+                        localStorage.removeItem("expierAt");
+                        return next("/401");
+                    });
+            } else {
                 return next("/401");
-            });
-        } else {
-          return next("/401");
+            }
         }
+        return next();
+    } else {
+        return next("/401");
     }
-    return next();
-  } else {
-    return next("/401");
-  }
 };
 
 const routes = [
-
     // ログアウト画面
     {
-      path: "/logoff",
-      component: Logoff,
-      name: "logoff",
-//      beforeEnter: auth,
+        path: "/logoff",
+        component: Logoff,
+        name: "logoff",
+        //      beforeEnter: auth,
     },
 
-  // トップページ
-  {
-    path: "/",
-    component: Home,
-    name: "home",
-  },
-  // 新規登録ページ
-  {
-    path: "/signup",
-    component: Signup,
-    name: "signup",
-  },
-  // 新規登録ページ（メール送信完了）
-  {
-    path: "/signup/completion",
-    component: Completion,
-    name: "signup-completion",
-    props: true,
-  },
-  // 仮登録
-  {
-    path: "/verify",
-    component: Verify,
-    name: "verify",
-    props: true,
-  },
-  // 新規登録画面
-  {
-    path: "/register/user",
-    component: RegisterUser,
-    name: "register-user",
-    // beforeEnter: auth,
-  },
-  // 新規登録内容確認画面
-  {
-    path: "/register/user-confirm",
-    component: RegisterUserConfirm,
-    name: "register-user-confirm",
-    // beforeEnter: auth,
-  },
-  // クレジットカード登録画面
-  {
-    path: "/register/card",
-    component: RegisterCard,
-    name: "register-card",
-    // beforeEnter: auth,
-  },
+    // トップページ
+    {
+        path: "/",
+        component: Home,
+        name: "home",
+    },
+    // 新規登録ページ
+    {
+        path: "/signup",
+        component: Signup,
+        name: "signup",
+    },
+    // 新規登録ページ（メール送信完了）
+    {
+        path: "/signup/completion",
+        component: Completion,
+        name: "signup-completion",
+        props: true,
+    },
+    // 仮登録
+    {
+        path: "/verify",
+        component: Verify,
+        name: "verify",
+        props: true,
+    },
+    // 新規登録画面
+    {
+        path: "/register/user",
+        component: RegisterUser,
+        name: "register-user",
+        // beforeEnter: auth,
+    },
+    // 新規登録内容確認画面
+    {
+        path: "/register/user-confirm",
+        component: RegisterUserConfirm,
+        name: "register-user-confirm",
+        // beforeEnter: auth,
+    },
+    // クレジットカード登録画面
+    {
+        path: "/register/card",
+        component: RegisterCard,
+        name: "register-card",
+        // beforeEnter: auth,
+    },
 
-  // カード登録内容確認画面
-  {
-    path: "/register/card-confirm",
-    component: RegisterCardConfirm,
-    name: "register-card-confirm",
-    // beforeEnter: auth,
-  },
+    // カード登録内容確認画面
+    {
+        path: "/register/card-confirm",
+        component: RegisterCardConfirm,
+        name: "register-card-confirm",
+        // beforeEnter: auth,
+    },
 
-  // 完了画面
-  {
-    path: "/register/completion",
-    component: Completion,
-    name: "register-completion",
-    // beforeEnter: auth,
-    props: true,
-  },
-  // ログイン画面
-  {
-    path: "/login",
-    component: Login,
-    name: "login",
-    // beforeEnter: guest,
-  },
-  // パスワードの再発行のメール画面
-  {
-    path: "/password/email",
-    component: PasswordEmail,
-    name: "password-email",
-    // beforeEnter: guest,
-  },
-  // パスワード再発行画面
-  {
-    path: "/password/request/completion",
-    component: Completion,
-    name: "request-completion",
-    // beforeEnter: guest,
-    props: true,
-  },
-  // パスワード設定画面
-  {
-    path: "/password/reset",
-    component: PasswordReset,
-    name: "password-reset",
-    // beforeEnter: auth,
-  },
-  // マイページTOP
-  {
-    path: "/mypage",
-    component: MypageHome,
-    name: "mypage-home",
-    beforeEnter: auth,
-  },
-  // 登録情報の確認・変更
-  {
-    path: "/mypage/company",
-    component: Company,
-    name: "mypage-company",
-    beforeEnter: auth,
-  },
-  // 登録情報の編集
-  {
-    path: "/mypage/company_edit/",
-    component: Company_edit,
-    name: "mypage-company_edit",
-    props: true,
-    beforeEnter: auth,
-  },
-  // 登録情報の確認
-  {
-    path: "/mypage/company_confirm",
-    component: Company_confirm,
-    name: "mypage-company_confirm",
-    props: true,
-    beforeEnter: auth,
-  },
+    // 完了画面
+    {
+        path: "/register/completion",
+        component: Completion,
+        name: "register-completion",
+        // beforeEnter: auth,
+        props: true,
+    },
+    // ログイン画面
+    {
+        path: "/login",
+        component: Login,
+        name: "login",
+        // beforeEnter: guest,
+    },
+    // パスワードの再発行のメール画面
+    {
+        path: "/password/email",
+        component: PasswordEmail,
+        name: "password-email",
+        // beforeEnter: guest,
+    },
+    // パスワード再発行画面
+    {
+        path: "/password/request/completion",
+        component: Completion,
+        name: "request-completion",
+        // beforeEnter: guest,
+        props: true,
+    },
+    // パスワード設定画面
+    {
+        path: "/password/reset",
+        component: PasswordReset,
+        name: "password-reset",
+        // beforeEnter: auth,
+    },
+    // マイページTOP
+    {
+        path: "/mypage",
+        component: MypageHome,
+        name: "mypage-home",
+        beforeEnter: auth,
+    },
+    // 登録情報の確認・変更
+    {
+        path: "/mypage/company",
+        component: Company,
+        name: "mypage-company",
+        beforeEnter: auth,
+    },
+    // 登録情報の編集
+    {
+        path: "/mypage/company_edit/",
+        component: Company_edit,
+        name: "mypage-company_edit",
+        props: true,
+        beforeEnter: auth,
+    },
+    // 登録情報の確認
+    {
+        path: "/mypage/company_confirm",
+        component: Company_confirm,
+        name: "mypage-company_confirm",
+        props: true,
+        beforeEnter: auth,
+    },
     // カード情報の確認・変更
-  {
-    path: "/mypage/card",
-    component: Card,
-    name: "mypage-card",
-    beforeEnter: auth,
-  },
-  // カード情報の編集
-  {
-    path: "/mypage/card_edit/",
-    component: Card_edit,
-    name: "mypage-card_edit",
-    props: true,
-    beforeEnter: auth,
-  },
-  // カード情報の確認
-  {
-    path: "/mypage/card_confirm",
-    component: Card_confirm,
-    name: "mypage-card_confirm",
-    props: true,
-    beforeEnter: auth,
-  },
-  // 担当者情報の登録・変更・削除
-  {
-    path: "/mypage/company/reps-list",
-    component: Reps,
-    name: "mypage-reps",
-    beforeEnter: auth,
-  },
-  // 担当者情報の作成
-  {
-    path: "/mypage/company/reps-list_create",
-    component: Reps_create,
-    name: "mypage-reps_create",
-    beforeEnter: auth,
-    props: true
-  },
-  // 担当者情報の編集
-  {
-    path: "/mypage/company/reps-list_edit",
-    component: Reps_edit,
-    name: "mypage-reps_edit",
-    props: true,
-    beforeEnter: auth,
-  },
-  // 担当者情報の確認画面
-  {
-    path: "/mypage/company/reps-list_confirm",
-    component: Reps_confirm,
-    name: "mypage-reps_confirm",
-    beforeEnter: auth,
-    props: true
-  },
-  // 担当者情報の確認画面
-  {
-    path: "/mypage/company/reps-list_edit_confirm",
-    component: Reps_edit_confirm,
-    name: "mypage-reps_edit_confirm",
-    beforeEnter: auth,
-    props: true
-  },
-  // 登録企業の担当者変更・削除
-  {
-    path: "/mypage/company/client/rep",
-    component: Client,
-    name: "mypage-client",
-    beforeEnter: auth,
-  },
-  // 登録企業の担当者 編集
-  {
-    path: "/mypage/company/client/rep_edit",
-    component: Client_edit,
-    name: "mypage-client_edit",
-    beforeEnter: auth,
-  },
-  // 登録企業の担当者 確認画面
-  {
-    path: "/mypage/company/client/rep_confirm",
-    component: Client_confirm,
-    name: "mypage-client_confirm",
-    beforeEnter: auth,
-  },
-  // プラン変更 / 使用会社数の増減
-  {
-    path: "/mypage/company/plan",
-    component: Plan,
-    name: "mypage-plan",
-    beforeEnter: auth,
-  },
-  // プラン変更 / 使用会社数の増減 編集
-  {
-    path: "/mypage/company/plan_edit",
-    component: Plan_edit,
-    name: "mypage-plan_edit",
-    beforeEnter: auth,
-  },
-  // プレミアムプラン
-  {
-    path: "/mypage/company/premium/client-list",
-    component: Premium,
-    name: "mypage-premium",
-    beforeEnter: auth,
-  },
-  // メールアドレスの変更
-  {
-    path: "/mypage/company/email",
-    component: Email,
-    name: "mypage-email",
-    beforeEnter: auth,
-  },
-  // メールアドレスの変更　確認
-  {
-    path: "/mypage/company/email_confirm",
-    component: Email_confirm,
-    name: "mypage-email_confirm",
-    beforeEnter: auth,
-  },
-  // メールアドレスの変更　確認
-  {
-    path: "/mypage/company/email_verify",
-    component: Email_verify,
-    name: "mypage-email_verify",
-  },
+    {
+        path: "/mypage/card",
+        component: Card,
+        name: "mypage-card",
+        beforeEnter: auth,
+    },
+    // カード情報の編集
+    {
+        path: "/mypage/card_edit/",
+        component: Card_edit,
+        name: "mypage-card_edit",
+        props: true,
+        beforeEnter: auth,
+    },
+    // カード情報の確認
+    {
+        path: "/mypage/card_confirm",
+        component: Card_confirm,
+        name: "mypage-card_confirm",
+        props: true,
+        beforeEnter: auth,
+    },
+    // 担当者情報の登録・変更・削除
+    {
+        path: "/mypage/company/reps-list",
+        component: Reps,
+        name: "mypage-reps",
+        beforeEnter: auth,
+    },
+    // 担当者情報の作成
+    {
+        path: "/mypage/company/reps-list_create",
+        component: Reps_create,
+        name: "mypage-reps_create",
+        beforeEnter: auth,
+        props: true,
+    },
+    // 担当者情報の編集
+    {
+        path: "/mypage/company/reps-list_edit",
+        component: Reps_edit,
+        name: "mypage-reps_edit",
+        props: true,
+        beforeEnter: auth,
+    },
+    // 担当者情報の確認画面
+    {
+        path: "/mypage/company/reps-list_confirm",
+        component: Reps_confirm,
+        name: "mypage-reps_confirm",
+        beforeEnter: auth,
+        props: true,
+    },
+    // 担当者情報の確認画面
+    {
+        path: "/mypage/company/reps-list_edit_confirm",
+        component: Reps_edit_confirm,
+        name: "mypage-reps_edit_confirm",
+        beforeEnter: auth,
+        props: true,
+    },
+    // 登録企業の担当者変更・削除
+    {
+        path: "/mypage/company/client/rep",
+        component: Client,
+        name: "mypage-client",
+        beforeEnter: auth,
+    },
+    // 登録企業の担当者 編集
+    {
+        path: "/mypage/company/client/rep_edit",
+        component: Client_edit,
+        name: "mypage-client_edit",
+        beforeEnter: auth,
+    },
+    // 登録企業の担当者 確認画面
+    {
+        path: "/mypage/company/client/rep_confirm",
+        component: Client_confirm,
+        name: "mypage-client_confirm",
+        beforeEnter: auth,
+    },
+    // プラン変更 / 使用会社数の増減
+    {
+        path: "/mypage/company/plan",
+        component: Plan,
+        name: "mypage-plan",
+        beforeEnter: auth,
+    },
+    // プラン変更 / 使用会社数の増減 編集
+    {
+        path: "/mypage/company/plan_edit",
+        component: Plan_edit,
+        name: "mypage-plan_edit",
+        beforeEnter: auth,
+    },
+    // プレミアムプラン
+    {
+        path: "/mypage/company/premium/client-list",
+        component: Premium,
+        name: "mypage-premium",
+        beforeEnter: auth,
+    },
+    // メールアドレスの変更
+    {
+        path: "/mypage/company/email",
+        component: Email,
+        name: "mypage-email",
+        beforeEnter: auth,
+    },
+    // メールアドレスの変更　確認
+    {
+        path: "/mypage/company/email_confirm",
+        component: Email_confirm,
+        name: "mypage-email_confirm",
+        beforeEnter: auth,
+    },
+    // メールアドレスの変更　確認
+    {
+        path: "/mypage/company/email_verify",
+        component: Email_verify,
+        name: "mypage-email_verify",
+    },
     // メールアドレスの変更　完了
-  {
-    path: "/mypage/company/Email_complete",
-    component: Email_complete,
-    name: "Email_complete",
-    // beforeEnter: guest,
-  },
-  // パスワードの変更
-  {
-    path: "/mypage/company/password",
-    component: Password,
-    name: "mypage-password",
-    beforeEnter: auth,
-  },
-  // パスワードの変更 確認
-  {
-    path: "/mypage/company/password_confirm",
-    component: Password_confirm,
-    name: "mypage-password_confirm",
-    beforeEnter: auth,
-  },
-  // アプリパスワードの変更
-  {
-    path: "/mypage/company/app_password",
-    component: App_Password,
-    name: "mypage-apppassword",
-    beforeEnter: auth,
-  },
-  // アプリパスワードの変更 確認
-  {
-    path: "/mypage/company/app_password_confirm",
-    component: App_Password_confirm,
-    name: "mypage-apppassword_confirm",
-    beforeEnter: auth,
-  },
-  // ご意見・ご要望
-  {
-    path: "/mypage/opinion",
-    component: Opinion,
-    name: "mypage-opinion",
-    beforeEnter: auth,
-  },
-  {
-    path: "/mypage/opinion_done",
-    component: Opinion_done,
-    name: "mypage-opinion_done",
-    beforeEnter: auth,
-  },
-  // お問い合わせ 一覧
-  {
-    path: "/mypage/inquiry",
-    component: Inquiry,
-    name: "mypage-inquiry",
-    beforeEnter: auth,
-  },
+    {
+        path: "/mypage/company/Email_complete",
+        component: Email_complete,
+        name: "Email_complete",
+        // beforeEnter: guest,
+    },
+    // パスワードの変更
+    {
+        path: "/mypage/company/password",
+        component: Password,
+        name: "mypage-password",
+        beforeEnter: auth,
+    },
+    // パスワードの変更 確認
+    {
+        path: "/mypage/company/password_confirm",
+        component: Password_confirm,
+        name: "mypage-password_confirm",
+        beforeEnter: auth,
+    },
+    // アプリパスワードの変更
+    {
+        path: "/mypage/company/app_password",
+        component: App_Password,
+        name: "mypage-apppassword",
+        beforeEnter: auth,
+    },
+    // アプリパスワードの変更 確認
+    {
+        path: "/mypage/company/app_password_confirm",
+        component: App_Password_confirm,
+        name: "mypage-apppassword_confirm",
+        beforeEnter: auth,
+    },
+    // ご意見・ご要望
+    {
+        path: "/mypage/opinion",
+        component: Opinion,
+        name: "mypage-opinion",
+        beforeEnter: auth,
+    },
+    {
+        path: "/mypage/opinion_done",
+        component: Opinion_done,
+        name: "mypage-opinion_done",
+        beforeEnter: auth,
+    },
+    // お問い合わせ 一覧
+    {
+        path: "/mypage/inquiry",
+        component: Inquiry,
+        name: "mypage-inquiry",
+        beforeEnter: auth,
+    },
     // 新規お問い合わせ
-  {
-    path: "/mypage/inquiry_new",
-    component: Inquiry_new,
-    name: "mypage-inquiry_new",
-    beforeEnter: auth,
-  },
-  // お問い合わせ 詳細
-  {
-    path: "/mypage/inquiry_show/:id",
-    component: Inquiry_show,
-    name: "mypage-inquiry_show",
-    beforeEnter: auth,
-  },
+    {
+        path: "/mypage/inquiry_new",
+        component: Inquiry_new,
+        name: "mypage-inquiry_new",
+        beforeEnter: auth,
+    },
+    // お問い合わせ 詳細
+    {
+        path: "/mypage/inquiry_show/:id",
+        component: Inquiry_show,
+        name: "mypage-inquiry_show",
+        beforeEnter: auth,
+    },
     // お問い合わせ 返信
-  {
-    path: "/mypage/inquiry_add",
-    component: Inquiry_add,
-    name: "mypage-inquiry_add",
-    beforeEnter: auth,
-  },  
-  {
-    path: "/mypage/inquiry_done",
-    component: Inquiry_done,
-    name: "mypage-inquiry_done",
-    beforeEnter: auth,
-  },
-  // ログアウト
-  {
-    path: "/logout",
-    component: MypageHome,
-    name: "logout",
-    beforeEnter: auth,
-  },
-  // プライバシーポリシー
-  {
-    path: "/privacy",
-    component: Privacy,
-    name: "privacy",
-    // beforeEnter: auth,
-  },
-  // 利用規約
-  {
-    path: "/terms",
-    component: Terms,
-    name: "terms",
-    // beforeEnter: auth,
-  },
-  // システムエラーページ
-  {
-    path: "/500",
-    component: SystemError,
-  },
-  // 接続権限なし、セッション切れなど
-  {
-    path: "/401",
-    component: Unauthorized,
-  },
-  {
-    path: "/:catchAll(.*)",
-    component: NotFound,
-  },
+    {
+        path: "/mypage/inquiry_add",
+        component: Inquiry_add,
+        name: "mypage-inquiry_add",
+        beforeEnter: auth,
+    },
+    {
+        path: "/mypage/inquiry_done",
+        component: Inquiry_done,
+        name: "mypage-inquiry_done",
+        beforeEnter: auth,
+    },
+    // ログアウト
+    {
+        path: "/logout",
+        component: MypageHome,
+        name: "logout",
+        beforeEnter: auth,
+    },
+    // プライバシーポリシー
+    {
+        path: "/privacy",
+        component: Privacy,
+        name: "privacy",
+        // beforeEnter: auth,
+    },
+    // 利用規約
+    {
+        path: "/terms",
+        component: Terms,
+        name: "terms",
+        // beforeEnter: auth,
+    },
+    // 特定商取引
+    {
+        path: "/tokutei",
+        component: Tokutei,
+        name: "tokutei",
+        // beforeEnter: auth,
+    },
+    // システムエラーページ
+    {
+        path: "/500",
+        component: SystemError,
+    },
+    // 接続権限なし、セッション切れなど
+    {
+        path: "/401",
+        component: Unauthorized,
+    },
+    {
+        path: "/:catchAll(.*)",
+        component: NotFound,
+    },
 ];
 
 const router = createRouter({
-  routes,
-  history: createWebHistory(),
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { top: 0 };
-    }
-  },
+    routes,
+    history: createWebHistory(),
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { top: 0 };
+        }
+    },
 });
 
 export default router;

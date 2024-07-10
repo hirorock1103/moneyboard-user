@@ -26,27 +26,39 @@
                         >
                             <router-link to="/terms">利用規約</router-link>
                         </li>
+
+                        <li
+                            class="[ display-block display-inline-block-medium ]"
+                        >
+                            <router-link to="/tokutei"
+                                >特定商取引法に基づく表記</router-link
+                            >
+                        </li>
                     </ul>
                 </nav>
             </div>
 
             <div class="footer__copyright">
+                <span
+                    >[ 運営会社
+                    ]　株式会社マネーボード　　　　〒574-0042　大阪府大東市大野１丁目５番９号</span
+                ><br /><br />
+                <span
+                    >[ 開発会社
+                    ]　株式会社ウェルステックラボ　〒574-0042　大阪府大東市大野１丁目５番９号</span
+                >
+            </div>
+
+            <!-- <div class="footer__copyright">
                 <span class="display-block padding-bottom--16"
                     >[ 運営会社 ]</span
                 >
-                <!-- <a
-                    href="https://wealthlabo.tech/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="font-weight-bold"
-                    >株式会社マネーボード</a
-                > -->
                 <p>株式会社マネーボード</p>
                 <address class="margin-top--16">
                     〒574-0042<br />
                     大阪府大東市大野１丁目５番９号<br />
                 </address>
-            </div>
+            </div> -->
         </div>
     </footer>
 </template>
