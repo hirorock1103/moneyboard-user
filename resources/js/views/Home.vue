@@ -62,10 +62,10 @@
                 <picture>
                     <source
                         media="(min-width:992px)"
-                        srcset="images/home_page/jumbotron/app_image.png"
+                        srcset="images/home_page/app_image.png"
                     />
                     <img
-                        src="images/home_page/jumbotron/app_image_sm.png"
+                        src="images/home_page/app_image.png"
                         alt="Money Boardのアプリのサンプル画像"
                         style="width: 100%"
                         class="image margin-left-large--16 hp-jumbotron__content-imgbox flex-container-center"
@@ -186,7 +186,7 @@
                 <div class="row">
                     <div class="col-large-6">
                         <img
-                            src="images/home_page/svg/app_left_side.png"
+                            src="images/home_page/app_left_side.png"
                             alt="昇順の列の画像"
                             style="width: 100%"
                         />
@@ -324,20 +324,13 @@
                 <h4>使い方ガイド</h4>
                 <hr class="margin-bottom--48" />
                 <div
-                    class="[ hp-container hp-container--center ] margin-bottom--48 margin-bottom-large--80"
+                    class="[ hp-container ] margin-bottom--48 margin-bottom-large--80"
                 >
-                    <img
-                        src="images/home_page/movie_dummy.png"
-                        width="100%"
-                        class="image"
-                    />
-                    <!-- TODO: 動画変更 -->
-                    <!--<div class="hp-iframe">
-                        <iframe title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                    </div>-->
+                    <video
+                        src="videos/movie.mp4"
+                        controls
+                        style="width: 100%"
+                    ></video>
                 </div>
                 <h4>サンプル画面</h4>
                 <hr class="margin-bottom--48" />
@@ -349,21 +342,21 @@
                         <tr>
                             <th>
                                 <img
-                                    src="images/home_page/sample_screen/sample_1.png"
+                                    src="images/home_page/sample_1.png"
                                     alt="Money Boardのアプリのサンプルイメージ"
                                     class="image"
                                 />
                             </th>
                             <th>
                                 <img
-                                    src="images/home_page/sample_screen/sample_2.png"
+                                    src="images/home_page/sample_2.png"
                                     alt="Money Boardのアプリのサンプルイメージ"
                                     class="image"
                                 />
                             </th>
                             <th>
                                 <img
-                                    src="images/home_page/sample_screen/sample_3.png"
+                                    src="images/home_page/sample_3.png"
                                     alt="Money Boardのアプリのサンプルイメージ"
                                     class="image"
                                 />
