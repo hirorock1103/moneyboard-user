@@ -253,7 +253,7 @@
                                 <label
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
                                 >
-                                    支払方法
+                                    支払方法<span class="color:red">クレジットカードは現在準備中</span>
                                 </label>
                                 <span class="form-column">
                                     <input
@@ -290,7 +290,7 @@
                                     >
                                 </span>
 
-                                <span class="form-column">
+                                <!-- <span class="form-column">
                                     <input
                                         type="radio"
                                         role="radio"
@@ -306,7 +306,7 @@
                                         for="payment-type-1"
                                         >クレジットカード</label
                                     >
-                                </span>
+                                </span> -->
                             </div>
                         </div>
                     </article>
