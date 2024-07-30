@@ -241,7 +241,7 @@
                                 <span
                                     class="[ icon solid ] fa-question-circle padding-right--12 text-accent"
                                 ></span>
-                                支払方法
+                                支払方法<span style="color: red;font-size: 14px;font-weight: normal;">　※クレジットカードは現在準備中</span>
                             </h4>
                             <hr />
 
@@ -253,7 +253,7 @@
                                 <label
                                     class="[ form-column form-column--200 ] [ form-label form-label--inline-medium ]"
                                 >
-                                    支払方法<span class="color:red">クレジットカードは現在準備中</span>
+                                    支払方法<span class="color:red"></span>
                                 </label>
                                 <span class="form-column">
                                     <input

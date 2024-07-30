@@ -662,7 +662,7 @@
                 </p>
 
                 <p class="text-center margin-bottom-large--48">
-                    クレジットカード<span class="color:red">（現在準備中）</span><br />
+                    クレジットカード<span style="color:red">（現在準備中）</span><br />
                     （月初に先月分をお支払い）
                 </p>
                 <div
