@@ -54,7 +54,8 @@ export default {
                 //     current: false,
                 // },
                 {
-                    id: 5,
+                    id: 3,
+                    // id: 5,
                     text: "完了",
                     icon: "fa-check-circle",
                     done: false,
