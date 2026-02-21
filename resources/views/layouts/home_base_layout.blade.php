@@ -107,7 +107,7 @@
                                     <img src="{{ asset('/images/home_base/premium.png') }}" class="menu-item-image">
                                     <div class="menu-item-titles">
                                         <div class="menu-item-title">
-                                            プレミアムプラン
+                                            スタンダードプラン
                                         </div>
                                         <div class="menu-item-subtitle">
                                             (顧客情報管理)

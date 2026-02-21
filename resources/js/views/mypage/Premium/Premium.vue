@@ -16,7 +16,7 @@
                     class="[ display-flex justify-content-between-large align-items-baseline [ flex-column flex-row-large ] ] [ padding-left--16 padding-right-16 padding-medium--0 ] [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] margin-bottom--24 ] border-bottom"
                 >
                     <h2 class="[ margin-bottom--4 margin-bottom-large--16 ]">
-                        プレミアムプラン（顧客情報管理）
+                        スタンダードプラン（顧客情報管理）
                     </h2>
                 </div>
 
@@ -1137,16 +1137,16 @@
                                         <td></td>
                                         <td></td>
                                         <td>
-                                            プレミアムプラン情報はありません
+                                            スタンダードプラン情報はありません
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div v-else-if="blur_flg === 1">
-                            顧客情報管理画面はプレミアムプランのみの表示となります
+                            顧客情報管理画面はスタンダードプランのみの表示となります
                         </div>
-                        <div v-else>プレミアムプラン情報はありません</div>
+                        <div v-else>スタンダードプラン情報はありません</div>
                     </div>
                 </article>
                 <div id="overlay" v-show="showContent">
@@ -1164,10 +1164,10 @@
                             class="text-center [ padding--24 padding-large--48 ] bg-white"
                         >
                             <p>
-                                内容を表示するにはプレミアムプランへの変更が必要です
+                                内容を表示するにはスタンダードプランへの変更が必要です
                             </p>
                             <p>
-                                プレミアムプランに変更をご希望の方は
+                                スタンダードプランに変更をご希望の方は
                                 <router-link
                                     style="text-decoration: underline"
                                     to="/mypage/company/plan"
@@ -1333,7 +1333,7 @@ export default {
         }
     },
     mounted: function () {
-        document.title = "プレミアムプラン | MoneyBoard";
+        document.title = "スタンダードプラン | MoneyBoard";
     },
     methods: {
         //検索項目の表示・非表示切替
@@ -1548,7 +1548,7 @@ export default {
                         this.items[i]["close_possibility_previous"] = 0;
                         this.items[i]["close_possibility_befpre"] = 0;
                         this.items[i]["comment"] =
-                            "ダミーデータです。プレミアムプランに申し込んでください";
+                            "ダミーデータです。スタンダードプランに申し込んでください";
                     }
                 }
 
@@ -1637,7 +1637,7 @@ export default {
                         this.items[i]["close_possibility_previous"] = 0;
                         this.items[i]["close_possibility_befpre"] = 0;
                         this.items[i]["comment"] =
-                            "ダミーデータです。プレミアムプランに申し込んでください";
+                            "ダミーデータです。スタンダードプランに申し込んでください";
                     }
                 }
 

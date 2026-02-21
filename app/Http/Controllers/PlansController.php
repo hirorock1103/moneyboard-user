@@ -20,8 +20,8 @@ class PlansController extends Controller
         if ($planId == 0) {
             return 'ライトプラン';
         }
-        
-        return 'プレミアムプラン';
+
+        return 'スタンダードプラン';
     }
 
     /**

@@ -371,7 +371,7 @@
                                     <label
                                         class="form-radio-label"
                                         for="plan-id-1"
-                                        >プレミアムプラン</label
+                                        >スタンダードプラン</label
                                     >
                                 </span>
                             </div>
@@ -722,7 +722,7 @@
                                 <tr>
                                     <th></th>
                                     <th>ライトプラン</th>
-                                    <th>プレミアムプラン</th>
+                                    <th>スタンダードプラン</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1225,7 +1225,7 @@ export default {
                 ? ((this.planAmount = 55000),
                   (this.planName = "ライトプラン"))
                 : ((this.planAmount = 132000),
-                  (this.planName = "プレミアムプラン"));
+                  (this.planName = "スタンダードプラン"));
         },
         updateMotivation() {
             if (

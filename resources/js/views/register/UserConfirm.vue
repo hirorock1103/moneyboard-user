@@ -492,7 +492,7 @@ export default {
                 ? ((this.planAmount = 55000),
                   (this.planName = "ライトプラン"))
                 : ((this.planAmount = 132000),
-                  (this.planName = "プレミアムプラン"));
+                  (this.planName = "スタンダードプラン"));
         },
         setPayment() {
             switch (this.getUser.payment_type) {

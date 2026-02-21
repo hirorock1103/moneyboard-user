@@ -430,7 +430,7 @@
                                 >
                                     顧客の財務データを一括管理ができる<br
                                         class="display-none-large"
-                                    /><small>※プレミアムプランのみ</small>
+                                    /><small>※スタンダードプランのみ</small>
                                 </li>
                             </ol>
                         </div>
@@ -550,7 +550,7 @@
                         style="width: 100%"
                     >
                         <div class="hp-table--blue__header">
-                            <h2>プレミアムプラン</h2>
+                            <h2>スタンダードプラン</h2>
                         </div>
                         <div
                             class="hp-table--blue__row hp-table--blue__row--big"

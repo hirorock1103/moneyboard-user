@@ -182,7 +182,7 @@
                                                     v-else
                                                     class="padding-bottom--16"
                                                 >
-                                                    プレミアムプラン(使用できる企業数：{{
+                                                    スタンダードプラン(使用できる企業数：{{
                                                         nextPlans.license_count
                                                     }}社)
                                                 </td>
@@ -280,7 +280,7 @@
                                     <tr>
                                         <th></th>
                                         <th>ライトプラン</th>
-                                        <th>プレミアムプラン</th>
+                                        <th>スタンダードプラン</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -404,7 +404,7 @@ export default {
                     plan_id: this.$store.state.auth.contract.plan_id,
                     name:
                         this.$store.state.auth.contract.plan_id === 2
-                            ? "プレミアムプラン"
+                            ? "スタンダードプラン"
                             : "ライトプラン",
                     data_plan:
                         this.$store.state.auth.contract.plan_id === 2

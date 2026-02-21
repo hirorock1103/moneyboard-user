@@ -108,7 +108,7 @@
                                 class="menu__icon [ icon solid fa-medal ]"
                             ></span>
                             <span
-                                >プレミアムプラン<br />
+                                >スタンダードプラン<br />
                                 <small>(顧客情報管理)</small>
                             </span>
                         </router-link>

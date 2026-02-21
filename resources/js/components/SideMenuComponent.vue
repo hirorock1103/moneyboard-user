@@ -134,7 +134,7 @@ export default {
                         id: 6,
                         url: '/mypage/company/premium/client-list',
                         icon: 'fa-medal',
-                        title: 'プレミアムプラン',
+                        title: 'スタンダードプラン',
                         subtitle: '(顧客情報管理)',
                         active: false
                     },
