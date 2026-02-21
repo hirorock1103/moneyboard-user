@@ -1527,7 +1527,7 @@ export default {
                 this.items = response.data.data.data_list.data;
                 this.user_list = response.data.data.user_list;
 
-                //スタンダードの場合
+                //ライトの場合
                 if (this.$store.state.auth.contract.plan_id === 1) {
                     for (var i = 0; i < this.items.length; i++) {
                         this.items[i]["client_name"] = "ダミー会社";
@@ -1616,7 +1616,7 @@ export default {
                 this.items = response.data.data.data_list.data;
                 this.user_list = response.data.data.user_list;
 
-                //スタンダードの場合
+                //ライトの場合
                 if (this.$store.state.auth.contract.plan_id === 1) {
                     for (var i = 0; i < this.items.length; i++) {
                         this.items[i]["client_name"] = "ダミー会社";

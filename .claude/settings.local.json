@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(node --version:*)",
+      "Bash(npm --version:*)",
+      "Bash(php:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker compose:*)",
+      "Bash(NODE_OPTIONS=--openssl-legacy-provider npm run dev:*)"
+    ]
+  }
+}

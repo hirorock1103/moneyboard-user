@@ -550,57 +550,6 @@
                         style="width: 100%"
                     >
                         <div class="hp-table--blue__header">
-                            <h2>スタンダードプラン</h2>
-                        </div>
-                        <div
-                            class="hp-table--blue__row hp-table--blue__row--big"
-                        >
-                            <h3 class="text-center">
-                                システム利用料金<br />
-                                <span class="td-title__price td-title--big"
-                                    >55,000</span
-                                >
-                                <span class="td-title__price">円/月</span>
-                            </h3>
-                        </div>
-                        <p class="hp-table--blue__row">
-                            <label class="label">登録企業数</label>
-                            <span class="span">60社</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">企業数の追加料金</label>
-                            <span class="span">1,100円/月</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">自社データ比較</label>
-                            <span class="span">〇</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">財務指標評価</label>
-                            <span class="span">〇</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">他社データ比較</label>
-                            <span class="span">〇</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">端末顧客管理ツール</label>
-                            <span class="span">〇</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">WEB顧客管理ツール</label>
-                            <span class="span">ー</span>
-                        </p>
-                        <p class="hp-table--blue__row">
-                            <label class="label">必要なもの</label>
-                            <span class="span">iPad・ネット環境</span>
-                        </p>
-                    </article>
-                    <article
-                        class="hp-table--blue [ flex-container-center flex-column ]"
-                        style="width: 100%"
-                    >
-                        <div class="hp-table--blue__header">
                             <h2>プレミアムプラン</h2>
                         </div>
                         <div
@@ -645,6 +594,57 @@
                         <p class="hp-table--blue__row">
                             <label class="label">必要なもの</label>
                             <span class="span">iPad・PC・ネット環境</span>
+                        </p>
+                    </article>
+                    <article
+                        class="hp-table--blue [ flex-container-center flex-column ]"
+                        style="width: 100%"
+                    >
+                        <div class="hp-table--blue__header">
+                            <h2>ライトプラン</h2>
+                        </div>
+                        <div
+                            class="hp-table--blue__row hp-table--blue__row--big"
+                        >
+                            <h3 class="text-center">
+                                システム利用料金<br />
+                                <span class="td-title__price td-title--big"
+                                    >55,000</span
+                                >
+                                <span class="td-title__price">円/月</span>
+                            </h3>
+                        </div>
+                        <p class="hp-table--blue__row">
+                            <label class="label">登録企業数</label>
+                            <span class="span">60社</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">企業数の追加料金</label>
+                            <span class="span">1,100円/月</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">自社データ比較</label>
+                            <span class="span">〇</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">財務指標評価</label>
+                            <span class="span">〇</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">他社データ比較</label>
+                            <span class="span">〇</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">端末顧客管理ツール</label>
+                            <span class="span">〇</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">WEB顧客管理ツール</label>
+                            <span class="span">ー</span>
+                        </p>
+                        <p class="hp-table--blue__row">
+                            <label class="label">必要なもの</label>
+                            <span class="span">iPad・ネット環境</span>
                         </p>
                     </article>
                 </div>

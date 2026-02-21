@@ -352,7 +352,7 @@
                                     <label
                                         class="form-radio-label"
                                         for="plan-id-0"
-                                        >スタンダードプラン</label
+                                        >ライトプラン</label
                                     >
                                 </span>
                                 <span class="form-column">
@@ -721,7 +721,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>スタンダードプラン</th>
+                                    <th>ライトプラン</th>
                                     <th>プレミアムプラン</th>
                                 </tr>
                             </thead>
@@ -1223,7 +1223,7 @@ export default {
             this.getUser.plan_id = 1;
             this.getUser.plan_id == 1
                 ? ((this.planAmount = 55000),
-                  (this.planName = "スタンダードプラン"))
+                  (this.planName = "ライトプラン"))
                 : ((this.planAmount = 132000),
                   (this.planName = "プレミアムプラン"));
         },

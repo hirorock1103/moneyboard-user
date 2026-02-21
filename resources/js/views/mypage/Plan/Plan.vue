@@ -174,7 +174,7 @@
                                                     "
                                                     class="padding-bottom--16"
                                                 >
-                                                    スタンダードプラン(使用できる企業数：{{
+                                                    ライトプラン(使用できる企業数：{{
                                                         nextPlans.license_count
                                                     }}社)
                                                 </td>
@@ -279,7 +279,7 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>スタンダードプラン</th>
+                                        <th>ライトプラン</th>
                                         <th>プレミアムプラン</th>
                                     </tr>
                                 </thead>
@@ -405,7 +405,7 @@ export default {
                     name:
                         this.$store.state.auth.contract.plan_id === 2
                             ? "プレミアムプラン"
-                            : "スタンダードプラン",
+                            : "ライトプラン",
                     data_plan:
                         this.$store.state.auth.contract.plan_id === 2
                             ? 120

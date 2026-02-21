@@ -210,7 +210,7 @@
                                             <th
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                問い合わせ窓口TEL　06-7777-0464
+                                                問い合わせ窓口TEL　06-6379-5615
                                             </th>
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
@@ -231,7 +231,7 @@
                                             <td
                                                 class="[ display-table-row display-table-cell-large ]"
                                             >
-                                                　住　所　　大阪府大東市大野１丁目５番９号
+                                                　住　所　　大阪市北区天満4丁目3番5号 中之島四季ビル5階8号室
                                             </td>
                                         </tr>
                                     </tbody>

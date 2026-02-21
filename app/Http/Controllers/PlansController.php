@@ -18,7 +18,7 @@ class PlansController extends Controller
         // TODO: DBからデータを抜き出し、plan_idで検索をかけて該当のプラン名を取得する
         // TODO: 今はまだ仮処理
         if ($planId == 0) {
-            return 'スタンダードプラン';
+            return 'ライトプラン';
         }
         
         return 'プレミアムプラン';
