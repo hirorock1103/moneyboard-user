@@ -1,10 +1,9 @@
 {
   "framework": null,
   "installCommand": "npm install",
-  "buildCommand": "NODE_OPTIONS=--openssl-legacy-provider npx mix --production",
+  "buildCommand": "NODE_OPTIONS=--openssl-legacy-provider npx mix --production && rm -f public/hot public/index.php",
   "outputDirectory": "public",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
