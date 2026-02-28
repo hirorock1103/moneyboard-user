@@ -195,6 +195,7 @@ export default {
     },
     created() {
         this.clearError();
+        this.$store.commit("auth/setLoadingStatus", false);
         sessionStorage.removeItem("client-search-params");
         sessionStorage.removeItem("premium-search-params");
     },

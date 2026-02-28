@@ -261,45 +261,45 @@ const actions = {
     async sendLoginRequest(context, data) {
         context.commit("setApiStatus", null);
         context.commit("setLoadingStatus", true);
-        const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + "com/login",
-            data
-        );
-        const card_initial = {
-            number: "",
-            valid_year: "",
-            valid_month: "",
-            security_code: "",
-            name: "",
-            stripe_token: "",
-        };
-
-        if (response.data.status === "OK") {
-            localStorage.setItem("authToken", response.data.data.access_token);
-            localStorage.setItem("expierAt", response.data.data.expier_at);
-            const data = await axios.post(
-                process.env.MIX_VUE_APP_API_URL + "com/me"
+        try {
+            const response = await axios.post(
+                process.env.MIX_VUE_APP_API_URL + "com/login",
+                data
             );
-            context.commit("setApiStatus", true);
+            const card_initial = {
+                number: "",
+                valid_year: "",
+                valid_month: "",
+                security_code: "",
+                name: "",
+                stripe_token: "",
+            };
+
+            if (response.data.status === "OK") {
+                localStorage.setItem("authToken", response.data.data.access_token);
+                localStorage.setItem("expierAt", response.data.data.expier_at);
+                const data = await axios.post(
+                    process.env.MIX_VUE_APP_API_URL + "com/me"
+                );
+                context.commit("setApiStatus", true);
+                context.commit("setUser", data.data.data.me);
+                context.commit("setLicense", data.data.data.summery);
+                context.commit("setCompany", data.data.auth.company);
+                context.commit("setContract", data.data.data.contract);
+                context.commit("setCard", card_initial);
+
+                return false;
+            }
+
+            context.commit("setApiStatus", false);
+            if (response.data.status === "NG") {
+                context.commit("setLoginErrorMessages", response.data.message);
+            }
+        } catch (error) {
+            context.commit("setApiStatus", false);
+            context.commit("setLoginErrorMessages", "通信エラーが発生しました。ネットワーク接続を確認してください。");
+        } finally {
             context.commit("setLoadingStatus", false);
-            context.commit("setUser", data.data.data.me);
-            context.commit("setLicense", data.data.data.summery);
-            context.commit("setCompany", data.data.auth.company);
-            context.commit("setContract", data.data.data.contract);
-            context.commit("setCard", card_initial);
-
-            return false;
-        }
-
-        context.commit("setApiStatus", false);
-        context.commit("setLoadingStatus", false);
-        // if (response.status === UNPROCESSABLE_ENTITY) {
-        //     context.commit('setLoginErrorMessages', response.data)
-        // } else {
-        //     context.commit('error/setCode', response.status, { root: true })
-        // }
-        if (response.data.status === "NG") {
-            context.commit("setLoginErrorMessages", response.data.message);
         }
     },
     // ログアウト

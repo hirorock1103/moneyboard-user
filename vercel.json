@@ -1,0 +1,10 @@
+{
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "npx mix --production",
+  "outputDirectory": "public",
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
