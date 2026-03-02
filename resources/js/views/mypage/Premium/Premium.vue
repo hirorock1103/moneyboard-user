@@ -428,37 +428,40 @@
                                         <!-- 更新日時 -->
                                         <th colspan="1"></th>
 
+                                        <!-- 決算期 -->
+                                        <th colspan="1"></th>
+
                                         <!-- 最新の取込決済期 -->
                                         <th colspan="1"></th>
 
                                         <!-- 資金繰り -->
-                                        <th colspan="2">
-                                            資金繰り<br />(<span>変額、養老、定期付き終身</span>)
+                                        <th colspan="3">
+                                            資金繰り
                                         </th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
                                         <th colspan="2">
-                                            金融機関融資<br />(<span>定期、逓減型</span>)
+                                            金融機関融資
                                         </th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <th colspan="3">
-                                            年齢・人数<br />(<span>医療保険、福利厚生</span>)
+                                            年齢・人数
                                         </th>
 
                                         <!-- 代表者(就業不能) -->
                                         <th colspan="2">
-                                            代表者<br />(<span>就業不能</span>)
+                                            代表者
                                         </th>
 
                                         <!-- 相続対策(一時払い終身) -->
                                         <th colspan="3">
-                                            相続対策<br />(<span>一時払い終身</span>)
+                                            相続対策
                                         </th>
 
                                         <!-- 指標-->
                                         <th colspan="4">
-                                            指標<br />(<span>優秀5、改善1</span>)
+                                            指標
                                         </th>
 
                                         <!-- 業種 -->
@@ -557,12 +560,16 @@
                                         </th>
                                         <th class="">更新日</th>
 
+                                        <!-- 決算期 -->
+                                        <th class="">決算期</th>
+
                                         <!-- 最新の取込決済期 -->
                                         <th class="">最新の<br />取込決済期</th>
 
                                         <!-- 資金繰り -->
                                         <th class="">余剰金目安</th>
                                         <th class="">現金預金</th>
+                                        <th class="">差額</th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
                                         <th class="">金融機関<br />借入残</th>
@@ -947,6 +954,11 @@
                                             }}
                                         </td>
 
+                                        <!-- 決算期 -->
+                                        <td>
+                                            {{ item.rm_fiscal_year_end }}
+                                        </td>
+
                                         <!-- 最新の取込決済期 -->
                                         <td>
                                             {{
@@ -981,6 +993,15 @@
                                                           item.cash_depositcash_deposit
                                                       ).toLocaleString()
                                                     : 0
+                                            }}千円
+                                        </td>
+                                        <td>
+                                            <!-- 差額（現金預金 - 余剰金目安） -->
+                                            {{
+                                                Number(
+                                                    (item.cash_depositcash_deposit != null ? Number(item.cash_depositcash_deposit) : 0) -
+                                                    (item.surplus_guideline != null ? Number(item.surplus_guideline) : 0)
+                                                ).toLocaleString()
                                             }}千円
                                         </td>
 
