@@ -425,6 +425,9 @@
                                             >
                                         </th>
 
+                                        <!-- R有無 -->
+                                        <th colspan="1"></th>
+
                                         <!-- 更新日時 -->
                                         <th colspan="1"></th>
 
@@ -439,9 +442,34 @@
                                             資金繰り
                                         </th>
 
+                                        <!-- 業績 -->
+                                        <th colspan="4">
+                                            業績
+                                        </th>
+
                                         <!-- 金融機関融資(定期、逓減型) -->
                                         <th colspan="2">
                                             金融機関融資
+                                        </th>
+
+                                        <!-- 指標-->
+                                        <th colspan="4">
+                                            指標
+                                        </th>
+
+                                        <!-- 借入金対策 -->
+                                        <th colspan="2">
+                                            借入金対策
+                                        </th>
+
+                                        <!-- 運転資金対策 -->
+                                        <th colspan="4">
+                                            運転資金対策
+                                        </th>
+
+                                        <!-- 退職金対策 -->
+                                        <th colspan="12">
+                                            退職金対策
                                         </th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
@@ -457,11 +485,6 @@
                                         <!-- 相続対策(一時払い終身) -->
                                         <th colspan="3">
                                             相続対策
-                                        </th>
-
-                                        <!-- 指標-->
-                                        <th colspan="4">
-                                            指標
                                         </th>
 
                                         <!-- 業種 -->
@@ -496,6 +519,7 @@
                                                 sticky: sticky,
                                             }"
                                             class="stickyeee order_column order_no1"
+                                            rowspan="2"
                                         >
                                             並び①
                                         </th>
@@ -507,6 +531,7 @@
                                                 sticky: sticky,
                                             }"
                                             class="stickyeee order_column order_no2"
+                                            rowspan="2"
                                         >
                                             並び②
                                         </th>
@@ -522,6 +547,7 @@
                                                 text-align: center !important;
                                                 color: rgba(0, 0, 0, 70%);
                                             "
+                                            rowspan="2"
                                         >
                                             企業名
                                         </th>
@@ -539,6 +565,7 @@
                                                 max-width: 80px;
                                                 color: rgba(0, 0, 0, 70%);
                                             "
+                                            rowspan="2"
                                         >
                                             決算月
                                         </th>
@@ -555,62 +582,99 @@
                                                 max-width: 160px;
                                                 color: rgba(0, 0, 0, 70%);
                                             "
+                                            rowspan="2"
                                         >
                                             担当者
                                         </th>
-                                        <th class="">更新日</th>
+                                        <th class="" rowspan="2">R有無</th>
+                                        <th class="" rowspan="2">更新日</th>
 
                                         <!-- 決算期 -->
-                                        <th class="">決算期</th>
+                                        <th class="" rowspan="2">決算期</th>
 
                                         <!-- 最新の取込決済期 -->
-                                        <th class="">最新の<br />取込決済期</th>
+                                        <th class="" rowspan="2">最新の<br />取込決済期</th>
 
                                         <!-- 資金繰り -->
-                                        <th class="">余剰金目安</th>
-                                        <th class="">現金預金</th>
-                                        <th class="">差額</th>
+                                        <th class="" rowspan="2">余剰金目安</th>
+                                        <th class="" rowspan="2">現金預金</th>
+                                        <th class="" rowspan="2">差額</th>
+
+                                        <!-- 業績 -->
+                                        <th class="" rowspan="2">売上高</th>
+                                        <th class="" rowspan="2">代表者<br />役員報酬</th>
+                                        <th class="" rowspan="2">代表者役員報酬前<br />営業利益</th>
+                                        <th class="" rowspan="2">翌期繰越<br />欠損金額</th>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
-                                        <th class="">金融機関<br />借入残</th>
-                                        <th class="">
+                                        <th class="" rowspan="2">金融機関<br />借入残</th>
+                                        <th class="" rowspan="2">
                                             年商比<br />(<span>融資上限50%</span>)
                                         </th>
 
+                                        <!-- 指標-->
+                                        <th class="" rowspan="2">創業評価</th>
+                                        <th class="" rowspan="2">安全性</th>
+                                        <th class="" rowspan="2">収益性</th>
+                                        <th class="" rowspan="2">資金<br />効率性</th>
+
+                                        <!-- 借入金対策 -->
+                                        <th class="" rowspan="2">対策必要額</th>
+                                        <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
+
+                                        <!-- 運転資金対策 -->
+                                        <th class="" rowspan="2">対策必要金<br />(<span>3ヶ月</span>)</th>
+                                        <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
+                                        <th class="" rowspan="2">対策必要金<br />(<span>6ヶ月</span>)</th>
+                                        <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
+
+                                        <!-- 退職金対策 -->
+                                        <th class="" rowspan="2">代表者年齢</th>
+                                        <th class="" rowspan="2">退職年齢<br />(<span>税込み</span>)</th>
+                                        <th class="" rowspan="2">相続人数</th>
+                                        <th class="" rowspan="2">相続財産額</th>
+                                        <th class="" colspan="4">財産詳細（一部）</th>
+                                        <th class="" rowspan="2">対策必要金</th>
+                                        <th class="" colspan="2">詳細</th>
+                                        <th class="" rowspan="2">不足額</th>
+
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
-                                        <th class="">代表者年齢</th>
-                                        <th class="">従業員<br />平均年齢</th>
-                                        <th class="">従業員数</th>
+                                        <th class="" rowspan="2">代表者年齢</th>
+                                        <th class="" rowspan="2">従業員<br />平均年齢</th>
+                                        <th class="" rowspan="2">従業員数</th>
 
                                         <!-- 代表者(就業不能) -->
-                                        <th class="">役員報酬</th>
-                                        <th class="">代表者<br />借入残</th>
+                                        <th class="" rowspan="2">役員報酬</th>
+                                        <th class="" rowspan="2">代表者<br />借入残</th>
 
                                         <!-- 相続対策(一時払い終身) -->
-                                        <th class="">代表者の債務</th>
-                                        <th class="">
+                                        <th class="" rowspan="2">代表者の債務</th>
+                                        <th class="" rowspan="2">
                                             純資産の額<br />(<span>100％所有時</span>)
                                         </th>
-                                        <th class="">計</th>
+                                        <th class="" rowspan="2">計</th>
 
-                                        <!-- 指標-->
-                                        <th class="">重要</th>
-                                        <th class="">安全</th>
-                                        <th class="">収益性</th>
-                                        <th class="">資金<br />効率性</th>
+                                        <th class="" rowspan="2">業種</th>
+                                        <th class="" rowspan="2">法人番号</th>
+                                        <th class="" rowspan="2">年商</th>
+                                        <th class="" rowspan="2">資本金</th>
 
-                                        <th class=" ">業種</th>
-                                        <th class=" ">法人番号</th>
-                                        <th class="">年商</th>
-                                        <th class="">資本金</th>
+                                        <th class="" rowspan="2">今回</th>
+                                        <th class="" rowspan="2">前回</th>
+                                        <th class="" rowspan="2">前々回</th>
 
-                                        <th class="">今回</th>
-                                        <th class="">前回</th>
-                                        <th class="">前々回</th>
+                                        <th class="" rowspan="2">面談場所</th>
 
-                                        <th class=" ">面談場所</th>
-
-                                        <th class=" ">コメント</th>
+                                        <th class="" rowspan="2">コメント</th>
+                                    </tr>
+                                    <!-- 3行目: 財産詳細サブヘッダー -->
+                                    <tr>
+                                        <th class="">生命保険</th>
+                                        <th class="">同族株式</th>
+                                        <th class="">会社へ貸付</th>
+                                        <th class="">会社からの<br />借入</th>
+                                        <th class="">預貯金<br />流動資産</th>
+                                        <th class="">相続税</th>
                                     </tr>
                                 </thead>
                                 <tbody
@@ -944,6 +1008,11 @@
                                             {{ truncate(item.user_name, 7) }}
                                         </td>
 
+                                        <!-- R有無 -->
+                                        <td>
+                                            {{ item.risk_management_id || '' }}
+                                        </td>
+
                                         <td>
                                             {{
                                                 !item.updated_at
@@ -1005,6 +1074,26 @@
                                             }}千円
                                         </td>
 
+                                        <!-- 業績 -->
+                                        <td>
+                                            {{ item.rm_sales }}
+                                        </td>
+                                        <td>
+                                            {{ item.rm_executive_compensation }}
+                                        </td>
+                                        <td>
+                                            <!-- 営業利益 + 代表者役員報酬 -->
+                                            {{
+                                                Number(
+                                                    (item.rm_operating_income != null ? Number(item.rm_operating_income) : 0) +
+                                                    (item.rm_executive_compensation != null ? Number(item.rm_executive_compensation) : 0)
+                                                ).toLocaleString()
+                                            }}
+                                        </td>
+                                        <td>
+                                            {{ item.rm_carried_forward_deficit }}
+                                        </td>
+
                                         <!-- 金融機関融資(定期、逓減型) -->
                                         <td>
                                             <!-- 金融機関借入残 -->
@@ -1026,6 +1115,50 @@
                                                     : 0
                                             }}%
                                         </td>
+
+                                        <!-- 指標-->
+                                        <td>{{ item.important_index }}</td>
+                                        <td>{{ item.bankruptcy_risk }}</td>
+                                        <td>{{ item.earning_power }}</td>
+                                        <td>
+                                            {{ item.money_efficiency }}
+                                        </td>
+
+                                        <!-- 借入金対策 -->
+                                        <td>
+                                            {{ item.rm_countermeasure_required_amount }}
+                                        </td>
+                                        <td>
+                                            {{ item.rm_shortage_amount }}
+                                        </td>
+
+                                        <!-- 運転資金対策 -->
+                                        <td>
+                                            {{ item.rm_working_capital_required_3m }}
+                                        </td>
+                                        <td>
+                                            {{ item.rm_working_capital_shortage_3m }}
+                                        </td>
+                                        <td>
+                                            {{ item.rm_working_capital_required_6m }}
+                                        </td>
+                                        <td>
+                                            {{ item.rm_working_capital_shortage_6m }}
+                                        </td>
+
+                                        <!-- 退職金対策 -->
+                                        <td>{{ item.rm_retirement_ceo_age }}</td>
+                                        <td>{{ item.rm_retirement_age_tax }}</td>
+                                        <td>{{ item.rm_heir_count }}</td>
+                                        <td>{{ item.rm_inheritance_assets }}</td>
+                                        <td>{{ item.rm_life_insurance }}</td>
+                                        <td>{{ item.rm_family_stock }}</td>
+                                        <td>{{ item.rm_loan_to_company }}</td>
+                                        <td>{{ item.rm_loan_from_company }}</td>
+                                        <td>{{ item.rm_retirement_required_amount }}</td>
+                                        <td>{{ item.rm_savings_liquid_assets }}</td>
+                                        <td>{{ item.rm_inheritance_tax }}</td>
+                                        <td>{{ item.rm_retirement_shortage }}</td>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <td>{{ item.ceo_age }}歳</td>
@@ -1088,14 +1221,6 @@
                                                       ).toLocaleString()
                                                     : 0
                                             }}千円
-                                        </td>
-
-                                        <!-- 指標-->
-                                        <td>{{ item.important_index }}</td>
-                                        <td>{{ item.bankruptcy_risk }}</td>
-                                        <td>{{ item.earning_power }}</td>
-                                        <td>
-                                            {{ item.money_efficiency }}
                                         </td>
 
                                         <td>
