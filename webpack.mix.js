@@ -1,3 +1,9 @@
+// Node.js 17+ OpenSSL 3.0対応: md4 → sha256
+const crypto = require("crypto");
+const origCreateHash = crypto.createHash;
+crypto.createHash = (algorithm, options) =>
+    origCreateHash(algorithm === "md4" ? "sha256" : algorithm, options);
+
 const mix = require("laravel-mix");
 
 /*
