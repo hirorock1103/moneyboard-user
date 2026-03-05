@@ -468,8 +468,13 @@
                                         </th>
 
                                         <!-- 退職金対策 -->
-                                        <th colspan="12">
+                                        <th colspan="11">
                                             退職金対策
+                                        </th>
+
+                                        <!-- 承継対策 -->
+                                        <th colspan="6">
+                                            承継対策（割合　良：0%、悪：100%）
                                         </th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
@@ -613,7 +618,7 @@
                                         </th>
 
                                         <!-- 指標-->
-                                        <th class="" rowspan="2">創業評価</th>
+                                        <th class="" rowspan="2">総合評価</th>
                                         <th class="" rowspan="2">安全性</th>
                                         <th class="" rowspan="2">収益性</th>
                                         <th class="" rowspan="2">資金<br />効率性</th>
@@ -629,14 +634,19 @@
                                         <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
 
                                         <!-- 退職金対策 -->
-                                        <th class="" rowspan="2">代表者年齢</th>
-                                        <th class="" rowspan="2">退職年齢<br />(<span>税込み</span>)</th>
+                                        <th class="" rowspan="2">代表者年齢<br />(<span>取込時</span>)</th>
+                                        <th class="" rowspan="2">退職年齢<br />(<span>取込時</span>)</th>
                                         <th class="" rowspan="2">相続人数</th>
                                         <th class="" rowspan="2">相続財産額</th>
                                         <th class="" colspan="4">財産詳細（一部）</th>
                                         <th class="" rowspan="2">対策必要金</th>
                                         <th class="" colspan="2">詳細</th>
-                                        <th class="" rowspan="2">不足額</th>
+
+                                        <!-- 承継対策 -->
+                                        <th class="" rowspan="2">承継対策<br />の有無</th>
+                                        <th class="" colspan="2">後継者問題</th>
+                                        <th class="" colspan="2">相続人問題</th>
+                                        <th class="" rowspan="2">対策<br />必要金</th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <th class="" rowspan="2">代表者年齢</th>
@@ -673,8 +683,13 @@
                                         <th class="">同族株式</th>
                                         <th class="">会社へ貸付</th>
                                         <th class="">会社からの<br />借入</th>
-                                        <th class="">預貯金<br />流動資産</th>
+                                        <th class="">預貯金残高</th>
                                         <th class="">相続税</th>
+                                        <!-- 承継対策サブ列 -->
+                                        <th class="">割合(%)</th>
+                                        <th class="">必要金</th>
+                                        <th class="">割合(%)</th>
+                                        <th class="">必要金</th>
                                     </tr>
                                 </thead>
                                 <tbody
@@ -1010,7 +1025,7 @@
 
                                         <!-- R有無 -->
                                         <td>
-                                            {{ item.risk_management_id || '' }}
+                                            {{ item.risk_management_id ? '有' : '' }}
                                         </td>
 
                                         <td>
@@ -1023,9 +1038,9 @@
                                             }}
                                         </td>
 
-                                        <!-- 決算期 -->
+                                        <!-- 決算期 (risk_management.fiscal_year_end) -->
                                         <td>
-                                            {{ item.rm_fiscal_year_end }}
+                                            {{ item.rm_fiscal_year_end != null ? item.rm_fiscal_year_end + '月' : '' }}
                                         </td>
 
                                         <!-- 最新の取込決済期 -->
@@ -1076,22 +1091,39 @@
 
                                         <!-- 業績 -->
                                         <td>
-                                            {{ item.rm_sales }}
-                                        </td>
-                                        <td>
-                                            {{ item.rm_executive_compensation }}
-                                        </td>
-                                        <td>
-                                            <!-- 営業利益 + 代表者役員報酬 -->
+                                            <!-- 売上高 (summary_reports.sales_amount) -->
                                             {{
-                                                Number(
-                                                    (item.rm_operating_income != null ? Number(item.rm_operating_income) : 0) +
-                                                    (item.rm_executive_compensation != null ? Number(item.rm_executive_compensation) : 0)
-                                                ).toLocaleString()
+                                                item.sales_amount != null
+                                                    ? Number(item.sales_amount).toLocaleString()
+                                                    : ''
                                             }}
                                         </td>
                                         <td>
-                                            {{ item.rm_carried_forward_deficit }}
+                                            <!-- 代表者役員報酬 (summary_reports.directors_fee) -->
+                                            {{
+                                                item.directors_fee != null
+                                                    ? Number(item.directors_fee).toLocaleString()
+                                                    : ''
+                                            }}
+                                        </td>
+                                        <td>
+                                            <!-- 代表者役員報酬前営業利益 = 営業損益 + 役員報酬 -->
+                                            {{
+                                                (item.rm_operating_income != null || item.directors_fee != null)
+                                                    ? Number(
+                                                        (item.rm_operating_income != null ? Number(item.rm_operating_income) : 0) +
+                                                        (item.directors_fee != null ? Number(item.directors_fee) : 0)
+                                                    ).toLocaleString()
+                                                    : ''
+                                            }}
+                                        </td>
+                                        <td>
+                                            <!-- 翌期繰越欠損金額 (risk_management.loss_carryforward) -->
+                                            {{
+                                                item.rm_carried_forward_deficit != null
+                                                    ? Number(item.rm_carried_forward_deficit).toLocaleString()
+                                                    : ''
+                                            }}
                                         </td>
 
                                         <!-- 金融機関融資(定期、逓減型) -->
@@ -1147,18 +1179,91 @@
                                         </td>
 
                                         <!-- 退職金対策 -->
-                                        <td>{{ item.rm_retirement_ceo_age }}</td>
-                                        <td>{{ item.rm_retirement_age_tax }}</td>
-                                        <td>{{ item.rm_heir_count }}</td>
-                                        <td>{{ item.rm_inheritance_assets }}</td>
-                                        <td>{{ item.rm_life_insurance }}</td>
-                                        <td>{{ item.rm_family_stock }}</td>
-                                        <td>{{ item.rm_loan_to_company }}</td>
-                                        <td>{{ item.rm_loan_from_company }}</td>
-                                        <td>{{ item.rm_retirement_required_amount }}</td>
-                                        <td>{{ item.rm_savings_liquid_assets }}</td>
-                                        <td>{{ item.rm_inheritance_tax }}</td>
-                                        <td>{{ item.rm_retirement_shortage }}</td>
+                                        <td>
+                                            <!-- 代表者年齢 (risk_management.representative_retirement_age) -->
+                                            {{ item.rm_retirement_ceo_age != null ? item.rm_retirement_ceo_age : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 退職年齢 (risk_management.retirement_age) -->
+                                            {{ item.rm_retirement_age_tax != null ? item.rm_retirement_age_tax : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 相続人数 (risk_management.number_of_heirs) -->
+                                            {{ item.rm_heir_count != null ? item.rm_heir_count : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 相続財産額 = 自社株 + 債権 + 預貯金 + 有価証券 + 不動産 + その他 - 債務(自社) - 債務 + 生命保険 + 調整額 -->
+                                            {{
+                                                item.risk_management_id
+                                                    ? Number(
+                                                        (Number(item.rm_family_stock) || 0) +
+                                                        (Number(item.rm_loan_to_company) || 0) +
+                                                        (Number(item.rm_savings_liquid_assets) || 0) +
+                                                        (Number(item.rm_rep_securities) || 0) +
+                                                        (Number(item.rm_rep_real_estate) || 0) +
+                                                        (Number(item.rm_rep_other_assets) || 0) -
+                                                        (Number(item.rm_loan_from_company) || 0) -
+                                                        (Number(item.rm_rep_liabilities) || 0) +
+                                                        (Number(item.rm_life_insurance) || 0) +
+                                                        (Number(item.rm_rep_adjustment_amount) || 0)
+                                                    ).toLocaleString()
+                                                    : ''
+                                            }}
+                                        </td>
+                                        <td>
+                                            <!-- 生命保険 (risk_management.rep_life_insurance_amount) -->
+                                            {{ item.rm_life_insurance != null ? Number(item.rm_life_insurance).toLocaleString() : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 同族株式 (risk_management.rep_company_shares) -->
+                                            {{ item.rm_family_stock != null ? Number(item.rm_family_stock).toLocaleString() : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 会社へ貸付 (risk_management.rep_claims_against_company) -->
+                                            {{ item.rm_loan_to_company != null ? Number(item.rm_loan_to_company).toLocaleString() : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 会社からの借入 (risk_management.rep_debt_to_company) -->
+                                            {{ item.rm_loan_from_company != null ? Number(item.rm_loan_from_company).toLocaleString() : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 対策必要金 ※計算値（未実装） -->
+                                            {{ item.rm_retirement_required_amount }}
+                                        </td>
+                                        <td>
+                                            <!-- 預貯金流動資産 (risk_management.rep_bank_deposits) -->
+                                            {{ item.rm_savings_liquid_assets != null ? Number(item.rm_savings_liquid_assets).toLocaleString() : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 相続税 (risk_management.inheritance_tax) -->
+                                            {{ item.rm_inheritance_tax != null ? Number(item.rm_inheritance_tax).toLocaleString() : '' }}
+                                        </td>
+
+                                        <!-- 承継対策 -->
+                                        <td>
+                                            <!-- 承継対策の有無 (risk_management.business_succession_flag) -->
+                                            {{ item.rm_succession_flag != null ? (item.rm_succession_flag == 1 ? '有' : '無') : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 後継者問題 割合(%) (risk_management.successer_status) -->
+                                            {{ item.rm_successer_status != null ? item.rm_successer_status : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 後継者問題 必要金 ※計算値（未実装） -->
+                                            {{ item.rm_successor_required }}
+                                        </td>
+                                        <td>
+                                            <!-- 相続人問題 割合(%) (risk_management.heir_relationship) -->
+                                            {{ item.rm_heir_relationship != null ? item.rm_heir_relationship : '' }}
+                                        </td>
+                                        <td>
+                                            <!-- 相続人問題 必要金 ※計算値（未実装） -->
+                                            {{ item.rm_heir_required }}
+                                        </td>
+                                        <td>
+                                            <!-- 承継対策 対策必要金 ※計算値（未実装） -->
+                                            {{ item.rm_succession_required_amount }}
+                                        </td>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <td>{{ item.ceo_age }}歳</td>
