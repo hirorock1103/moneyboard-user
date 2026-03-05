@@ -624,14 +624,14 @@
                                         <th class="" rowspan="2">資金<br />効率性</th>
 
                                         <!-- 借入金対策 -->
-                                        <th class="" rowspan="2">対策必要額</th>
-                                        <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">対策必要額</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">不足額<br />(<span>△:不足なし</span>)</th>
 
                                         <!-- 運転資金対策 -->
-                                        <th class="" rowspan="2">対策必要金<br />(<span>3ヶ月</span>)</th>
-                                        <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
-                                        <th class="" rowspan="2">対策必要金<br />(<span>6ヶ月</span>)</th>
-                                        <th class="" rowspan="2">不足額<br />(<span>△:不足なし</span>)</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">対策必要金<br />(<span>3ヶ月</span>)</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">不足額<br />(<span>△:不足なし</span>)</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">対策必要金<br />(<span>6ヶ月</span>)</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">不足額<br />(<span>△:不足なし</span>)</th>
 
                                         <!-- 退職金対策 -->
                                         <th class="" rowspan="2">代表者年齢<br />(<span>取込時</span>)</th>
@@ -639,14 +639,14 @@
                                         <th class="" rowspan="2">相続人数</th>
                                         <th class="" rowspan="2">相続財産額</th>
                                         <th class="" colspan="4">財産詳細（一部）</th>
-                                        <th class="" rowspan="2">対策必要金</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">対策必要金</th>
                                         <th class="" colspan="2">詳細</th>
 
                                         <!-- 承継対策 -->
                                         <th class="" rowspan="2">承継対策<br />の有無</th>
                                         <th class="" colspan="2">後継者問題</th>
                                         <th class="" colspan="2">相続人問題</th>
-                                        <th class="" rowspan="2">対策<br />必要金</th>
+                                        <th class="" rowspan="2" style="background-color: yellow;">対策<br />必要金</th>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
                                         <th class="" rowspan="2">代表者年齢</th>
@@ -687,9 +687,9 @@
                                         <th class="">相続税</th>
                                         <!-- 承継対策サブ列 -->
                                         <th class="">割合(%)</th>
-                                        <th class="">必要金</th>
+                                        <th class="" style="background-color: yellow;">必要金</th>
                                         <th class="">割合(%)</th>
-                                        <th class="">必要金</th>
+                                        <th class="" style="background-color: yellow;">必要金</th>
                                     </tr>
                                 </thead>
                                 <tbody
@@ -1157,24 +1157,24 @@
                                         </td>
 
                                         <!-- 借入金対策 -->
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             {{ item.rm_countermeasure_required_amount }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             {{ item.rm_shortage_amount }}
                                         </td>
 
                                         <!-- 運転資金対策 -->
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             {{ item.rm_working_capital_required_3m }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             {{ item.rm_working_capital_shortage_3m }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             {{ item.rm_working_capital_required_6m }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             {{ item.rm_working_capital_shortage_6m }}
                                         </td>
 
@@ -1226,7 +1226,7 @@
                                             <!-- 会社からの借入 (risk_management.rep_debt_to_company) -->
                                             {{ item.rm_loan_from_company != null ? Number(item.rm_loan_from_company).toLocaleString() : '' }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             <!-- 対策必要金 ※計算値（未実装） -->
                                             {{ item.rm_retirement_required_amount }}
                                         </td>
@@ -1248,7 +1248,7 @@
                                             <!-- 後継者問題 割合(%) (risk_management.successer_status) -->
                                             {{ item.rm_successer_status != null ? item.rm_successer_status : '' }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             <!-- 後継者問題 必要金 ※計算値（未実装） -->
                                             {{ item.rm_successor_required }}
                                         </td>
@@ -1256,11 +1256,11 @@
                                             <!-- 相続人問題 割合(%) (risk_management.heir_relationship) -->
                                             {{ item.rm_heir_relationship != null ? item.rm_heir_relationship : '' }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             <!-- 相続人問題 必要金 ※計算値（未実装） -->
                                             {{ item.rm_heir_required }}
                                         </td>
-                                        <td>
+                                        <td style="background-color: yellow;">
                                             <!-- 承継対策 対策必要金 ※計算値（未実装） -->
                                             {{ item.rm_succession_required_amount }}
                                         </td>
