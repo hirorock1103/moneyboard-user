@@ -1158,24 +1158,24 @@
 
                                         <!-- 借入金対策 -->
                                         <td style="background-color: yellow;">
-                                            {{ item.rm_countermeasure_required_amount }}
+                                            {{ item.rm_countermeasure_required_amount != null ? Number(item.rm_countermeasure_required_amount).toLocaleString() : '' }}
                                         </td>
                                         <td style="background-color: yellow;">
-                                            {{ item.rm_shortage_amount }}
+                                            {{ item.rm_shortage_amount != null ? Number(item.rm_shortage_amount).toLocaleString() : '' }}
                                         </td>
 
                                         <!-- 運転資金対策 -->
                                         <td style="background-color: yellow;">
-                                            {{ item.rm_working_capital_required_3m }}
+                                            {{ item.rm_working_capital_required_3m != null ? Number(item.rm_working_capital_required_3m).toLocaleString() : '' }}
                                         </td>
                                         <td style="background-color: yellow;">
-                                            {{ item.rm_working_capital_shortage_3m }}
+                                            {{ item.rm_working_capital_shortage_3m != null ? Number(item.rm_working_capital_shortage_3m).toLocaleString() : '' }}
                                         </td>
                                         <td style="background-color: yellow;">
-                                            {{ item.rm_working_capital_required_6m }}
+                                            {{ item.rm_working_capital_required_6m != null ? Number(item.rm_working_capital_required_6m).toLocaleString() : '' }}
                                         </td>
                                         <td style="background-color: yellow;">
-                                            {{ item.rm_working_capital_shortage_6m }}
+                                            {{ item.rm_working_capital_shortage_6m != null ? Number(item.rm_working_capital_shortage_6m).toLocaleString() : '' }}
                                         </td>
 
                                         <!-- 退職金対策 -->
@@ -1228,7 +1228,7 @@
                                         </td>
                                         <td style="background-color: yellow;">
                                             <!-- 対策必要金 ※計算値（未実装） -->
-                                            {{ item.rm_retirement_required_amount }}
+                                            {{ item.rm_retirement_required_amount != null ? Number(item.rm_retirement_required_amount).toLocaleString() : '' }}
                                         </td>
                                         <td>
                                             <!-- 預貯金流動資産 (risk_management.rep_bank_deposits) -->
@@ -1250,7 +1250,7 @@
                                         </td>
                                         <td style="background-color: yellow;">
                                             <!-- 後継者問題 必要金 ※計算値（未実装） -->
-                                            {{ item.rm_successor_required }}
+                                            {{ item.rm_successor_required != null ? Number(item.rm_successor_required).toLocaleString() : '' }}
                                         </td>
                                         <td>
                                             <!-- 相続人問題 割合(%) (risk_management.heir_relationship) -->
@@ -1258,11 +1258,11 @@
                                         </td>
                                         <td style="background-color: yellow;">
                                             <!-- 相続人問題 必要金 ※計算値（未実装） -->
-                                            {{ item.rm_heir_required }}
+                                            {{ item.rm_heir_required != null ? Number(item.rm_heir_required).toLocaleString() : '' }}
                                         </td>
                                         <td style="background-color: yellow;">
                                             <!-- 承継対策 対策必要金 ※計算値（未実装） -->
-                                            {{ item.rm_succession_required_amount }}
+                                            {{ item.rm_succession_required_amount != null ? Number(item.rm_succession_required_amount).toLocaleString() : '' }}
                                         </td>
 
                                         <!-- 年齢・人数(医療保険、福利厚生) -->
