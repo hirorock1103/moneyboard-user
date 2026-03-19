@@ -341,7 +341,7 @@ const actions = {
             process.env.MIX_VUE_APP_API_URL + "com/reset/password/verify",
             data
         );
-        if (response.status === OK) {
+        if (response.data.status === "OK") {
             context.commit("setApiStatus", true);
             context.commit("setLoadingStatus", false);
             return false;
@@ -349,11 +349,7 @@ const actions = {
 
         context.commit("setApiStatus", false);
         context.commit("setLoadingStatus", false);
-        if (response.status === UNPROCESSABLE_ENTITY) {
-            context.commit("setResetLinkErrorMessages", response.data);
-        } else {
-            context.commit("error/setCode", response.status, { root: true });
-        }
+        context.commit("setResetLinkErrorMessages", response.data);
     },
     async sendPasswordResetRequest(context, data) {
         context.commit("setApiStatus", null);

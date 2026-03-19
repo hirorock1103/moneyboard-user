@@ -46,8 +46,8 @@
 
                                 <div
                                     class="form-text  text-danger  margin-bottom--24"
-                                    v-if="resetLinkErrors && resetLinkErrors.errors.email_address">
-                                    <span v-for="msg in resetLinkErrors.errors.email_address" :key="msg">{{ msg }}</span>
+                                    v-if="resetLinkErrors && resetLinkErrors.message">
+                                    {{ resetLinkErrors.message }}
                                 </div>
 
                                 <div class="text-center  margin-top--48">
