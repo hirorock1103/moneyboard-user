@@ -1680,27 +1680,17 @@ export default {
             // tbody を削除（thead + colgroup だけ残す）
             var clonedTbody = headerTable.querySelector('tbody');
             if (clonedTbody) headerTable.removeChild(clonedTbody);
-            // ヘッダーテーブルのスクロールバーを防止 & 幅設定
+            // ヘッダーテーブルのスクロールバー元クラスを除去 & 幅設定
+            // 注意: overflow:hiddenはposition:stickyをブロックするので設定しない
             headerTable.classList.remove('table-scrollable');
-            headerTable.style.overflow = 'hidden';
             headerTable.style.width = totalWidth + 'px';
 
             fixedHeader.innerHTML = '';
             fixedHeader.appendChild(headerTable);
 
-            // 元テーブルのtheadを視覚的に非表示にする（列幅はtable-layout:fixedにより維持）
+            // 元テーブルのtheadを非表示にする（colgroupが列幅を維持するのでdisplay:noneで安全）
             var thead = table.querySelector('thead');
-            var allElements = thead.querySelectorAll('*');
-            for (var i = 0; i < allElements.length; i++) {
-                var s = allElements[i].style;
-                s.setProperty('padding', '0', 'important');
-                s.setProperty('height', '0', 'important');
-                s.setProperty('font-size', '0', 'important');
-                s.setProperty('line-height', '0', 'important');
-                s.setProperty('overflow', 'hidden', 'important');
-                s.setProperty('border-top-width', '0', 'important');
-                s.setProperty('border-bottom-width', '0', 'important');
-            }
+            thead.style.display = 'none';
 
             // 横スクロール同期
             this._scrollHandler = function () {
