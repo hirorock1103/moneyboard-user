@@ -1647,11 +1647,12 @@ export default {
 
             // 3層ヘッダーの各行にtopオフセットを設定
             var rows = table.querySelectorAll('thead tr');
-            var topOffset = 0;
+            var topOffset = -1;
             for (var r = 0; r < rows.length; r++) {
                 var cells = rows[r].querySelectorAll('th');
+                var adjustedTop = (r === 1) ? topOffset - 1 : topOffset;
                 for (var c = 0; c < cells.length; c++) {
-                    cells[c].style.top = topOffset + 'px';
+                    cells[c].style.top = adjustedTop + 'px';
                 }
                 topOffset += rows[r].offsetHeight;
             }
