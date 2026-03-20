@@ -393,9 +393,9 @@
                                 <colgroup>
                                     <col style="width:80px"><!-- 並び① -->
                                     <col style="width:80px"><!-- 並び② -->
-                                    <col style="width:160px"><!-- 企業名 -->
-                                    <col style="width:80px"><!-- 決算月 -->
-                                    <col style="width:160px"><!-- 担当者 -->
+                                    <col style="width:130px"><!-- 企業名 -->
+                                    <col style="width:75px"><!-- 決算月 -->
+                                    <col style="width:155px"><!-- 担当者 -->
                                     <col style="width:100px"><!-- R有無 -->
                                     <col style="width:100px"><!-- 更新日 -->
                                     <col style="width:100px"><!-- 決算期 -->
@@ -484,7 +484,7 @@
                                         </th>
 
                                         <!-- R有無 -->
-                                        <th colspan="1" style="width: 100px; min-width: 100px; max-width: 100px;"></th>
+                                        <th colspan="1"></th>
 
                                         <!-- 更新日時 -->
                                         <th colspan="1"></th>
@@ -608,7 +608,6 @@
                                             style="
                                                 left: 160px;
                                                 background: #ddd;
-                                                border: none !important;
                                                 text-align: center !important;
                                                 color: rgba(0, 0, 0, 70%);
                                             "
@@ -622,12 +621,9 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 320px;
+                                                left: 288px;
                                                 background: #ddd;
-                                                border: none !important;
                                                 text-align: center !important;
-                                                min-width: 80px;
-                                                max-width: 80px;
                                                 color: rgba(0, 0, 0, 70%);
                                             "
                                             rowspan="2"
@@ -640,18 +636,16 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 400px;
+                                                left: 363px;
                                                 background: #ddd;
                                                 text-align: center !important;
-                                                min-width: 160px;
-                                                max-width: 160px;
                                                 color: rgba(0, 0, 0, 70%);
                                             "
                                             rowspan="2"
                                         >
                                             担当者
                                         </th>
-                                        <th class="" rowspan="2" style="width: 100px; min-width: 100px; max-width: 100px;">R有無</th>
+                                        <th class="" rowspan="2">R有無</th>
                                         <th class="" rowspan="2">更新日</th>
 
                                         <!-- 決算期 -->
@@ -770,8 +764,6 @@
                                             style="
                                                 left: 0px;
                                                 background: #eee;
-                                                min-width: 80px;
-                                                max-width: 80px;
                                             "
                                         ></td>
                                         <td
@@ -783,8 +775,6 @@
                                             style="
                                                 left: 0px;
                                                 background: #eee;
-                                                min-width: 80px;
-                                                max-width: 80px;
                                             "
                                         >
                                             <select
@@ -915,9 +905,6 @@
                                             style="
                                                 left: 80px;
                                                 background: #eee;
-                                                min-width: 80px;
-                                                max-width: 80px;
-                                                /* width: 80px; */
                                             "
                                         ></td>
                                         <td
@@ -929,9 +916,6 @@
                                             style="
                                                 left: 80px;
                                                 background: #eee;
-                                                min-width: 80px;
-                                                max-width: 80px;
-                                                /* width: 80px; */
                                             "
                                         >
                                             <select
@@ -1054,11 +1038,9 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 320px;
+                                                left: 288px;
                                                 background: #eee;
                                                 text-align: center;
-                                                min-width: 80px;
-                                                max-width: 80px;
                                             "
                                         >
                                             {{
@@ -1073,18 +1055,15 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 400px;
+                                                left: 363px;
                                                 background: #eee;
-                                                min-width: 161px !important;
-                                                max-width: 161px !important;
-                                                width: 161px !important;
                                             "
                                         >
                                             {{ truncate(item.user_name, 7) }}
                                         </td>
 
                                         <!-- R有無 -->
-                                        <td style="width: 100px; min-width: 100px; max-width: 100px;">
+                                        <td>
                                             {{ item.risk_management_id ? '有' : '' }}
                                         </td>
 
@@ -2057,7 +2036,7 @@ export default {
 .table_box {
     overflow: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 200px);
 }
 
 .table_box table {
@@ -2157,8 +2136,6 @@ span.clearOrder:hover {
     background: #ddd;
     border: none !important;
     text-align: center !important;
-    min-width: 80px !important;
-    max-width: 80px !important;
 }
 /* .order_column:hover {
     cursor: pointer;
