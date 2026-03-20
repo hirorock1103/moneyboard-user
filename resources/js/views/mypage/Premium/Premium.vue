@@ -395,7 +395,7 @@
                                     <col style="width:80px"><!-- 並び② -->
                                     <col style="width:160px"><!-- 企業名 -->
                                     <col style="width:80px"><!-- 決算月 -->
-                                    <col style="width:157px"><!-- 担当者 -->
+                                    <col style="width:160px"><!-- 担当者 -->
                                     <col style="width:100px"><!-- R有無 -->
                                     <col style="width:100px"><!-- 更新日 -->
                                     <col style="width:100px"><!-- 決算期 -->
@@ -1665,6 +1665,17 @@ export default {
                 totalWidth += parseInt(cols[i].style.width) || 0;
             }
             table.style.width = totalWidth + 'px';
+
+            // 3層ヘッダーの各行にtopオフセットを設定
+            var rows = table.querySelectorAll('thead tr');
+            var topOffset = 0;
+            for (var r = 0; r < rows.length; r++) {
+                var cells = rows[r].querySelectorAll('th');
+                for (var c = 0; c < cells.length; c++) {
+                    cells[c].style.top = topOffset + 'px';
+                }
+                topOffset += rows[r].offsetHeight;
+            }
         },
         //検索項目の表示・非表示切替
         toggle: function () {
