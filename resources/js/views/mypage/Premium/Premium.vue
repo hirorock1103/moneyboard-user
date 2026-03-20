@@ -1650,7 +1650,7 @@ export default {
             var topOffset = -1;
             for (var r = 0; r < rows.length; r++) {
                 var cells = rows[r].querySelectorAll('th');
-                var adjustedTop = (r === 1) ? topOffset - 1 : topOffset;
+                var adjustedTop = (r === 1 || r === 2) ? topOffset - 1 : topOffset;
                 for (var c = 0; c < cells.length; c++) {
                     cells[c].style.top = adjustedTop + 'px';
                 }
