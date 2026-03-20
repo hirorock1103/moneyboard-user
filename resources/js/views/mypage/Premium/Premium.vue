@@ -583,6 +583,7 @@
                                                 sticky: sticky,
                                             }"
                                             class="stickyeee order_column order_no1"
+                                            style="background: #ddd;"
                                             rowspan="2"
                                         >
                                             並び①
@@ -595,6 +596,7 @@
                                                 sticky: sticky,
                                             }"
                                             class="stickyeee order_column order_no2"
+                                            style="background: #ddd;"
                                             rowspan="2"
                                         >
                                             並び②
