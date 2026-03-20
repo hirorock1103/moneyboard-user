@@ -384,7 +384,6 @@
                             <p v-else id="toggle_sticky" @click="toggle_sticky">
                                 列固定
                             </p>
-                            <div class="fixed-header-container" ref="fixedHeader"></div>
                             <div class="table_box" ref="tableBox">
                             <table
                                 oncopy="return false"
@@ -396,7 +395,7 @@
                                     <col style="width:80px"><!-- 並び② -->
                                     <col style="width:160px"><!-- 企業名 -->
                                     <col style="width:80px"><!-- 決算月 -->
-                                    <col style="width:160px"><!-- 担当者 -->
+                                    <col style="width:157px"><!-- 担当者 -->
                                     <col style="width:100px"><!-- R有無 -->
                                     <col style="width:100px"><!-- 更新日 -->
                                     <col style="width:100px"><!-- 決算期 -->
@@ -1650,25 +1649,15 @@ export default {
     },
     updated: function () {
         this.$nextTick(function () {
-            this.setupFixedHeader();
+            this.setupTableWidth();
         });
     },
-    beforeUnmount: function () {
-        if (this._scrollHandler && this.$refs.tableBox) {
-            this.$refs.tableBox.removeEventListener('scroll', this._scrollHandler);
-        }
-    },
     methods: {
-        setupFixedHeader: function () {
+        setupTableWidth: function () {
             var tableBox = this.$refs.tableBox;
-            var fixedHeader = this.$refs.fixedHeader;
-            if (!tableBox || !fixedHeader) return;
-            // 既にヘッダーテーブルが存在する場合はスキップ
-            if (fixedHeader.querySelector('table')) return;
-
+            if (!tableBox) return;
             var table = tableBox.querySelector('table');
-            if (!table || !table.querySelector('thead')) return;
-
+            if (!table) return;
             // colgroup合計幅を計算してテーブルに設定（table-layout:fixedに必須）
             var cols = table.querySelectorAll('colgroup col');
             var totalWidth = 0;
@@ -1676,29 +1665,6 @@ export default {
                 totalWidth += parseInt(cols[i].style.width) || 0;
             }
             table.style.width = totalWidth + 'px';
-
-            // テーブルごとクローン（thead+同じ列構造を保証）
-            var headerTable = table.cloneNode(true);
-            // tbody を削除（thead + colgroup だけ残す）
-            var clonedTbody = headerTable.querySelector('tbody');
-            if (clonedTbody) headerTable.removeChild(clonedTbody);
-            // ヘッダーテーブルのスクロールバー元クラスを除去 & 幅設定
-            // 注意: overflow:hiddenはposition:stickyをブロックするので設定しない
-            headerTable.classList.remove('table-scrollable');
-            headerTable.style.width = totalWidth + 'px';
-
-            fixedHeader.innerHTML = '';
-            fixedHeader.appendChild(headerTable);
-
-            // 元テーブルのtheadを非表示にする（colgroupが列幅を維持するのでdisplay:noneで安全）
-            var thead = table.querySelector('thead');
-            thead.style.display = 'none';
-
-            // 横スクロール同期
-            this._scrollHandler = function () {
-                fixedHeader.scrollLeft = tableBox.scrollLeft;
-            };
-            tableBox.addEventListener('scroll', this._scrollHandler);
         },
         //検索項目の表示・非表示切替
         toggle: function () {
@@ -1707,18 +1673,6 @@ export default {
         //一覧の列固定・解除の切替
         toggle_sticky: function () {
             this.sticky = !this.sticky;
-            // クローンヘッダーのstickyクラスも同期
-            var fixedHeader = this.$refs.fixedHeader;
-            if (fixedHeader) {
-                var stickyEls = fixedHeader.querySelectorAll('.stickyeee');
-                for (var i = 0; i < stickyEls.length; i++) {
-                    if (this.sticky) {
-                        stickyEls[i].classList.add('sticky');
-                    } else {
-                        stickyEls[i].classList.remove('sticky');
-                    }
-                }
-            }
         },
         //並び①並び②列の各カラムの設定をクリアする
         clearOrder(no) {
@@ -2088,54 +2042,6 @@ export default {
 @import "resources/sass/pages/_mypage.scss";
 </style>
 <style scoped>
-/* 固定ヘッダーコンテナ */
-.fixed-header-container {
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-bottom: 2px solid #ccc;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-.fixed-header-container::-webkit-scrollbar {
-    display: none;
-}
-.fixed-header-container :deep(table) {
-    border-collapse: collapse !important;
-    border-spacing: 0 !important;
-    table-layout: fixed;
-}
-.fixed-header-container :deep(tr) {
-    border-left: none;
-    border-right: none;
-}
-.fixed-header-container :deep(th) {
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    white-space: nowrap;
-    font-size: 14px;
-    line-height: 16px;
-    padding: 5px;
-    background-color: #EEEEEE;
-}
-.fixed-header-container :deep(th span) {
-    text-align: center;
-    font-size: 11px;
-    line-height: 11px;
-}
-.fixed-header-container :deep(th.stickyeee) {
-    border: none;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    min-width: 160px;
-    max-width: 160px;
-}
-.fixed-header-container :deep(.sticky) {
-    position: sticky;
-    position: -webkit-sticky;
-    left: 0;
-    z-index: 2;
-}
-
 /* テーブル本体 */
 .table_box {
     overflow: auto !important;
@@ -2168,6 +2074,11 @@ export default {
 .table_box th {
     /* font-weight: bold; */
     padding: 5px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #EEEEEE;
 }
 
 .table_box th span {
@@ -2179,8 +2090,6 @@ export default {
 .table_box th.stickyeee,
 .table_box td.stickyeee {
     border: none;
-    min-width: 160px;
-    max-width: 160px;
 }
 
 .table_box th.stickyeee {
@@ -2191,10 +2100,12 @@ export default {
 .table_box .sticky {
     position: sticky;
     position: -webkit-sticky;
-    top: 0 !important;
     left: 0;
-    min-width: 160px;
-    max-width: 160px;
+    z-index: 2;
+}
+/* stickyヘッダー + sticky列（左固定）の交差セルは最上位 */
+.table_box th.sticky {
+    z-index: 3;
 }
 
 .table_box .sticky::before {
