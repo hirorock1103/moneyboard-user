@@ -368,7 +368,6 @@
                         </div>
 
                         <div
-                            class="table_box"
                             v-if="items.length"
                             v-bind:class="{
                                 blur: blur_flg !== 2,
@@ -385,15 +384,77 @@
                             <p v-else id="toggle_sticky" @click="toggle_sticky">
                                 列固定
                             </p>
+                            <div class="fixed-header-container" ref="fixedHeader"></div>
+                            <div class="table_box" ref="tableBox">
                             <table
                                 oncopy="return false"
-                                class="table--bordered table-scrollable"
-                                style="
-                                    white-space: nowrap;
-                                    overflow-y: hidden;
-                                    max-height: none;
-                                "
+                                class="table--bordered"
+                                style="white-space: nowrap;"
                             >
+                                <colgroup>
+                                    <col style="width:80px"><!-- 並び① -->
+                                    <col style="width:80px"><!-- 並び② -->
+                                    <col style="width:160px"><!-- 企業名 -->
+                                    <col style="width:80px"><!-- 決算月 -->
+                                    <col style="width:160px"><!-- 担当者 -->
+                                    <col style="width:100px"><!-- R有無 -->
+                                    <col style="width:100px"><!-- 更新日 -->
+                                    <col style="width:100px"><!-- 決算期 -->
+                                    <col style="width:100px"><!-- 最新の取込決済期 -->
+                                    <col style="width:100px"><!-- 余剰金目安 -->
+                                    <col style="width:100px"><!-- 現金預金 -->
+                                    <col style="width:100px"><!-- 差額 -->
+                                    <col style="width:100px"><!-- 売上高 -->
+                                    <col style="width:100px"><!-- 代表者役員報酬 -->
+                                    <col style="width:100px"><!-- 代表者役員報酬前営業利益 -->
+                                    <col style="width:100px"><!-- 翌期繰越欠損金額 -->
+                                    <col style="width:100px"><!-- 金融機関借入残 -->
+                                    <col style="width:100px"><!-- 年商比 -->
+                                    <col style="width:100px"><!-- 総合評価 -->
+                                    <col style="width:100px"><!-- 安全性 -->
+                                    <col style="width:100px"><!-- 収益性 -->
+                                    <col style="width:100px"><!-- 資金効率性 -->
+                                    <col style="width:100px"><!-- 借入金対策: 対策必要額 -->
+                                    <col style="width:100px"><!-- 借入金対策: 不足額 -->
+                                    <col style="width:100px"><!-- 運転資金対策: 対策必要金(3ヶ月) -->
+                                    <col style="width:100px"><!-- 運転資金対策: 不足額(3ヶ月) -->
+                                    <col style="width:100px"><!-- 運転資金対策: 対策必要金(6ヶ月) -->
+                                    <col style="width:100px"><!-- 運転資金対策: 不足額(6ヶ月) -->
+                                    <col style="width:100px"><!-- 退職金対策: 代表者年齢 -->
+                                    <col style="width:100px"><!-- 退職金対策: 退職年齢 -->
+                                    <col style="width:100px"><!-- 退職金対策: 相続人数 -->
+                                    <col style="width:100px"><!-- 退職金対策: 相続財産額 -->
+                                    <col style="width:100px"><!-- 退職金対策: 生命保険 -->
+                                    <col style="width:100px"><!-- 退職金対策: 同族株式 -->
+                                    <col style="width:100px"><!-- 退職金対策: 会社へ貸付 -->
+                                    <col style="width:100px"><!-- 退職金対策: 会社からの借入 -->
+                                    <col style="width:100px"><!-- 退職金対策: 対策必要金 -->
+                                    <col style="width:100px"><!-- 退職金対策: 預貯金残高 -->
+                                    <col style="width:100px"><!-- 退職金対策: 相続税 -->
+                                    <col style="width:100px"><!-- 承継対策: 有無 -->
+                                    <col style="width:100px"><!-- 承継対策: 後継者 割合(%) -->
+                                    <col style="width:100px"><!-- 承継対策: 後継者 必要金 -->
+                                    <col style="width:100px"><!-- 承継対策: 相続人 割合(%) -->
+                                    <col style="width:100px"><!-- 承継対策: 相続人 必要金 -->
+                                    <col style="width:100px"><!-- 承継対策: 対策必要金 -->
+                                    <col style="width:100px"><!-- 年齢・人数: 代表者年齢 -->
+                                    <col style="width:100px"><!-- 年齢・人数: 従業員平均年齢 -->
+                                    <col style="width:100px"><!-- 年齢・人数: 従業員数 -->
+                                    <col style="width:100px"><!-- 代表者: 役員報酬 -->
+                                    <col style="width:100px"><!-- 代表者: 代表者借入残 -->
+                                    <col style="width:100px"><!-- 相続対策: 代表者の債務 -->
+                                    <col style="width:100px"><!-- 相続対策: 純資産の額 -->
+                                    <col style="width:100px"><!-- 相続対策: 計 -->
+                                    <col style="width:100px"><!-- 業種 -->
+                                    <col style="width:100px"><!-- 法人番号 -->
+                                    <col style="width:100px"><!-- 年商 -->
+                                    <col style="width:100px"><!-- 資本金 -->
+                                    <col style="width:100px"><!-- 成約可能性: 今回 -->
+                                    <col style="width:100px"><!-- 成約可能性: 前回 -->
+                                    <col style="width:100px"><!-- 成約可能性: 前々回 -->
+                                    <col style="width:100px"><!-- 面談場所 -->
+                                    <col style="width:100px"><!-- コメント -->
+                                </colgroup>
                                 <thead>
                                     <tr>
                                         <!-- 並び順①〜担当者 -->
@@ -407,8 +468,6 @@
                                                 left: 0px;
                                                 text-align: left;
                                                 background: #ddd;
-                                                min-width: 480px;
-                                                max-width: 480px;
                                             "
                                         >
                                             <span
@@ -426,7 +485,7 @@
                                         </th>
 
                                         <!-- R有無 -->
-                                        <th colspan="1"></th>
+                                        <th colspan="1" style="width: 100px; min-width: 100px; max-width: 100px;"></th>
 
                                         <!-- 更新日時 -->
                                         <th colspan="1"></th>
@@ -591,7 +650,7 @@
                                         >
                                             担当者
                                         </th>
-                                        <th class="" rowspan="2">R有無</th>
+                                        <th class="" rowspan="2" style="width: 100px; min-width: 100px; max-width: 100px;">R有無</th>
                                         <th class="" rowspan="2">更新日</th>
 
                                         <!-- 決算期 -->
@@ -1024,7 +1083,7 @@
                                         </td>
 
                                         <!-- R有無 -->
-                                        <td>
+                                        <td style="width: 100px; min-width: 100px; max-width: 100px;">
                                             {{ item.risk_management_id ? '有' : '' }}
                                         </td>
 
@@ -1393,6 +1452,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                         <div v-else-if="blur_flg === 1">
                             顧客情報管理画面はスタンダードプランのみの表示となります
@@ -1586,7 +1646,68 @@ export default {
     mounted: function () {
         document.title = "スタンダードプラン | MoneyBoard";
     },
+    updated: function () {
+        this.$nextTick(function () {
+            this.setupFixedHeader();
+        });
+    },
+    beforeUnmount: function () {
+        if (this._scrollHandler && this.$refs.tableBox) {
+            this.$refs.tableBox.removeEventListener('scroll', this._scrollHandler);
+        }
+    },
     methods: {
+        setupFixedHeader: function () {
+            var tableBox = this.$refs.tableBox;
+            var fixedHeader = this.$refs.fixedHeader;
+            if (!tableBox || !fixedHeader) return;
+            // 既にヘッダーテーブルが存在する場合はスキップ
+            if (fixedHeader.querySelector('table')) return;
+
+            var table = tableBox.querySelector('table');
+            if (!table || !table.querySelector('thead')) return;
+
+            // colgroup合計幅を計算してテーブルに設定（table-layout:fixedに必須）
+            var cols = table.querySelectorAll('colgroup col');
+            var totalWidth = 0;
+            for (var i = 0; i < cols.length; i++) {
+                totalWidth += parseInt(cols[i].style.width) || 0;
+            }
+            table.style.width = totalWidth + 'px';
+
+            // テーブルごとクローン（thead+同じ列構造を保証）
+            var headerTable = table.cloneNode(true);
+            // tbody を削除（thead + colgroup だけ残す）
+            var clonedTbody = headerTable.querySelector('tbody');
+            if (clonedTbody) headerTable.removeChild(clonedTbody);
+            // ヘッダーテーブルのスクロールバーを防止 & 幅設定
+            headerTable.classList.remove('table-scrollable');
+            headerTable.style.overflow = 'hidden';
+            headerTable.style.width = totalWidth + 'px';
+
+            fixedHeader.innerHTML = '';
+            fixedHeader.appendChild(headerTable);
+
+            // 元テーブルのtheadを視覚的に非表示にする（列幅はtable-layout:fixedにより維持）
+            var thead = table.querySelector('thead');
+            var allElements = thead.querySelectorAll('*');
+            for (var i = 0; i < allElements.length; i++) {
+                var s = allElements[i].style;
+                s.setProperty('padding', '0', 'important');
+                s.setProperty('height', '0', 'important');
+                s.setProperty('font-size', '0', 'important');
+                s.setProperty('line-height', '0', 'important');
+                s.setProperty('overflow', 'hidden', 'important');
+                s.setProperty('border-top-width', '0', 'important');
+                s.setProperty('border-bottom-width', '0', 'important');
+            }
+
+            // 横スクロール同期
+            this._scrollHandler = function () {
+                fixedHeader.scrollLeft = tableBox.scrollLeft;
+            };
+            tableBox.addEventListener('scroll', this._scrollHandler);
+        },
         //検索項目の表示・非表示切替
         toggle: function () {
             this.show = !this.show;
@@ -1963,15 +2084,64 @@ export default {
 @import "resources/sass/pages/_mypage.scss";
 </style>
 <style scoped>
+/* 固定ヘッダーコンテナ */
+.fixed-header-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 2px solid #ccc;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.fixed-header-container::-webkit-scrollbar {
+    display: none;
+}
+.fixed-header-container :deep(table) {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    table-layout: fixed;
+}
+.fixed-header-container :deep(tr) {
+    border-left: none;
+    border-right: none;
+}
+.fixed-header-container :deep(th) {
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 5px;
+    background-color: #EEEEEE;
+}
+.fixed-header-container :deep(th span) {
+    text-align: center;
+    font-size: 11px;
+    line-height: 11px;
+}
+.fixed-header-container :deep(th.stickyeee) {
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    min-width: 160px;
+    max-width: 160px;
+}
+.fixed-header-container :deep(.sticky) {
+    position: sticky;
+    position: -webkit-sticky;
+    left: 0;
+    z-index: 2;
+}
+
+/* テーブル本体 */
 .table_box {
-    overflow-y: auto !important;
+    overflow: auto !important;
     -webkit-overflow-scrolling: touch !important;
+    max-height: calc(100vh - 350px);
 }
 
 .table_box table {
     border-collapse: collapse !important;
     border-spacing: 0 !important;
-    width: 100% !important;
     table-layout: fixed;
 }
 
