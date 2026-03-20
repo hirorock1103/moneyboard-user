@@ -406,7 +406,7 @@
                                     <col style="width:100px"><!-- 差額 -->
                                     <col style="width:100px"><!-- 売上高 -->
                                     <col style="width:100px"><!-- 代表者役員報酬 -->
-                                    <col style="width:100px"><!-- 代表者役員報酬前営業利益 -->
+                                    <col style="width:130px"><!-- 代表者役員報酬前営業利益 -->
                                     <col style="width:100px"><!-- 翌期繰越欠損金額 -->
                                     <col style="width:100px"><!-- 金融機関借入残 -->
                                     <col style="width:100px"><!-- 年商比 -->
@@ -1707,6 +1707,18 @@ export default {
         //一覧の列固定・解除の切替
         toggle_sticky: function () {
             this.sticky = !this.sticky;
+            // クローンヘッダーのstickyクラスも同期
+            var fixedHeader = this.$refs.fixedHeader;
+            if (fixedHeader) {
+                var stickyEls = fixedHeader.querySelectorAll('.stickyeee');
+                for (var i = 0; i < stickyEls.length; i++) {
+                    if (this.sticky) {
+                        stickyEls[i].classList.add('sticky');
+                    } else {
+                        stickyEls[i].classList.remove('sticky');
+                    }
+                }
+            }
         },
         //並び①並び②列の各カラムの設定をクリアする
         clearOrder(no) {
