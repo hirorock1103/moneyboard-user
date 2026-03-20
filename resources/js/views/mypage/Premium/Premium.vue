@@ -606,7 +606,7 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 160px;
+                                                left: 158px;
                                                 background: #ddd;
                                                 text-align: center !important;
                                                 color: rgba(0, 0, 0, 70%);
@@ -621,7 +621,7 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 288px;
+                                                left: 285px;
                                                 background: #ddd;
                                                 text-align: center !important;
                                                 color: rgba(0, 0, 0, 70%);
@@ -636,7 +636,7 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 363px;
+                                                left: 359px;
                                                 background: #ddd;
                                                 text-align: center !important;
                                                 color: rgba(0, 0, 0, 70%);
@@ -1026,7 +1026,7 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 160px;
+                                                left: 158px;
                                                 background: #eee;
                                             "
                                         >
@@ -1038,7 +1038,7 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 288px;
+                                                left: 285px;
                                                 background: #eee;
                                                 text-align: center;
                                             "
@@ -1055,7 +1055,7 @@
                                                 sticky: sticky,
                                             }"
                                             style="
-                                                left: 363px;
+                                                left: 359px;
                                                 background: #eee;
                                             "
                                         >
@@ -2145,7 +2145,7 @@ span.clearOrder:hover {
     left: 0px;
 }
 .order_no2 {
-    left: 80px !important;
+    left: 79px !important;
 }
 
 #open_close {
