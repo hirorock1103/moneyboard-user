@@ -2036,9 +2036,22 @@ export default {
 <style scoped>
 /* テーブル本体 */
 .table_box {
-    overflow: auto !important;
+    overflow: scroll !important;
     -webkit-overflow-scrolling: touch !important;
     max-height: calc(100vh - 200px);
+}
+.table_box::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+}
+.table_box::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    border: 2px solid #fff;
+}
+.table_box::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
 }
 
 .table_box table {
