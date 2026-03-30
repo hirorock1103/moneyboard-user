@@ -68,6 +68,7 @@
                         </h5>
                     </div>
                     <article
+                        v-show="false"
                         class="padding--16 bg-gray [ [ margin-left-medium--48 margin-left-large--24 ] [ margin-right-medium--48 margin-right-large--24 ] [ margin-bottom--48 margin-bottom-large--88 ] ]"
                     >
                         <div class="[ padding--24 padding-large--48 ] bg-white">
