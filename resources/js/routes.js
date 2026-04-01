@@ -72,6 +72,8 @@ import Inquiry_done from "./views/mypage/Inquiry/Inquiry_done.vue";
 import Terms from "./views/terms/Home.vue";
 import Privacy from "./views/privacy/Home.vue";
 import Tokutei from "./views/tokutei/Home.vue";
+// 担当者用マイページ
+import UserPage from "./views/userpage/UserPage.vue";
 // エラー画面
 import SystemError from "./views/errors/System.vue";
 import NotFound from "./views/errors/NotFound.vue";
@@ -466,6 +468,14 @@ const routes = [
         component: Inquiry_done,
         name: "mypage-inquiry_done",
         beforeEnter: auth,
+    },
+    // 担当者用マイページ
+    {
+        path: "/userpage",
+        component: UserPage,
+        name: "userpage",
+        beforeEnter: auth,
+        meta: { hideDefaultLayout: true },
     },
     // ログアウト
     {

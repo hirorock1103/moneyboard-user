@@ -411,7 +411,7 @@ export default {
             }).then(() => {
                 if (this.apiStatus) {
                     this.$router.push({
-                        name: "mypage-home",
+                        name: "userpage",
                     });
                 }
             });

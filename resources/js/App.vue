@@ -1,7 +1,7 @@
 <template>
-    <Header />
+    <Header v-if="!$route.meta.hideDefaultLayout" />
     <RouterView />
-    <Footer />
+    <Footer v-if="!$route.meta.hideDefaultLayout" />
     <p id="exscript" style="margin-bottom: 0"></p>
 </template>
 
