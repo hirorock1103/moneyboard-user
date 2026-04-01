@@ -278,6 +278,7 @@ const actions = {
             if (response.data.status === "OK") {
                 localStorage.setItem("authToken", response.data.data.access_token);
                 localStorage.setItem("expierAt", response.data.data.expier_at);
+                localStorage.setItem("loginType", "company");
                 const data = await axios.post(
                     process.env.MIX_VUE_APP_API_URL + "com/me"
                 );
@@ -302,11 +303,58 @@ const actions = {
             context.commit("setLoadingStatus", false);
         }
     },
+    // 担当者ログイン
+    async sendStaffLoginRequest(context, data) {
+        context.commit("setApiStatus", null);
+        context.commit("setLoadingStatus", true);
+        try {
+            const response = await axios.post(
+                process.env.MIX_VUE_APP_API_URL + "app/login",
+                data
+            );
+            const card_initial = {
+                number: "",
+                valid_year: "",
+                valid_month: "",
+                security_code: "",
+                name: "",
+                stripe_token: "",
+            };
+
+            if (response.data.status === "OK") {
+                localStorage.setItem("authToken", response.data.data.access_token);
+                localStorage.setItem("expierAt", response.data.data.expier_at);
+                localStorage.setItem("loginType", "staff");
+                const meData = await axios.post(
+                    process.env.MIX_VUE_APP_API_URL + "app/me"
+                );
+                context.commit("setApiStatus", true);
+                context.commit("setUser", meData.data.data.me);
+                context.commit("setCompany", meData.data.auth.company);
+                context.commit("setContract", meData.data.data.contract);
+                context.commit("setCard", card_initial);
+
+                return false;
+            }
+
+            context.commit("setApiStatus", false);
+            if (response.data.status === "NG") {
+                context.commit("setLoginErrorMessages", response.data.message);
+            }
+        } catch (error) {
+            context.commit("setApiStatus", false);
+            context.commit("setLoginErrorMessages", "通信エラーが発生しました。ネットワーク接続を確認してください。");
+        } finally {
+            context.commit("setLoadingStatus", false);
+        }
+    },
     // ログアウト
     async sendLogoutRequest(context) {
         context.commit("setApiStatus", null);
+        const loginType = localStorage.getItem("loginType");
+        const logoutEndpoint = loginType === "staff" ? "app/logout" : "com/logout";
         const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + "com/logout"
+            process.env.MIX_VUE_APP_API_URL + logoutEndpoint
         );
 
         if (response.data.status === "OK") {
@@ -317,6 +365,7 @@ const actions = {
             context.commit("setContract", null);
             localStorage.removeItem("authToken");
             localStorage.removeItem("expierAt");
+            localStorage.removeItem("loginType");
             sessionStorage.removeItem("client-search-params");
             sessionStorage.removeItem("premium-search-params");
             return false;
@@ -332,6 +381,7 @@ const actions = {
         context.commit("setCard", null);
         context.commit("setContract", null);
         localStorage.removeItem("authToken");
+        localStorage.removeItem("loginType");
     },
     async sendResetLinkRequest(context, data) {
         context.commit("setApiStatus", null);
@@ -412,8 +462,10 @@ const actions = {
     //},
     // データ更新
     async updateState(context) {
+        const loginType = localStorage.getItem("loginType");
+        const meEndpoint = loginType === "staff" ? "app/me" : "com/me";
         const data = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + "com/me"
+            process.env.MIX_VUE_APP_API_URL + meEndpoint
         );
         context.commit("setApiStatus", true);
         context.commit("setLoadingStatus", false);

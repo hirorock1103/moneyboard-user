@@ -92,8 +92,10 @@ const auth = async (to, from, next) => {
             let expier_at = new Date(localStorage.getItem("expierAt"));
             if (now < expier_at) {
                 // 有効期限内であればリフレッシュ
+                const loginType = localStorage.getItem("loginType");
+                const refreshEndpoint = loginType === "staff" ? "app/refresh" : "com/refresh";
                 await axios
-                    .post(process.env.MIX_VUE_APP_API_URL + "com/refresh", [], {
+                    .post(process.env.MIX_VUE_APP_API_URL + refreshEndpoint, [], {
                         headers: {
                             Authorization:
                                 "Bearer " + localStorage.getItem("authToken"),
@@ -114,6 +116,7 @@ const auth = async (to, from, next) => {
                     .catch((error) => {
                         localStorage.removeItem("authToken");
                         localStorage.removeItem("expierAt");
+                        localStorage.removeItem("loginType");
                         return next("/401");
                     });
             } else {
