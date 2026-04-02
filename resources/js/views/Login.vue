@@ -164,6 +164,7 @@
                                     class="form-input margin-top--8"
                                     v-model="staffForm.company_code"
                                     @input="v$.staffForm.company_code.$touch"
+                                    @blur="fetchStaffList"
                                     v-bind:class="[
                                         v$.staffForm.company_code.$error
                                             ? 'form-error margin-bottom--12'
@@ -175,6 +176,39 @@
                                     v-if="v$.staffForm.company_code.$error"
                                 >
                                     {{ v$.staffForm.company_code.$errors[0].$message }}
+                                </div>
+
+                                <!-- 担当者プルダウン -->
+                                <label for="user_code" class="form-label">
+                                    <span
+                                        class="[ icon solid ] fa-user padding-right--8 text-accent"
+                                    ></span>
+                                    担当者
+                                </label>
+                                <select
+                                    id="user_code"
+                                    class="form-input form-select margin-top--8"
+                                    v-model="staffForm.user_code"
+                                    @change="v$.staffForm.user_code.$touch"
+                                    :disabled="staffList.length === 0"
+                                    v-bind:class="[
+                                        v$.staffForm.user_code.$error
+                                            ? 'form-error margin-bottom--12'
+                                            : 'margin-bottom--24',
+                                    ]"
+                                >
+                                    <option value="">担当者を選択してください</option>
+                                    <option
+                                        v-for="staff in staffList"
+                                        :key="staff.user_code"
+                                        :value="staff.user_code"
+                                    >{{ staff.user_name }}</option>
+                                </select>
+                                <div
+                                    class="form-text text-danger margin-bottom--24"
+                                    v-if="v$.staffForm.user_code.$error"
+                                >
+                                    {{ v$.staffForm.user_code.$errors[0].$message }}
                                 </div>
 
                                 <!-- パスワード -->
@@ -215,6 +249,9 @@
                                 <div
                                     class="text-center [ margin-top--48 [ margin-bottom--16 margin-bottom-large--24 ] ]"
                                 >
+                                    <p v-show="staffListError" class="text-danger">
+                                        {{ staffListError }}
+                                    </p>
                                     <p v-show="loginErrors" class="text-danger">
                                         {{ loginErrors }}
                                     </p>
@@ -240,6 +277,7 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import { required, email, helpers } from "@vuelidate/validators";
 import { mapState, mapActions } from "vuex";
+import axios from "../src/plugins/axios.js";
 
 export default {
     name: "/login",
@@ -261,9 +299,12 @@ export default {
             // 担当者ログイン
             staffForm: {
                 company_code: "",
+                user_code: "",
                 password: "",
             },
             showStaffPassword: false,
+            staffList: [],
+            staffListError: null,
         };
     },
     validations() {
@@ -293,6 +334,12 @@ export default {
                         required
                     ),
                 },
+                user_code: {
+                    required: helpers.withMessage(
+                        "担当者を選択してください",
+                        required
+                    ),
+                },
                 password: {
                     required: helpers.withMessage(
                         "パスワードを入力してください",
@@ -314,6 +361,7 @@ export default {
         switchTab(tab) {
             this.activeTab = tab;
             this.$store.commit("auth/setLoginErrorMessages", null);
+            this.staffListError = null;
         },
         // 企業ログイン
         login() {
@@ -327,12 +375,38 @@ export default {
                 }
             });
         },
+        // 担当者一覧取得
+        async fetchStaffList() {
+            this.staffListError = null;
+            this.staffList = [];
+            this.staffForm.user_code = "";
+
+            if (!this.staffForm.company_code) return;
+
+            try {
+                const response = await axios.get(
+                    process.env.MIX_VUE_APP_API_URL +
+                    "app/user/index/all?company_code=" +
+                    encodeURIComponent(this.staffForm.company_code) +
+                    "&type=1"
+                );
+                if (response.data.status === "OK" && response.data.data && response.data.data.data_list) {
+                    const dataList = response.data.data.data_list;
+                    this.staffList = Array.isArray(dataList) ? dataList : (dataList.data || []);
+                } else {
+                    this.staffListError = "担当者の取得に失敗しました。企業IDを確認してください。";
+                }
+            } catch (e) {
+                this.staffListError = "担当者の取得に失敗しました。ネットワーク接続を確認してください。";
+            }
+        },
         // 担当者ログイン
         staffLogin() {
             this.v$.staffForm.$touch();
             if (this.v$.staffForm.$error) return;
             this.sendStaffLoginRequest({
                 company_code: this.staffForm.company_code,
+                user_code: this.staffForm.user_code,
                 password: this.staffForm.password,
             }).then(() => {
                 if (this.apiStatus) {
