@@ -18,6 +18,11 @@
                 <h2 class="text-center heading-primary">新規登録</h2>
                 <form @submit.prevent="register">
                     <ProgressBar :current-step="currentStep" />
+                    <div v-if="isDevMode" class="text-center margin-bottom--48">
+                        <button type="button" class="btn btn-warning" @click="fillSampleData" style="font-size: 14px; padding: 8px 24px;">
+                            サンプルデータをセット
+                        </button>
+                    </div>
                     <p class="text-center margin-bottom--48">
                         下記項目をすべてご記入ください
                     </p>
@@ -1216,6 +1221,9 @@ export default {
         getToken() {
             this.getUser.token = localStorage.getItem("authToken");
         },
+        isDevMode() {
+            return process.env.MIX_DEV_MODE === 'true';
+        },
     },
     methods: {
         ...mapActions("auth", ["updateUser"]),
@@ -1259,6 +1267,25 @@ export default {
                 this.person_in_charge = this.getUser.motivated_by.substring(6);
                 this.getUser.motivated_by = "営業担当者";
             }
+        },
+        fillSampleData() {
+            const user = this.getUser;
+            user.company_name = 'テスト株式会社';
+            user.post_number = '1000001';
+            user.address = '東京都千代田区千代田1-1';
+            user.phone_number = '0312345678';
+            user.company_rep = 'テスト太郎';
+            user.mobile_number = '09012345678';
+            user.payment_type = 3;
+            user.plan_id = 1;
+            user.additional_licenses = 0;
+            user.password = 'Test1234567';
+            user.password_confirm = 'Test1234567';
+            user.app_password = 'Test12345';
+            user.app_password_confirm = 'Test12345';
+            user.motivated_by = 'インターネット検索';
+            this.planAmount = 55000;
+            this.v$.$reset();
         },
         changePlan(value) {
             this.planAmount = value;

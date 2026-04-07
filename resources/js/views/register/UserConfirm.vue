@@ -533,6 +533,9 @@ export default {
                         ...this.getUser,
                         register_token: localStorage.getItem("registerToken"),
                     };
+                    if (process.env.MIX_DEV_MODE === 'true') {
+                        datas.skip_mail = true;
+                    }
                     delete datas.company_code;
                     delete datas.user_type;
                     delete datas.email_address;
@@ -547,16 +550,41 @@ export default {
                         //     this.message = false;
                         // }, 2000);
                     } else {
+                        const paymentLabel = { 1: 'クレジットカード', 2: '銀行振込', 3: '口座振替' };
+                        const planLabel = { 1: 'ライトプラン（60社）', 2: 'スタンダードプラン（120社）' };
+                        let registrationInfo = null;
+
+                        if (process.env.MIX_DEV_MODE === 'true') {
+                            const company = response2.data.data.company;
+                            const contract = response2.data.data.contract;
+                            registrationInfo = {
+                                companyCode: company.company_code,
+                                companyId: company.id,
+                                companyName: company.company_name,
+                                postNumber: company.post_number,
+                                address: company.address,
+                                phoneNumber: company.phone_number,
+                                companyRep: company.company_rep,
+                                mobileNumber: company.mobile_number,
+                                paymentType: paymentLabel[company.payment_type] || company.payment_type,
+                                plan: planLabel[contract.plan_id] || contract.plan_id,
+                                addLicenseCount: contract.add_license_count || 0,
+                            };
+                            sessionStorage.setItem('registrationInfo', JSON.stringify(registrationInfo));
+                        }
+
                         this.$router.push({
                             name: "register-completion",
                             params: {
                                 type: "register",
                                 title: "申込完了",
-                                message: [
-                                    "ご登録ありがとうございます",
-                                    "登録されたメールアドレスに「お申し込み内容」を送信いたしました",
-                                    "ご確認お願いいたします",
-                                ],
+                                message: registrationInfo
+                                    ? ["ご登録ありがとうございます"]
+                                    : [
+                                        "ご登録ありがとうございます",
+                                        "登録されたメールアドレスに「お申し込み内容」を送信いたしました",
+                                        "ご確認お願いいたします",
+                                    ],
                                 currentStep: Number(4),
                                 redirectPage: "toLogin",
                             },

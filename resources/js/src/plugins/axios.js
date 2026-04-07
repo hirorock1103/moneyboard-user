@@ -40,6 +40,7 @@ axios_instance.interceptors.response.use(
             default:
             // 例外処理
         }
+        return Promise.reject(error);
     }
 );
 

@@ -482,20 +482,28 @@ export default {
                 email_address: this.signupForm.email_address,
             }).then(() => {
                 if (this.apiStatus) {
-                    this.$router.push({
-                        name: "signup-completion",
-                        params: {
-                            type: "signup",
-                            title: "メール送信完了",
-                            message: [
-                                this.signupForm.email_address + "宛に",
-                                "メールが送信されました",
-                                "メールのURLから登録手続きをお願いします",
-                                "メールが届かない場合は、しばらくお待ちいただき再度登録をお願いいたします",
-                            ],
-                            redirectPage: "home",
-                        },
-                    });
+                    // メール送信不要モード: register_tokenがあれば直接登録画面へ
+                    if (localStorage.getItem("registerToken")) {
+                        this.$store.dispatch("auth/resetTemps");
+                        this.$store.dispatch("auth/updateTemps", this.signupForm.email_address);
+                        this.$router.push({ name: "register-user" });
+                    } else {
+                        // メール送信OKモード: 従来通りメール送信完了画面へ
+                        this.$router.push({
+                            name: "signup-completion",
+                            params: {
+                                type: "signup",
+                                title: "メール送信完了",
+                                message: [
+                                    this.signupForm.email_address + "宛に",
+                                    "メールが送信されました",
+                                    "メールのURLから登録手続きをお願いします",
+                                    "メールが届かない場合は、しばらくお待ちいただき再度登録をお願いいたします",
+                                ],
+                                redirectPage: "home",
+                            },
+                        });
+                    }
                 }
             });
         },

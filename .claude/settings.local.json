@@ -14,7 +14,14 @@
       "Bash(git remote set-url:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nimg要素への不要なwidth:100%スタイルを削除\n\n全角スペースが含まれており環境によってコンパイル結果が異なる問題があったため削除\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(npm run hot:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git checkout -- resources/js/views/mypage/Premium/Premium.vue)",
+      "Bash(npx mix --no-notification)",
+      "Bash(npx mix)"
+    ],
+    "additionalDirectories": [
+      "/Users/kobayashi_hiromu/Documents/開発/GitHub/MoneyBoardDocker/app/app/Http/Controllers/Auth/Company",
+      "/Users/kobayashi_hiromu/.claude/projects/-Users-kobayashi-hiromu-Documents----GitHub-projects-moneyboard-user"
     ]
   }
 }

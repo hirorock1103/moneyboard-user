@@ -168,26 +168,50 @@ const actions = {
         context.commit("setCard", card_initial);
         context.commit("setContract", null);
 
-        const response = await axios.post(
-            process.env.MIX_VUE_APP_API_URL + "com/signup",
-            data
-        );
-
-        if (response.data.status === "OK") {
-            context.commit("setApiStatus", true);
-            context.commit("setLoadingStatus", false);
-            return false;
-        }
-
-        context.commit("setApiStatus", false);
-        context.commit("setLoadingStatus", false);
-        if (response.data.status === "NG") {
-            context.commit(
-                "setSignupErrorMessages",
-                "既に登録されているメールアドレスです"
+        try {
+            const requestData = { ...data };
+            if (process.env.MIX_DEV_MODE === 'true') {
+                requestData.skip_mail = true;
+            }
+            const response = await axios.post(
+                process.env.MIX_VUE_APP_API_URL + "com/signup",
+                requestData
             );
-        } else {
-            context.commit("error/setCode", response.status, { root: true });
+            console.log("signup response:", response);
+            console.log("signup response.data:", response.data);
+
+            if (response.data && response.data.status === "OK") {
+                // メール送信不要モード: register_tokenが返ってきたらlocalStorageに保存
+                if (response.data.data && response.data.data.register_token) {
+                    localStorage.setItem(
+                        "registerToken",
+                        response.data.data.register_token
+                    );
+                }
+                context.commit("setApiStatus", true);
+                context.commit("setLoadingStatus", false);
+                return false;
+            }
+
+            context.commit("setApiStatus", false);
+            context.commit("setLoadingStatus", false);
+            if (response.data.status === "NG") {
+                context.commit(
+                    "setSignupErrorMessages",
+                    "既に登録されているメールアドレスです"
+                );
+            } else {
+                context.commit("error/setCode", response.status, { root: true });
+            }
+        } catch (e) {
+            console.error("signup error:", e);
+            console.error("response:", e.response);
+            context.commit("setApiStatus", false);
+            context.commit("setLoadingStatus", false);
+            const msg = e.response && e.response.data && e.response.data.message
+                ? e.response.data.message
+                : "サーバーエラーが発生しました（" + (e.response ? e.response.status : e.message) + "）";
+            context.commit("setSignupErrorMessages", msg);
         }
     },
     // 仮登録
